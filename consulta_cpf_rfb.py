@@ -222,20 +222,21 @@ class CDP:
             raise RuntimeError("Falha no script da página: " + result["exceptionDetails"].get("text", "erro"))
         return result.get("result", {}).get("value")
 
-def http_json(url):
-    with urllib.request.urlopen(url, timeout=5) as r:
+def http_json(url, timeout=5):
+    with urllib.request.urlopen(url, timeout=timeout) as r:
         return json.loads(r.read().decode("utf-8"))
 
 def wait_debug():
-    for _ in range(100):
+    deadline = time.monotonic() + 15
+    while time.monotonic() < deadline:
         try:
-            return http_json(f"http://127.0.0.1:{PORT}/json/version")
-        except Exception:
-            time.sleep(0.15)
+            return http_json(f"http://127.0.0.1:{PORT}/json/version", timeout=.25)
+        except (OSError, ValueError):
+            time.sleep(.05)
     raise RuntimeError("Não foi possível conectar ao Edge/Chrome")
 
-def get_page():
-    pages = http_json(f"http://127.0.0.1:{PORT}/json")
+def get_page(timeout=5):
+    pages = http_json(f"http://127.0.0.1:{PORT}/json", timeout=timeout)
     for p in pages:
         if p.get("type") == "page" and "receita.fazenda.gov.br" in p.get("url", ""):
             return p
@@ -243,6 +244,17 @@ def get_page():
         if p.get("type") == "page":
             return p
     raise RuntimeError("Nenhuma aba utilizável encontrada")
+
+def wait_page(active):
+    deadline = time.monotonic() + 10
+    while active() and time.monotonic() < deadline:
+        try:
+            return get_page(timeout=.25)
+        except (OSError, ValueError, RuntimeError):
+            time.sleep(.05)
+    if not active():
+        raise Cancelled("Abertura cancelada.")
+    raise RuntimeError("Nenhuma aba utilizável encontrada ao abrir o navegador")
 
 FILL_JS = r'''
 (() => {
@@ -773,12 +785,13 @@ class App:
         exe = find_browser()
         if not exe:
             raise RuntimeError("Microsoft Edge ou Google Chrome não encontrado.")
-        args = browser_args(exe, PORT, PROFILE, "about:blank" if self.compact_active else RFB_URL, self.compact_active)
+        args = browser_args(exe, PORT, PROFILE, "about:blank", self.compact_active)
         self.log_diagnostic("Modo do navegador: " + ("CAPTCHA compacto" if self.compact_active else "janela normal"))
         self.browser = subprocess.Popen(args)
+        opened_at = time.monotonic()
         version = wait_debug()
-        time.sleep(1.0)
-        page = get_page()
+        page = wait_page(lambda: self.running)
+        self.log_diagnostic(f"Navegador disponível em {time.monotonic() - opened_at:.2f}s.")
         self.cdp = CDP(page["webSocketDebuggerUrl"])
         self.cdp.timeout_provider = self.browser_timeout
         self.cdp.interrupt_check = self.check_ip_change
@@ -873,6 +886,7 @@ class App:
         self.form_loaded_at = None
         self.captcha_preview.reset()
         if self.compact_active:self.ui(self.clear_preview)
+        navigation_started = time.monotonic()
         self.log_diagnostic("Abrindo formulário da Receita.")
         try:
             old_epoch = self.cdp.eval("performance.timeOrigin")
@@ -889,13 +903,13 @@ class App:
                 state = self.cdp.eval(r'''
                   (() => ({
                     epoch: performance.timeOrigin,
-                    ready: document.readyState !== 'loading',
                     form: !!document.querySelector('input[name="txtCPF"]') &&
                           !!document.querySelector('input[name="txtDataNascimento"]')
                   }))()
                 ''') or {}
-                if state.get("epoch") != old_epoch and state.get("ready") and state.get("form"):
+                if state.get("epoch") != old_epoch and state.get("form"):
                     self.form_loaded_at = time.monotonic()
+                    self.log_diagnostic(f"Campos disponíveis em {self.form_loaded_at - navigation_started:.2f}s; preparando consulta.")
                     if self.rotation and self.rotation.settings['mode'] == 'stalled':
                         self.verification_watch = VerificationWatch(self.form_loaded_at)
                     return
@@ -978,7 +992,7 @@ class App:
         connection = self.cdp
         if connection is None:
             try:
-                connection = CDP(get_page()["webSocketDebuggerUrl"])
+                connection = CDP(get_page(timeout=.25)["webSocketDebuggerUrl"])
                 self.cdp = connection
             except Exception:
                 pass

@@ -10,3 +10,13 @@ Validação: 37 testes passaram, incluindo interrupção de navegador silencioso
 Não foi possível validar Windows/Edge ou troca real de IP neste ambiente Linux. A detecção continua dependendo da consulta externa de IP; a abertura do Edge e o carregamento da Receita também possuem seus próprios tempos.
 
 Uso: extraia o ZIP em uma nova pasta e execute iniciar.bat. Se utiliza EXE, gere novamente com gerar_exe.bat; um executável antigo não incorpora esta correção.
+
+Correção adicional da abertura da primeira consulta
+
+- Removida a pausa fixa de 1 segundo ao abrir o navegador. A aba é usada assim que estiver disponível, com tentativas curtas e canceláveis.
+- A consulta é preparada assim que os campos do novo documento existem, sem aguardar document.readyState sair de loading. Scripts e o CAPTCHA continuam carregando normalmente.
+- O modo normal também abre about:blank antes de configurar a aba, evitando duas navegações iniciais à Receita.
+- A busca do navegador anterior para encerramento usa prazo curto de 250 ms.
+- diagnostico.txt registra os tempos até o navegador e os campos estarem disponíveis.
+
+Validação atual: 41 testes unitários passaram. Teste adicional com Chromium real e formulário HTTP local manteve um script pendente: o formulário ficou disponível em 0,16 s, com document.readyState ainda loading. Esse teste não mede a Receita nem o CAPTCHA externo. Windows/Edge e a conexão do usuário ainda precisam de validação.

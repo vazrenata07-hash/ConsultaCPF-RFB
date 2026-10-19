@@ -34,3 +34,7 @@ Testes: `python -m unittest discover -s tests`.
 ## Correção de reinício após mudança de IP
 
 Veja CORRECAO_IP.txt. A espera CDP agora verifica interrupções a cada 100 ms e o reinício por IP não usa a pausa de recuperação de 3 segundos. Validação atual: 37 testes unitários; Windows/Edge e troca real de IP pendentes.
+
+## Abertura da primeira consulta
+
+Removida a pausa fixa inicial e a espera pelo restante do documento quando os campos já estão disponíveis. Abertura em branco nos dois modos evita navegação inicial duplicada. Validação: 41 testes unitários e teste local com Chromium real e recurso de script pendente. O tempo do CAPTCHA externo não foi medido nem garantido.
