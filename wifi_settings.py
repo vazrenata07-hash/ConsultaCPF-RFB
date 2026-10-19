@@ -129,7 +129,7 @@ def open_settings(app):
     ttk.Radiobutton(options, text='A cada', variable=mode, value='interval').grid(row=1,column=0,sticky='w')
     ttk.Entry(options, textvariable=interval, width=9).grid(row=1,column=1,padx=6)
     ttk.Label(options, text='segundos após a primeira verificação validada no IP').grid(row=1,column=2,sticky='w')
-    ttk.Radiobutton(options, text='Se a verificação não iniciar em 2 segundos após carregar o formulário',
+    ttk.Radiobutton(options, text='Se a consulta enviada ficar 2 segundos sem resposta',
                     variable=mode, value='stalled').grid(row=2,column=0,columnspan=3,sticky='w',pady=(6,0))
     compact = tk.BooleanVar(value=app.wifi_settings.get('compact_captcha', False))
     browser = ttk.LabelFrame(frame, text='Exibição da verificação', padding=10)

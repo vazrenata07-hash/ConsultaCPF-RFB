@@ -38,3 +38,7 @@ Veja CORRECAO_IP.txt. A espera CDP agora verifica interrupções a cada 100 ms e
 ## Abertura da primeira consulta
 
 Removida a pausa fixa inicial e a espera pelo restante do documento quando os campos já estão disponíveis. Abertura em branco nos dois modos evita navegação inicial duplicada. Validação: 41 testes unitários e teste local com Chromium real e recurso de script pendente. O tempo do CAPTCHA externo não foi medido nem garantido.
+
+## Troca por consulta sem resposta
+
+Em Settings, escolha **Se a consulta enviada ficar 2 segundos sem resposta**, salve e reinicie a execução. O prazo começa no envio; sem resultado, alterna para a próxima rede cadastrada e retoma o CPF pendente. Resultados anteriores são preservados. O prazo não inclui o tempo necessário para conectar à rede seguinte ou reabrir o navegador. Validação atual: 46 testes.

@@ -14,7 +14,7 @@ import urllib.request
 from urllib.parse import urlsplit
 from pathlib import Path
 from ip_monitor import IPMonitor
-from wifi_networks import (WindowsWifi, Rotation, VerificationWatch, SwitchRequired,
+from wifi_networks import (WindowsWifi, Rotation, ResponseWatch, SwitchRequired,
                            Cancelled, load_settings, DEFAULTS)
 from wifi_settings import open_settings
 from browser_mode import browser_args
@@ -528,6 +528,7 @@ class App:
         self.network_ready = True
         self.network_stop = threading.Event()
         self.verification_watch = None
+        self.response_watch = None
         self.form_loaded_at = None
         self.rows = []
         self.running = False
@@ -742,6 +743,7 @@ class App:
         self.rotation = Rotation(self.wifi_settings)
         self.network_stop.clear()
         self.verification_watch = None
+        self.response_watch = None
         self.form_loaded_at = None
         self.resume_requested = False
         self.running = True
@@ -883,6 +885,7 @@ class App:
         # Always GET a fresh form; never reuse a restored POST/CAPTCHA state.
         # Cache and decoration blocks stay enabled throughout the navigation.
         self.verification_watch = None
+        self.response_watch = None
         self.form_loaded_at = None
         self.captcha_preview.reset()
         if self.compact_active:self.ui(self.clear_preview)
@@ -910,8 +913,6 @@ class App:
                 if state.get("epoch") != old_epoch and state.get("form"):
                     self.form_loaded_at = time.monotonic()
                     self.log_diagnostic(f"Campos disponíveis em {self.form_loaded_at - navigation_started:.2f}s; preparando consulta.")
-                    if self.rotation and self.rotation.settings['mode'] == 'stalled':
-                        self.verification_watch = VerificationWatch(self.form_loaded_at)
                     return
             except Exception:
                 pass
@@ -959,9 +960,18 @@ class App:
             return "waiting"
 
     def click_submit(self):
+        # Arm immediately before dispatch so a blocked browser command is also
+        # bounded. A missing submit button does not leave a deadline running.
+        self.response_watch = (ResponseWatch() if self.rotation and
+                               self.rotation.settings['mode'] == 'stalled' else None)
         try:
-            return bool(self.cdp.eval(CLICK_SUBMIT_JS))
+            submitted = bool(self.cdp.eval(CLICK_SUBMIT_JS))
+            if not submitted:
+                self.response_watch = None
+            return submitted
         except Exception:
+            self.check_ip_change()
+            self.response_watch = None
             return False
 
     def browser_timeout(self):
@@ -969,8 +979,9 @@ class App:
         if (self.rotation and self.rotation.settings['mode'] == 'interval'
                 and self.rotation.deadline is not None):
             budget = max(0.05, min(budget, self.rotation.deadline - time.monotonic()))
-        if self.verification_watch and not self.verification_watch.started:
-            budget = min(budget, self.verification_watch.budget())
+        watch = getattr(self, 'response_watch', None)
+        if watch:
+            budget = min(budget, watch.budget())
         return budget
 
     def check_ip_change(self):
@@ -980,8 +991,9 @@ class App:
                 self.rotation.observe_ip(ip)
         if self.rotation and self.rotation.due():
             raise SwitchRequired("Intervalo atingido; alternando rede Wi-Fi.")
-        if self.verification_watch and self.verification_watch.expired():
-            raise SwitchRequired("Verificação não iniciou em 2 segundos; alternando rede Wi-Fi.")
+        watch = getattr(self, 'response_watch', None)
+        if watch and watch.expired():
+            raise SwitchRequired("Consulta enviada sem resposta por 2 segundos; alternando rede Wi-Fi e retomando o CPF pendente.")
         _, revision, _ = self.ip_monitor.snapshot()
         if revision != self.last_ip_revision:
             raise IPChanged("IP público mudou; reiniciando o Edge e a consulta pendente.")
@@ -1019,6 +1031,7 @@ class App:
         self.save_outputs()
         self.network_ready = False
         self.verification_watch = None
+        self.response_watch = None
         self.close_consultation_browser()
         self.last_ip_revision = self.ip_monitor.begin()
         self.ui(self.ip_label.config, {"text": "IP público: aguardando a nova rede"})
@@ -1040,6 +1053,7 @@ class App:
         started = time.monotonic()
         self.log_diagnostic("Mudança de IP detectada: " + str(reason))
         self.verification_watch = None
+        self.response_watch = None
         self.save_outputs()
         self.ui(self.status.config, {"text": "IP mudou; reabrindo navegador e retomando consulta pendente..."})
         self.close_consultation_browser()
@@ -1187,6 +1201,7 @@ class App:
                     self.check_ip_change()
                     if self.recover_connection(r):
                         if self.connection_restarted:
+                            self.response_watch = None
                             auto_submitted = False
                             submitted_epoch = None
                             captcha_start_attempted = False
@@ -1227,6 +1242,7 @@ class App:
 
                 if (res.get("done") and auto_submitted
                         and res.get("documentEpoch") != submitted_epoch):
+                    self.response_watch = None
                     st = (res.get("status") or "SEM RESULTADO").strip()
 
                     if st == "CAPTCHA RECUSADO":

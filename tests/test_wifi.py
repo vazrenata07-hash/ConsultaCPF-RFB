@@ -9,7 +9,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from wifi_networks import (Rotation, VerificationWatch, SwitchRequired, Cancelled,
+from wifi_networks import (Rotation, VerificationWatch, ResponseWatch, SwitchRequired, Cancelled,
                            validate_settings, save_settings, load_settings)
 from consulta_cpf_rfb import App, CDP
 from ip_monitor import IPMonitor
@@ -108,7 +108,8 @@ class Tests(unittest.TestCase):
     def test_app_checks_watchdog_before_ip_monitor(self):
         app=App.__new__(App);app.rotation=Rotation(settings('stalled'))
         app.ip_monitor=SimpleNamespace(snapshot=lambda:(None,0,False))
-        app.verification_watch=VerificationWatch(0,now=lambda:2)
+        app.response_watch=ResponseWatch(now=lambda:0)
+        app.response_watch.now=lambda:2
         with self.assertRaises(SwitchRequired):app.check_ip_change()
     def test_switch_closes_browser_before_connection_and_preserves_rows(self):
         app=App.__new__(App);events=[]

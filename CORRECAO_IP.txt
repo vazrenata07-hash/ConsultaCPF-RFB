@@ -20,3 +20,9 @@ Correção adicional da abertura da primeira consulta
 - diagnostico.txt registra os tempos até o navegador e os campos estarem disponíveis.
 
 Validação atual: 41 testes unitários passaram. Teste adicional com Chromium real e formulário HTTP local manteve um script pendente: o formulário ficou disponível em 0,16 s, com document.readyState ainda loading. Esse teste não mede a Receita nem o CAPTCHA externo. Windows/Edge e a conexão do usuário ainda precisam de validação.
+
+Opção de troca por falta de resposta da consulta
+
+A opção antiga de verificação foi substituída por: "Se a consulta enviada ficar 2 segundos sem resposta". O prazo é armado ao acionar o envio da consulta, depois da validação manual necessária. Se não houver resultado em 2 segundos, o supervisor troca para a próxima rede cadastrada e retoma o mesmo CPF pendente, preservando resultados já obtidos.
+O simples aparecimento do checkbox não arma o prazo. Botão de envio indisponível cancela a contagem; resultado recebido, novo formulário e troca de rede limpam o prazo. A espera por resposta do navegador também respeita esse prazo. A conexão à próxima rede e a reabertura do navegador têm seus próprios tempos.
+Validação: 46 testes passaram, incluindo o caso de navegador sem resposta com prazo de 2 segundos. Troca real no Windows ainda depende de validação no equipamento do usuário.

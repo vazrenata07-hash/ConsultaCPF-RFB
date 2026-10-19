@@ -269,3 +269,16 @@ class VerificationWatch:
 
     def budget(self):
         return max(0.05, min(0.5, self.deadline - self.now()))
+
+
+class ResponseWatch:
+    """Deadline for a submitted consultation, independent of CAPTCHA state."""
+    def __init__(self, now=time.monotonic):
+        self.now = now
+        self.deadline = now() + 2.0
+
+    def expired(self):
+        return self.now() >= self.deadline
+
+    def budget(self):
+        return max(0.05, self.deadline - self.now())
