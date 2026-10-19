@@ -1,13 +1,16 @@
-CPAprime: abertura direta da interface
+CPAprime: correcao v2
 
 1. Extraia o CPAprime.Bot.zip original, se ainda nao estiver extraido.
-2. Extraia este pacote de correcao.
+2. Extraia este pacote de correcao v2.
 3. Execute Aplicar-Correcao.cmd e selecione CPAprime.exe na pasta original.
-4. Abra CPAprime-SemLogin.exe, criado ao lado do executavel original.
+   Se ja aplicou a primeira correcao, tambem pode selecionar CPAprime-SemLogin.exe.
+4. Feche o aplicativo anterior e abra CPAprime-SemLogin-v2.exe, criado na mesma pasta.
 
-O novo executavel precisa das DLLs e pastas do programa original. Nao o mova sozinho para outra pasta.
-Nao precisa instalar Python nem executar como administrador.
-O original e os dados salvos sao preservados. A correcao verifica SHA256 antes e depois de gravar e rejeita outras versoes.
-Para desfazer, apague somente CPAprime-SemLogin.exe e abra CPAprime.exe.
+Mantenha o novo executavel junto das DLLs e pastas do programa original. Nao o mova sozinho para outra pasta.
+Nao precisa instalar Python nem executar como administrador quando a pasta permite gravacao.
+O original, a primeira correcao e os dados salvos sao preservados. O aplicador verifica SHA256 e os bytes esperados, e rejeita outras versoes.
+Para desfazer, apague somente CPAprime-SemLogin-v2.exe e abra o executavel anterior.
 
-Escopo: abre a interface local diretamente, sem iniciar o login Google, o heartbeat da conta ou o sync autenticado da dashboard nessa abertura. As verificacoes de operacao existentes e a autorizacao dos servicos externos continuam presentes. Uma atualizacao oficial nao recebe esta correcao automaticamente.
+Esta versao mantem a abertura direta sem login Google e remove a recusa local "Sem licenca" em licencaOk.
+Os servicos externos continuam sujeitos as proprias autorizacoes e disponibilidade. A correcao nao cria tokens nem modifica servidores.
+Uma atualizacao oficial nao recebe esta correcao automaticamente.
