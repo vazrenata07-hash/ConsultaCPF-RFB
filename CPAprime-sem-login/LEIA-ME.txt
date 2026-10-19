@@ -1,0 +1,13 @@
+CPAprime: abertura direta da interface
+
+1. Extraia o CPAprime.Bot.zip original, se ainda nao estiver extraido.
+2. Extraia este pacote de correcao.
+3. Execute Aplicar-Correcao.cmd e selecione CPAprime.exe na pasta original.
+4. Abra CPAprime-SemLogin.exe, criado ao lado do executavel original.
+
+O novo executavel precisa das DLLs e pastas do programa original. Nao o mova sozinho para outra pasta.
+Nao precisa instalar Python nem executar como administrador.
+O original e os dados salvos sao preservados. A correcao verifica SHA256 antes e depois de gravar e rejeita outras versoes.
+Para desfazer, apague somente CPAprime-SemLogin.exe e abra CPAprime.exe.
+
+Escopo: abre a interface local diretamente, sem iniciar o login Google, o heartbeat da conta ou o sync autenticado da dashboard nessa abertura. As verificacoes de operacao existentes e a autorizacao dos servicos externos continuam presentes. Uma atualizacao oficial nao recebe esta correcao automaticamente.
