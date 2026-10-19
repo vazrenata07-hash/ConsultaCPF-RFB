@@ -1,0 +1,1 @@
+var todos = document.querySelectorAll('[class*=geetest_refresh]');if (!todos.length) { return false; }todos[todos.length - 1].click();return true;

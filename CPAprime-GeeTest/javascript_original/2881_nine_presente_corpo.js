@@ -1,0 +1,1 @@
+return _nineVisiveis() !== null;

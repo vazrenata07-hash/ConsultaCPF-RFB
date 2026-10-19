@@ -1,0 +1,1 @@
+var todos = document.querySelectorAll('[class*=geetest_slice_bg]');for (var i = todos.length - 1; i >= 0; i--) {  var r = todos[i].getBoundingClientRect();  if (r.width > 2 && r.height > 2) { return true; }}return false;

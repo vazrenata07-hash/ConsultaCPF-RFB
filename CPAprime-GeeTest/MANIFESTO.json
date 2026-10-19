@@ -1,0 +1,482 @@
+{
+  "source_executable_sha256": "e1ec1bc4f627f601e98227d974a98b8fb474a0e39cfd28a35869830c082f06b2",
+  "python": "reconstruido do nativo Nuitka; integracao nova explicitamente indicada",
+  "javascript_and_emotion_data": "valores literais extraidos",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3917,
+      "sha256": "a5a814b1b592488101e37ac8cc07e1e01ddd602a35a064fe79a73b9417ac4872"
+    },
+    {
+      "path": "evidencias/assembly/_achar_figuras_na_foto.asm.txt",
+      "bytes": 394368,
+      "sha256": "2682c0b20611ae3635f05c5ab1943f4eb9d5750554baeb2a79e570bd33c60fc2"
+    },
+    {
+      "path": "evidencias/assembly/_achar_figuras_na_foto___grad.asm.txt",
+      "bytes": 46302,
+      "sha256": "c3cb89df37da289cecb27d447bcc0d14ec0bee288d87ff2b9dd2846b419472b9"
+    },
+    {
+      "path": "evidencias/assembly/_achar_figuras_na_foto___mascara.asm.txt",
+      "bytes": 134526,
+      "sha256": "ef255a7bcb712fbbb63e4e54297759c0a0b4dcfcf1ac2684a8c158bebbbcbde7"
+    },
+    {
+      "path": "evidencias/assembly/_baixar_bytes.asm.txt",
+      "bytes": 30276,
+      "sha256": "d2784fef4cc010229a67f29630b1bf98f8fd33ea8a2792a0e038d3b8d908d97e"
+    },
+    {
+      "path": "evidencias/assembly/_baixar_data_url.asm.txt",
+      "bytes": 107160,
+      "sha256": "66dac88c32fca07059c85ba15ce9b2b32853c2de7ca774bbf78ceb8eb3d46993"
+    },
+    {
+      "path": "evidencias/assembly/_dhash_celula.asm.txt",
+      "bytes": 57269,
+      "sha256": "3c68ddbf765ea53981f449ad088e5bb6165d1c5c9aa56c00917a4b246eda0a61"
+    },
+    {
+      "path": "evidencias/assembly/_emocao_do_prompt.asm.txt",
+      "bytes": 42602,
+      "sha256": "1e5a09452ed4e6bf019c334094866a6ce13a0f4967bc1fbac1351383b5c2273b"
+    },
+    {
+      "path": "evidencias/assembly/_geetest_aberto.asm.txt",
+      "bytes": 26926,
+      "sha256": "66365b12b87c981291a25e295b267ba40083d90d3b5a62eaafae3bfecc176d2b"
+    },
+    {
+      "path": "evidencias/assembly/_geetest_click_marcas.asm.txt",
+      "bytes": 26716,
+      "sha256": "37e352639a34ffd24178d7b4130f0efd9d3857b071bd417d57bab7103c9b404b"
+    },
+    {
+      "path": "evidencias/assembly/_geetest_click_na_tela.asm.txt",
+      "bytes": 26935,
+      "sha256": "73cf77db77b67116672b3fa1affd6ce81e03872c2746d99789e5419abce2ac5e"
+    },
+    {
+      "path": "evidencias/assembly/_geetest_na_tela.asm.txt",
+      "bytes": 26929,
+      "sha256": "dc3ffe65f18ed246320b32484f59fa52c662e580555bf03298fb690224d3a03c"
+    },
+    {
+      "path": "evidencias/assembly/_geetest_nine_marcar.asm.txt",
+      "bytes": 160050,
+      "sha256": "dfb8847128afb822a059d9f5098579e0a7b1dbc30b08bb76442904480f709d05"
+    },
+    {
+      "path": "evidencias/assembly/_geetest_nine_na_tela.asm.txt",
+      "bytes": 26934,
+      "sha256": "a7d52e82f39bf03d1b5ad54eafe42f94260ba3c4389ac0056d531277ac26ea04"
+    },
+    {
+      "path": "evidencias/assembly/_geetest_refresh.asm.txt",
+      "bytes": 26928,
+      "sha256": "f204781d6a6113a576beaf938559e76a8a6013ecb63129694af180de4d4fff80"
+    },
+    {
+      "path": "evidencias/assembly/_nine_emocao_alvos.asm.txt",
+      "bytes": 134732,
+      "sha256": "be8d555f8690217a4b15d775ece631f0ddb4143215d7fd8b4587ba48c91b08cc"
+    },
+    {
+      "path": "evidencias/assembly/_pausar_clique_centro.asm.txt",
+      "bytes": 21081,
+      "sha256": "d6e7e8c1c58586e38477317e03c584a42a581e167288d23bf5fdbfe598989bfb"
+    },
+    {
+      "path": "evidencias/assembly/_resolver_geetest_click.asm.txt",
+      "bytes": 387917,
+      "sha256": "93cebe39b00f78a8709ae61b02ffcbaec97bd18667518f3a70ee576b4285c2dd"
+    },
+    {
+      "path": "evidencias/assembly/_resolver_geetest_nine.asm.txt",
+      "bytes": 271090,
+      "sha256": "e0d9cc350b8e567ed02aad46dbf58c7c2b96f413263dd0e07f1eb2c0941b7d8c"
+    },
+    {
+      "path": "evidencias/assembly/_resolver_geetest_slider.asm.txt",
+      "bytes": 91768,
+      "sha256": "46e46fb549b73d1d468b7f7334243e8c94dd89ee7b1a3b0338aa51d92ecd5ece"
+    },
+    {
+      "path": "evidencias/assembly/_tabela_emocao.asm.txt",
+      "bytes": 38323,
+      "sha256": "96bedf654d23fa1d0dd3352be41f9163658f0f4531a4927ecf4d08344ff3db60"
+    },
+    {
+      "path": "evidencias/assembly/_tag.asm.txt",
+      "bytes": 22350,
+      "sha256": "8b975e1b3d3aeee202f77e8bcf292fd222f2bad82c8228cf53bf93d920b6b5e8"
+    },
+    {
+      "path": "evidencias/assembly/_tocar_ponto.asm.txt",
+      "bytes": 43471,
+      "sha256": "f3a538fe69246a012337a83b750edb60b07a4afe13f87a3a58e31d60659dac6a"
+    },
+    {
+      "path": "evidencias/assembly/_voltar_clique_centro.asm.txt",
+      "bytes": 21221,
+      "sha256": "142356dd72acec415a86e2baae554607ee81722a36c13f199e0be12a2cdcf087"
+    },
+    {
+      "path": "evidencias/assembly/class_captcha_solver.asm.txt",
+      "bytes": 343,
+      "sha256": "06d707acf3d009b8098050dec76a1718ff48ea5748b43241f417e2f1085a5336"
+    },
+    {
+      "path": "evidencias/assembly/class_pause_between_touches.asm.txt",
+      "bytes": 368,
+      "sha256": "fb9f0466ff5e4cb18b126ef17de30db4284f840ecfd77486236a884b5ee85e3c"
+    },
+    {
+      "path": "evidencias/assembly/default_nine_marcar.asm.txt",
+      "bytes": 523,
+      "sha256": "e0ebe86aa26ac16b54e9c356c572259abc711e68bf678441cdfb8a29b14b0655"
+    },
+    {
+      "path": "evidencias/assembly/default_wrapper_click.asm.txt",
+      "bytes": 523,
+      "sha256": "9617b38bfdef1182b8f0a20416dc694836dc24208ead66e5c25bd8b1cd373dbb"
+    },
+    {
+      "path": "evidencias/assembly/default_wrapper_nine.asm.txt",
+      "bytes": 523,
+      "sha256": "5f226d7298b4b81eef4e0e90764b91302fde2304127081762fdaf9fd4ef54c9b"
+    },
+    {
+      "path": "evidencias/assembly/default_wrapper_slider.asm.txt",
+      "bytes": 523,
+      "sha256": "f98fe31ce7c123577576ec7b7cfc7e1d0f1921bfa992597eff2c6aa440e56976"
+    },
+    {
+      "path": "evidencias/assembly/iniciar_clique_centro.asm.txt",
+      "bytes": 26594,
+      "sha256": "aeb3256a2b5a5fe0b052fccf1836f4676cf5b07125a31abc54411d2b23b856a2"
+    },
+    {
+      "path": "evidencias/assembly/resolver_geetest_click_se_aparecer.asm.txt",
+      "bytes": 43674,
+      "sha256": "4e7603610772fda363334dc8c1ab3b0e934c0f172857b57c9b490bd5b223f347"
+    },
+    {
+      "path": "evidencias/assembly/resolver_geetest_nine_se_aparecer.asm.txt",
+      "bytes": 43672,
+      "sha256": "7d61e5ff5f29deb4fbd1149cff7a36957fba948c83209b153f0853e471bf9afe"
+    },
+    {
+      "path": "evidencias/assembly/resolver_geetest_se_aparecer.asm.txt",
+      "bytes": 43669,
+      "sha256": "f99648f91ff590c267f1dbb17c04538e12f0b3a13360d168406d20e585f7a6b6"
+    },
+    {
+      "path": "evidencias/click.md",
+      "bytes": 3855,
+      "sha256": "31cf424779087ff77a2e040cbbf5e797c12f1e6b358765e7e212cd8474b22443"
+    },
+    {
+      "path": "evidencias/codeobjects.json",
+      "bytes": 231696,
+      "sha256": "53c4c0395eec3f9b6a739fbc09bffeca1e37b397522b823ef9629921eff40724"
+    },
+    {
+      "path": "evidencias/common.md",
+      "bytes": 5622,
+      "sha256": "38230af376848fc166073ca33e1fad09c33cae95198fef07884146c0e81be38b"
+    },
+    {
+      "path": "evidencias/constantes_geetest.json",
+      "bytes": 59976,
+      "sha256": "b8f7d5eb08ab9fb47a2f4ae1bce7c0c29a651e5ee0879fc1ee8365ff6aa5f9b9"
+    },
+    {
+      "path": "evidencias/decompiled/_achar_figuras_na_foto.c",
+      "bytes": 159015,
+      "sha256": "2c72b15581ac96ba9c7fd1151825b0f3d2e3300483d279e0c9714365442581bc"
+    },
+    {
+      "path": "evidencias/decompiled/_baixar_bytes.c",
+      "bytes": 10014,
+      "sha256": "48c69650a8c866304c5653c7342409c3f8d7a9ff8b9b7bbc8147bc04693b01a5"
+    },
+    {
+      "path": "evidencias/decompiled/_baixar_data_url.c",
+      "bytes": 46900,
+      "sha256": "c35fd698285d050635954c555ff00d2ccb5c3e4d47b3b42af76c99dd6c12ac72"
+    },
+    {
+      "path": "evidencias/decompiled/_dhash_celula.c",
+      "bytes": 23730,
+      "sha256": "aeec24fbe4901b39a3d748aa4fb494be67e1150b38923cca692285297f804223"
+    },
+    {
+      "path": "evidencias/decompiled/_emocao_do_prompt.c",
+      "bytes": 13943,
+      "sha256": "4991a03514f64448de761115a9d3874ddfa747bd4b435db6a792c891236b4adb"
+    },
+    {
+      "path": "evidencias/decompiled/_geetest_aberto.c",
+      "bytes": 8990,
+      "sha256": "6682599553b07235b17891a9e25b003cc2dc24008ded71684b31aa73ceeb4503"
+    },
+    {
+      "path": "evidencias/decompiled/_geetest_click_marcas.c",
+      "bytes": 8594,
+      "sha256": "63896590d68bf0d3e3ff4fb51c2613b316868130637c9271f895548e5dc9bd8d"
+    },
+    {
+      "path": "evidencias/decompiled/_geetest_click_na_tela.c",
+      "bytes": 9022,
+      "sha256": "06e8ca3d8140010b5fac693dd778895b001a1954f62f6f8d602575264b9f53a5"
+    },
+    {
+      "path": "evidencias/decompiled/_geetest_na_tela.c",
+      "bytes": 8994,
+      "sha256": "3a292a2723a3b0cb23efbf24519a97d4562836b375fa983f92b6affcd2c6c244"
+    },
+    {
+      "path": "evidencias/decompiled/_geetest_nine_marcar.c",
+      "bytes": 55398,
+      "sha256": "7275b6b5f2e67b3a182f8a30432adb059ae5819ef40f6c42e999b9ff97af7d98"
+    },
+    {
+      "path": "evidencias/decompiled/_geetest_nine_na_tela.c",
+      "bytes": 9011,
+      "sha256": "f05ebaf9d4340caaf13a18ab97d6004ed22876aa6bc81e559b72d880531184b2"
+    },
+    {
+      "path": "evidencias/decompiled/_geetest_refresh.c",
+      "bytes": 8993,
+      "sha256": "30aa2c936da77ad3d36df0c949981b9d3382b48e80ece8a4368d3dd41c60cf03"
+    },
+    {
+      "path": "evidencias/decompiled/_grad.c",
+      "bytes": 19261,
+      "sha256": "0cf211be7deea6cddd5731bdd2828eafea20cedfbf3adf2ddbee70ce2bfae31b"
+    },
+    {
+      "path": "evidencias/decompiled/_mascara.c",
+      "bytes": 82654,
+      "sha256": "1b2f44c5248ffa7f3440f02401f999a4ab723e888320522b17015650a5a1ed0d"
+    },
+    {
+      "path": "evidencias/decompiled/_nine_emocao_alvos.c",
+      "bytes": 72731,
+      "sha256": "2d319b1ac5de10a24028020d5a2e3e107e16cb550e9a2fd950c7d59accc76580"
+    },
+    {
+      "path": "evidencias/decompiled/_pausar_clique_centro.c",
+      "bytes": 6690,
+      "sha256": "39040553cf975e3a00dab01769f5f529ebe8b64612a2aa25b8d1b139d3fdf69d"
+    },
+    {
+      "path": "evidencias/decompiled/_resolver_geetest_click.c",
+      "bytes": 158726,
+      "sha256": "312b92368d16f3a43476a745ae51f5ef27c2e0668771b95ba6442c741d8cb108"
+    },
+    {
+      "path": "evidencias/decompiled/_resolver_geetest_nine.c",
+      "bytes": 97493,
+      "sha256": "fc75b9587bcc31e37b4e590347c5a6049fd37ca9daf7f3e10dc4addcc0595170"
+    },
+    {
+      "path": "evidencias/decompiled/_resolver_geetest_slider.c",
+      "bytes": 33441,
+      "sha256": "70e2be4c392ba1a4e308fa34e072d05d4586e0a9b8562bc37e3de8b59286e7c3"
+    },
+    {
+      "path": "evidencias/decompiled/_tabela_emocao.c",
+      "bytes": 14087,
+      "sha256": "7011bcd60b8c279645c8d35faaaf149f0f5622ea148d93f285ddea5e0a526996"
+    },
+    {
+      "path": "evidencias/decompiled/_tag.c",
+      "bytes": 7057,
+      "sha256": "6eebb272db9a6a71dd9a076d10a14ce443eacbf98f68358a749daec1b4c184b1"
+    },
+    {
+      "path": "evidencias/decompiled/_tocar_ponto.c",
+      "bytes": 14964,
+      "sha256": "1d5bafb486f946151a49cecc630c221aaed9db8e532d48880602cfd985842ed0"
+    },
+    {
+      "path": "evidencias/decompiled/_voltar_clique_centro.c",
+      "bytes": 6611,
+      "sha256": "227c78b9d8da0e188bd135bd75a19253ef6c3db4ad5c113812bcbc4a9dffb8b1"
+    },
+    {
+      "path": "evidencias/decompiled/iniciar_clique_centro.c",
+      "bytes": 9212,
+      "sha256": "c264910163b6fd21005385f4ae82fdf8714b71847867cda9f28f3d09ca2cf80f"
+    },
+    {
+      "path": "evidencias/decompiled/resolver_geetest_click_se_aparecer.c",
+      "bytes": 15857,
+      "sha256": "337379d351562bde63c6b25d0c0f22956ebd57e4d7acc1d3b55283411ef1a03f"
+    },
+    {
+      "path": "evidencias/decompiled/resolver_geetest_nine_se_aparecer.c",
+      "bytes": 15854,
+      "sha256": "c1d67aaaee0ee4b29a73e06a225e19aa671c4d6c53f1da1f711ba08d352c5410"
+    },
+    {
+      "path": "evidencias/decompiled/resolver_geetest_se_aparecer.c",
+      "bytes": 15846,
+      "sha256": "ce8bbc3d0190acd032c0d0584c099930e235e85782737dcb7c8abcb6402b30cd"
+    },
+    {
+      "path": "evidencias/mapa_funcoes.json",
+      "bytes": 66186,
+      "sha256": "db38631f4e567f0bb46ea58200c6ea97ce21f86c0b2c9d3ed800173e3a7d4265"
+    },
+    {
+      "path": "evidencias/mapa_nine.json",
+      "bytes": 13851,
+      "sha256": "04a32b9362e3d467670937ad0dcfd3115457a59ef20a23adc3d14f1a8413debe"
+    },
+    {
+      "path": "evidencias/nine.md",
+      "bytes": 6235,
+      "sha256": "1b525d75523e7179a1090091c7b678a6e4e11845c9ffd66385bed71937d23aa3"
+    },
+    {
+      "path": "evidencias/slider.md",
+      "bytes": 3104,
+      "sha256": "df7f1c8ab2f63a0519bcbdc9cf4c407fdc61999d51d0fed98a040bfc9dbe949f"
+    },
+    {
+      "path": "geetest_recuperado/__init__.py",
+      "bytes": 139,
+      "sha256": "df680fb8c62dc2924f4fc1305a4838e938b20a1d4729880cada95545d64ac09e"
+    },
+    {
+      "path": "geetest_recuperado/click.py",
+      "bytes": 14732,
+      "sha256": "e257a21bcbfe8d1920d168c18ca5d1124ab9a70ba734af691f958ff6f3100827"
+    },
+    {
+      "path": "geetest_recuperado/common.py",
+      "bytes": 13213,
+      "sha256": "717c1f7837338e77b6bb12788442dc42937c069cb34c403a937953c31c2b8aa7"
+    },
+    {
+      "path": "geetest_recuperado/geetest_emocao.py",
+      "bytes": 32927,
+      "sha256": "c88dfed45685612bcbdb08be0f84b22dcd12929196223d904685dbb9803dbf87"
+    },
+    {
+      "path": "geetest_recuperado/nine.py",
+      "bytes": 8602,
+      "sha256": "575da21fac7eea1dea4ccd4bfd523416de3a97e291b19865bf5bc493257e79a5"
+    },
+    {
+      "path": "geetest_recuperado/nine_js.py",
+      "bytes": 11901,
+      "sha256": "272318d24dd7c5f83e54469ed3099b832c7ee99e6db364835bcb739e697286d9"
+    },
+    {
+      "path": "geetest_recuperado/slider.py",
+      "bytes": 3588,
+      "sha256": "a4eb4f8bf8c76aa6208551a41c03ea3a252996e23d9b1c4ae807d0bc1bb600c3"
+    },
+    {
+      "path": "geetest_recuperado/slider_js.py",
+      "bytes": 6549,
+      "sha256": "b34f82d329c624ef8f08569abc88c68a05eaa40ca43ef7b419456fa40b41b2f7"
+    },
+    {
+      "path": "geetest_recuperado/solver.py",
+      "bytes": 1664,
+      "sha256": "f522b5da648a10b6ba7441678c4ae06901a12b2451e50bd2342b484b33ed855c"
+    },
+    {
+      "path": "javascript_original/2874_slider_presente.js",
+      "bytes": 220,
+      "sha256": "be9e61af9a189e5cf8df1319a86f8940c7d2296156ce4f84289c19a4d5340c85"
+    },
+    {
+      "path": "javascript_original/2875_refresh.js",
+      "bytes": 146,
+      "sha256": "9ae6e440584590309d35a7462743c1b12feea41ed5049de35daf22b2e86762a6"
+    },
+    {
+      "path": "javascript_original/2876_slider_resolver.js",
+      "bytes": 5767,
+      "sha256": "f1e8a8ba03d6388501abfdaf7b1b16a3256d9f6c6dacba7dd04dee5935c58277"
+    },
+    {
+      "path": "javascript_original/2879_nine_visiveis.js",
+      "bytes": 580,
+      "sha256": "a108a1721e17a9427950ab3ef45f91cbcf84f15c1b93f45824ed6c24327cf73c"
+    },
+    {
+      "path": "javascript_original/2881_nine_presente_corpo.js",
+      "bytes": 32,
+      "sha256": "1f0f3220859fb5c1ac96110d0bedc3157601680b063712b97e166c2d6adb57f4"
+    },
+    {
+      "path": "javascript_original/2882_nine_urls_corpo.js",
+      "bytes": 1872,
+      "sha256": "90b1e5eb8b85fddeaff0206e68e8d081246ca0855648086b187587db680150f2"
+    },
+    {
+      "path": "javascript_original/2883_nine_pontuacao.js",
+      "bytes": 5107,
+      "sha256": "f4ff8bc96270c8ef65239e18daa034bbc9fcf218070f7bb678ada08b2a545ec8"
+    },
+    {
+      "path": "javascript_original/2884_nine_marcadas_corpo.js",
+      "bytes": 1831,
+      "sha256": "2736d7a3de9b8176f9ab50a3d5b59c89d5c22f9e1185ad7f5849df275aabdf45"
+    },
+    {
+      "path": "javascript_original/2885_confirmar.js",
+      "bytes": 127,
+      "sha256": "1017dcd17f6c4f6c426649cf6ed521ed38f3501f4f3282a6a0f5a6f0c0b4f300"
+    },
+    {
+      "path": "javascript_original/2887_qualquer_geetest_aberto.js",
+      "bytes": 551,
+      "sha256": "55d708650247da838e47338d218ec63bb981f2d513eff78ddfb8f530cafb4add"
+    },
+    {
+      "path": "javascript_original/2896_click_icones_visiveis.js",
+      "bytes": 561,
+      "sha256": "c3f0f1cb134f0188f842f2092ac73a8b4c9fd869fc8c88ae96bacdcbc5cc7d16"
+    },
+    {
+      "path": "javascript_original/2898_click_presente_corpo.js",
+      "bytes": 784,
+      "sha256": "d74cf33ec8fb3f9be3b72af6eb26aa5467a2b4d3f60cfbc4e7155cc545f78374"
+    },
+    {
+      "path": "javascript_original/2899_click_urls_corpo.js",
+      "bytes": 1068,
+      "sha256": "6201535cda33deac5dcdc840f45891df5a8bb818219d5fa89a218f0340f00057"
+    },
+    {
+      "path": "javascript_original/2900_click_marcas.js",
+      "bytes": 809,
+      "sha256": "706942ee4e6bec670ec5d8ee79694d4c805a70296a43357f8d98a245c441d4f4"
+    },
+    {
+      "path": "javascript_original/INDICE.json",
+      "bytes": 2465,
+      "sha256": "6d5ad5010e11122a03e39091e87f17ab13e964aab0ffabd987147a5eb9662030"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 82,
+      "sha256": "be3fdb33d9c5058fe32b7cca20b84080cf4da975e65c2d6df6c7a5bd7a168929"
+    },
+    {
+      "path": "resolver_geetest.py",
+      "bytes": 1214,
+      "sha256": "75f65201a9c9288461d649cf15601864bc14014573197f4348d0ffb42a5f9b3e"
+    }
+  ]
+}

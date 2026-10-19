@@ -1,0 +1,1 @@
+var b = document.querySelectorAll('[class*=geetest_submit]');if (!b.length) { return false; }b[b.length-1].click();return true;
