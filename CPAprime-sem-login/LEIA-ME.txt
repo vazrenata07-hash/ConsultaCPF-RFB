@@ -1,0 +1,16 @@
+CPAprime: correcao v2
+
+1. Extraia o CPAprime.Bot.zip original, se ainda nao estiver extraido.
+2. Extraia este pacote de correcao v2.
+3. Execute Aplicar-Correcao.cmd e selecione CPAprime.exe na pasta original.
+   Se ja aplicou a primeira correcao, tambem pode selecionar CPAprime-SemLogin.exe.
+4. Feche o aplicativo anterior e abra CPAprime-SemLogin-v2.exe, criado na mesma pasta.
+
+Mantenha o novo executavel junto das DLLs e pastas do programa original. Nao o mova sozinho para outra pasta.
+Nao precisa instalar Python nem executar como administrador quando a pasta permite gravacao.
+O original, a primeira correcao e os dados salvos sao preservados. O aplicador verifica SHA256 e os bytes esperados, e rejeita outras versoes.
+Para desfazer, apague somente CPAprime-SemLogin-v2.exe e abra o executavel anterior.
+
+Esta versao mantem a abertura direta sem login Google e remove a recusa local "Sem licenca" em licencaOk.
+Os servicos externos continuam sujeitos as proprias autorizacoes e disponibilidade. A correcao nao cria tokens nem modifica servidores.
+Uma atualizacao oficial nao recebe esta correcao automaticamente.
