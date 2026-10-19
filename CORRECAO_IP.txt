@@ -1,0 +1,12 @@
+Correção do reinício após mudança de IP
+
+- A espera por respostas CDP consulta mudanças de IP a cada 100 ms, mantendo o prazo total da chamada e os frames parciais do WebSocket.
+- Mudança confirmada de IP tem caminho próprio de reinício, sem a pausa de 3 segundos reservada à recuperação de falhas.
+- O encerramento desativa a interrupção para permitir fechar o navegador normalmente.
+- Resultados já obtidos são preservados; a consulta pendente é retomada.
+- diagnostico.txt registra a detecção e o tempo de preparação do reinício.
+
+Validação: 37 testes passaram, incluindo interrupção de navegador silencioso, preservação das linhas e encerramento sem interrupção recursiva.
+Não foi possível validar Windows/Edge ou troca real de IP neste ambiente Linux. A detecção continua dependendo da consulta externa de IP; a abertura do Edge e o carregamento da Receita também possuem seus próprios tempos.
+
+Uso: extraia o ZIP em uma nova pasta e execute iniciar.bat. Se utiliza EXE, gere novamente com gerar_exe.bat; um executável antigo não incorpora esta correção.
