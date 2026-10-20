@@ -1,0 +1,637 @@
+{
+  "source": "CPAprime.exe",
+  "sha256": "e1ec1bc4f627f601e98227d974a98b8fb474a0e39cfd28a35869830c082f06b2",
+  "methods": [
+    {
+      "name": "_aliyun_na_tela",
+      "qualified_name": "Navegacao._aliyun_na_tela",
+      "native_start": "0x1408d1d30",
+      "native_end": "0x1408d228d",
+      "raw_start": "0x8d1130",
+      "codeobject": {
+        "create_va": "0x140872f39",
+        "source_line": {
+          "literal": 9177
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 1982,
+          "value": "_aliyun_na_tela"
+        },
+        "qualname": {
+          "constant_index": 2921,
+          "value": "Navegacao._aliyun_na_tela"
+        },
+        "locals": {
+          "constant_index": 3044,
+          "value": {
+            "type": "T",
+            "items": [
+              "self"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 1
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b48f",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de6e70",
+          "index": 1982,
+          "value": "_aliyun_na_tela"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8bc8",
+          "index": 2921,
+          "value": "Navegacao._aliyun_na_tela"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408d1d30"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142de9968"
+        }
+      }
+    },
+    {
+      "name": "_toque_cru",
+      "qualified_name": "Navegacao._toque_cru",
+      "native_start": "0x1408d2290",
+      "native_end": "0x1408d2aaf",
+      "raw_start": "0x8d1690",
+      "codeobject": {
+        "create_va": "0x140875c6f",
+        "source_line": {
+          "literal": 9186
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 2008,
+          "value": "_toque_cru"
+        },
+        "qualname": {
+          "constant_index": 2922,
+          "value": "Navegacao._toque_cru"
+        },
+        "locals": {
+          "constant_index": 3170,
+          "value": {
+            "type": "T",
+            "items": [
+              "self",
+              "tipo",
+              "x",
+              "y",
+              "pontos"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 4
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b4ef",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de6f40",
+          "index": 2008,
+          "value": "_toque_cru"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8bd0",
+          "index": 2922,
+          "value": "Navegacao._toque_cru"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408d2290"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142de9dd0"
+        }
+      }
+    },
+    {
+      "name": "_imagem_aliyun",
+      "qualified_name": "Navegacao._imagem_aliyun",
+      "native_start": "0x1408d2ab0",
+      "native_end": "0x1408d3176",
+      "raw_start": "0x8d1eb0",
+      "codeobject": {
+        "create_va": "0x14087473b",
+        "source_line": {
+          "literal": 9205
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 1992,
+          "value": "_imagem_aliyun"
+        },
+        "qualname": {
+          "constant_index": 2923,
+          "value": "Navegacao._imagem_aliyun"
+        },
+        "locals": {
+          "constant_index": 3107,
+          "value": {
+            "type": "T",
+            "items": [
+              "self",
+              "src"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 2
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b54f",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de6ec0",
+          "index": 1992,
+          "value": "_imagem_aliyun"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8bd8",
+          "index": 2923,
+          "value": "Navegacao._imagem_aliyun"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408d2ab0"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142de9bc0"
+        }
+      }
+    },
+    {
+      "name": "_achar_buraco_aliyun",
+      "qualified_name": "Navegacao._achar_buraco_aliyun",
+      "native_start": "0x1408d3180",
+      "native_end": "0x1408d6896",
+      "raw_start": "0x8d2580",
+      "codeobject": {
+        "create_va": "0x140872df1",
+        "source_line": {
+          "literal": 9216
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 1995,
+          "value": "_achar_buraco_aliyun"
+        },
+        "qualname": {
+          "constant_index": 2924,
+          "value": "Navegacao._achar_buraco_aliyun"
+        },
+        "locals": {
+          "constant_index": 3040,
+          "value": {
+            "type": "T",
+            "items": [
+              "self",
+              "fundo_bytes",
+              "peca_bytes",
+              "_np",
+              "_cv2",
+              "peca",
+              "fundo",
+              "ys",
+              "xs",
+              "larg_p",
+              "alt_p",
+              "cx_p",
+              "cy_p",
+              "hsv",
+              "sat",
+              "val",
+              "melhor",
+              "s_max",
+              "v_min",
+              "m",
+              "n",
+              "lab",
+              "st",
+              "_c",
+              "i",
+              "x",
+              "y",
+              "w",
+              "h",
+              "_a",
+              "yy",
+              "xx",
+              "dy",
+              "nota"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 3
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b5af",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de6ed8",
+          "index": 1995,
+          "value": "_achar_buraco_aliyun"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8be0",
+          "index": 2924,
+          "value": "Navegacao._achar_buraco_aliyun"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408d3180"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142de9948"
+        }
+      }
+    },
+    {
+      "name": "resolver_aliyun_se_aparecer",
+      "qualified_name": "Navegacao.resolver_aliyun_se_aparecer",
+      "native_start": "0x1408d68a0",
+      "native_end": "0x1408d6f74",
+      "raw_start": "0x8d5ca0",
+      "codeobject": {
+        "create_va": "0x140877cec",
+        "source_line": {
+          "literal": 9274
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 2044,
+          "value": "resolver_aliyun_se_aparecer"
+        },
+        "qualname": {
+          "constant_index": 2925,
+          "value": "Navegacao.resolver_aliyun_se_aparecer"
+        },
+        "locals": {
+          "constant_index": 3250,
+          "value": {
+            "type": "T",
+            "items": [
+              "self",
+              "tentativas",
+              "erro"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 2
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b60f",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de7060",
+          "index": 2044,
+          "value": "resolver_aliyun_se_aparecer"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8be8",
+          "index": 2925,
+          "value": "Navegacao.resolver_aliyun_se_aparecer"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408d68a0"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142dea100"
+        }
+      }
+    },
+    {
+      "name": "_resolver_aliyun",
+      "qualified_name": "Navegacao._resolver_aliyun",
+      "native_start": "0x1408d6f80",
+      "native_end": "0x1408d94f0",
+      "raw_start": "0x8d6380",
+      "codeobject": {
+        "create_va": "0x140875601",
+        "source_line": {
+          "literal": 9289
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 1983,
+          "value": "_resolver_aliyun"
+        },
+        "qualname": {
+          "constant_index": 2926,
+          "value": "Navegacao._resolver_aliyun"
+        },
+        "locals": {
+          "constant_index": 3154,
+          "value": {
+            "type": "T",
+            "items": [
+              "self",
+              "tentativas",
+              "tentativa",
+              "est",
+              "fundo",
+              "peca",
+              "b_fundo",
+              "b_peca",
+              "dx_nat",
+              "escala",
+              "alvo",
+              "limite",
+              "prazo",
+              "fechado"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 2
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b66f",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de6e78",
+          "index": 1983,
+          "value": "_resolver_aliyun"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8bf0",
+          "index": 2926,
+          "value": "Navegacao._resolver_aliyun"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408d6f80"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142de9d30"
+        }
+      }
+    },
+    {
+      "name": "_arrastar_aliyun",
+      "qualified_name": "Navegacao._arrastar_aliyun",
+      "native_start": "0x1408d94f0",
+      "native_end": "0x1408db566",
+      "raw_start": "0x8d88f0",
+      "codeobject": {
+        "create_va": "0x140872f8b",
+        "source_line": {
+          "literal": 9349
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 2001,
+          "value": "_arrastar_aliyun"
+        },
+        "qualname": {
+          "constant_index": 2927,
+          "value": "Navegacao._arrastar_aliyun"
+        },
+        "locals": {
+          "constant_index": 3045,
+          "value": {
+            "type": "T",
+            "items": [
+              "self",
+              "alca",
+              "alvo_peca",
+              "ax",
+              "ay",
+              "dedo",
+              "razao",
+              "_",
+              "pos",
+              "erro",
+              "avanco",
+              "antes_peca",
+              "antes_dedo",
+              "destino",
+              "pos2",
+              "andou_peca",
+              "andou_dedo"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 3
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b6cf",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de6f08",
+          "index": 2001,
+          "value": "_arrastar_aliyun"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8bf8",
+          "index": 2927,
+          "value": "Navegacao._arrastar_aliyun"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408d94f0"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142de9970"
+        }
+      }
+    },
+    {
+      "name": "_captcha_aberto",
+      "qualified_name": "Navegacao._captcha_aberto",
+      "native_start": "0x1408db570",
+      "native_end": "0x1408db84c",
+      "raw_start": "0x8da970",
+      "codeobject": {
+        "create_va": "0x1408731c9",
+        "source_line": {
+          "literal": 9411
+        },
+        "flags": {
+          "literal": 3
+        },
+        "name": {
+          "constant_index": 2034,
+          "value": "_captcha_aberto"
+        },
+        "qualname": {
+          "constant_index": 2928,
+          "value": "Navegacao._captcha_aberto"
+        },
+        "locals": {
+          "constant_index": 3044,
+          "value": {
+            "type": "T",
+            "items": [
+              "self"
+            ]
+          }
+        },
+        "closure": {
+          "literal": 0
+        },
+        "positional_count": {
+          "literal": 1
+        },
+        "kwonly_count": {
+          "literal": 0
+        },
+        "posonly_count": {
+          "literal": 0
+        }
+      },
+      "factory": {
+        "factory_va": "0x14086b72f",
+        "name": {
+          "kind": "constant",
+          "va": "0x142de7010",
+          "index": 2034,
+          "value": "_captcha_aberto"
+        },
+        "qualname": {
+          "kind": "constant",
+          "va": "0x142de8c00",
+          "index": 2928,
+          "value": "Navegacao._captcha_aberto"
+        },
+        "implementation": {
+          "kind": "address",
+          "va": "0x1408db570"
+        },
+        "codeobject": {
+          "kind": "memory",
+          "va": "0x142de99a8"
+        }
+      }
+    }
+  ],
+  "literal_javascript": [
+    {
+      "file": "aliyun_estado.js",
+      "classes_constant": 2918
+    },
+    {
+      "file": "aliyun_posicao.js",
+      "classes_constant": 2919
+    },
+    {
+      "file": "aliyun_presente.js",
+      "classes_constant": 2920
+    },
+    {
+      "file": "geetest_aberto_detector.js",
+      "classes_constant": 2887
+    }
+  ]
+}

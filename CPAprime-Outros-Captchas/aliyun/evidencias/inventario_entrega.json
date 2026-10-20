@@ -1,0 +1,166 @@
+{
+  "files": [
+    {
+      "path": "EVIDENCIAS.md",
+      "bytes": 4129,
+      "sha256": "a1d54d72f720dc6eda98f6a3dea3d34eea10da603b0772aa5e284bd1c03d3306"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1420,
+      "sha256": "4b40bb6b83c38d7de02db2133fcc9e72fcca288591a379693e19f58ba76dcabb"
+    },
+    {
+      "path": "__init__.py",
+      "bytes": 168,
+      "sha256": "025759bdab94a25ee5f73951428dc4c5f0dd51dbdd3d29d3394ea86fcd79c2e0"
+    },
+    {
+      "path": "aliyun.py",
+      "bytes": 10816,
+      "sha256": "3abafa8f565b394852fb7fa6059c18a41429bced56083ae31b01b4e4c7945863"
+    },
+    {
+      "path": "evidencias/_achar_buraco_aliyun.asm.txt",
+      "bytes": 239330,
+      "sha256": "1de588a3584ffee894b18345b314adafe4b06eab33893e5ea474e76715b57fda"
+    },
+    {
+      "path": "evidencias/_aliyun_na_tela.asm.txt",
+      "bytes": 24198,
+      "sha256": "90910bfecf9cce34dc35a02f1001e357461ad390c93a7601ef476caaf94c05ba"
+    },
+    {
+      "path": "evidencias/_arrastar_aliyun.asm.txt",
+      "bytes": 143640,
+      "sha256": "5197c2c48d02b8469fc9f47604ebfe2466f8e34e5db035d2c18c6af6ff3551c5"
+    },
+    {
+      "path": "evidencias/_captcha_aberto.asm.txt",
+      "bytes": 13194,
+      "sha256": "ffb301d67e89777a2bdbf782d5982a256fb001e77cc841c8945a3797f9efa2ad"
+    },
+    {
+      "path": "evidencias/_imagem_aliyun.asm.txt",
+      "bytes": 30626,
+      "sha256": "473140b3e0da0169b05a6f2c55c10d8ab4cfbc9d122d598bcd9592c39acd5160"
+    },
+    {
+      "path": "evidencias/_resolver_aliyun.asm.txt",
+      "bytes": 157907,
+      "sha256": "5d2b513d8a8f5a949d4c089e392bea962ec65e9cae52c12e8a3bb26e24058a57"
+    },
+    {
+      "path": "evidencias/_toque_cru.asm.txt",
+      "bytes": 36933,
+      "sha256": "280ef96099491ca2eea2472403ca6ca5d1487f6b962644d7bd740fe024ea7340"
+    },
+    {
+      "path": "evidencias/decompiled/_achar_buraco_aliyun.c",
+      "bytes": 196420,
+      "sha256": "443c892b339d98e1ced0f725bd07fb70083ed5e67bee0087a6afce09f8f82388"
+    },
+    {
+      "path": "evidencias/decompiled/_aliyun_na_tela.c",
+      "bytes": 8992,
+      "sha256": "79ad3ee77251a0478b7643cde28b2f6047b91cfd3569ff1296317d33e2fe157a"
+    },
+    {
+      "path": "evidencias/decompiled/_arrastar_aliyun.c",
+      "bytes": 79429,
+      "sha256": "465c085d9dc97abff8c03a2a5a7990a4d36b92e0ad93991bee41b0adfba0c596"
+    },
+    {
+      "path": "evidencias/decompiled/_captcha_aberto.c",
+      "bytes": 4702,
+      "sha256": "57a73ce7e3f1cfe73c785ec54b495c7d7e283f9ebc381febb4a775fd000d6001"
+    },
+    {
+      "path": "evidencias/decompiled/_imagem_aliyun.c",
+      "bytes": 11547,
+      "sha256": "4bd57f6b4dcbce80adb08805658d420045424ea027098209734e9be8a8c8f7f6"
+    },
+    {
+      "path": "evidencias/decompiled/_resolver_aliyun.c",
+      "bytes": 100695,
+      "sha256": "6918fe5117ce09bfb8653e68b88a61a34a0d83bf479ba51bf8900742af674d29"
+    },
+    {
+      "path": "evidencias/decompiled/_toque_cru.c",
+      "bytes": 13362,
+      "sha256": "71665a371e5b947d979882d773e5a5ec1668ec094181a3c40da65c8ec0152776"
+    },
+    {
+      "path": "evidencias/decompiled/resolver_aliyun_se_aparecer.c",
+      "bytes": 11826,
+      "sha256": "327e2d54f6caab1e9af506de9ed41c93dcafaa373501a87d2d3a78507df8d4dd"
+    },
+    {
+      "path": "evidencias/ghidra.log",
+      "bytes": 6787,
+      "sha256": "000b3ee743c3241f0d147454fe617bedea26df5842e8bd0ddf84ab68838e5b01"
+    },
+    {
+      "path": "evidencias/globals.tsv",
+      "bytes": 433544,
+      "sha256": "c273e0637af300d9ed20bb69642afadac51d99d8b00475090e752a48eb95692a"
+    },
+    {
+      "path": "evidencias/helpers.tsv",
+      "bytes": 3807,
+      "sha256": "e86f10c29878c18eb2b1e0bf5e982f5c22d7282d8948756e4dfe38851fb056de"
+    },
+    {
+      "path": "evidencias/mapa_nativo.json",
+      "bytes": 14833,
+      "sha256": "7992b20660f7b98371f24a2d595474d96b2fcf77a4d7e3fa3d63022039b15f64"
+    },
+    {
+      "path": "evidencias/resolver_aliyun_se_aparecer.asm.txt",
+      "bytes": 30093,
+      "sha256": "6dd2c397c91c7c3c0402d7c286389b61bd9c03ad679a3b8744c05b190a774ac5"
+    },
+    {
+      "path": "evidencias/targets.tsv",
+      "bytes": 301,
+      "sha256": "19a8ec5d21a6ea7e5f76c8551d9edebad7aa42575a2af67b661406d5e88f6d46"
+    },
+    {
+      "path": "exemplo.py",
+      "bytes": 505,
+      "sha256": "033b27c473ee437c2cbeea4546cad9646939314027a886d7e37a68e2e3108499"
+    },
+    {
+      "path": "javascript/aliyun_estado.js",
+      "bytes": 474,
+      "sha256": "64ddbdd6232b995d4c880279732b962de1028f8e20a01d13971c35c82b56be26"
+    },
+    {
+      "path": "javascript/aliyun_posicao.js",
+      "bytes": 247,
+      "sha256": "cb2df3bdf23dc8ceff273d9bfa21069f395c37005175588c4179cd6d62810bd0"
+    },
+    {
+      "path": "javascript/aliyun_presente.js",
+      "bytes": 154,
+      "sha256": "b2ea3705b01bd32b212c8a3183f7b7c7cc80ff8272a95f84ad3c622baca602b9"
+    },
+    {
+      "path": "javascript/geetest_aberto_detector.js",
+      "bytes": 551,
+      "sha256": "55d708650247da838e47338d218ec63bb981f2d513eff78ddfb8f530cafb4add"
+    },
+    {
+      "path": "javascript_literal.py",
+      "bytes": 1694,
+      "sha256": "e0a343fa30d3f4d6e9e7439e22889e82ddbe1c3abde57c629b1d25bac2158882"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 61,
+      "sha256": "22774db85508aa2ed9dfd91856f25660587c0198329e3c78ad5ced9c015d30be"
+    }
+  ],
+  "execution_performed": false,
+  "source_changed": false
+}

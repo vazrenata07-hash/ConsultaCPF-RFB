@@ -1,0 +1,516 @@
+[
+  {
+    "factory_va": "0x14085bf4c",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2008",
+      "index": 113,
+      "value": "_conn_iframe"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2010",
+      "index": 114,
+      "value": "Contas_pix.resolver_recaptcha.<locals>._conn_iframe"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x14085fd40"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2d88"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "unresolved"
+    }
+  },
+  {
+    "factory_va": "0x14085bfdd",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2018",
+      "index": 115,
+      "value": "_eval_iframe"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2020",
+      "index": 116,
+      "value": "Contas_pix.resolver_recaptcha.<locals>._eval_iframe"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x140861600"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2da8"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "unresolved"
+    }
+  },
+  {
+    "factory_va": "0x14085c060",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2030",
+      "index": 118,
+      "value": "ler"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2038",
+      "index": 119,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.ler"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x1408623e0"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2e90"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "constant",
+      "va": "0x142de2028",
+      "index": 117,
+      "value": "Roda `corpo` (que recebe `d` = document do iframe) dentro do frame."
+    }
+  },
+  {
+    "factory_va": "0x14085c0cf",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2048",
+      "index": 121,
+      "value": "canto_iframe"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2050",
+      "index": 122,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.canto_iframe"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x140862ba0"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2e18"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "constant",
+      "va": "0x142de2040",
+      "index": 120,
+      "value": "Posição do <iframe> no documento de topo — ele está lá mesmo\n            quando é OOPIF, e é o que converte coordenada do frame em coordenada\n            de página para o Input.dispatchMouseEvent."
+    }
+  },
+  {
+    "factory_va": "0x14085c144",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2058",
+      "index": 123,
+      "value": "centro"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2060",
+      "index": 124,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.centro"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x140863150"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2e20"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "unresolved"
+    }
+  },
+  {
+    "factory_va": "0x14085c1ac",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2068",
+      "index": 125,
+      "value": "clicar"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2070",
+      "index": 126,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.clicar"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x140863850"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2e28"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "unresolved"
+    }
+  },
+  {
+    "factory_va": "0x14085c210",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2078",
+      "index": 127,
+      "value": "marcado"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2080",
+      "index": 128,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.marcado"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x140863fe0"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2e98"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "unresolved"
+    }
+  },
+  {
+    "factory_va": "0x14085c28f",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2090",
+      "index": 130,
+      "value": "resolvido"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2098",
+      "index": 131,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.resolvido"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x140864240"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2ed0"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "constant",
+      "va": "0x142de2088",
+      "index": 129,
+      "value": "Serve para os dois tipos. No reCAPTCHA invisível não há checkbox\n            para ficar verde — o sinal é o token cair no textarea da página."
+    }
+  },
+  {
+    "factory_va": "0x14085c2f9",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de20a0",
+      "index": 132,
+      "value": "audio_pronto"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de20a8",
+      "index": 133,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.audio_pronto"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x140864800"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2de8"
+    },
+    "positional_defaults": {
+      "kind": "zero",
+      "value": 0
+    },
+    "kw_defaults": {
+      "kind": "zero",
+      "value": 0
+    },
+    "annotations": {
+      "kind": "zero",
+      "value": 0
+    },
+    "docstring": {
+      "kind": "zero",
+      "value": 0
+    }
+  },
+  {
+    "factory_va": "0x14085c36a",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de20b8",
+      "index": 135,
+      "value": "bloqueado"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de20c0",
+      "index": 136,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.bloqueado"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x14085ed30"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2df0"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "constant",
+      "va": "0x142de20b0",
+      "index": 134,
+      "value": "O Google recusa o desafio de ÁUDIO por reputação de IP e mostra\n            \"Try again later / your computer or network may be sending automated\n            queries\". O Buster para calado nesse estado (é o `.rc-doscaptcha-body`\n            que ele próprio vigia), então quem tem de reconhecer é o chamador:\n            não adianta repetir no mesmo IP, tem de trocar de proxy."
+    }
+  },
+  {
+    "factory_va": "0x14085c3ea",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de20c8",
+      "index": 137,
+      "value": "desafio_aberto"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de20d0",
+      "index": 138,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.desafio_aberto"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x14085eff0"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2e70"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "unresolved"
+    }
+  },
+  {
+    "factory_va": "0x14085c439",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de20d8",
+      "index": 139,
+      "value": "esperar"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de20e0",
+      "index": 140,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.esperar"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x14085f2e0"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2e80"
+    },
+    "positional_defaults": {
+      "kind": "unresolved"
+    },
+    "kw_defaults": {
+      "kind": "unresolved"
+    },
+    "annotations": {
+      "kind": "unresolved"
+    },
+    "docstring": {
+      "kind": "unresolved"
+    }
+  },
+  {
+    "factory_va": "0x14085ca10",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de2120",
+      "index": 148,
+      "value": "pronto_ou_bloqueado"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de2128",
+      "index": 149,
+      "value": "Contas_pix.resolver_recaptcha.<locals>.pronto_ou_bloqueado"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x14085f990"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2eb8"
+    },
+    "positional_defaults": {
+      "kind": "zero",
+      "value": 0
+    },
+    "kw_defaults": {
+      "kind": "zero",
+      "value": 0
+    },
+    "annotations": {
+      "kind": "zero",
+      "value": 0
+    },
+    "docstring": {
+      "kind": "zero",
+      "value": 0
+    }
+  },
+  {
+    "factory_va": "0x140859a18",
+    "name": {
+      "kind": "constant",
+      "va": "0x142de1f28",
+      "index": 85,
+      "value": "_eval"
+    },
+    "qualname": {
+      "kind": "constant",
+      "va": "0x142de1f30",
+      "index": 86,
+      "value": "Contas_pix._configurar_buster.<locals>._eval"
+    },
+    "implementation": {
+      "kind": "address",
+      "va": "0x14085ad60"
+    },
+    "codeobject": {
+      "kind": "memory",
+      "va": "0x142de2da0"
+    },
+    "positional_defaults": {
+      "kind": "zero",
+      "value": 0
+    },
+    "kw_defaults": {
+      "kind": "zero",
+      "value": 0
+    },
+    "annotations": {
+      "kind": "zero",
+      "value": 0
+    },
+    "docstring": {
+      "kind": "zero",
+      "value": 0
+    }
+  }
+]
