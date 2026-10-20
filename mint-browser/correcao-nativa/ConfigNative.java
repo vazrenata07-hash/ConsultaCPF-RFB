@@ -12,16 +12,25 @@ import org.json.JSONObject;
 /** Same JSON preference format as V26, shared by native controls and script snapshots. */
 public final class ConfigNative {
     private static String prefix;
-    private static final String DEFAULT = "{\"usernameEnabled\":true,\"usernameLength\":15,\"usernameAlphanumeric\":true,\"passwordEnabled\":true,\"password\":\"danill0\",\"pinEnabled\":true,\"pin\":\"232691\",\"historyEnabled\":true,\"wagerEnabled\":true}";
+    private static final String DEFAULT = "{\"usernameEnabled\":true,\"usernameLength\":15,\"usernameAlphanumeric\":true,\"passwordEnabled\":true,\"password\":\"\",\"pinEnabled\":true,\"pin\":\"\",\"historyEnabled\":true,\"wagerEnabled\":true}";
     private ConfigNative() {}
-    public static String json(Context c) {
+    public static synchronized String json(Context c) {
         try {
-            String value=c.getSharedPreferences("mint_custom_config",0).getString("json",DEFAULT);
-            new JSONObject(value);
+            android.content.SharedPreferences prefs=c.getSharedPreferences("mint_custom_config",0);
+            String value=prefs.getString("json",DEFAULT);
+            JSONObject current=new JSONObject(value);
+            // This update starts both credential fields empty once. Later applied
+            // credentials, switches and this marker survive the app's cleanup.
+            if(prefs.getInt("config_schema",0)<2) {
+                current.put("password","");current.put("pin","");
+                value=current.toString();
+                prefs.edit().putString("json",value).putInt("config_schema",2).commit();
+            }
             return value.replace("<","\\u003c");
         } catch(Exception invalid) { return DEFAULT; }
     }
-    public static boolean save(Activity a,String text) {
+    public static boolean restoreDefaults(Activity a) { return save(a,DEFAULT); }
+    public static synchronized boolean save(Activity a,String text) {
         try {
             JSONObject input=new JSONObject(text),next=new JSONObject();
             String[] flags={"usernameEnabled","usernameAlphanumeric","passwordEnabled","pinEnabled","historyEnabled","wagerEnabled"};
@@ -35,12 +44,12 @@ public final class ConfigNative {
             int count=((Integer)length).intValue();
             if(count<1||count>64)return false;
             next.put("usernameLength",count);
-            Object password=input.has("password")?input.get("password"):"danill0";
-            Object pin=input.has("pin")?input.get("pin"):"232691";
-            if(!(password instanceof String)||((String)password).length()==0)return false;
-            if(!(pin instanceof String)||!((String)pin).matches("[0-9]{6}"))return false;
+            Object password=input.has("password")?input.get("password"):"";
+            Object pin=input.has("pin")?input.get("pin"):"";
+            if(!(password instanceof String))return false;
+            if(!(pin instanceof String)||!(((String)pin).isEmpty()||((String)pin).matches("[0-9]{6}")))return false;
             next.put("password",password);next.put("pin",pin);
-            if(!a.getSharedPreferences("mint_custom_config",0).edit().putString("json",next.toString()).commit())return false;
+            if(!a.getSharedPreferences("mint_custom_config",0).edit().putString("json",next.toString()).putInt("config_schema",2).commit())return false;
             try { ConfigRegistry.changed(a); } catch(RuntimeException liveUpdateUnavailable) { /* Persisted values also apply to new pages. */ }
             return true;
         } catch(Exception invalid) { return false; }

@@ -1,32 +1,19 @@
-"""Preserve original native fragment trees; add helper calls after original onCreate.
+"""Add only root customization hooks to the original MainPreferenceFragment.
+The original Privacy and Advanced fragment files are not opened or changed.
 Usage: python hook-native-preferences.py /path/to/decoded-base-release-1.0.2
 """
 from pathlib import Path
 import re,sys
 root=Path(sys.argv[1])
-base=root/'smali_classes2/com/miui/org/chromium/chrome/browser/setting/preferences'
-for filename,entry in [('MainPreferenceFragment.smali','root'),('PrivacySecurityPreferencesFragment.smali','privacy'),('AdvancedPreferencesFragment.smali','advanced')]:
- p=base/filename
- s=p.read_text()
- match=re.search(r'\.method public onCreate\(Landroid/os/Bundle;\)V\n[\s\S]*?\.end method',s)
- assert match,filename
- method=match.group()
- assert 'NativePreferenceMods;' not in method,filename
- # Every original return path retains original instructions before extending the screen.
- replacement='    invoke-static {p0}, Lcom/mint/rebuilt/NativePreferenceMods;->'+entry+'(Ljava/lang/Object;)V\n\n    return-void'
- assert '    return-void' in method,filename
- patched=method.replace('    return-void',replacement)
- p.write_text(s[:match.start()]+patched+s[match.end():])
- print(filename,'→',entry)
-
-# Main onResume refreshes the original general settings; hide them again only
-# afterward, keeping them attached and fully findable by native lifecycle code.
-p=base/'MainPreferenceFragment.smali'
+p=root/'smali_classes2/com/miui/org/chromium/chrome/browser/setting/preferences/MainPreferenceFragment.smali'
 s=p.read_text()
-match=re.search(r'\.method public onResume\(\)V\n[\s\S]*?\.end method',s)
-assert match
-method=match.group()
-assert 'NativePreferenceMods;' not in method
-patched=method.replace('    return-void','    invoke-static {p0}, Lcom/mint/rebuilt/NativePreferenceMods;->root(Ljava/lang/Object;)V\n\n    return-void')
-p.write_text(s[:match.start()]+patched+s[match.end():])
-print('MainPreferenceFragment.onResume → root after native refresh')
+for signature in (r'onCreate\(Landroid/os/Bundle;\)', r'onResume\(\)'):
+ match=re.search(r'\.method public '+signature+r'V\n[\s\S]*?\.end method',s)
+ assert match,signature
+ method=match.group()
+ assert 'NativePreferenceMods;' not in method,signature
+ assert '    return-void' in method,signature
+ patched=method.replace('    return-void','    invoke-static {p0}, Lcom/mint/rebuilt/NativePreferenceMods;->root(Ljava/lang/Object;)V\n\n    return-void')
+ s=s[:match.start()]+patched+s[match.end():]
+p.write_text(s)
+print('MainPreferenceFragment onCreate/onResume → root; other fragments unchanged')

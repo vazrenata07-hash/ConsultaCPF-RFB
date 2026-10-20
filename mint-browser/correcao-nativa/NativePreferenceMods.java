@@ -55,73 +55,96 @@ public final class NativePreferenceMods {
         if (a != null) Toast.makeText(a, "Não foi possível carregar as personalizações.", Toast.LENGTH_SHORT).show();
     }
 
-    /** Reparent the two original objects; their original click listeners remain attached. */
-    public static void root(Object fragment) {
-        Activity a = activity(fragment);
+    /** Keep native objects findable, and show the custom controls on the gear root. */
+    public static void root(final Object fragment) {
+        final Activity a = activity(fragment);
+        Object root = null, privacy = null, advanced = null;
         try {
-            Object root = screen(fragment);
-            Object privacy = find(root, "pref_header_key_privacy");
-            Object advanced = find(root, "pref_header_key_advanced");
+            root = screen(fragment);
+            privacy = find(root, "pref_header_key_privacy");
+            advanced = find(root, "pref_header_key_advanced");
             if (privacy == null || advanced == null) return;
+            // Rebuild only our own rows after native lifecycle refreshes.
+            String[] own = {"usernameEnabled", "usernameLength", "usernameAlphanumeric", "passwordEnabled", "password", "pinEnabled", "pin", "historyEnabled", "wagerEnabled", "restore_defaults"};
+            for (String setting : own) {
+                Object previous = find(root, "mint_custom_" + setting);
+                if (previous != null) {
+                    Object parent = call(previous, "s");
+                    if (parent != null) remove(parent, previous);
+                }
+            }
             Object privacyParent = call(privacy, "s");
             Object advancedParent = call(advanced, "s");
             if (privacyParent != null) remove(privacyParent, privacy);
             if (advancedParent != null) remove(advancedParent, advanced);
-            // Keep every original group/setting attached and findable: onResume
-            // still accesses them. Only the two retained entry objects move up.
+            // Original general settings stay attached: native onResume still finds them.
             int count = ((Integer) call(root, "M0")).intValue();
             for (int index = 0; index < count; index++) {
                 Object child = call(root, "L0", new Class<?>[]{int.class}, index);
                 bool(child, "A0", false);
             }
-            order(privacy, 0); order(advanced, 1);
-            bool(privacy, "A0", true); bool(advanced, "A0", true);
-            add(root, privacy); add(root, advanced);
-        } catch (Exception ignored) { failure(a); }
-    }
-
-    public static void privacy(Object fragment) {
-        Activity a = activity(fragment);
-        try {
-            Object group = category(fragment, "mint_custom_privacy", "Personalizações da 888");
-            if (group == null) return;
             JSONObject initial = read(a);
-            toggle(a, group, initial, "passwordEnabled", "Preencher senha de acesso");
-            edit(a, group, "password", "Senha de acesso", "Definida · tocar para alterar", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            toggle(a, group, initial, "pinEnabled", "Preencher senha de saque");
-            edit(a, group, "pin", "Senha de saque", "6 dígitos · tocar para alterar", InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+            toggle(a, root, initial, "usernameEnabled", "Gerar usuário da 888", 0);
+            edit(a, root, "usernameLength", "Quantidade de caracteres do usuário", String.valueOf(initial.optInt("usernameLength", 15)), InputType.TYPE_CLASS_NUMBER, 1);
+            toggle(a, root, initial, "usernameAlphanumeric", "Usuário alfanumérico", 2);
+            toggle(a, root, initial, "passwordEnabled", "Preencher senha de acesso", 3);
+            edit(a, root, "password", "Senha de acesso", secretSummary(initial.optString("password", "")), InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD, 4);
+            toggle(a, root, initial, "pinEnabled", "Preencher senha de saque", 5);
+            edit(a, root, "pin", "Senha de saque", secretSummary(initial.optString("pin", "")), InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD, 6);
+            toggle(a, root, initial, "historyEnabled", "Histórico de bombas do Mines", 7);
+            toggle(a, root, initial, "wagerEnabled", "Contador do total apostado", 8);
+            restore(a, root, fragment);
         } catch (Exception ignored) { failure(a); }
+        finally {
+            // Always retain access to the original trees, even if a custom row fails.
+            if (root != null && privacy != null && advanced != null) try {
+                order(privacy, 100); order(advanced, 101);
+                bool(privacy, "A0", true); bool(advanced, "A0", true);
+                add(root, privacy); add(root, advanced);
+            } catch (Exception ignored) {}
+        }
     }
-    public static void advanced(Object fragment) {
-        Activity a = activity(fragment);
-        try {
-            Object group = category(fragment, "mint_custom_advanced", "Personalizações do Mint");
-            if (group == null) return;
-            JSONObject initial = read(a);
-            toggle(a, group, initial, "usernameEnabled", "Gerar usuário da 888");
-            edit(a, group, "usernameLength", "Quantidade de caracteres do usuário", String.valueOf(initial.optInt("usernameLength", 15)), InputType.TYPE_CLASS_NUMBER);
-            toggle(a, group, initial, "usernameAlphanumeric", "Usuário alfanumérico");
-            toggle(a, group, initial, "historyEnabled", "Histórico de bombas do Mines");
-            toggle(a, group, initial, "wagerEnabled", "Contador do total apostado");
-        } catch (Exception ignored) { failure(a); }
+    private static String secretSummary(String value) {
+        return value.length() == 0 ? "Não definida · tocar para adicionar" : "Definida · tocar para alterar";
     }
-    private static Object category(Object fragment, String id, String title) throws Exception {
-        Object root = screen(fragment);
-        if (find(root, id) != null) return null;
-        Object category = type(BASE + "PreferenceCategory").getConstructor(Context.class).newInstance(activity(fragment));
-        key(category, id); text(category, "z0", title); order(category, -10000);
-        add(root, category);
-        return category;
+    private static void restore(final Activity a, Object group, final Object fragment) throws Exception {
+        Object pref = preference(a, "restore_defaults", "Restaurar padrão");
+        order(pref, 90);
+        text(pref, "x0", "Restaurar apenas as personalizações do Mint.");
+        Class<?> listener = type(BASE + "Preference$e");
+        Object proxy = Proxy.newProxyInstance(listener.getClassLoader(), new Class<?>[]{listener}, new InvocationHandler() {
+            public Object invoke(Object proxy, Method method, Object[] args) {
+                if (method.getName().equals("c")) {
+                    new AlertDialog.Builder(a).setTitle("Restaurar padrão?")
+                        .setMessage("Ativar as personalizações, usar 15 caracteres no usuário e limpar as senhas configuradas?")
+                        .setNegativeButton("Cancelar", null)
+                        .setPositiveButton("Restaurar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    Object result = type("com.mint.rebuilt.ConfigNative").getMethod("restoreDefaults", Activity.class).invoke(null, a);
+                                    if (Boolean.TRUE.equals(result)) { root(fragment); return; }
+                                } catch (Exception ignored) {}
+                                Toast.makeText(a, "Não foi possível restaurar as personalizações.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
+                    return Boolean.TRUE;
+                }
+                return objectMethod(proxy, method, args);
+            }
+        });
+        call(pref, "t0", new Class<?>[]{listener}, proxy);
+        add(group, pref);
     }
     private static Object preference(Activity a, String id, String title) throws Exception {
         Object pref = type(BASE + "Preference").getConstructor(Context.class).newInstance(a);
         key(pref, "mint_custom_" + id); text(pref, "z0", title); bool(pref, "v0", false);
         return pref;
     }
-    private static void toggle(final Activity a, Object group, JSONObject initial, final String setting, String title) throws Exception {
+    private static void toggle(final Activity a, Object group, JSONObject initial, final String setting, String title, int position) throws Exception {
         Object pref = type("miui.support.preference.CheckBoxPreference").getConstructor(Context.class, AttributeSet.class).newInstance(a, null);
         key(pref, "mint_custom_" + setting); text(pref, "z0", title); bool(pref, "v0", false);
         bool(pref, "H0", initial.optBoolean(setting, true));
+        order(pref, position);
         if (setting.equals("usernameAlphanumeric")) text(pref, "x0", "Ativado: letras e números. Desativado: somente letras.");
         if (setting.equals("historyEnabled")) text(pref, "x0", "Contagem por quadrado nas últimas 10 rodadas concluídas.");
         Class<?> listener = type(BASE + "Preference$d");
@@ -134,8 +157,9 @@ public final class NativePreferenceMods {
         call(pref, "s0", new Class<?>[]{listener}, proxy);
         add(group, pref);
     }
-    private static void edit(final Activity a, Object group, final String setting, final String title, String summary, final int inputType) throws Exception {
+    private static void edit(final Activity a, Object group, final String setting, final String title, String summary, final int inputType, int position) throws Exception {
         final Object pref = preference(a, setting, title);
+        order(pref, position);
         text(pref, "x0", summary);
         Class<?> listener = type(BASE + "Preference$e");
         Object proxy = Proxy.newProxyInstance(listener.getClassLoader(), new Class<?>[]{listener}, new InvocationHandler() {
@@ -163,7 +187,7 @@ public final class NativePreferenceMods {
             input.setPadding(side, side / 2, side, side / 2);
             if (setting.equals("pin")) input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
             if (setting.equals("usernameLength")) input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
-            final AlertDialog dialog = new AlertDialog.Builder(a).setTitle(title).setView(input).setNegativeButton("Cancelar", null).setPositiveButton("Salvar", null).create();
+            final AlertDialog dialog = new AlertDialog.Builder(a).setTitle(title).setView(input).setNegativeButton("Cancelar", null).setPositiveButton("Aplicar", null).create();
             dialog.show();
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
@@ -174,10 +198,10 @@ public final class NativePreferenceMods {
                         if (count < 1 || count > 64) { input.setError("Use um número de 1 a 64."); return; }
                         value = Integer.valueOf(count);
                     } else if (setting.equals("pin")) {
-                        if (!raw.matches("[0-9]{6}")) { input.setError("Use exatamente 6 dígitos."); return; }
-                    } else if (raw.length() == 0) { input.setError("Defina a senha de acesso."); return; }
+                        if (raw.length() > 0 && !raw.matches("[0-9]{6}")) { input.setError("Deixe vazio ou use exatamente 6 dígitos."); return; }
+                    }
                     if (!save(a, setting, value)) return;
-                    if (setting.equals("usernameLength")) try { text(pref, "x0", String.valueOf(value)); } catch (Exception ignored) {}
+                    try { text(pref, "x0", setting.equals("usernameLength") ? String.valueOf(value) : secretSummary(raw)); } catch (Exception ignored) {}
                     dialog.dismiss();
                 }
             });
