@@ -1,0 +1,11 @@
+{
+  "check": "Playwright Chromium offline PIN regression fixture",
+  "status": "blocked_before_browser_startup",
+  "executedBrowserCases": 0,
+  "executable": "/usr/bin/chromium",
+  "failure": "Chromium crashpad setsockopt: Operation not permitted (EPERM); process exited with SIGTRAP",
+  "attempts": 2,
+  "standardFlagsAttempted": ["--no-sandbox", "--disable-crash-reporter", "--disable-crashpad", "--no-zygote", "--single-process"],
+  "fallback": "pin-form-model.vm.cjs passed nine Node VM simulated DOM/form-model cases",
+  "limitation": "No actual Chromium page, Android WebView, real site, account, CAPTCHA or withdrawal was exercised."
+}

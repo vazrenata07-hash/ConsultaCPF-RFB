@@ -38,7 +38,7 @@ async function run(version,{kind='custom',partial='',cancel=false,routeCancel=fa
    if(state.presses===1&&routeCancel)timeout(()=>ctx.history.pushState({},'','/home/'),10);
   }
   key.click=()=>press();
-  key.dispatchEvent=e=>{if(e.type==='touchstart'){armed=!!(e.touches&&e.touches[0]);if(!armed)state.badTouches++}if(e.type==='touchend'){if(!armed||!e.changedTouches||!e.changedTouches[0])state.badTouches++;else{armed=false;press()}}return true};
+  key.dispatchEvent=e=>{if(keyMode!=='touch')return true;if(e.type==='touchstart'){armed=!!(e.touches&&e.touches[0]);if(!armed)state.badTouches++}if(e.type==='touchend'){if(!armed||!e.changedTouches||!e.changedTouches[0])state.badTouches++;else{armed=false;press()}}return true};
   if(keyMode==='symbolClick')key[Symbol('_vei')]={onClick:press};
   if(keyMode==='veiClick')key._vei={onClick:press};
   return key;
