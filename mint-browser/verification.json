@@ -1,0 +1,24 @@
+{
+  "apk": "Mint-Browser-v26-Matrix-Configuracoes.apk",
+  "sha256": "40781f7d3a7bc22ac307e7577a87fd88b76d4813c0fc474496692c9d6d5707fe",
+  "changed_entries": [
+    "assets/mint-config-prefix.js",
+    "assets/mint-matrix.html",
+    "assets/mint-rebuilt.js",
+    "assets/mint-settings.html",
+    "classes2.dex",
+    "classes3.dex"
+  ],
+  "geetest_js_unchanged": true,
+  "geetest_native_classes4_dex_unchanged": true,
+  "geetest_suffix_sha256": "b0e0b413aa30b968b3749b08744a93043ce6e8b1721725a29d17854d363d1539",
+  "native_classes3_assembled_and_disassembled_identically": 12,
+  "signature_verified": [
+    "v1",
+    "v2",
+    "v3"
+  ],
+  "zipalign_verified": true,
+  "device_tested": false,
+  "visual_preview": "Blocked by runtime sandbox (Chromium setsockopt EPERM)"
+}
