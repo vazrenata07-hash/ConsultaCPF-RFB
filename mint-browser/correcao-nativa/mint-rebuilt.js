@@ -290,7 +290,7 @@ function customPIN(){
   var paced=run.phase==='withdrawal';
   if(!current())return;
   focusPIN(target);
-  if(paced)await pause(40);else await Promise.resolve();
+  if(paced)await pause(10);else await Promise.resolve();
   if(!current())return;
   if(!keyboard())(target.querySelector('ul')||target).click();
   var board=await waitFor(keyboard,1000);if(!board||!current()||filledCells(target)!==0)return;
@@ -299,12 +299,12 @@ function customPIN(){
    board=keyboard();if(!board||filledCells(target)!==count)return;
    if(!emitKeyboardDigit(board,withdrawalPIN[count]))return;
    var previous=count;
-   if(paced)await pause(40);else await Promise.resolve();
+   if(paced)await pause(10);else await Promise.resolve();
    var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
    if(!acknowledged)return;
    var updated=filledCells(target);if(updated!==previous+1)return;count=updated;
   }
-  if(paced)await pause(80);
+  if(paced)await pause(10);
   if(current()&&count===6&&filledCells(target)===6)pinWritten.add(target);
  }
  async function fill(){
@@ -333,7 +333,7 @@ function settlePINInput(el){
   el.dispatchEvent(new Event('change',{bubbles:true}));
   if(d.activeElement===el)el.blur();
   else{el.dispatchEvent(new FocusEvent('blur'));el.dispatchEvent(new FocusEvent('focusout',{bubbles:true}));}
- },80);
+ },10);
 }
 function autofill(){
  var reg=route();

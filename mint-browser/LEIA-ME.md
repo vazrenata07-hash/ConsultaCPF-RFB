@@ -1,6 +1,6 @@
-# Mint Browser V26.5 — PIN instantâneo na configuração
+# Mint Browser V26.6 — saque com pausas de 10 ms
 
-Arquivo atual: `Mint-Browser-v26.5-PIN-Instantaneo-Configuracao.apk`. O arquivo de nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também aponta para esta versão.
+Arquivo desta versão: `Mint-Browser-v26.6-Saque-10ms.apk`.
 
 A página inicial da engrenagem contém os controles de usuário, senha de acesso, senha de saque, histórico do Mines, quantidade de rodadas e contador de total apostado. Em seguida vêm **DNS Cloudflare · 1.1.1.1**, **Restaurar padrão** e, por último, **Privacidade e segurança** e **Avançado**, com suas subdivisões originais preservadas.
 
@@ -8,11 +8,11 @@ A página inicial da engrenagem contém os controles de usuário, senha de acess
 
 **Definir e confirmar a senha:** volta o preenchimento instantâneo da V26.3, sem pausas artificiais entre os dígitos. A tela `/home/security` exibida no vídeo, com “Defina sua senha de saque” e “Confirmar Nova Senha”, usa esse caminho.
 
-**Verificar a senha para realizar um saque:** mantém as teclas reais da página e os eventos que atualizam o formulário, com intervalo reduzido de 60 para **40 ms** entre os dígitos. A abertura do teclado aguarda 40 ms e a conclusão aguarda 80 ms. A confirmação dos campos HTML comuns aguarda 80 ms somente nesse contexto. Senha de acesso e verificações que não sejam do saque não recebem essas pausas.
+**Verificar a senha para realizar um saque:** mantém as teclas reais da página e os eventos que atualizam o formulário. Todas as pausas desse fluxo foram reduzidas para **10 ms**: abertura do teclado, intervalo entre os dígitos, conclusão e confirmação dos campos HTML comuns. Essas pausas se aplicam somente à verificação da senha de saque. A definição e confirmação inicial do PIN continuam instantâneas; senha de acesso e outras verificações não recebem essas pausas.
 
 Se houver um toque real durante a sequência automática, ela é interrompida antes das próximas teclas. O toque não é bloqueado, e a sequência não deve continuar em outro campo após uma troca de foco. O script não aciona Sacar/Confirmar nem executa transações.
 
-Doze casos passaram na conferência local, usando uma simulação isolada do modelo do formulário; a aceitação pelo site real deve ser conferida no aparelho. O Chromium local não iniciou por restrição de processo deste ambiente nas tentativas anteriores.
+**Esta V26.6 não foi testada, por solicitação expressa do usuário.** Não foram executados testes de regressão, testes funcionais, navegador ou site nesta versão. Os relatórios de testes existentes são históricos de versões anteriores e não validam a V26.6; a conferência de uso no aparelho fica com o usuário.
 
 ## Imagens e desempenho
 
@@ -32,6 +32,6 @@ O início de novas navegações aguarda o callback do WebView que confirma a apl
 
 As opções anteriores continuam ligadas por padrão, com usuário alfanumérico de 15 caracteres e senhas vazias em instalação nova. Esta atualização preserva as senhas e escolhas já aplicadas na V26.2. **Limpar dados pelo navegador** preserva as configurações dos mods, inclusive o número de rodadas e a chave de DNS. **Restaurar padrão** redefine somente essas personalizações: senhas vazias, histórico de 10 rodadas, opções anteriores ligadas e DNS desligado. As duas seções nativas não são redefinidas por esse botão.
 
-O layout Matrix inicial e o GeeTest foram mantidos. A comparação do APK final com a V26.4 confirma que apenas o JavaScript do PIN mudou; todos os DEX, recursos, manifesto, DNS e layout Matrix permaneceram idênticos. O JavaScript do GeeTest e seu DEX nativo também permanecem idênticos à base indicada.
+A alteração desta versão se limita às pausas do PIN para saque, herdando as demais funções da V26.5. O layout Matrix inicial, o GeeTest, o DNS, o histórico e as configurações permanecem na implementação anterior. Relatórios de comparação anteriores permanecem apenas como histórico; não foi feita nova comparação funcional nesta versão.
 
-Base: release 1.0.2 indicada pelo usuário. Assinatura igual à base e às versões anteriores; instale como atualização, sem desinstalar. Sintaxe JavaScript, integridade ZIP, preservação dos demais componentes, alinhamento e assinaturas v1/v2/v3 conferidos. Os testes de uso no aparelho ficam com o usuário, conforme solicitado. Fontes e patch dos pontos nativos alterados estão em `correcao-nativa`; a conferência está em `verification.json`.
+Base original: release 1.0.2 indicada pelo usuário, com as personalizações herdadas até a V26.5. Instale como atualização, sem desinstalar. As fontes e os patches anteriores continuam em `correcao-nativa`; eventuais arquivos de conferência e resultados anteriores são históricos. Esta entrega atende à instrução de alterar os tempos e empacotar o APK sem executar novos testes.
