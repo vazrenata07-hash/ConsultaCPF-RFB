@@ -1,7 +1,14 @@
 {
-  "apk": "Mint-Browser-v26.2-Opcoes-Persistentes.apk",
-  "sha256": "fad68aa54afb358a3797a09fff7886450ffd7de0e2c6aad0077141ee3e5e1475",
+  "apk": "Mint-Browser-v26.3-DNS-Mines-Ajustavel.apk",
+  "sha256": "1aff3a50b6394abb40784ff16712c5127898c651042d1ed1495a6562531dae64",
   "base_release": "https://github.com/vazrenata07-hash/ConsultaCPF-RFB/releases/tag/1.0.2",
+  "changes_from_v262": [
+    "assets/mint-config-prefix.js",
+    "assets/mint-rebuilt.js",
+    "classes.dex",
+    "classes2.dex",
+    "classes3.dex"
+  ],
   "root_order": [
     "usernameEnabled",
     "usernameLength",
@@ -11,24 +18,48 @@
     "pinEnabled",
     "pin",
     "historyEnabled",
+    "historyRounds",
     "wagerEnabled",
+    "cloudflareDnsEnabled",
     "restore_defaults",
     "pref_header_key_privacy",
     "pref_header_key_advanced"
   ],
-  "original_privacy_advanced_fragments_preserved": true,
-  "default_flags": true,
+  "history_rounds": {
+    "default": 10,
+    "minimum": 1,
+    "maximum": 100,
+    "archive_capacity": 100
+  },
+  "cloudflare_dns": {
+    "default": false,
+    "scope": "WebView page traffic in this application only",
+    "protocol": "DNS-over-HTTPS",
+    "requires_webview_feature": "PROXY_OVERRIDE",
+    "system_dns_fallback": false,
+    "site_tls_interception": false,
+    "navigation_waits_for_proxy_callback": true
+  },
+  "images": {
+    "loads_automatically": true,
+    "block_network_image": false,
+    "data_saver_cannot_override": true
+  },
+  "original_privacy_advanced_files_unchanged": 19,
   "default_password": "",
   "default_pin": "",
+  "schema": 2,
   "preserved_on_browser_clear": [
     "shared_prefs/mint_custom_config.xml",
     "shared_prefs/mint_custom_config.xml.bak"
   ],
+  "matrix_layout_asset_unchanged": true,
   "geetest_js_and_native_dex_unchanged": true,
   "signature_verified": [
     "v1",
     "v2",
     "v3"
   ],
+  "signing_certificate_sha256": "1e08a903aef9c3a721510b64ec764d01d3d094eb954161b62544ea8f187b5953",
   "device_tests": "left to user as requested"
 }

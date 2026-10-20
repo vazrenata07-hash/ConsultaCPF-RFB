@@ -1,0 +1,132 @@
+--- a/smali/com/miui/org/chromium/chrome/browser/i.smali
++++ b/smali/com/miui/org/chromium/chrome/browser/i.smali
+@@ -633,14 +633,13 @@
+     invoke-virtual {v0, v1}, Landroid/webkit/WebSettings;->setJavaScriptCanOpenWindowsAutomatically(Z)V
+ 
+     .line 11
+-    iget-boolean v1, p0, Lcom/miui/org/chromium/chrome/browser/i;->g:Z
+-
+-    xor-int/lit8 v1, v1, 0x1
++    # Keep page icons/images enabled even when the inherited data-saver flag is set.
++    const/4 v1, 0x1
+ 
+     invoke-virtual {v0, v1}, Landroid/webkit/WebSettings;->setLoadsImagesAutomatically(Z)V
+ 
+     .line 12
+-    iget-boolean v1, p0, Lcom/miui/org/chromium/chrome/browser/i;->g:Z
++    const/4 v1, 0x0
+ 
+     invoke-virtual {v0, v1}, Landroid/webkit/WebSettings;->setBlockNetworkImage(Z)V
+ 
+--- a/smali/com/miui/org/chromium/chrome/browser/adblock/AdblockWebView.smali
++++ b/smali/com/miui/org/chromium/chrome/browser/adblock/AdblockWebView.smali
+@@ -1047,6 +1047,12 @@
+ .method public loadData(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+     .locals 1
+ 
++    invoke-static {p0, p1, p2, p3}, Lcom/mint/rebuilt/BrowserDns;->deferRawData(Landroid/webkit/WebView;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
++    move-result v0
++    if-eqz v0, :mint_dns_ready
++    return-void
++    :mint_dns_ready
++
+     .line 1
+     invoke-direct {p0}, Lcom/miui/org/chromium/chrome/browser/adblock/AdblockWebView;->Y()V
+ 
+@@ -1068,6 +1074,12 @@
+ .method public loadDataWithBaseURL(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+     .locals 1
+ 
++    invoke-static/range {p0 .. p5}, Lcom/mint/rebuilt/BrowserDns;->deferData(Landroid/webkit/WebView;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
++    move-result v0
++    if-eqz v0, :mint_dns_ready
++    return-void
++    :mint_dns_ready
++
+     .line 1
+     invoke-direct {p0}, Lcom/miui/org/chromium/chrome/browser/adblock/AdblockWebView;->Y()V
+ 
+@@ -1088,6 +1100,13 @@
+ 
+ .method public loadUrl(Ljava/lang/String;)V
+     .locals 1
++
++    const/4 v0, 0x0
++    invoke-static {p0, p1, v0}, Lcom/mint/rebuilt/BrowserDns;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
++    move-result v0
++    if-eqz v0, :mint_dns_ready
++    return-void
++    :mint_dns_ready
+ 
+     .line 1
+     invoke-direct {p0}, Lcom/miui/org/chromium/chrome/browser/adblock/AdblockWebView;->Y()V
+@@ -1123,6 +1142,12 @@
+         }
+     .end annotation
+ 
++    invoke-static {p0, p1, p2}, Lcom/mint/rebuilt/BrowserDns;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
++    move-result v0
++    if-eqz v0, :mint_dns_ready
++    return-void
++    :mint_dns_ready
++
+     .line 6
+     invoke-direct {p0}, Lcom/miui/org/chromium/chrome/browser/adblock/AdblockWebView;->Y()V
+ 
+@@ -1189,6 +1214,12 @@
+ .method public reload()V
+     .locals 1
+ 
++    invoke-static {p0}, Lcom/mint/rebuilt/BrowserDns;->deferReload(Landroid/webkit/WebView;)Z
++    move-result v0
++    if-eqz v0, :mint_dns_ready
++    return-void
++    :mint_dns_ready
++
+     .line 1
+     invoke-direct {p0}, Lcom/miui/org/chromium/chrome/browser/adblock/AdblockWebView;->Y()V
+ 
+--- a/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebView.smali
++++ b/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebView.smali
+@@ -773,3 +773,17 @@
+ 
+     return-void
+ .end method
++
++# Preserve the native restoration/navigation path after proxy configuration finishes.
++.method public postUrl(Ljava/lang/String;[B)V
++    .locals 1
++    invoke-static {p0, p1, p2}, Lcom/mint/rebuilt/BrowserDns;->deferPost(Landroid/webkit/WebView;Ljava/lang/String;[B)Z
++    move-result v0
++    if-eqz v0, :dns_ready
++    return-void
++    :dns_ready
++    invoke-super {p0, p1, p2}, Lcom/miui/org/chromium/chrome/browser/adblock/AdblockWebView;->postUrl(Ljava/lang/String;[B)V
++    return-void
++.end method
++
++
+--- a/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebViewGroup.smali
++++ b/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebViewGroup.smali
+@@ -2444,7 +2444,7 @@
+ 
+     move-result-object v2
+ 
+-    invoke-virtual {v1, v2}, Landroid/webkit/WebView;->restoreState(Landroid/os/Bundle;)Landroid/webkit/WebBackForwardList;
++    invoke-static {v1, v2}, Lcom/mint/rebuilt/BrowserDns;->restoreOrQueue(Landroid/webkit/WebView;Landroid/os/Bundle;)V
+ 
+     goto :goto_0
+ 
+--- a/smali_classes3/com/mint/rebuilt/PageScripts.smali
++++ b/smali_classes3/com/mint/rebuilt/PageScripts.smali
+@@ -177,6 +177,10 @@
+ .method public static init(Landroid/webkit/WebView;)V
+     .locals 4
+ 
++    invoke-virtual {p0}, Landroid/webkit/WebView;->getContext()Landroid/content/Context;
++    move-result-object v0
++    invoke-static {v0}, Lcom/mint/rebuilt/BrowserDns;->restore(Landroid/content/Context;)V
++
+     .line 14
+     invoke-static {p0}, Lcom/mint/rebuilt/ConfigRegistry;->track(Landroid/webkit/WebView;)V
+     invoke-static {p0}, Lcom/mint/rebuilt/PageScripts;->counter(Landroid/webkit/WebView;)V

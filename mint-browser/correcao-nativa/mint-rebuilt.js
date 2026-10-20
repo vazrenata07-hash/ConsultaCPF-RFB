@@ -236,7 +236,10 @@ function customPIN(){
  fill();
 }
 function autofill(){
- var reg=route(),all=d.querySelectorAll('input'),first=null,named=null,segments=[];
+ var reg=route();
+ // No form scan or layout reads when no active feature can fill this route.
+ if(!(options.usernameEnabled&&reg)&&!(options.passwordEnabled&&options.password)&&!(options.pinEnabled&&withdrawalPIN))return;
+ var all=d.querySelectorAll('input'),first=null,named=null,segments=[];
  for(var i=0;i<all.length;i++){
   var el=all[i],meta=[el.name,el.id,el.placeholder,el.autocomplete,el.getAttribute('aria-label')].join(' ').toLowerCase();
   if(!visible(el)){pinWritten.delete(el);passwordWritten.delete(el);continue;}
@@ -368,7 +371,11 @@ run();
 if(!/^\/h5\/games\/9\/9014\//.test(location.pathname)||window.__mintMinesCounter20)return;
 if(!/(^|\.)brteachcor\.com$/i.test(location.hostname))return;
 window.__mintMinesCounter20=true;
-function gameOptions(){var value=window.__mintGameConfig||{};return {historyEnabled:value.historyEnabled!==false,wagerEnabled:value.wagerEnabled!==false};}
+function gameOptions(){
+ var value=window.__mintGameConfig||{},rounds=Number(value.historyRounds);
+ return {historyEnabled:value.historyEnabled!==false,wagerEnabled:value.wagerEnabled!==false,
+  historyRounds:Number.isInteger(rounds)&&rounds>=1&&rounds<=100?rounds:10};
+}
 var options=gameOptions();
 var cc=null,loadingCC=false,proxy=null,panel=null,label=null,total=null,saveFailed=false,stopped=false;
 var start=Date.now(),timer=null,store=window.MintWagerCounter;
@@ -387,11 +394,12 @@ function createMinesHistory(getEngine){
  }
  try{
   var saved=JSON.parse(localStorage.getItem(key)||'[]');
-  if(Array.isArray(saved))rows=saved.filter(validRow).slice(-10);
+  if(Array.isArray(saved))rows=saved.filter(validRow).slice(-100);
  }catch(e){storageFailed=true;}
  function recount(){
   counts.fill(0);
-  rows.forEach(function(row){for(var i=0;i<25;i++)counts[i]+=row.mines[i];});
+  // Keep up to 100 completed boards, count only the requested latest window.
+  for(var row=Math.max(0,rows.length-options.historyRounds);row<rows.length;row++)for(var i=0;i<25;i++)counts[i]+=rows[row].mines[i];
  }
  recount();
  function save(){
@@ -404,10 +412,12 @@ function createMinesHistory(getEngine){
  }
  function caption(){
   if(!button)return;
-  var text=(visible?'Ocultar':'Histórico')+' · '+rows.length+'/10'+(storageFailed?' *':'');
+  var available=Math.min(rows.length,options.historyRounds);
+  var text=(visible?'Ocultar':'Histórico')+' · '+available+'/'+options.historyRounds+(storageFailed?' *':'');
   if(button.textContent!==text)button.textContent=text;
   button.setAttribute('aria-pressed',String(visible));
-  button.title='Bombas reveladas nas últimas '+rows.length+' rodadas'+
+  button.setAttribute('aria-label','Mostrar ou ocultar contagem de bombas das últimas '+options.historyRounds+' rodadas');
+  button.title='Bombas reveladas nas últimas '+available+' rodadas'+
    (storageFailed?' · Histórico somente nesta sessão':'');
  }
  function redraw(){
@@ -460,7 +470,6 @@ function createMinesHistory(getEngine){
   if(view!==next.gameView){destroyNumbers();view=next.gameView;if(visible){ensureNumbers();nodes.forEach(function(n){n.active=true;});redraw();}}
   if(!button&&document.body){
    button=document.createElement('button');button.type='button';button.id='mint-mines-history';
-   button.setAttribute('aria-label','Mostrar ou ocultar contagem de bombas das últimas dez rodadas');
    button.style.cssText='position:fixed;right:8px;top:8px;z-index:2147483647;padding:9px 12px;border:1px solid #9bb5d0;border-radius:18px;background:#102a43;color:#fff;font:bold 13px Arial;line-height:18px;touch-action:manipulation;pointer-events:auto;';
    button.onclick=function(event){event.stopPropagation();toggle();};
    document.body.appendChild(button);caption();
@@ -479,7 +488,7 @@ function createMinesHistory(getEngine){
   if(!map.every(function(n){return Number.isInteger(n)&&n>=3&&n<=7;}))return;
   id=String(id);if(rows.some(function(row){return row.id===id;}))return;
   rows.push({id:id,mines:map.map(function(n){return n===4||n===7?1:0;})});
-  if(rows.length>10)rows.shift();recount();redraw();caption();save();
+  if(rows.length>100)rows.shift();recount();redraw();caption();save();
  }
  function watch(next){
   if(!options.historyEnabled)return;
@@ -496,9 +505,10 @@ function createMinesHistory(getEngine){
   wrapped.__mintHistory21=true;try{next.cashoutRequest=wrapped;}catch(e){}
  }
  function configure(){
+  recount();
   if(!options.historyEnabled){visible=false;nodes.forEach(function(n){if(n.isValid!==false)n.active=false;});}
   if(button)button.style.display=options.historyEnabled?'':'none';
-  caption();
+  redraw();caption();
  }
  return {watch:watch,mount:mount,observeBet:observeBet,configure:configure};
 }
@@ -626,7 +636,7 @@ window.addEventListener('message',function(event){
  var message=event.data;
  if(event.source!==window.parent||!/^https?:\/\/([a-z0-9-]+\.)*(?:888pg\.cc|brteachcor\.com)(?::[0-9]+)?$/i.test(event.origin)||
     !message||message.mintCustomConfig26!==true||!message.gameConfig)return;
- window.__mintGameConfig={historyEnabled:message.gameConfig.historyEnabled!==false,wagerEnabled:message.gameConfig.wagerEnabled!==false};
+ window.__mintGameConfig={historyEnabled:message.gameConfig.historyEnabled!==false,wagerEnabled:message.gameConfig.wagerEnabled!==false,historyRounds:message.gameConfig.historyRounds};
  configureGame();
 });
 window.addEventListener('resize',positionLabel);

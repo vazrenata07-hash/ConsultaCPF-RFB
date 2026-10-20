@@ -65,7 +65,7 @@ public final class NativePreferenceMods {
             advanced = find(root, "pref_header_key_advanced");
             if (privacy == null || advanced == null) return;
             // Rebuild only our own rows after native lifecycle refreshes.
-            String[] own = {"usernameEnabled", "usernameLength", "usernameAlphanumeric", "passwordEnabled", "password", "pinEnabled", "pin", "historyEnabled", "wagerEnabled", "restore_defaults"};
+            String[] own = {"usernameEnabled", "usernameLength", "usernameAlphanumeric", "passwordEnabled", "password", "pinEnabled", "pin", "historyEnabled", "historyRounds", "wagerEnabled", "cloudflareDnsEnabled", "restore_defaults"};
             for (String setting : own) {
                 Object previous = find(root, "mint_custom_" + setting);
                 if (previous != null) {
@@ -92,7 +92,9 @@ public final class NativePreferenceMods {
             toggle(a, root, initial, "pinEnabled", "Preencher senha de saque", 5);
             edit(a, root, "pin", "Senha de saque", secretSummary(initial.optString("pin", "")), InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD, 6);
             toggle(a, root, initial, "historyEnabled", "Histórico de bombas do Mines", 7);
-            toggle(a, root, initial, "wagerEnabled", "Contador do total apostado", 8);
+            edit(a, root, "historyRounds", "Rodadas no histórico do Mines", String.valueOf(initial.optInt("historyRounds", 10)), InputType.TYPE_CLASS_NUMBER, 8);
+            toggle(a, root, initial, "wagerEnabled", "Contador do total apostado", 9);
+            toggle(a, root, initial, "cloudflareDnsEnabled", "DNS Cloudflare · 1.1.1.1", 10);
             restore(a, root, fragment);
         } catch (Exception ignored) { failure(a); }
         finally {
@@ -116,7 +118,7 @@ public final class NativePreferenceMods {
             public Object invoke(Object proxy, Method method, Object[] args) {
                 if (method.getName().equals("c")) {
                     new AlertDialog.Builder(a).setTitle("Restaurar padrão?")
-                        .setMessage("Ativar as personalizações, usar 15 caracteres no usuário e limpar as senhas configuradas?")
+                        .setMessage("Ativar as personalizações, usar usuário de 15 caracteres, histórico de 10 rodadas, limpar as senhas e desativar o DNS Cloudflare?")
                         .setNegativeButton("Cancelar", null)
                         .setPositiveButton("Restaurar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -143,10 +145,11 @@ public final class NativePreferenceMods {
     private static void toggle(final Activity a, Object group, JSONObject initial, final String setting, String title, int position) throws Exception {
         Object pref = type("miui.support.preference.CheckBoxPreference").getConstructor(Context.class, AttributeSet.class).newInstance(a, null);
         key(pref, "mint_custom_" + setting); text(pref, "z0", title); bool(pref, "v0", false);
-        bool(pref, "H0", initial.optBoolean(setting, true));
+        bool(pref, "H0", initial.optBoolean(setting, !setting.equals("cloudflareDnsEnabled")));
         order(pref, position);
         if (setting.equals("usernameAlphanumeric")) text(pref, "x0", "Ativado: letras e números. Desativado: somente letras.");
-        if (setting.equals("historyEnabled")) text(pref, "x0", "Contagem por quadrado nas últimas 10 rodadas concluídas.");
+        if (setting.equals("historyEnabled")) text(pref, "x0", "Contagem por quadrado nas rodadas concluídas do histórico configurado.");
+        if (setting.equals("cloudflareDnsEnabled")) text(pref, "x0", "DNS Cloudflare por HTTPS apenas neste navegador. Recarregue as páginas após alterar.");
         Class<?> listener = type(BASE + "Preference$d");
         Object proxy = Proxy.newProxyInstance(listener.getClassLoader(), new Class<?>[]{listener}, new InvocationHandler() {
             public Object invoke(Object proxy, Method method, Object[] args) {
@@ -182,26 +185,32 @@ public final class NativePreferenceMods {
             JSONObject config = read(a);
             final EditText input = new EditText(a);
             input.setSingleLine(true); input.setInputType(inputType); input.setSelectAllOnFocus(true);
-            input.setText(setting.equals("usernameLength") ? String.valueOf(config.optInt(setting, 15)) : config.optString(setting, ""));
+            boolean numericSetting = setting.equals("usernameLength") || setting.equals("historyRounds");
+            input.setText(numericSetting ? String.valueOf(config.optInt(setting, setting.equals("historyRounds") ? 10 : 15)) : config.optString(setting, ""));
             int side = (int)(20 * a.getResources().getDisplayMetrics().density + .5f);
             input.setPadding(side, side / 2, side, side / 2);
             if (setting.equals("pin")) input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
             if (setting.equals("usernameLength")) input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
+            if (setting.equals("historyRounds")) {
+                input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+                input.setHint("De 1 a 100 rodadas");
+            }
             final AlertDialog dialog = new AlertDialog.Builder(a).setTitle(title).setView(input).setNegativeButton("Cancelar", null).setPositiveButton("Aplicar", null).create();
             dialog.show();
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     String raw = input.getText().toString();
                     Object value = raw;
-                    if (setting.equals("usernameLength")) {
+                    if (setting.equals("usernameLength") || setting.equals("historyRounds")) {
                         int count; try { count = Integer.parseInt(raw.trim()); } catch (Exception bad) { count = 0; }
-                        if (count < 1 || count > 64) { input.setError("Use um número de 1 a 64."); return; }
+                        int maximum = setting.equals("historyRounds") ? 100 : 64;
+                        if (count < 1 || count > maximum) { input.setError("Use um número de 1 a " + maximum + "."); return; }
                         value = Integer.valueOf(count);
                     } else if (setting.equals("pin")) {
                         if (raw.length() > 0 && !raw.matches("[0-9]{6}")) { input.setError("Deixe vazio ou use exatamente 6 dígitos."); return; }
                     }
                     if (!save(a, setting, value)) return;
-                    try { text(pref, "x0", setting.equals("usernameLength") ? String.valueOf(value) : secretSummary(raw)); } catch (Exception ignored) {}
+                    try { text(pref, "x0", (setting.equals("usernameLength") || setting.equals("historyRounds")) ? String.valueOf(value) : secretSummary(raw)); } catch (Exception ignored) {}
                     dialog.dismiss();
                 }
             });
