@@ -1,12 +1,12 @@
-# Mint Browser V26.7 — Proxy e preenchimento do PIN
+# Mint Browser V26.8 — preenchimento e confirmação do PIN
 
-Arquivo atual: `Mint-Browser-v26.7-Proxy-PIN.apk`. O nome de download antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também foi atualizado.
+Arquivo atual: `Mint-Browser-v26.8-PIN-Confirmacao.apk`. O nome de download antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também foi atualizado.
 
 ## Senha de saque
 
-A definição da senha ativa cada campo programaticamente, incluindo a confirmação, sem exigir um toque do usuário no segundo campo. O script identifica o componente do campo correto e aguarda a atualização do seu valor/modelo; apenas os pontos desenhados não contam como confirmação. Ele percorre os dois campos com tentativas automáticas limitadas, inclusive quando a confirmação termina de montar depois do primeiro campo.
+A V26.8 remove a exigência de ler o modelo interno do Vue que bloqueou o preenchimento na V26.7. Restaura o método compatível anterior e ativa cada campo da definição antes de preenchê-lo, incluindo a confirmação quando o teclado do primeiro campo ainda está aberto. As tentativas são limitadas e priorizam os campos ainda não tentados.
 
-A verificação do PIN para sacar usa as teclas reais da página e confirma o modelo a cada dígito. Foram removidas as pausas fixas de digitação: a continuação depende da atualização do componente. Campos HTML comuns também finalizam seus eventos sem temporizador fixo. O script não clica em Sacar/Confirmar nem envia uma solicitação de saque. A resposta real do site será conferida pelo usuário no aparelho.
+A verificação para sacar mantém os eventos das teclas reais, sem pausas fixas de digitação. O script não aciona Sacar/Confirmar nem envia solicitações de saque. Todo o código nativo, o proxy e as demais funções da V26.7 foram mantidos.
 
 ## Proxy
 
@@ -32,4 +32,4 @@ As configurações e senhas aplicadas são preservadas ao atualizar e ao usar o 
 
 ## Montagem
 
-Java e DEX compilados, JavaScript analisado pelo compilador sem execução, APK montado e assinado com v1/v2/v3 e alinhamento. **Nenhum teste de uso, fixture, conexão de proxy, navegador, formulário real ou saque foi executado**, conforme instrução expressa do usuário. Relatórios antigos em `correcao-nativa/tests` pertencem exclusivamente às versões anteriores e não validam a V26.7. Fontes atuais e patches estão em `correcao-nativa`; os dados de montagem estão em `verification.json`.
+JavaScript analisado pelo compilador sem execução; DEX nativo mantido da V26.7; APK montado e assinado com v1/v2/v3 e alinhamento. **Nenhum teste de uso, fixture, conexão de proxy, navegador, formulário real ou saque foi executado**, conforme instrução expressa do usuário. Relatórios antigos em `correcao-nativa/tests` pertencem exclusivamente às versões anteriores e não validam a V26.8. Fontes atuais e patches estão em `correcao-nativa`; os dados de montagem estão em `verification.json`.

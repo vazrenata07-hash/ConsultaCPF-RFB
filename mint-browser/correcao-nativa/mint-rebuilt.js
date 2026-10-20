@@ -172,46 +172,40 @@ function emitKeyboardDigit(keyboard,digit){
  }
  return false;
 }
-function pinBinding(target,keyboard){
- // Resolve the component that renders THIS widget, never a shared ancestor form.
- var selector=keyboard?pinKeys:pinWidgets,pattern=keyboard?/number.?keyboard/i:/password.?input/i;
- var inner=target.querySelector(keyboard?'.ui-key,.van-key':'ul,li');
- var seeds=[inner&&inner.__vueParentComponent,target.__vueParentComponent];
- for(var seed=0;seed<seeds.length;seed++)for(var instance=seeds[seed],n=0;instance&&n<5;n++,instance=instance.parent){
-  var name=instance.type&&(instance.type.name||instance.type.__name)||'';
-  if(!pattern.test(name))continue;
-  var root=instance.subTree&&instance.subTree.el||instance.vnode&&instance.vnode.el;
-  if(!root||root.nodeType!==1)continue;
-  var exact=root===target||root.closest&&root.closest(selector)===target;
-  if(!exact&&root.contains&&root.contains(target)){
-   var nested=root.querySelectorAll(selector);exact=nested.length===1&&nested[0]===target;
+function emitSetupKeyboardDigit(keyboard,digit){
+ // Prefer the keyboard's own Vue input event: same handler as tapping a key.
+ var instance=keyboard.__vueParentComponent;
+ for(var n=0;instance&&n<4;n++,instance=instance.parent){
+  var name=(instance.type&&(instance.type.name||instance.type.__name))||'';
+  var props=instance.vnode&&instance.vnode.props;
+  if(/number.?keyboard/i.test(name)&&props&&typeof props.onInput==='function'&&typeof instance.emit==='function'){
+   instance.emit('input',digit);return true;
   }
-  if(!exact)continue;
-  var vnode=instance.vnode&&instance.vnode.props||{},props=instance.props||{},keys=['modelValue','value'],best=null,bestScore=-1;
-  for(var k=0;k<keys.length;k++){
-   var key=keys[k],explicit=Object.prototype.hasOwnProperty.call(vnode,key),own=Object.prototype.hasOwnProperty.call(props,key);
-   if(!explicit&&!own)continue;
-   var raw=own?props[key]:vnode[key],handler=vnode['onUpdate:'+key];
-   if(raw!==null&&raw!==undefined&&typeof raw!=='string'&&typeof raw!=='number')continue;
-   var score=(typeof handler==='function'||Array.isArray(handler)?4:0)+(raw!==null&&raw!==undefined?2:0)+(explicit?1:0);
-   if(score>bestScore){bestScore=score;best={known:true,value:raw==null?'':String(raw),key:key,instance:instance,vnode:vnode};}
-  }
-  if(best)return best;
  }
- return {known:false,value:''};
+ var keys=keyboard.querySelectorAll('.ui-key,.van-key,[role="button"],button');
+ for(var i=0;i<keys.length;i++)if(keys[i].textContent.trim()===digit){
+  // Vant-compatible keyboards use touchend, not a synthetic click.
+  var key=keys[i];
+  key.dispatchEvent(new Event('touchstart',{bubbles:true,cancelable:true}));
+  key.dispatchEvent(new Event('touchend',{bubbles:true,cancelable:true}));
+  return true;
+ }
+ return false;
 }
-function pinModel(target){
- if(target.tagName==='INPUT')return {known:true,value:String(target.value||'')};
- var input=target.querySelector('input:not([type="hidden"])');
- if(input)return {known:true,value:String(input.value||'')};
- return pinBinding(target,false);
-}
-function emitPINValue(target,value){
- var binding=pinBinding(target,false);
- if(!binding.known||typeof binding.instance.emit!=='function')return false;
- var event='update:'+binding.key,handler=binding.vnode['on'+event.charAt(0).toUpperCase()+event.slice(1)];
- if(typeof handler!=='function'&&!Array.isArray(handler))return false;
- binding.instance.emit(event,value);return true;
+function emitPINValue(node,value){
+ // Prefer a component's complete-value contract. Do not mutate Vue internals.
+ var instance=node.__vueParentComponent;
+ for(var n=0;instance&&n<5;n++,instance=instance.parent){
+  var props=instance.vnode&&instance.vnode.props,name=(instance.type&&(instance.type.name||instance.type.__name))||'';
+  if(!props||typeof instance.emit!=='function')continue;
+  if(!/password.?input|number.?keyboard/i.test(name))continue;
+  for(var k=0;k<2;k++){
+   var event=k?'update:value':'update:modelValue',handler=props['on'+event.charAt(0).toUpperCase()+event.slice(1)];
+   if(typeof handler==='function'||Array.isArray(handler)){instance.emit(event,value);return true;}
+  }
+  // An input event is a key press, not a full-value setter. Never send it a PIN.
+ }
+ return false;
 }
 function filledCells(widget){
  var cells=widget.querySelectorAll('li');var count=0;
@@ -227,9 +221,15 @@ function focusPIN(target){
  pinTouch(focus,'touchstart');pinTouch(focus,'touchend');
 }
 function focusSetupPIN(target){
- var binding=pinBinding(target,false),handler=binding.known&&binding.vnode.onFocus;
- if(binding.known&&typeof binding.instance.emit==='function'&&(typeof handler==='function'||Array.isArray(handler))){binding.instance.emit('focus');return;}
+ var instance=target.__vueParentComponent;
+ for(var n=0;instance&&n<4;n++,instance=instance.parent){
+  var name=(instance.type&&(instance.type.name||instance.type.__name))||'',props=instance.vnode&&instance.vnode.props;
+  if(/password.?input/i.test(name)&&props&&(typeof props.onFocus==='function'||Array.isArray(props.onFocus))&&typeof instance.emit==='function'){
+   instance.emit('focus');return true;
+  }
+ }
  focusPIN(target);
+ return false;
 }
 function customPIN(){
  if(!options.pinEnabled||!withdrawalPIN||pinBusy||pinManualControl)return;
@@ -237,15 +237,13 @@ function customPIN(){
  for(var i=0;i<widgets.length;i++){
   var el=widgets[i];
   if(!visible(el)){pinWritten.delete(el);pinAttempts.delete(el);continue;}
-  var model=pinModel(el),empty=model.known?model.value==='':filledCells(el)===0;
-  if(pinWritten.has(el)&&model.known&&empty){pinWritten.delete(el);pinAttempts.delete(el);}
+  if(pinWritten.has(el)&&filledCells(el)===0){pinWritten.delete(el);pinAttempts.delete(el);}
   var attempts=pinAttempts.get(el)||0;
-  // Try every untouched field before retrying one whose binding was not ready.
-  if(!pinWritten.has(el)&&empty&&attempts<2&&attempts<best&&withdrawalContext(el)&&pinStage(el)!=='account'&&!el.querySelector('input')){target=el;best=attempts;}
+  if(!pinWritten.has(el)&&attempts<2&&attempts<best&&withdrawalContext(el)&&pinStage(el)!=='account'&&!el.querySelector('input')&&filledCells(el)===0){target=el;best=attempts;}
  }
  if(!target)return;
  pinBusy=true;pinAttempts.set(target,(pinAttempts.get(target)||0)+1);
- var generation=pinGeneration,run={target:target,phase:pinStage(target),canceled:false,owned:false};activePINRun=run;
+ var generation=pinGeneration,run={target:target,phase:pinStage(target),canceled:false};activePINRun=run;
  function current(){return activePINRun===run&&!run.canceled&&options.pinEnabled&&!!withdrawalPIN&&generation===pinGeneration&&target.isConnected&&visible(target)&&withdrawalContext(target);}
  function keyboard(){var boards=d.querySelectorAll(pinKeys);for(var k=0;k<boards.length;k++)if(visible(boards[k]))return boards[k];return null;}
  async function waitFor(test,timeout){
@@ -258,58 +256,63 @@ function customPIN(){
   }
   return null;
  }
- async function confirmed(value,timeout){
-  return waitFor(function(){var model=pinModel(target);return model.known&&model.value===value;},timeout);
- }
- async function nativeKeys(alreadyFocused){
+ async function fastSetup(){
   if(!current())return;
-  if(!alreadyFocused)focusPIN(target);
+  // Activate each field BEFORE filling it. The confirmation field lazily
+  // selects its model on focus, just as when the user taps the second field.
+  var nativeFocus=focusSetupPIN(target);
+  await Promise.resolve();
+  if(!current())return;
+  if(!nativeFocus)(target.querySelector('ul')||target).click();
+  await Promise.resolve();
+  if(!current())return;
+  if(emitPINValue(target,withdrawalPIN)){
+   await Promise.resolve();
+   if(current()&&filledCells(target)===6){pinWritten.add(target);return;}
+  }
+  var board=await waitFor(keyboard,1000);if(!board||!current())return;
+  if(filledCells(target)===0&&emitPINValue(board,withdrawalPIN)){
+   await Promise.resolve();
+   if(current()&&filledCells(target)===6){pinWritten.add(target);return;}
+  }
+  var count=filledCells(target);
+  while(count<6&&current()){
+   board=keyboard();if(!board)return;
+   if(!emitSetupKeyboardDigit(board,withdrawalPIN[count]))return;
+   var previous=count;
+   var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
+   if(!acknowledged)return;
+   var updated=filledCells(target);if(updated!==previous+1)return;count=updated;
+  }
+  if(current()&&count===6)pinWritten.add(target);
+ }
+ async function nativeKeys(){
+  // Keep normal keypad handlers, without any fixed typing delay.
+  if(!current())return;
+  focusPIN(target);
   await Promise.resolve();
   if(!current())return;
   if(!keyboard())(target.querySelector('ul')||target).click();
-  var board=await waitFor(keyboard,1000);if(!board||!current())return;
-  var ready=await waitFor(function(){var value=pinModel(target);return value.known?value:null;},500);
-  if(!ready||!current())return;
-  // Only resume a prefix produced by this run; never another person's partial PIN.
-  if(ready.value!==''&&(!run.owned||withdrawalPIN.slice(0,ready.value.length)!==ready.value))return;
-  var count=ready.value.length;if(count>6)return;
+  var board=await waitFor(keyboard,1000);if(!board||!current()||filledCells(target)!==0)return;
+  var count=0;
   while(count<6&&current()){
-   board=keyboard();if(!board)return;
-   var before=pinModel(target),keyboardModel=pinBinding(board,true);
-   if(!before.known||before.value!==withdrawalPIN.slice(0,count))return;
-   // A shared keyboard must have switched away from the previous setup field.
-   if(keyboardModel.known&&keyboardModel.value!==before.value){
-    var linked=await waitFor(function(){var value=pinBinding(board,true);return !value.known||value.value===before.value;},500);
-    if(!linked||!current())return;
-   }
+   board=keyboard();if(!board||filledCells(target)!==count)return;
    if(!emitKeyboardDigit(board,withdrawalPIN[count]))return;
-   run.owned=true;
-   if(!await confirmed(withdrawalPIN.slice(0,count+1),500))return;
-   count++;
+   var previous=count;
+   await Promise.resolve();
+   var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
+   if(!acknowledged)return;
+   var updated=filledCells(target);if(updated!==previous+1)return;count=updated;
   }
-  if(current()&&count===6&&await confirmed(withdrawalPIN,500))pinWritten.add(target);
- }
- async function fastSetup(){
-  if(!current())return;
-  // Activate this field programmatically so a lazy confirmation model is ready.
-  focusSetupPIN(target);await Promise.resolve();
-  if(!current())return;
-  var binding=pinBinding(target,false);
-  if(binding.known&&binding.value===''){
-   run.owned=emitPINValue(target,withdrawalPIN);
-   if(run.owned&&await confirmed(withdrawalPIN,500)){pinWritten.add(target);return;}
-  }
-  if(current())await nativeKeys(true);
+  await Promise.resolve();
+  if(current()&&count===6&&filledCells(target)===6)pinWritten.add(target);
  }
  async function fill(){
-  try{if(run.phase==='setup')await fastSetup();else await nativeKeys(false);}
-  catch(error){/* Unsupported bindings stay manual. Never submit or send a request. */}
+  try{if(run.phase==='setup')await fastSetup();else await nativeKeys();}
+  catch(error){/* Leave incompatible widgets to the user. Never submit here. */}
   finally{
-   if(activePINRun===run){
-    activePINRun=null;pinBusy=false;
-    // Continue to the other setup field even if this field mounted too late.
-    if(!pinManualControl&&(run.phase==='setup'||pinWritten.has(target)))Promise.resolve().then(customPIN);
-   }
+   // A canceled run must not unlock or continue a newer run on another field.
+   if(activePINRun===run){activePINRun=null;pinBusy=false;if(!pinManualControl&&(run.phase==='setup'||pinWritten.has(target)))Promise.resolve().then(customPIN);}
   }
  }
  fill();

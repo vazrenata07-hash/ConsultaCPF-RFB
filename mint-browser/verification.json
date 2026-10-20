@@ -1,18 +1,16 @@
 {
-  "apk": "Mint-Browser-v26.7-Proxy-PIN.apk",
-  "sha256": "4d53a7f8c0b8aaa50acb79cbe617b95434de9ebe3fd3ab33098a14f9fc082bd9",
-  "base_apk": "Mint-Browser-v26.6-Saque-10ms.apk",
+  "apk": "Mint-Browser-v26.8-PIN-Confirmacao.apk",
+  "sha256": "ebb44ede616207306786fa78a5af788b306447241681e005ffc5191b9635074e",
+  "base_apk": "Mint-Browser-v26.7-Proxy-PIN.apk",
   "changed_components": [
-    "classes.dex",
-    "classes2.dex",
-    "classes3.dex",
     "assets/mint-rebuilt.js"
   ],
   "pin": {
+    "compatible_legacy_method_restored": true,
+    "internal_vue_model_requirement_removed": true,
+    "setup_activates_each_field_before_filling": true,
+    "setup_untouched_fields_priority_and_bounded_retries": true,
     "fixed_typing_delays_removed": true,
-    "exact_widget_model_acknowledgement": true,
-    "setup_activates_both_fields_programmatically": true,
-    "user_interaction_cancels_pending_keys": true,
     "automatic_form_submissions": false
   },
   "cloudflare_dns_removed": true,
@@ -43,9 +41,9 @@
   "game_history_counter_and_geetest_source_preserved": true,
   "manifest_resources_matrix_and_native_geetest_dex_retained": true,
   "build": {
-    "java_compiled": true,
-    "dex_compiled": true,
-    "apk_assembled": true,
+    "apk_repacked": true,
+    "native_dex_recompiled": false,
+    "native_dex_unchanged": true,
     "javascript_parsed_without_execution": true,
     "signature_verified": [
       "v1",
@@ -55,6 +53,7 @@
     "zipaligned": true
   },
   "signing_certificate_sha256": "1e08a903aef9c3a721510b64ec764d01d3d094eb954161b62544ea8f187b5953",
-  "tests_executed_for_v267": false,
-  "tests_skipped_reason": "User explicitly reserved all tests for their device; no fixtures, browser, proxy connection or real-site/withdrawal tests executed."
+  "tests_skipped_reason": "User explicitly reserved all tests; no functional tests, fixtures, website or withdrawal executed.",
+  "tests_executed_for_v268": false,
+  "native_dex_and_proxy_retained_from_v267": true
 }
