@@ -1,21 +1,16 @@
-# Mint Browser V26 — Matrix e configurações
+# Mint Browser V26.1 — seletores nativos
 
-APK: Mint-Browser-v26-Matrix-Configuracoes.apk
+APK corrigido: Mint-Browser-v26.1-Seletores-Nativos.apk. O nome antigo Mint-Browser-v26-Matrix-Configuracoes.apk também aponta para este mesmo APK corrigido.
 
-- Caixa inicial com o layout Matrix enviado, campo opcional e confirmação sem precisar digitar 0.
-- A engrenagem mantém somente Privacidade e segurança e Avançados.
-- Controles para ativar/desativar gerador de usuário, escolher de 1 a 64 caracteres e modo alfanumérico ou só letras.
-- Senha de acesso e PIN de saque configuráveis, cada um com chave de preenchimento automático. O PIN tem seis dígitos. As opções são salvas localmente ao tocar em Salvar.
-- Histórico passivo de bombas por quadrado nas últimas dez rodadas e contador de total apostado, com chaves separadas.
-- Adblock customizado sempre ativo, sem opção para desligá-lo.
+Base usada: release 1.0.2 indicada pelo usuário (V25-Janela-Compacta).
 
-O código JavaScript e o DEX nativo do GeeTest são idênticos aos da V25. Os tempos existentes do script foram preservados. As páginas de configuração são locais, sem carregamentos externos ou animações. Os valores já preenchidos de senha/PIN não são apagados ao desativar os controles. Jogos abertos em iframes aninhados podem precisar ser recarregados para receber novas configurações.
+A tela Definições mantém só as duas entradas originais: Privacidade e segurança e Avançados. Os dois itens usam os objetos e eventos nativos do navegador, com suas árvores originais preservadas.
 
-Montagem, alinhamento, assinaturas v1/v2/v3, comparação dos arquivos e testes lógicos concluídos. Ainda não foi testado em um aparelho Android. O histórico usa mapas revelados depois das rodadas; não prevê bombas.
+- No topo de Privacidade e segurança, Personalizações da 888: chave de preenchimento da senha de acesso, editor da senha, chave de preenchimento do PIN de saque e editor do PIN de seis dígitos.
+- No topo de Avançados, Personalizações do Mint: chave do gerador de usuário, tamanho de 1 a 64 caracteres, alfanumérico/ somente letras, histórico passivo de bombas e contador de total apostado.
 
-A assinatura é a mesma da V25-Janela-Compacta desta conversa e diferente da V25-PIN-Fluido original. Instalar sobre a original pode exigir reinstalação. Desinstalar apaga os dados locais.
+As chaves salvam imediatamente. Os editores de senha/PIN/tamanho têm botão Salvar. Os itens originais das duas seções ficam abaixo dos novos controles. O adblock customizado permanece sempre ativo e sem seletor.
 
-SHA-256:
-40781f7d3a7bc22ac307e7577a87fd88b76d4813c0fc474496692c9d6d5707fe
+O script integrado é byte a byte igual ao da V26 anterior, incluindo os tempos e o GeeTest. O DEX nativo do GeeTest também é idêntico à base. O layout Matrix inicial foi mantido. A navegação das configurações não usa mais links internos de páginas WebView.
 
-Esta branch adiciona somente a pasta mint-browser. Os arquivos existentes da ConsultaCPF-RFB foram preservados.
+Assinatura igual à release 1.0.2 e à V26 anterior desta conversa; instalar como atualização permite manter os dados. Não é necessário desinstalar. O usuário fará os testes de uso no aparelho.

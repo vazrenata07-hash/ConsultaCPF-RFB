@@ -1,24 +1,11 @@
 {
-  "apk": "Mint-Browser-v26-Matrix-Configuracoes.apk",
-  "sha256": "40781f7d3a7bc22ac307e7577a87fd88b76d4813c0fc474496692c9d6d5707fe",
-  "changed_entries": [
-    "assets/mint-config-prefix.js",
-    "assets/mint-matrix.html",
-    "assets/mint-rebuilt.js",
-    "assets/mint-settings.html",
-    "classes2.dex",
-    "classes3.dex"
-  ],
-  "geetest_js_unchanged": true,
-  "geetest_native_classes4_dex_unchanged": true,
-  "geetest_suffix_sha256": "b0e0b413aa30b968b3749b08744a93043ce6e8b1721725a29d17854d363d1539",
-  "native_classes3_assembled_and_disassembled_identically": 12,
-  "signature_verified": [
-    "v1",
-    "v2",
-    "v3"
-  ],
-  "zipalign_verified": true,
-  "device_tested": false,
-  "visual_preview": "Blocked by runtime sandbox (Chromium setsockopt EPERM)"
+  "apk": "Mint-Browser-v26.1-Seletores-Nativos.apk",
+  "sha256": "5f566b42a1e71bfb91a421469471673e27abbbb3424895c42ca549d34ce86ac3",
+  "base_release": "https://github.com/vazrenata07-hash/ConsultaCPF-RFB/releases/tag/1.0.2",
+  "base_sha256": "270f7511042ce78f78b925dda17012ab432e329f8482337defbc44c3c4e9d64d",
+  "signature": "same Android Debug certificate as release1.0.2 and previousV26",
+  "native_trees_preserved": true,
+  "script_identical_to_previous_v26": true,
+  "geetest_native_dex_identical_to_base": true,
+  "user_device_testing": "User will test on device"
 }
