@@ -1,0 +1,276 @@
+--- v264/mint-rebuilt.js
++++ v265/mint-rebuilt.js
+@@ -93,7 +93,7 @@
+ }
+ 
+ // Withdrawal PIN is independent of the account password. Never submit a form.
+-var withdrawalPIN=options.pin,pinWritten=new WeakSet(),pinAttempts=new WeakMap(),pinBusy=false,pinGeneration=0;
++var withdrawalPIN=options.pin,pinWritten=new WeakSet(),pinAttempts=new WeakMap(),pinBusy=false,pinGeneration=0,activePINRun=null,pinManualControl=false;
+ var pinWidgets='.ui-password-input,.van-password-input';
+ var pinKeys='.ui-number-keyboard,.van-number-keyboard';
+ function visible(el){
+@@ -116,6 +116,28 @@
+  var meta=[el.name,el.id,el.placeholder,el.autocomplete,el.getAttribute('aria-label')].join(' ');
+  if(/valor|amount|quantia|balance|saldo|cpf|telefone|phone|email|pix|account|conta|username|login/i.test(meta))return false;
+  return el.type==='password'||el.maxLength===6||el.maxLength===1||/senha|password|withdraw.?pin|saque.?pin/i.test(meta);
++}
++function pinStage(el){
++ var route=location.pathname+location.hash;
++ var area=el.closest('[role="dialog"],.ui-dialog,.ui-popup,.van-dialog,.van-popup')||el.closest('form');
++ var local=area&&area!==d.body&&area!==d.documentElement?(area.textContent||''):'';
++ var meta=[el.name,el.id,el.placeholder,el.getAttribute('aria-label')].join(' ');
++ if(/(?:login|account)[ _-]*(?:password|pass)|senha[^.!?\n]{0,25}(?:acesso|login)/i.test(meta)||
++    !/saque|retirada|withdraw/i.test(local)&&/senha\s+(?:de\s+)?(?:acesso|login)|(?:login|account)\s*password/i.test(local))return 'account';
++ // The setup screen in the supplied capture has two fields under /home/security.
++ if(/(?:^|[\/#])(?:security|set[-_]?password|set[-_]?pin)(?:[\/?#]|$)/i.test(route))return 'setup';
++ var text=meta+' '+local;
++ if(/\b(?:defin(?:a|ir)|configur(?:ar|e)|cri(?:ar|e)|cadastr(?:ar|e))\b[^.!?\n]{0,80}\b(?:senha|pin)\b|\bconfirm(?:ar|e)\b[^.!?\n]{0,40}\bnova\s+senha\b|\brepetir\s+(?:a\s+)?senha\b/i.test(text))return 'setup';
++ if(area&&/senha\s+(?:de |para (?:o )?)?saque|withdraw[^\n]{0,30}(?:password|pin)/i.test(text)){
++  var fields=area.querySelectorAll(pinWidgets),visibleFields=0;
++  for(var i=0;i<fields.length;i++)if(visible(fields[i]))visibleFields++;
++  if(visibleFields>=2)return 'setup';
++ }
++ if(/(?:^|[\/#])(?:withdraw(?:al)?|saque|sacar)(?:[\/?#]|$)/i.test(route))return 'withdrawal';
++ // Only a bounded form/dialog can establish verification; nav labels never do.
++ if(area&&/\b(?:verific(?:ar|a[cç][aã]o)|ins(?:ira|erir)|digite|inform(?:e|ar)|confirm(?:ar|e))\b[^.!?\n]{0,60}\b(?:senha|pin)\b/i.test(text)&&
++    /saque|retirada|withdraw|fundos/i.test(text))return 'withdrawal';
++ return 'unknown';
+ }
+ function pinTouch(node,type){
+  // Touch handlers read touches/changedTouches; plain Event lacks that data.
+@@ -150,6 +172,41 @@
+  }
+  return false;
+ }
++function emitSetupKeyboardDigit(keyboard,digit){
++ // Prefer the keyboard's own Vue input event: same handler as tapping a key.
++ var instance=keyboard.__vueParentComponent;
++ for(var n=0;instance&&n<4;n++,instance=instance.parent){
++  var name=(instance.type&&(instance.type.name||instance.type.__name))||'';
++  var props=instance.vnode&&instance.vnode.props;
++  if(/number.?keyboard/i.test(name)&&props&&typeof props.onInput==='function'&&typeof instance.emit==='function'){
++   instance.emit('input',digit);return true;
++  }
++ }
++ var keys=keyboard.querySelectorAll('.ui-key,.van-key,[role="button"],button');
++ for(var i=0;i<keys.length;i++)if(keys[i].textContent.trim()===digit){
++  // Vant-compatible keyboards use touchend, not a synthetic click.
++  var key=keys[i];
++  key.dispatchEvent(new Event('touchstart',{bubbles:true,cancelable:true}));
++  key.dispatchEvent(new Event('touchend',{bubbles:true,cancelable:true}));
++  return true;
++ }
++ return false;
++}
++function emitPINValue(node,value){
++ // Prefer a component's complete-value contract. Do not mutate Vue internals.
++ var instance=node.__vueParentComponent;
++ for(var n=0;instance&&n<5;n++,instance=instance.parent){
++  var props=instance.vnode&&instance.vnode.props,name=(instance.type&&(instance.type.name||instance.type.__name))||'';
++  if(!props||typeof instance.emit!=='function')continue;
++  if(!/password.?input|number.?keyboard/i.test(name))continue;
++  for(var k=0;k<2;k++){
++   var event=k?'update:value':'update:modelValue',handler=props['on'+event.charAt(0).toUpperCase()+event.slice(1)];
++   if(typeof handler==='function'||Array.isArray(handler)){instance.emit(event,value);return true;}
++  }
++  // An input event is a key press, not a full-value setter. Never send it a PIN.
++ }
++ return false;
++}
+ function filledCells(widget){
+  var cells=widget.querySelectorAll('li');var count=0;
+  for(var i=0;i<cells.length;i++){
+@@ -163,25 +220,35 @@
+  // Open once through the same touch interaction as the visible PIN field.
+  pinTouch(focus,'touchstart');pinTouch(focus,'touchend');
+ }
++function focusSetupPIN(target){
++ var instance=target.__vueParentComponent;
++ for(var n=0;instance&&n<4;n++,instance=instance.parent){
++  var name=(instance.type&&(instance.type.name||instance.type.__name))||'',props=instance.vnode&&instance.vnode.props;
++  if(/password.?input/i.test(name)&&props&&(typeof props.onFocus==='function'||Array.isArray(props.onFocus))&&typeof instance.emit==='function'){
++   instance.emit('focus');return true;
++  }
++ }
++ var focus=target.querySelector('ul')||target;
++ // Only open once; a second focus while it animates can restart the transition.
++ focus.dispatchEvent(new Event('touchstart',{bubbles:true,cancelable:true}));
++ return false;
++}
+ function customPIN(){
+- if(!options.pinEnabled||!withdrawalPIN||pinBusy)return;
++ if(!options.pinEnabled||!withdrawalPIN||pinBusy||pinManualControl)return;
+  var widgets=d.querySelectorAll(pinWidgets),target=null;
+  for(var i=0;i<widgets.length;i++){
+   var el=widgets[i];
+   if(!visible(el)){pinWritten.delete(el);pinAttempts.delete(el);continue;}
+-  // Cached route/dialog nodes can be cleared without being recreated.
+   if(pinWritten.has(el)&&filledCells(el)===0){pinWritten.delete(el);pinAttempts.delete(el);}
+-  if(!pinWritten.has(el)&&(pinAttempts.get(el)||0)<2&&withdrawalContext(el)&&!el.querySelector('input')&&filledCells(el)===0){target=el;break;}
++  if(!pinWritten.has(el)&&(pinAttempts.get(el)||0)<2&&withdrawalContext(el)&&pinStage(el)!=='account'&&!el.querySelector('input')&&filledCells(el)===0){target=el;break;}
+  }
+  if(!target)return;
+  pinBusy=true;pinAttempts.set(target,(pinAttempts.get(target)||0)+1);
+- var generation=pinGeneration;
+- function current(){return options.pinEnabled&&!!withdrawalPIN&&generation===pinGeneration&&target.isConnected&&visible(target)&&withdrawalContext(target);}
++ var generation=pinGeneration,run={target:target,phase:pinStage(target),canceled:false};activePINRun=run;
++ function current(){return activePINRun===run&&!run.canceled&&options.pinEnabled&&!!withdrawalPIN&&generation===pinGeneration&&target.isConnected&&visible(target)&&withdrawalContext(target);}
+  function keyboard(){var boards=d.querySelectorAll(pinKeys);for(var k=0;k<boards.length;k++)if(visible(boards[k]))return boards[k];return null;}
+  async function waitFor(test,timeout){
+   var end=performance.now()+timeout;
+-  // Vue flushes model changes as microtasks. Most fields acknowledge without
+-  // waiting for a paint, so the user sees the completed PIN in one frame.
+   await Promise.resolve();
+   while(current()){
+    var result=test();if(result)return result;
+@@ -191,48 +258,82 @@
+   return null;
+  }
+  async function pause(ms){await new Promise(function(resolve){setTimeout(resolve,ms);});await Promise.resolve();}
++ async function fastSetup(){
++  // Restore V263 setup behavior: complete-value updates and microtask acks only.
++  if(!current())return;
++  if(emitPINValue(target,withdrawalPIN)){
++   await Promise.resolve();
++   if(current()&&filledCells(target)===6){pinWritten.add(target);return;}
++  }
++  if(!current())return;
++  var nativeFocus=focusSetupPIN(target);
++  await Promise.resolve();
++  if(!nativeFocus&&current())(target.querySelector('ul')||target).click();
++  var board=await waitFor(keyboard,1000);if(!board||!current())return;
++  if(filledCells(target)===0&&emitPINValue(board,withdrawalPIN)){
++   await Promise.resolve();
++   if(current()&&filledCells(target)===6){pinWritten.add(target);return;}
++  }
++  var count=filledCells(target);
++  while(count<6&&current()){
++   board=keyboard();if(!board)return;
++   if(!emitSetupKeyboardDigit(board,withdrawalPIN[count]))return;
++   var previous=count;
++   var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
++   if(!acknowledged)return;
++   var updated=filledCells(target);if(updated!==previous+1)return;count=updated;
++  }
++  if(current()&&count===6)pinWritten.add(target);
++ }
++ async function nativeKeys(){
++  // Only proven withdrawal verification gets the short paced commit windows.
++  var paced=run.phase==='withdrawal';
++  if(!current())return;
++  focusPIN(target);
++  if(paced)await pause(40);else await Promise.resolve();
++  if(!current())return;
++  if(!keyboard())(target.querySelector('ul')||target).click();
++  var board=await waitFor(keyboard,1000);if(!board||!current()||filledCells(target)!==0)return;
++  var count=0;
++  while(count<6&&current()){
++   board=keyboard();if(!board||filledCells(target)!==count)return;
++   if(!emitKeyboardDigit(board,withdrawalPIN[count]))return;
++   var previous=count;
++   if(paced)await pause(40);else await Promise.resolve();
++   var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
++   if(!acknowledged)return;
++   var updated=filledCells(target);if(updated!==previous+1)return;count=updated;
++  }
++  if(paced)await pause(80);
++  if(current()&&count===6&&filledCells(target)===6)pinWritten.add(target);
++ }
+  async function fill(){
+-  try{
+-   if(!current())return;
+-   focusPIN(target);
+-   await pause(80);
+-   if(!current())return;
+-   if(!keyboard())(target.querySelector('ul')||target).click();
+-   var board=await waitFor(keyboard,1000);if(!board||!current())return;
+-   // Never resume another person's partial PIN or infer a filled form from
+-   // a complete-value setter on the display-only component.
+-   if(filledCells(target)!==0)return;
+-   var count=0;
+-   while(count<6&&current()){
+-    board=keyboard();if(!board||filledCells(target)!==count)return;
+-    if(!emitKeyboardDigit(board,withdrawalPIN[count]))return;
+-    var previous=count;
+-    await pause(60);
+-    var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
+-    if(!acknowledged)return;
+-    var updated=filledCells(target);
+-    if(updated!==previous+1)return;
+-    count=updated;
+-   }
+-   // Give debounced form listeners and the final Vue render a short commit
+-   // window after the sixth native key interaction; never submit here.
+-   await pause(100);
+-   if(current()&&count===6&&filledCells(target)===6)pinWritten.add(target);
+-  }catch(error){/* Leave incompatible widgets to the user without refocusing. */}
++  try{if(run.phase==='setup')await fastSetup();else await nativeKeys();}
++  catch(error){/* Leave incompatible widgets to the user. Never submit here. */}
+   finally{
+-   if(generation===pinGeneration){pinBusy=false;if(pinWritten.has(target))Promise.resolve().then(customPIN);}
++   // A canceled run must not unlock or continue a newer run on another field.
++   if(activePINRun===run){activePINRun=null;pinBusy=false;if(pinWritten.has(target))Promise.resolve().then(customPIN);}
+   }
+  }
+  fill();
+ }
++function cancelPINForUser(event){
++ if(!event.isTrusted||!activePINRun)return;
++ var run=activePINRun;run.canceled=true;
++ pinAttempts.set(run.target,2);activePINRun=null;pinBusy=false;pinManualControl=true;
++ // Physical interaction takes control, including manual keypad presses.
++ // Let the normal handler run; no event is swallowed or redirected.
++}
++['pointerdown','touchstart'].forEach(function(type){d.addEventListener(type,cancelPINForUser,true);});
+ function settlePINInput(el){
++ if(pinStage(el)!=='withdrawal')return;
+  var generation=pinGeneration,value=el.value;
+  setTimeout(function(){
+-  if(generation!==pinGeneration||!options.pinEnabled||!el.isConnected||el.value!==value||!withdrawalContext(el))return;
++  if(generation!==pinGeneration||!options.pinEnabled||!el.isConnected||el.value!==value||!withdrawalContext(el)||pinStage(el)!=='withdrawal')return;
+   el.dispatchEvent(new Event('change',{bubbles:true}));
+   if(d.activeElement===el)el.blur();
+   else{el.dispatchEvent(new FocusEvent('blur'));el.dispatchEvent(new FocusEvent('focusout',{bubbles:true}));}
+- },100);
++ },80);
+ }
+ function autofill(){
+  var reg=route();
+@@ -244,7 +345,9 @@
+   if(!visible(el)){pinWritten.delete(el);passwordWritten.delete(el);continue;}
+   if(el.disabled||el.readOnly||el.closest(security)||/captcha|otp|one.time|sms/.test(meta))continue;
+   // Reuse only while classifying this input, before any DOM writes or events.
+-  var isWithdrawal=withdrawalContext(el),isPIN=pinInput(el,isWithdrawal);
++  var isWithdrawal=withdrawalContext(el);
++  if(isWithdrawal&&pinStage(el)==='account')isWithdrawal=false;
++  var isPIN=pinInput(el,isWithdrawal);
+   if(/verifica/.test(meta)&&!isPIN)continue;
+   if(isPIN){
+    if(!options.pinEnabled||!withdrawalPIN)continue;
+@@ -331,7 +434,7 @@
+ }).observe(d,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class','style','type','name','placeholder','disabled','readonly']});
+ var lastFormRoute=location.href;
+ function navigation(){
+- route();if(lastFormRoute!==location.href){lastFormRoute=location.href;pinGeneration++;pinBusy=false;pinWritten=new WeakSet();pinAttempts=new WeakMap();passwordWritten=new WeakSet();}
++ route();if(lastFormRoute!==location.href){lastFormRoute=location.href;pinGeneration++;pinBusy=false;activePINRun=null;pinManualControl=false;pinWritten=new WeakSet();pinAttempts=new WeakMap();passwordWritten=new WeakSet();}
+  filterDirty=true;formDirty=true;queue();
+  // SPA route views may reset their models after pushState has returned.
+  requestAnimationFrame(function(){formDirty=true;queue();});
+@@ -340,7 +443,7 @@
+ ['pushState','replaceState'].forEach(function(name){var original=history[name];history[name]=function(){var result=original.apply(this,arguments);navigation();return result;};});
+ d.addEventListener('focusin',function(e){if(e.target.matches('input')){formDirty=true;queue();}});
+ d.addEventListener('click',function(e){if(e.target.closest&&e.target.closest(pinWidgets)){
+- var widget=e.target.closest(pinWidgets);if(e.isTrusted&&filledCells(widget)===0){pinAttempts.delete(widget);pinWritten.delete(widget);}
++ var widget=e.target.closest(pinWidgets);if(e.isTrusted&&filledCells(widget)===0){pinManualControl=false;pinAttempts.delete(widget);pinWritten.delete(widget);}
+  setTimeout(function(){formDirty=true;queue();},80);
+ }},true);
+ function prepareRegistration(e){
+@@ -352,7 +455,7 @@
+ ['pointerdown','touchstart','mousedown','click'].forEach(function(type){d.addEventListener(type,prepareRegistration,true);});
+ window.addEventListener('mint-config-change',function(){
+  var previous=options;options=userOptions();withdrawalPIN=options.pin;
+- pinGeneration++;pinBusy=false;pinWritten=new WeakSet();pinAttempts=new WeakMap();
++ pinGeneration++;pinBusy=false;activePINRun=null;pinManualControl=false;pinWritten=new WeakSet();pinAttempts=new WeakMap();
+  if(previous.usernameEnabled!==options.usernameEnabled||previous.usernameLength!==options.usernameLength||previous.usernameAlphanumeric!==options.usernameAlphanumeric){
+   username='';visit++;written=new WeakMap();
+  }

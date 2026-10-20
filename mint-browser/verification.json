@@ -1,6 +1,6 @@
 {
-  "apk": "Mint-Browser-v26.4-PIN-Validacao.apk",
-  "sha256": "9be7ec57611c7a89c722508607d181cbba8abb300c753a3d6560579d0b44a576",
+  "apk": "Mint-Browser-v26.5-PIN-Instantaneo-Configuracao.apk",
+  "sha256": "b2f9b327ad356ad0d02a45ff0769e991709cb20225619de86b78bb781a13cbf9",
   "base_release": "https://github.com/vazrenata07-hash/ConsultaCPF-RFB/releases/tag/1.0.2",
   "changes_from_v262": [
     "assets/mint-config-prefix.js",
@@ -66,13 +66,22 @@
     "assets/mint-rebuilt.js"
   ],
   "pin_fix": {
-    "bulk_component_setter": false,
-    "isolated_vue_input_emit": false,
-    "actual_key_handlers": true,
-    "keyboard_open_delay_ms": 80,
-    "inter_digit_delay_ms": 60,
-    "final_settle_ms": 100,
-    "native_input_commit_ms": 100,
+    "setup": {
+      "instant": true,
+      "fixed_pause_ms": 0,
+      "legacy_v263_helpers_restored": true
+    },
+    "withdrawal_verification_only": {
+      "actual_key_handlers": true,
+      "keyboard_open_delay_ms": 40,
+      "inter_digit_delay_ms": 40,
+      "final_settle_ms": 80,
+      "native_input_commit_ms": 80,
+      "bulk_component_setter": false,
+      "isolated_vue_input_emit": false
+    },
+    "account_password_verification_delayed": false,
+    "trusted_user_interaction_cancels_pending_keys": true,
     "submits_form": false
   },
   "all_native_dex_identical_to_v263": true,
@@ -83,137 +92,505 @@
   "real_site_withdrawal_tested": false,
   "offline_pin_model_regression": {
     "kind": "node-vm-simulated-dom-model",
-    "limitation": "Validates production first-IIFE logic and event payloads against a simulated component contract; not a browser, Android WebView or real-site validation.",
+    "limitation": "Production main IIFE tested against isolated simulated setup/withdrawal component contracts; no browser, Android WebView or real-site claim.",
     "realNetworkRequests": 0,
     "geeTestExecuted": false,
+    "geeTestSuffixIdentical": true,
     "automaticSubmissions": 0,
     "cases": [
       {
-        "case": "old-preview-only-failure-reproduced",
-        "visibleDigits": 6,
-        "formDigits": 0,
-        "modelMatches": false,
-        "valid": false,
-        "presses": 0,
-        "focuses": 0,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 0,
-        "blurCommits": 0,
-        "fullUpdates": 1
+        "case": "old-setup-delay-reproduced",
+        "immediate": [
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          },
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 6,
+            "focuses": 1,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          },
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 6,
+            "focuses": 1,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80,
+          80,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          100,
+          80,
+          80,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          35,
+          60,
+          100
+        ],
+        "automaticSubmissions": 0
       },
       {
-        "case": "new-touch-commits-form-model",
-        "visibleDigits": 6,
-        "formDigits": 6,
-        "modelMatches": true,
-        "valid": true,
-        "presses": 6,
-        "focuses": 1,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 1,
-        "blurCommits": 0,
-        "fullUpdates": 0
+        "case": "setup-two-fields-instant-despite-global-sacar",
+        "immediate": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true
+          },
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 0,
+            "focuses": 0,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 1
+          },
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 0,
+            "focuses": 0,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 1
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [],
+        "automaticSubmissions": 0
       },
       {
-        "case": "new-symbolClick-commits-form-model",
-        "visibleDigits": 6,
-        "formDigits": 6,
-        "modelMatches": true,
-        "valid": true,
-        "presses": 6,
-        "focuses": 1,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 1,
-        "blurCommits": 0,
-        "fullUpdates": 0
+        "case": "withdrawal-touch-retains-paced-real-handler",
+        "immediate": [
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 6,
+            "focuses": 2,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80,
+          40,
+          80,
+          16,
+          16,
+          16,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          80
+        ],
+        "automaticSubmissions": 0
       },
       {
-        "case": "new-veiClick-commits-form-model",
-        "visibleDigits": 6,
-        "formDigits": 6,
-        "modelMatches": true,
-        "valid": true,
-        "presses": 6,
-        "focuses": 1,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 1,
-        "blurCommits": 0,
-        "fullUpdates": 0
+        "case": "withdrawal-symbolClick-retains-paced-real-handler",
+        "immediate": [
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 6,
+            "focuses": 2,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80,
+          40,
+          80,
+          16,
+          16,
+          16,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          35,
+          40,
+          80
+        ],
+        "automaticSubmissions": 0
+      },
+      {
+        "case": "withdrawal-focus-cancels-pending-digits",
+        "immediate": [
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 1,
+            "formDigits": 1,
+            "modelMatches": false,
+            "valid": false,
+            "presses": 1,
+            "focuses": 2,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80,
+          40,
+          80,
+          16,
+          16,
+          16,
+          35,
+          10,
+          40
+        ],
+        "automaticSubmissions": 0
+      },
+      {
+        "case": "withdrawal-outside-cancels-pending-digits",
+        "immediate": [
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 1,
+            "formDigits": 1,
+            "modelMatches": false,
+            "valid": false,
+            "presses": 1,
+            "focuses": 2,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80,
+          40,
+          80,
+          16,
+          16,
+          16,
+          35,
+          10,
+          40
+        ],
+        "automaticSubmissions": 0
+      },
+      {
+        "case": "withdrawal-option-cancels-pending-digits",
+        "immediate": [
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 1,
+            "formDigits": 1,
+            "modelMatches": false,
+            "valid": false,
+            "presses": 1,
+            "focuses": 2,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80,
+          40,
+          80,
+          16,
+          16,
+          16,
+          35,
+          10,
+          40
+        ],
+        "automaticSubmissions": 0
+      },
+      {
+        "case": "withdrawal-route-cancels-pending-digits",
+        "immediate": [
+          {
+            "visibleDigits": 0,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 1,
+            "formDigits": 1,
+            "modelMatches": false,
+            "valid": false,
+            "presses": 1,
+            "focuses": 2,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80,
+          40,
+          80,
+          16,
+          16,
+          16,
+          35,
+          10,
+          40,
+          16,
+          180
+        ],
+        "automaticSubmissions": 0
+      },
+      {
+        "case": "setup-native-inputs-remain-instant-no-blur-delay",
+        "immediate": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true
+          },
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 0,
+            "focuses": 0,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          },
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 0,
+            "focuses": 0,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [],
+        "automaticSubmissions": 0
+      },
+      {
+        "case": "withdrawal-native-input-retains-80ms-blur",
+        "immediate": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 0,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 6,
+            "formDigits": 6,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 0,
+            "focuses": 0,
+            "badTouches": 0,
+            "blurCommits": 1,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [
+          80
+        ],
+        "automaticSubmissions": 0
       },
       {
         "case": "partial-user-pin-preserved",
-        "visibleDigits": 2,
-        "formDigits": 2,
-        "modelMatches": false,
-        "valid": false,
-        "presses": 0,
-        "focuses": 0,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 0,
-        "blurCommits": 0,
-        "fullUpdates": 0
+        "immediate": [
+          {
+            "visibleDigits": 2,
+            "formDigits": 2,
+            "modelMatches": false
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 2,
+            "formDigits": 2,
+            "modelMatches": false,
+            "valid": false,
+            "presses": 0,
+            "focuses": 0,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [],
+        "automaticSubmissions": 0
       },
       {
-        "case": "cancel-stops-further-digits",
-        "visibleDigits": 1,
-        "formDigits": 1,
-        "modelMatches": false,
-        "valid": false,
-        "presses": 1,
-        "focuses": 1,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 0,
-        "blurCommits": 0,
-        "fullUpdates": 0
-      },
-      {
-        "case": "routeCancel-stops-further-digits",
-        "visibleDigits": 1,
-        "formDigits": 1,
-        "modelMatches": false,
-        "valid": false,
-        "presses": 1,
-        "focuses": 1,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 0,
-        "blurCommits": 0,
-        "fullUpdates": 0
-      },
-      {
-        "case": "old-native-missing-blur-reproduced",
-        "visibleDigits": 6,
-        "formDigits": 0,
-        "modelMatches": false,
-        "valid": false,
-        "presses": 0,
-        "focuses": 0,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 0,
-        "blurCommits": 0,
-        "fullUpdates": 0
-      },
-      {
-        "case": "new-native-blur-commits-model",
-        "visibleDigits": 6,
-        "formDigits": 6,
-        "modelMatches": true,
-        "valid": true,
-        "presses": 0,
-        "focuses": 0,
-        "badTouches": 0,
-        "submits": 0,
-        "completions": 0,
-        "blurCommits": 1,
-        "fullUpdates": 0
+        "case": "account-password-verification-has-no-pin-delays",
+        "immediate": [
+          {
+            "visibleDigits": 13,
+            "formDigits": 13,
+            "modelMatches": true
+          }
+        ],
+        "fields": [
+          {
+            "visibleDigits": 13,
+            "formDigits": 13,
+            "modelMatches": true,
+            "valid": true,
+            "presses": 0,
+            "focuses": 0,
+            "badTouches": 0,
+            "blurCommits": 0,
+            "fullUpdates": 0
+          }
+        ],
+        "foreignDigits": 0,
+        "foreignPresses": 0,
+        "scheduledDelays": [],
+        "automaticSubmissions": 0
       }
-    ]
-  }
+    ],
+    "productionSourceSha256": "52e2a0ddccd3aa0b345525f94b7eeab565ab56dfd4d3098b31d9b0fe394f34aa",
+    "previousSourceSha256": "f506b1e604c0a90107346a333156d5b7823d0afd4b8bb96d433fb2e39e3867f7"
+  },
+  "changes_from_v264": [
+    "assets/mint-rebuilt.js"
+  ],
+  "all_native_dex_identical_to_v264": true
 }

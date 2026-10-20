@@ -1,14 +1,18 @@
-# Mint Browser V26.4 — confirmação da senha de saque
+# Mint Browser V26.5 — PIN instantâneo na configuração
 
-Arquivo atual: `Mint-Browser-v26.4-PIN-Validacao.apk`. O arquivo de nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também aponta para esta versão.
+Arquivo atual: `Mint-Browser-v26.5-PIN-Instantaneo-Configuracao.apk`. O arquivo de nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também aponta para esta versão.
 
 A página inicial da engrenagem contém os controles de usuário, senha de acesso, senha de saque, histórico do Mines, quantidade de rodadas e contador de total apostado. Em seguida vêm **DNS Cloudflare · 1.1.1.1**, **Restaurar padrão** e, por último, **Privacidade e segurança** e **Avançado**, com suas subdivisões originais preservadas.
 
 ## Senha de saque
 
-O preenchimento dos seis pontos não é usado como confirmação de um preenchimento completo via setter do componente. A V26.4 retira esse atalho e também o evento Vue `input` isolado: usa as teclas reais do teclado da página, com eventos de toque completos ou o handler de clique correspondente. Aguarda 80 ms ao abrir o teclado, 60 ms entre os dígitos e 100 ms ao terminar, permitindo atualizar o modelo e os validadores do formulário. Nos campos HTML comuns, há uma confirmação com `change` e `blur/focusout` após 100 ms, sem mudar o preenchimento de usuário ou senha de acesso.
+**Definir e confirmar a senha:** volta o preenchimento instantâneo da V26.3, sem pausas artificiais entre os dígitos. A tela `/home/security` exibida no vídeo, com “Defina sua senha de saque” e “Confirmar Nova Senha”, usa esse caminho.
 
-O script não aciona Sacar/Confirmar e não executa transações. Mantém a interrupção ao mudar de página/configuração e não completa um PIN parcial digitado pelo usuário. Nove casos passaram em uma simulação isolada do modelo do formulário em Node VM, incluindo reprodução do defeito anterior, atualização por teclas de toque/clique, confirmação por blur, PIN parcial e cancelamento por troca de página/opção. Isso não executa um WebView real. A aceitação pelo formulário do site deve ser conferida no aparelho; o Chromium local não iniciou por restrição de processo deste ambiente.
+**Verificar a senha para realizar um saque:** mantém as teclas reais da página e os eventos que atualizam o formulário, com intervalo reduzido de 60 para **40 ms** entre os dígitos. A abertura do teclado aguarda 40 ms e a conclusão aguarda 80 ms. A confirmação dos campos HTML comuns aguarda 80 ms somente nesse contexto. Senha de acesso e verificações que não sejam do saque não recebem essas pausas.
+
+Se houver um toque real durante a sequência automática, ela é interrompida antes das próximas teclas. O toque não é bloqueado, e a sequência não deve continuar em outro campo após uma troca de foco. O script não aciona Sacar/Confirmar nem executa transações.
+
+Doze casos passaram na conferência local, usando uma simulação isolada do modelo do formulário; a aceitação pelo site real deve ser conferida no aparelho. O Chromium local não iniciou por restrição de processo deste ambiente nas tentativas anteriores.
 
 ## Imagens e desempenho
 
@@ -28,6 +32,6 @@ O início de novas navegações aguarda o callback do WebView que confirma a apl
 
 As opções anteriores continuam ligadas por padrão, com usuário alfanumérico de 15 caracteres e senhas vazias em instalação nova. Esta atualização preserva as senhas e escolhas já aplicadas na V26.2. **Limpar dados pelo navegador** preserva as configurações dos mods, inclusive o número de rodadas e a chave de DNS. **Restaurar padrão** redefine somente essas personalizações: senhas vazias, histórico de 10 rodadas, opções anteriores ligadas e DNS desligado. As duas seções nativas não são redefinidas por esse botão.
 
-O layout Matrix inicial e o GeeTest foram mantidos. A comparação do APK final com a V26.3 confirma que apenas o JavaScript do PIN mudou; todos os DEX, recursos, manifesto, DNS e layout Matrix permaneceram idênticos. O JavaScript do GeeTest e seu DEX nativo também permanecem idênticos à base indicada.
+O layout Matrix inicial e o GeeTest foram mantidos. A comparação do APK final com a V26.4 confirma que apenas o JavaScript do PIN mudou; todos os DEX, recursos, manifesto, DNS e layout Matrix permaneceram idênticos. O JavaScript do GeeTest e seu DEX nativo também permanecem idênticos à base indicada.
 
 Base: release 1.0.2 indicada pelo usuário. Assinatura igual à base e às versões anteriores; instale como atualização, sem desinstalar. Sintaxe JavaScript, integridade ZIP, preservação dos demais componentes, alinhamento e assinaturas v1/v2/v3 conferidos. Os testes de uso no aparelho ficam com o usuário, conforme solicitado. Fontes e patch dos pontos nativos alterados estão em `correcao-nativa`; a conferência está em `verification.json`.
