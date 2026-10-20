@@ -1,37 +1,35 @@
-# Mint Browser V26.6 — saque com pausas de 10 ms
+# Mint Browser V26.7 — Proxy e preenchimento do PIN
 
-Arquivo desta versão: `Mint-Browser-v26.6-Saque-10ms.apk`.
-
-A página inicial da engrenagem contém os controles de usuário, senha de acesso, senha de saque, histórico do Mines, quantidade de rodadas e contador de total apostado. Em seguida vêm **DNS Cloudflare · 1.1.1.1**, **Restaurar padrão** e, por último, **Privacidade e segurança** e **Avançado**, com suas subdivisões originais preservadas.
+Arquivo atual: `Mint-Browser-v26.7-Proxy-PIN.apk`. O nome de download antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também foi atualizado.
 
 ## Senha de saque
 
-**Definir e confirmar a senha:** volta o preenchimento instantâneo da V26.3, sem pausas artificiais entre os dígitos. A tela `/home/security` exibida no vídeo, com “Defina sua senha de saque” e “Confirmar Nova Senha”, usa esse caminho.
+A definição da senha ativa cada campo programaticamente, incluindo a confirmação, sem exigir um toque do usuário no segundo campo. O script identifica o componente do campo correto e aguarda a atualização do seu valor/modelo; apenas os pontos desenhados não contam como confirmação. Ele percorre os dois campos com tentativas automáticas limitadas, inclusive quando a confirmação termina de montar depois do primeiro campo.
 
-**Verificar a senha para realizar um saque:** mantém as teclas reais da página e os eventos que atualizam o formulário. Todas as pausas desse fluxo foram reduzidas para **10 ms**: abertura do teclado, intervalo entre os dígitos, conclusão e confirmação dos campos HTML comuns. Essas pausas se aplicam somente à verificação da senha de saque. A definição e confirmação inicial do PIN continuam instantâneas; senha de acesso e outras verificações não recebem essas pausas.
+A verificação do PIN para sacar usa as teclas reais da página e confirma o modelo a cada dígito. Foram removidas as pausas fixas de digitação: a continuação depende da atualização do componente. Campos HTML comuns também finalizam seus eventos sem temporizador fixo. O script não clica em Sacar/Confirmar nem envia uma solicitação de saque. A resposta real do site será conferida pelo usuário no aparelho.
 
-Se houver um toque real durante a sequência automática, ela é interrompida antes das próximas teclas. O toque não é bloqueado, e a sequência não deve continuar em outro campo após uma troca de foco. O script não aciona Sacar/Confirmar nem executa transações.
+## Proxy
 
-**Esta V26.6 não foi testada, por solicitação expressa do usuário.** Não foram executados testes de regressão, testes funcionais, navegador ou site nesta versão. Os relatórios de testes existentes são históricos de versões anteriores e não validam a V26.6; a conferência de uso no aparelho fica com o usuário.
+A antiga opção DNS Cloudflare/1.1.1.1 foi removida. No mesmo lugar da página inicial da engrenagem há a opção **Proxy**, antes de Restaurar padrão.
 
-## Imagens e desempenho
+1. Abra **Configurações → Proxy**.
+2. Escolha **HTTP**, **HTTPS** ou **SOCKS5** e preencha host/IP e porta. Usuário e senha são opcionais; em SOCKS5, informe ambos ou deixe ambos vazios.
+3. Toque em **Aplicar** para salvar. Salvar uma configuração desativada não a ativa.
+4. Toque no botão arredondado **Proxy**, no lugar da estrela ao lado da barra de endereço, para ativar ou desativar. Manter pressionado também abre o editor.
+5. Recarregue as páginas após alterar a conexão.
 
-O navegador original podia desativar o carregamento de imagens ao aplicar a economia de dados em redes móveis. Esta versão mantém `loadsImagesAutomatically=true` e `blockNetworkImage=false` quando reaplica as configurações da página. Também evita varrer campos e consultar o layout quando nenhum preenchimento configurado pode atuar naquela página. O adblock customizado continua sempre ativo; suas regras e os tempos das outras funções foram preservados. Essas mudanças corrigem o bloqueio identificado; recursos indisponíveis no próprio site ou na rede ainda dependem de suas respectivas origens.
+O indicador fica cinza quando desativado e verde depois que o WebView aplica a configuração. Ele indica o estado da rota configurada; a conexão com o servidor e as credenciais serão testadas pelo usuário. O espaço original da estrela foi mantido: a barra de endereço não foi encurtada. O acesso aos favoritos pelo menu continua disponível.
 
-## Rodadas do Mines
+HTTP e HTTPS aceitam autenticação Basic do proxy; SOCKS5 aceita autenticação por usuário/senha. O protocolo HTTPS valida o certificado do próprio servidor proxy. O HTTPS das páginas permanece entre o site e o WebView, sem descriptografia pelo intermediário local. O destino é informado ao proxy para resolução remota; somente o host do próprio proxy pode exigir a resolução normal do aparelho. Não há retorno silencioso à conexão direta se o proxy configurado falhar. O mod aplica-se às páginas WebView deste aplicativo, sem alterar o proxy global do Android.
 
-O campo **Rodadas no histórico do Mines** aceita de **1 a 100**, com **10** como padrão. Digite, por exemplo, 3 ou 5 e toque em **Aplicar**. A contagem usa somente as últimas N rodadas concluídas disponíveis. O histórico guarda até 100 registros para permitir reduzir e aumentar N sem descartar os registros já coletados. Rodadas antigas que não haviam sido guardadas não são reconstruídas.
+As credenciais do proxy ficam na configuração nativa do aplicativo. A configuração injetada nos scripts das páginas usa uma lista explícita de campos e não recebe host, porta, protocolo, usuário ou senha do proxy.
 
-## DNS Cloudflare somente neste navegador
+## Opções preservadas
 
-A chave fica imediatamente antes de Restaurar padrão e vem desligada. Ao ativar, o WebView usa um proxy local de conexão, dentro do próprio aplicativo, que resolve os destinos por **DNS sobre HTTPS da Cloudflare**. As páginas HTTPS mantêm seu TLS e seus certificados originais; não há interceptação ou descriptografia do conteúdo. O DNS dos outros aplicativos e a configuração de DNS do Android não são alterados.
+Os controles de usuário, senhas, histórico do Mines de 1 a 100 rodadas e total apostado continuam na página inicial da engrenagem. Privacidade e segurança e Avançado permanecem por último, com suas subdivisões originais. O adblock customizado permanece ativo. O layout Matrix, o contador e o GeeTest foram mantidos.
 
-O início de novas navegações aguarda o callback do WebView que confirma a aplicação da configuração, sem temporizador fixo. Recarregue páginas já abertas depois de alterar a chave. Requer um Android System WebView com suporte a `PROXY_OVERRIDE`; quando indisponível, a alteração é recusada e a chave mantém seu estado anterior. Enquanto ativo, não há retorno silencioso ao DNS do aparelho se a Cloudflare falhar. O transporte do proxy usa TCP: HTTPS pode usar HTTP/2; HTTP/3 não é encaminhado por esse transporte. Requisições HTTP sem TLS usam conexões fechadas após cada resposta.
+As configurações e senhas aplicadas são preservadas ao atualizar e ao usar o Limpar dados interno do navegador. Restaurar padrão redefine somente os mods, deixando o proxy desativado e seus campos vazios. A assinatura permanece igual às versões anteriores; instale como atualização, sem desinstalar.
 
-## Persistência e padrões
+## Montagem
 
-As opções anteriores continuam ligadas por padrão, com usuário alfanumérico de 15 caracteres e senhas vazias em instalação nova. Esta atualização preserva as senhas e escolhas já aplicadas na V26.2. **Limpar dados pelo navegador** preserva as configurações dos mods, inclusive o número de rodadas e a chave de DNS. **Restaurar padrão** redefine somente essas personalizações: senhas vazias, histórico de 10 rodadas, opções anteriores ligadas e DNS desligado. As duas seções nativas não são redefinidas por esse botão.
-
-A alteração desta versão se limita às pausas do PIN para saque, herdando as demais funções da V26.5. O layout Matrix inicial, o GeeTest, o DNS, o histórico e as configurações permanecem na implementação anterior. Relatórios de comparação anteriores permanecem apenas como histórico; não foi feita nova comparação funcional nesta versão.
-
-Base original: release 1.0.2 indicada pelo usuário, com as personalizações herdadas até a V26.5. Instale como atualização, sem desinstalar. As fontes e os patches anteriores continuam em `correcao-nativa`; eventuais arquivos de conferência e resultados anteriores são históricos. Esta entrega atende à instrução de alterar os tempos e empacotar o APK sem executar novos testes.
+Java e DEX compilados, JavaScript analisado pelo compilador sem execução, APK montado e assinado com v1/v2/v3 e alinhamento. **Nenhum teste de uso, fixture, conexão de proxy, navegador, formulário real ou saque foi executado**, conforme instrução expressa do usuário. Relatórios antigos em `correcao-nativa/tests` pertencem exclusivamente às versões anteriores e não validam a V26.7. Fontes atuais e patches estão em `correcao-nativa`; os dados de montagem estão em `verification.json`.

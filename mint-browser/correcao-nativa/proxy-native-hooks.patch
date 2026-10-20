@@ -1,0 +1,127 @@
+--- a/smali_classes3/com/mint/rebuilt/PageScripts.smali
++++ b/smali_classes3/com/mint/rebuilt/PageScripts.smali
+@@ -179,7 +179,7 @@
+ 
+     invoke-virtual {p0}, Landroid/webkit/WebView;->getContext()Landroid/content/Context;
+     move-result-object v0
+-    invoke-static {v0}, Lcom/mint/rebuilt/BrowserDns;->restore(Landroid/content/Context;)V
++    invoke-static {v0}, Lcom/mint/rebuilt/BrowserProxy;->restore(Landroid/content/Context;)V
+ 
+     .line 14
+     invoke-static {p0}, Lcom/mint/rebuilt/ConfigRegistry;->track(Landroid/webkit/WebView;)V
+--- a/smali/com/miui/org/chromium/chrome/browser/adblock/AdblockWebView.smali
++++ b/smali/com/miui/org/chromium/chrome/browser/adblock/AdblockWebView.smali
+@@ -1047,7 +1047,7 @@
+ .method public loadData(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+     .locals 1
+ 
+-    invoke-static {p0, p1, p2, p3}, Lcom/mint/rebuilt/BrowserDns;->deferRawData(Landroid/webkit/WebView;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
++    invoke-static {p0, p1, p2, p3}, Lcom/mint/rebuilt/BrowserProxy;->deferRawData(Landroid/webkit/WebView;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
+     move-result v0
+     if-eqz v0, :mint_dns_ready
+     return-void
+@@ -1074,7 +1074,7 @@
+ .method public loadDataWithBaseURL(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+     .locals 1
+ 
+-    invoke-static/range {p0 .. p5}, Lcom/mint/rebuilt/BrowserDns;->deferData(Landroid/webkit/WebView;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
++    invoke-static/range {p0 .. p5}, Lcom/mint/rebuilt/BrowserProxy;->deferData(Landroid/webkit/WebView;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
+     move-result v0
+     if-eqz v0, :mint_dns_ready
+     return-void
+@@ -1102,7 +1102,7 @@
+     .locals 1
+ 
+     const/4 v0, 0x0
+-    invoke-static {p0, p1, v0}, Lcom/mint/rebuilt/BrowserDns;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
++    invoke-static {p0, p1, v0}, Lcom/mint/rebuilt/BrowserProxy;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
+     move-result v0
+     if-eqz v0, :mint_dns_ready
+     return-void
+@@ -1142,7 +1142,7 @@
+         }
+     .end annotation
+ 
+-    invoke-static {p0, p1, p2}, Lcom/mint/rebuilt/BrowserDns;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
++    invoke-static {p0, p1, p2}, Lcom/mint/rebuilt/BrowserProxy;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
+     move-result v0
+     if-eqz v0, :mint_dns_ready
+     return-void
+@@ -1214,7 +1214,7 @@
+ .method public reload()V
+     .locals 1
+ 
+-    invoke-static {p0}, Lcom/mint/rebuilt/BrowserDns;->deferReload(Landroid/webkit/WebView;)Z
++    invoke-static {p0}, Lcom/mint/rebuilt/BrowserProxy;->deferReload(Landroid/webkit/WebView;)Z
+     move-result v0
+     if-eqz v0, :mint_dns_ready
+     return-void
+--- a/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebView.smali
++++ b/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebView.smali
+@@ -777,7 +777,7 @@
+ # Preserve the native restoration/navigation path after proxy configuration finishes.
+ .method public postUrl(Ljava/lang/String;[B)V
+     .locals 1
+-    invoke-static {p0, p1, p2}, Lcom/mint/rebuilt/BrowserDns;->deferPost(Landroid/webkit/WebView;Ljava/lang/String;[B)Z
++    invoke-static {p0, p1, p2}, Lcom/mint/rebuilt/BrowserProxy;->deferPost(Landroid/webkit/WebView;Ljava/lang/String;[B)Z
+     move-result v0
+     if-eqz v0, :dns_ready
+     return-void
+--- a/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebViewGroup.smali
++++ b/smali_classes2/com/miui/org/chromium/chrome/browser/webview/MiWebViewGroup.smali
+@@ -2444,7 +2444,7 @@
+ 
+     move-result-object v2
+ 
+-    invoke-static {v1, v2}, Lcom/mint/rebuilt/BrowserDns;->restoreOrQueue(Landroid/webkit/WebView;Landroid/os/Bundle;)V
++    invoke-static {v1, v2}, Lcom/mint/rebuilt/BrowserProxy;->restoreOrQueue(Landroid/webkit/WebView;Landroid/os/Bundle;)V
+ 
+     goto :goto_0
+ 
+--- a/smali_classes2/com/miui/org/chromium/chrome/browser/omnibox/LocationBarToolView.smali
++++ b/smali_classes2/com/miui/org/chromium/chrome/browser/omnibox/LocationBarToolView.smali
+@@ -140,6 +140,8 @@
+     .line 7
+     invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
+ 
++    invoke-static {p0}, Lcom/mint/rebuilt/ProxyToolbar;->install(Landroid/view/View;)V
++
+     return-void
+ .end method
+ 
+@@ -442,6 +444,8 @@
+ 
+     invoke-static {p1, v0}, Lmiui/globalbrowser/common/util/a;->l(Landroid/graphics/drawable/Drawable;I)V
+ 
++    invoke-static {p0}, Lcom/mint/rebuilt/ProxyToolbar;->install(Landroid/view/View;)V
++
+     return-void
+ .end method
+ 
+@@ -479,6 +483,8 @@
+ 
+     :goto_1
+     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setImageAlpha(I)V
++
++    invoke-static {p0}, Lcom/mint/rebuilt/ProxyToolbar;->install(Landroid/view/View;)V
+ 
+     return-void
+ .end method
+@@ -574,6 +580,8 @@
+ 
+     invoke-virtual {p1, v1}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+ 
++    invoke-static {p0}, Lcom/mint/rebuilt/ProxyToolbar;->install(Landroid/view/View;)V
++
+     return-void
+ .end method
+ 
+@@ -595,6 +603,8 @@
+ 
+     .line 4
+     invoke-direct {p0}, Lcom/miui/org/chromium/chrome/browser/omnibox/LocationBarToolView;->i()V
++
++    invoke-static {p0}, Lcom/mint/rebuilt/ProxyToolbar;->install(Landroid/view/View;)V
+ 
+     return-void
+ .end method

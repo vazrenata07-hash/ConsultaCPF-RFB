@@ -65,7 +65,7 @@ public final class NativePreferenceMods {
             advanced = find(root, "pref_header_key_advanced");
             if (privacy == null || advanced == null) return;
             // Rebuild only our own rows after native lifecycle refreshes.
-            String[] own = {"usernameEnabled", "usernameLength", "usernameAlphanumeric", "passwordEnabled", "password", "pinEnabled", "pin", "historyEnabled", "historyRounds", "wagerEnabled", "cloudflareDnsEnabled", "restore_defaults"};
+            String[] own = {"usernameEnabled", "usernameLength", "usernameAlphanumeric", "passwordEnabled", "password", "pinEnabled", "pin", "historyEnabled", "historyRounds", "wagerEnabled", "proxy", "restore_defaults"};
             for (String setting : own) {
                 Object previous = find(root, "mint_custom_" + setting);
                 if (previous != null) {
@@ -94,7 +94,7 @@ public final class NativePreferenceMods {
             toggle(a, root, initial, "historyEnabled", "Histórico de bombas do Mines", 7);
             edit(a, root, "historyRounds", "Rodadas no histórico do Mines", String.valueOf(initial.optInt("historyRounds", 10)), InputType.TYPE_CLASS_NUMBER, 8);
             toggle(a, root, initial, "wagerEnabled", "Contador do total apostado", 9);
-            toggle(a, root, initial, "cloudflareDnsEnabled", "DNS Cloudflare · 1.1.1.1", 10);
+            proxy(a, root);
             restore(a, root, fragment);
         } catch (Exception ignored) { failure(a); }
         finally {
@@ -118,7 +118,7 @@ public final class NativePreferenceMods {
             public Object invoke(Object proxy, Method method, Object[] args) {
                 if (method.getName().equals("c")) {
                     new AlertDialog.Builder(a).setTitle("Restaurar padrão?")
-                        .setMessage("Ativar as personalizações, usar usuário de 15 caracteres, histórico de 10 rodadas, limpar as senhas e desativar o DNS Cloudflare?")
+                        .setMessage("Ativar as personalizações, usar usuário de 15 caracteres, histórico de 10 rodadas, limpar as senhas e remover a configuração de proxy?")
                         .setNegativeButton("Cancelar", null)
                         .setPositiveButton("Restaurar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -137,6 +137,18 @@ public final class NativePreferenceMods {
         call(pref, "t0", new Class<?>[]{listener}, proxy);
         add(group, pref);
     }
+    private static void proxy(final Activity a, Object group) throws Exception {
+        Object pref=preference(a,"proxy","Proxy");order(pref,10);
+        text(pref,"x0","Configurar HTTP, HTTPS ou SOCKS5.");
+        Class<?> listener=type(BASE+"Preference$e");
+        Object callback=Proxy.newProxyInstance(listener.getClassLoader(),new Class<?>[]{listener},new InvocationHandler(){
+            public Object invoke(Object proxy,Method method,Object[] args){
+                if(method.getName().equals("c")){ProxySettings.show(a);return Boolean.TRUE;}
+                return objectMethod(proxy,method,args);
+            }
+        });
+        call(pref,"t0",new Class<?>[]{listener},callback);add(group,pref);
+    }
     private static Object preference(Activity a, String id, String title) throws Exception {
         Object pref = type(BASE + "Preference").getConstructor(Context.class).newInstance(a);
         key(pref, "mint_custom_" + id); text(pref, "z0", title); bool(pref, "v0", false);
@@ -145,11 +157,10 @@ public final class NativePreferenceMods {
     private static void toggle(final Activity a, Object group, JSONObject initial, final String setting, String title, int position) throws Exception {
         Object pref = type("miui.support.preference.CheckBoxPreference").getConstructor(Context.class, AttributeSet.class).newInstance(a, null);
         key(pref, "mint_custom_" + setting); text(pref, "z0", title); bool(pref, "v0", false);
-        bool(pref, "H0", initial.optBoolean(setting, !setting.equals("cloudflareDnsEnabled")));
+        bool(pref, "H0", initial.optBoolean(setting, true));
         order(pref, position);
         if (setting.equals("usernameAlphanumeric")) text(pref, "x0", "Ativado: letras e números. Desativado: somente letras.");
         if (setting.equals("historyEnabled")) text(pref, "x0", "Contagem por quadrado nas rodadas concluídas do histórico configurado.");
-        if (setting.equals("cloudflareDnsEnabled")) text(pref, "x0", "DNS Cloudflare por HTTPS apenas neste navegador. Recarregue as páginas após alterar.");
         Class<?> listener = type(BASE + "Preference$d");
         Object proxy = Proxy.newProxyInstance(listener.getClassLoader(), new Class<?>[]{listener}, new InvocationHandler() {
             public Object invoke(Object proxy, Method method, Object[] args) {

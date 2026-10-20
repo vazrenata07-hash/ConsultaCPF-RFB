@@ -1,103 +1,60 @@
 {
-  "apk": "Mint-Browser-v26.6-Saque-10ms.apk",
-  "sha256": "88221e40e413c11aff6a6faea2e71f7511a58c9ded53de9664b0c8b389b0f4f4",
-  "base_release": "https://github.com/vazrenata07-hash/ConsultaCPF-RFB/releases/tag/1.0.2",
-  "changes_from_v262": [
-    "assets/mint-config-prefix.js",
-    "assets/mint-rebuilt.js",
+  "apk": "Mint-Browser-v26.7-Proxy-PIN.apk",
+  "sha256": "4d53a7f8c0b8aaa50acb79cbe617b95434de9ebe3fd3ab33098a14f9fc082bd9",
+  "base_apk": "Mint-Browser-v26.6-Saque-10ms.apk",
+  "changed_components": [
     "classes.dex",
     "classes2.dex",
-    "classes3.dex"
+    "classes3.dex",
+    "assets/mint-rebuilt.js"
   ],
-  "root_order": [
-    "usernameEnabled",
-    "usernameLength",
-    "usernameAlphanumeric",
-    "passwordEnabled",
-    "password",
-    "pinEnabled",
-    "pin",
-    "historyEnabled",
-    "historyRounds",
-    "wagerEnabled",
-    "cloudflareDnsEnabled",
-    "restore_defaults",
-    "pref_header_key_privacy",
-    "pref_header_key_advanced"
-  ],
-  "history_rounds": {
-    "default": 10,
-    "minimum": 1,
-    "maximum": 100,
-    "archive_capacity": 100
+  "pin": {
+    "fixed_typing_delays_removed": true,
+    "exact_widget_model_acknowledgement": true,
+    "setup_activates_both_fields_programmatically": true,
+    "user_interaction_cancels_pending_keys": true,
+    "automatic_form_submissions": false
   },
-  "cloudflare_dns": {
-    "default": false,
-    "scope": "WebView page traffic in this application only",
-    "protocol": "DNS-over-HTTPS",
-    "requires_webview_feature": "PROXY_OVERRIDE",
-    "system_dns_fallback": false,
-    "site_tls_interception": false,
-    "navigation_waits_for_proxy_callback": true
+  "cloudflare_dns_removed": true,
+  "proxy": {
+    "protocols": [
+      "http",
+      "https",
+      "socks5"
+    ],
+    "username_password_supported": true,
+    "default_enabled": false,
+    "configuration": "native gear settings dialog",
+    "activation": "address-bar Proxy button",
+    "long_press": "open proxy settings",
+    "destination_dns": "delegated to configured upstream proxy",
+    "upstream_https_certificate_validation": true,
+    "webpage_tls_interception": false,
+    "direct_fallback_on_proxy_failure": false,
+    "credentials_injected_into_page_scripts": false
   },
-  "images": {
-    "loads_automatically": true,
-    "block_network_image": false,
-    "data_saver_cannot_override": true
+  "toolbar_address_bar_shrink_percent": 0,
+  "root_final_sections": [
+    "Privacidade e segurança",
+    "Avançado"
+  ],
+  "configuration_schema": 2,
+  "internal_clear_preserves_custom_settings": true,
+  "game_history_counter_and_geetest_source_preserved": true,
+  "manifest_resources_matrix_and_native_geetest_dex_retained": true,
+  "build": {
+    "java_compiled": true,
+    "dex_compiled": true,
+    "apk_assembled": true,
+    "javascript_parsed_without_execution": true,
+    "signature_verified": [
+      "v1",
+      "v2",
+      "v3"
+    ],
+    "zipaligned": true
   },
-  "original_privacy_advanced_files_unchanged": 19,
-  "default_password": "",
-  "default_pin": "",
-  "schema": 2,
-  "preserved_on_browser_clear": [
-    "shared_prefs/mint_custom_config.xml",
-    "shared_prefs/mint_custom_config.xml.bak"
-  ],
-  "matrix_layout_asset_unchanged": true,
-  "geetest_js_and_native_dex_unchanged": true,
-  "signature_verified": [
-    "v1",
-    "v2",
-    "v3"
-  ],
   "signing_certificate_sha256": "1e08a903aef9c3a721510b64ec764d01d3d094eb954161b62544ea8f187b5953",
-  "device_tests": "left to user as requested",
-  "changes_from_v263": [
-    "assets/mint-rebuilt.js"
-  ],
-  "pin_fix": {
-    "setup": {
-      "instant": true,
-      "fixed_pause_ms": 0,
-      "legacy_v263_helpers_restored": true
-    },
-    "withdrawal_verification_only": {
-      "actual_key_handlers": true,
-      "keyboard_open_delay_ms": 10,
-      "inter_digit_delay_ms": 10,
-      "final_settle_ms": 10,
-      "native_input_commit_ms": 10,
-      "bulk_component_setter": false,
-      "isolated_vue_input_emit": false
-    },
-    "account_password_verification_delayed": false,
-    "trusted_user_interaction_cancels_pending_keys": true,
-    "submits_form": false
-  },
-  "all_native_dex_identical_to_v263": true,
-  "browser_execution": {
-    "executed": false,
-    "reason": "Skipped for V26.6 at the explicit request of the user."
-  },
-  "real_site_withdrawal_tested": false,
-  "changes_from_v264": [
-    "assets/mint-rebuilt.js"
-  ],
-  "all_native_dex_identical_to_v264": true,
-  "changes_from_v265": [
-    "assets/mint-rebuilt.js"
-  ],
-  "tests_executed_for_v266": false,
-  "tests_skipped_reason": "Explicit user instruction: no tests; change, build and send.",
-  "historical_test_report": "correcao-nativa/tests/pin-context-vm-results.json (V26.5 only)"
+  "tests_executed_for_v267": false,
+  "tests_skipped_reason": "User explicitly reserved all tests for their device; no fixtures, browser, proxy connection or real-site/withdrawal tests executed."
 }
