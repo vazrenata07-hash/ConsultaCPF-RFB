@@ -1,0 +1,170 @@
+--- v263/mint-rebuilt.js
++++ v264/mint-rebuilt.js
+@@ -117,38 +117,36 @@
+  if(/valor|amount|quantia|balance|saldo|cpf|telefone|phone|email|pix|account|conta|username|login/i.test(meta))return false;
+  return el.type==='password'||el.maxLength===6||el.maxLength===1||/senha|password|withdraw.?pin|saque.?pin/i.test(meta);
+ }
++function pinTouch(node,type){
++ // Touch handlers read touches/changedTouches; plain Event lacks that data.
++ var rect=node.getBoundingClientRect(),x=rect.left+rect.width/2,y=rect.top+rect.height/2;
++ var point={identifier:1,target:node,clientX:x,clientY:y,pageX:x+scrollX,pageY:y+scrollY,screenX:x,screenY:y,radiusX:1,radiusY:1,rotationAngle:0,force:1};
++ try{point=new Touch(point);}catch(unsupported){}
++ var active=type==='touchend'?[]:[point],event;
++ try{event=new TouchEvent(type,{bubbles:true,cancelable:true,composed:true,touches:active,targetTouches:active,changedTouches:[point]});}
++ catch(unsupported){
++  event=new Event(type,{bubbles:true,cancelable:true});
++  Object.defineProperties(event,{touches:{value:active},targetTouches:{value:active},changedTouches:{value:[point]}});
++ }
++ node.dispatchEvent(event);
++}
+ function emitKeyboardDigit(keyboard,digit){
+- // Prefer the keyboard's own Vue input event: same handler as tapping a key.
+- var instance=keyboard.__vueParentComponent;
+- for(var n=0;instance&&n<4;n++,instance=instance.parent){
+-  var name=(instance.type&&(instance.type.name||instance.type.__name))||'';
+-  var props=instance.vnode&&instance.vnode.props;
+-  if(/number.?keyboard/i.test(name)&&props&&typeof props.onInput==='function'&&typeof instance.emit==='function'){
+-   instance.emit('input',digit);return true;
+-  }
+- }
++ // Use the actual key handler. A standalone Vue 'input' emit can omit the
++ // keyboard's model-update/change/completion events used by the form.
+  var keys=keyboard.querySelectorAll('.ui-key,.van-key,[role="button"],button');
+  for(var i=0;i<keys.length;i++)if(keys[i].textContent.trim()===digit){
+-  // Vant-compatible keyboards use touchend, not a synthetic click.
+-  var key=keys[i];
+-  key.dispatchEvent(new Event('touchstart',{bubbles:true,cancelable:true}));
+-  key.dispatchEvent(new Event('touchend',{bubbles:true,cancelable:true}));
++  var key=keys[i],vnode=key.__vnode,props=vnode&&vnode.props,caches=[key._vei,key.__vei];
++  var click=typeof key.onclick==='function'||props&&(typeof props.onClick==='function'||Array.isArray(props.onClick));
++  // Vue versions use either an expando or Symbol('_vei') for DOM listeners.
++  if(typeof Object.getOwnPropertySymbols==='function'){
++   var symbols=Object.getOwnPropertySymbols(key);
++   for(var k=0;k<symbols.length;k++)if(String(symbols[k])==='Symbol(_vei)')caches.push(key[symbols[k]]);
++  }
++  for(var c=0;c<caches.length;c++)if(caches[c])for(var name in caches[c])if(/^onClick(?:Once|Capture|Passive)*$/.test(name))click=true;
++  if(key.tagName==='BUTTON'&&!caches.some(function(events){return events&&Object.keys(events).some(function(name){return /^onTouch/i.test(name);});}))click=true;
++  if(click)key.click();
++  else{pinTouch(key,'touchstart');pinTouch(key,'touchend');}
+   return true;
+- }
+- return false;
+-}
+-function emitPINValue(node,value){
+- // Prefer a component's complete-value contract. Do not mutate Vue internals.
+- var instance=node.__vueParentComponent;
+- for(var n=0;instance&&n<5;n++,instance=instance.parent){
+-  var props=instance.vnode&&instance.vnode.props,name=(instance.type&&(instance.type.name||instance.type.__name))||'';
+-  if(!props||typeof instance.emit!=='function')continue;
+-  if(!/password.?input|number.?keyboard/i.test(name))continue;
+-  for(var k=0;k<2;k++){
+-   var event=k?'update:value':'update:modelValue',handler=props['on'+event.charAt(0).toUpperCase()+event.slice(1)];
+-   if(typeof handler==='function'||Array.isArray(handler)){instance.emit(event,value);return true;}
+-  }
+-  // An input event is a key press, not a full-value setter. Never send it a PIN.
+  }
+  return false;
+ }
+@@ -161,17 +159,9 @@
+  return count;
+ }
+ function focusPIN(target){
+- var instance=target.__vueParentComponent;
+- for(var n=0;instance&&n<4;n++,instance=instance.parent){
+-  var name=(instance.type&&(instance.type.name||instance.type.__name))||'',props=instance.vnode&&instance.vnode.props;
+-  if(/password.?input/i.test(name)&&props&&(typeof props.onFocus==='function'||Array.isArray(props.onFocus))&&typeof instance.emit==='function'){
+-   instance.emit('focus');return true;
+-  }
+- }
+  var focus=target.querySelector('ul')||target;
+- // Only open once; a second focus while it animates can restart the transition.
+- focus.dispatchEvent(new Event('touchstart',{bubbles:true,cancelable:true}));
+- return false;
++ // Open once through the same touch interaction as the visible PIN field.
++ pinTouch(focus,'touchstart');pinTouch(focus,'touchend');
+ }
+ function customPIN(){
+  if(!options.pinEnabled||!withdrawalPIN||pinBusy)return;
+@@ -200,40 +190,49 @@
+   }
+   return null;
+  }
++ async function pause(ms){await new Promise(function(resolve){setTimeout(resolve,ms);});await Promise.resolve();}
+  async function fill(){
+   try{
+-   if(emitPINValue(target,withdrawalPIN)){
+-    await Promise.resolve();
+-    if(filledCells(target)===6){pinWritten.add(target);return;}
+-   }
+    if(!current())return;
+-   var nativeFocus=focusPIN(target);
+-   await Promise.resolve();
+-   if(!nativeFocus&&current())(target.querySelector('ul')||target).click();
+-   var board=await waitFor(keyboard,1000);if(!board)return;
++   focusPIN(target);
++   await pause(80);
+    if(!current())return;
+-   if(filledCells(target)===0&&emitPINValue(board,withdrawalPIN)){
+-    await Promise.resolve();
+-    if(filledCells(target)===6){pinWritten.add(target);return;}
+-   }
+-   var count=filledCells(target);
++   if(!keyboard())(target.querySelector('ul')||target).click();
++   var board=await waitFor(keyboard,1000);if(!board||!current())return;
++   // Never resume another person's partial PIN or infer a filled form from
++   // a complete-value setter on the display-only component.
++   if(filledCells(target)!==0)return;
++   var count=0;
+    while(count<6&&current()){
+-    board=keyboard();if(!board)return;
++    board=keyboard();if(!board||filledCells(target)!==count)return;
+     if(!emitKeyboardDigit(board,withdrawalPIN[count]))return;
+     var previous=count;
++    await pause(60);
+     var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
+     if(!acknowledged)return;
+     var updated=filledCells(target);
+     if(updated!==previous+1)return;
+     count=updated;
+    }
+-   if(current()&&count===6)pinWritten.add(target);
++   // Give debounced form listeners and the final Vue render a short commit
++   // window after the sixth native key interaction; never submit here.
++   await pause(100);
++   if(current()&&count===6&&filledCells(target)===6)pinWritten.add(target);
+   }catch(error){/* Leave incompatible widgets to the user without refocusing. */}
+   finally{
+    if(generation===pinGeneration){pinBusy=false;if(pinWritten.has(target))Promise.resolve().then(customPIN);}
+   }
+  }
+  fill();
++}
++function settlePINInput(el){
++ var generation=pinGeneration,value=el.value;
++ setTimeout(function(){
++  if(generation!==pinGeneration||!options.pinEnabled||!el.isConnected||el.value!==value||!withdrawalContext(el))return;
++  el.dispatchEvent(new Event('change',{bubbles:true}));
++  if(d.activeElement===el)el.blur();
++  else{el.dispatchEvent(new FocusEvent('blur'));el.dispatchEvent(new FocusEvent('focusout',{bubbles:true}));}
++ },100);
+ }
+ function autofill(){
+  var reg=route();
+@@ -250,7 +249,7 @@
+   if(isPIN){
+    if(!options.pinEnabled||!withdrawalPIN)continue;
+    if(el.maxLength===1){segments.push(el);continue;}
+-   if(!el.value){pinWritten.add(el);write(el,withdrawalPIN);}continue;
++   if(!el.value){pinWritten.add(el);write(el,withdrawalPIN);settlePINInput(el);}continue;
+   }
+   if(isWithdrawal)continue;
+   if(el.type==='password'||/senha|password/.test(meta)){
+@@ -263,7 +262,7 @@
+  // Only complete groups of six empty single-character inputs are PINs.
+  for(var j=0;options.pinEnabled&&withdrawalPIN&&j+5<segments.length;j+=6){
+   var group=segments.slice(j,j+6);
+-  if(group.every(function(e){return !e.value;})){group.forEach(function(e,k){pinWritten.add(e);write(e,withdrawalPIN[k]);});}
++  if(group.every(function(e){return !e.value;})){group.forEach(function(e,k){pinWritten.add(e);write(e,withdrawalPIN[k]);settlePINInput(e);});}
+  }
+  customPIN();
+  var target=named||first;

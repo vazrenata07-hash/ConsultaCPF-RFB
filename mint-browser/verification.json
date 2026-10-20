@@ -1,6 +1,6 @@
 {
-  "apk": "Mint-Browser-v26.3-DNS-Mines-Ajustavel.apk",
-  "sha256": "1aff3a50b6394abb40784ff16712c5127898c651042d1ed1495a6562531dae64",
+  "apk": "Mint-Browser-v26.4-PIN-Validacao.apk",
+  "sha256": "9be7ec57611c7a89c722508607d181cbba8abb300c753a3d6560579d0b44a576",
   "base_release": "https://github.com/vazrenata07-hash/ConsultaCPF-RFB/releases/tag/1.0.2",
   "changes_from_v262": [
     "assets/mint-config-prefix.js",
@@ -61,5 +61,159 @@
     "v3"
   ],
   "signing_certificate_sha256": "1e08a903aef9c3a721510b64ec764d01d3d094eb954161b62544ea8f187b5953",
-  "device_tests": "left to user as requested"
+  "device_tests": "left to user as requested",
+  "changes_from_v263": [
+    "assets/mint-rebuilt.js"
+  ],
+  "pin_fix": {
+    "bulk_component_setter": false,
+    "isolated_vue_input_emit": false,
+    "actual_key_handlers": true,
+    "keyboard_open_delay_ms": 80,
+    "inter_digit_delay_ms": 60,
+    "final_settle_ms": 100,
+    "native_input_commit_ms": 100,
+    "submits_form": false
+  },
+  "all_native_dex_identical_to_v263": true,
+  "browser_execution": {
+    "executed": false,
+    "reason": "Chromium crashpad setsockopt denied by execution environment"
+  },
+  "real_site_withdrawal_tested": false,
+  "offline_pin_model_regression": {
+    "kind": "node-vm-simulated-dom-model",
+    "limitation": "Validates production first-IIFE logic and event payloads against a simulated component contract; not a browser, Android WebView or real-site validation.",
+    "realNetworkRequests": 0,
+    "geeTestExecuted": false,
+    "automaticSubmissions": 0,
+    "cases": [
+      {
+        "case": "old-preview-only-failure-reproduced",
+        "visibleDigits": 6,
+        "formDigits": 0,
+        "modelMatches": false,
+        "valid": false,
+        "presses": 0,
+        "focuses": 0,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 0,
+        "blurCommits": 0,
+        "fullUpdates": 1
+      },
+      {
+        "case": "new-touch-commits-form-model",
+        "visibleDigits": 6,
+        "formDigits": 6,
+        "modelMatches": true,
+        "valid": true,
+        "presses": 6,
+        "focuses": 1,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 1,
+        "blurCommits": 0,
+        "fullUpdates": 0
+      },
+      {
+        "case": "new-symbolClick-commits-form-model",
+        "visibleDigits": 6,
+        "formDigits": 6,
+        "modelMatches": true,
+        "valid": true,
+        "presses": 6,
+        "focuses": 1,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 1,
+        "blurCommits": 0,
+        "fullUpdates": 0
+      },
+      {
+        "case": "new-veiClick-commits-form-model",
+        "visibleDigits": 6,
+        "formDigits": 6,
+        "modelMatches": true,
+        "valid": true,
+        "presses": 6,
+        "focuses": 1,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 1,
+        "blurCommits": 0,
+        "fullUpdates": 0
+      },
+      {
+        "case": "partial-user-pin-preserved",
+        "visibleDigits": 2,
+        "formDigits": 2,
+        "modelMatches": false,
+        "valid": false,
+        "presses": 0,
+        "focuses": 0,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 0,
+        "blurCommits": 0,
+        "fullUpdates": 0
+      },
+      {
+        "case": "cancel-stops-further-digits",
+        "visibleDigits": 1,
+        "formDigits": 1,
+        "modelMatches": false,
+        "valid": false,
+        "presses": 1,
+        "focuses": 1,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 0,
+        "blurCommits": 0,
+        "fullUpdates": 0
+      },
+      {
+        "case": "routeCancel-stops-further-digits",
+        "visibleDigits": 1,
+        "formDigits": 1,
+        "modelMatches": false,
+        "valid": false,
+        "presses": 1,
+        "focuses": 1,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 0,
+        "blurCommits": 0,
+        "fullUpdates": 0
+      },
+      {
+        "case": "old-native-missing-blur-reproduced",
+        "visibleDigits": 6,
+        "formDigits": 0,
+        "modelMatches": false,
+        "valid": false,
+        "presses": 0,
+        "focuses": 0,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 0,
+        "blurCommits": 0,
+        "fullUpdates": 0
+      },
+      {
+        "case": "new-native-blur-commits-model",
+        "visibleDigits": 6,
+        "formDigits": 6,
+        "modelMatches": true,
+        "valid": true,
+        "presses": 0,
+        "focuses": 0,
+        "badTouches": 0,
+        "submits": 0,
+        "completions": 0,
+        "blurCommits": 1,
+        "fullUpdates": 0
+      }
+    ]
+  }
 }
