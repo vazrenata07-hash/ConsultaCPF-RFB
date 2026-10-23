@@ -17,26 +17,115 @@ function userOptions(){
 }
 var options=userOptions();
 var d=document,tag='data-mint17-ad',style=d.createElement('style');
-var security='[class*="captcha" i],[id*="captcha" i],[class*="geetest" i],[class*="yidun" i],[class*="turnstile" i],[class*="hcaptcha" i]';
+var security='[class*="captcha" i],[id*="captcha" i],[class*="geetest" i],[class*="yidun" i],[class*="turnstile" i],[class*="hcaptcha" i],[class*="_moreInterception_1s3a2_"]';
 var username='',wasRegister=false,visit=0,written=new WeakMap(),passwordWritten=new WeakSet();
-// Cosmetic signatures from the 23 October capture replace the prior catalog.
-// Only captured native close/cancel controls are used; open/claim controls are untouched.
+// Replace the former catalogue with every explicit dismissal in the 23 October capture.
+// Keep the base PIN, account, Mines and GeeTest code below this section unchanged.
 var rules=[
- {"name":"registration-deposit-promotion","selector":".ui-dialog._registerRechargeDialog_r9snw_89","child":"._registerRecharge_r9snw_89","close":"._closeIcon_r9snw_102"},
- {"name":"app-install-promotion","selector":".ui-dialog._download_1yp2y_89","child":"._content_1yp2y_101","close":".ui-dialog-close-box__icon"},
- {"name":"promotional-carousel","selector":".ui-dialog._modal_203gm_89","child":"._main_1ju3l_89","close":"img._closeBtn_1ju3l_243"},
- {"name":"slash-wheel-promotion","selector":".ui-dialog._dialogBox_mwqhm_89._slashDialogBox_mwqhm_99.slash-once-dialog-box","close":".ui-dialog-close-box__icon"},
- {"name":"task-invitation-promotion","selector":".ui-dialog._dialogBox_1r6g9_89","child":"._dialog-container_1r6g9_150","close":".ui-dialog-close-box__icon"},
- {"name":"push-permission-promotion","selector":".notic-user-tip-warp","child":".button-warp .web-push-tip-cancel","close":".web-push-tip-cancel"},
- {"name":"find-us-install-promotion","selector":".ui-dialog._find-us_ly0vd_89","child":"._content-box_ly0vd_129","close":".ui-dialog-close-box__icon"},
- {"name":"captured-verification-close","selector":".ui-dialog._moreInterception_t9upy_89","child":".ui-dialog-close-box__icon","close":".ui-dialog-close-box__icon","explicitCapturedClose":true},
- {"name":"dismissible-floating-promotion","selector":".float-bar-main ._fastBtn_reqh0_97","child":"img._closeIcon_reqh0_139","close":"img._closeIcon_reqh0_139"}
+ {
+  "name": "registration-deposit-promotion",
+  "selector": ".ui-dialog._registerRechargeDialog_r9snw_89",
+  "child": "._registerRecharge_r9snw_89",
+  "close": "._closeIcon_r9snw_102"
+ },
+ {
+  "name": "app-install-promotion",
+  "selector": ".ui-dialog._download_1yp2y_89",
+  "child": "._content_1yp2y_101",
+  "close": ".ui-dialog-close-box__icon"
+ },
+ {
+  "name": "promotional-carousel",
+  "selector": ".ui-dialog._modal_203gm_89",
+  "child": "._main_1ju3l_89",
+  "close": "img._closeBtn_1ju3l_243"
+ },
+ {
+  "name": "slash-wheel-promotion",
+  "selector": ".ui-dialog._dialogBox_mwqhm_89._slashDialogBox_mwqhm_99.slash-once-dialog-box",
+  "close": ".ui-dialog-close-box__icon"
+ },
+ {
+  "name": "task-invitation-promotion",
+  "selector": ".ui-dialog._dialogBox_1r6g9_89",
+  "child": "._dialog-container_1r6g9_150",
+  "close": ".ui-dialog-close-box__icon"
+ },
+ {
+  "name": "push-permission-promotion",
+  "selector": ".notic-user-tip-warp",
+  "child": ".button-warp .web-push-tip-cancel",
+  "close": ".web-push-tip-cancel"
+ },
+ {
+  "name": "find-us-install-promotion",
+  "selector": ".ui-dialog._find-us_ly0vd_89",
+  "child": "._content-box_ly0vd_129",
+  "close": ".ui-dialog-close-box__icon"
+ },
+ {
+  "name": "dismissible-floating-promotion",
+  "selector": ".float-bar-main ._fastBtn_reqh0_97",
+  "child": "img._closeIcon_reqh0_139",
+  "close": "img._closeIcon_reqh0_139"
+ },
+ {
+  "name": "captured-verification-close",
+  "selector": ".ui-dialog._moreInterception_t9upy_89",
+  "child": ".ui-dialog-close-box__icon",
+  "close": ".ui-dialog-close-box__icon",
+  "explicitCapturedClose": true
+ }
 ];
-style.textContent='['+tag+'],['+tag+'] *{visibility:hidden!important;pointer-events:none!important}';
+// Install precise signatures at document start; marking/closing still advances the site's popup queue.
+var earlyCSS='';
+var hasSelector=window.CSS&&typeof CSS.supports==='function'&&CSS.supports('selector(:has(*))');
+for(var cssIndex=0;cssIndex<rules.length;cssIndex++){
+ var cssRule=rules[cssIndex];
+ if(cssRule.child&&!hasSelector)continue;
+ var cssSelector=cssRule.selector+(cssRule.child?':has('+cssRule.child+')':'');
+ earlyCSS+=cssSelector+','+cssSelector+' *{visibility:hidden!important;pointer-events:none!important}';
+ if(hasSelector)earlyCSS+='.ui-overlay:has('+cssSelector+'){visibility:hidden!important;pointer-events:none!important}';
+}
+style.textContent=earlyCSS+'['+tag+'],['+tag+'] *{visibility:hidden!important;pointer-events:none!important}';
+function installAdStyle(){if(d.documentElement&&!style.isConnected)d.documentElement.appendChild(style);}
+installAdStyle();
+if(!style.isConnected){
+ var styleObserver=new MutationObserver(function(){installAdStyle();if(style.isConnected)styleObserver.disconnect();});
+ styleObserver.observe(d,{childList:true});
+}
 function protectedDialog(el){
  return !!el.querySelector(security)||el.matches(security)||
  /\babrir\b|b[oô]nus de (?:login|aposta)/i.test(el.textContent||'')||
  !!el.querySelector('input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),textarea');
+}
+var rememberedAdImages=new Set(),watchedAdImages=new WeakSet();
+function rememberAdResources(root){
+ var bridge=window.MintAdResources;
+ if(!bridge||typeof bridge.remember!=='function'||window.__mintGeeTestPriority===true)return;
+ var images=root.querySelectorAll('img');
+ for(var i=0;i<images.length&&i<32;i++)observeImage(images[i]);
+ function observeImage(image){
+  function record(){
+   if(window.__mintGeeTestPriority===true||!image.isConnected||!root.hasAttribute(tag)||protectedDialog(root))return;
+   if(image.naturalWidth<120||image.naturalHeight<60)return;
+   var raw=image.currentSrc||image.src;
+   if(!raw||rememberedAdImages.has(raw)||rememberedAdImages.size>=2048)return;
+   try{
+    var url=new URL(raw,location.href);url.hash='';
+    if(!/^https?:$/.test(url.protocol)||!/\.(?:png|jpe?g|webp|avif|gif)$/i.test(url.pathname))return;
+    if(/captcha|geetest|geevisit|recaptcha|hcaptcha|turnstile/i.test(url.href))return;
+    // Shared media already visible outside promotional containers stays allowed.
+    for(var j=0;j<d.images.length;j++){
+     var other=d.images[j];
+     if(other!==image&&(other.currentSrc||other.src)===raw&&!other.closest('['+tag+']'))return;
+    }
+    bridge.remember(url.href);rememberedAdImages.add(raw);
+   }catch(ignored){}
+  }
+  if(image.complete)record();
+  else if(!watchedAdImages.has(image)){watchedAdImages.add(image);image.addEventListener('load',record,{once:true,passive:true});}
+ }
 }
 var attempts=new WeakMap(),marked=new Set();
 function dismiss(root,node,rule,close){
@@ -47,31 +136,32 @@ function dismiss(root,node,rule,close){
  if(!root.isConnected||root.style.display==='none'||!root.getClientRects().length)return;
  if(/leave-active|leave-to|leave-from/.test(root.className+' '+node.className))return;
  state.count++;state.last=now;
- // The captured native close control advances the site's popup queue.
- // Never click claim/activate buttons or remove a component's DOM ourselves.
  close.click();
  if(state.count<3)setTimeout(schedule,state.count===1?150:500);
 }
 function filter(){
  if(!d.documentElement)return;
- if(!style.isConnected)d.documentElement.appendChild(style);
- var current=new Map();
+ installAdStyle();
+ var current=new Map(),nodes=d.querySelectorAll(ruleSelector),protectedRoots=new WeakMap();
  for(var i=0;i<rules.length;i++){
-  var rule=rules[i],nodes=d.querySelectorAll(rule.selector);
+  var rule=rules[i];
   for(var j=0;j<nodes.length;j++){
-   var node=nodes[j];if(rule.child&&!node.querySelector(rule.child))continue;
+   var node=nodes[j];if(!node.matches(rule.selector)||rule.child&&!node.querySelector(rule.child))continue;
    var root=node.closest('.ui-overlay')||node;
-   // Hidden cached dialogs leave the active set so reopening resets close attempts.
-   // This exact captured dialog was explicitly dismissed by its native X; never answer its contents.
-   if(root.style.display==='none'||!root.getClientRects().length||(!rule.explicitCapturedClose&&protectedDialog(root)))continue;
+   if(root.style.display==='none'||!root.getClientRects().length)continue;
+   if(!protectedRoots.has(root))protectedRoots.set(root,protectedDialog(root));
+   if(!rule.explicitCapturedClose&&protectedRoots.get(root))continue;
    current.set(root,{node:node,rule:rule,close:node.querySelector(rule.close)});
   }
  }
  marked.forEach(function(root){if(!current.has(root)){root.removeAttribute(tag);attempts.delete(root);marked.delete(root);}});
  current.forEach(function(item,root){if(root.getAttribute(tag)!==item.rule.name)root.setAttribute(tag,item.rule.name);marked.add(root);});
- // Keep the whitelist of controls separate from all user click handling.
  var controls=new Set();
- current.forEach(function(item,root){if(!item.close||controls.has(item.close))return;controls.add(item.close);dismiss(root,item.node,item.rule,item.close);});
+ current.forEach(function(item,root){
+  rememberAdResources(root);
+  if(!item.close||controls.has(item.close))return;
+  controls.add(item.close);dismiss(root,item.node,item.rule,item.close);
+ });
 }
 function register(){return /(?:^|[\/#])register(?:[\/?#]|$)/i.test(location.pathname+location.hash)}
 function accountFlow(){return /(?:^|[\/#])(?:register|login|signup|signin|verify|captcha)(?:[\/?#]|$)/i.test(location.pathname+location.hash)}
@@ -83,6 +173,7 @@ function randomName(){
 }
 function route(){var reg=register();if(reg&&!wasRegister){username=options.usernameEnabled?randomName():'';visit++}wasRegister=reg;return reg}
 function write(el,value){
+ scanVisibility=null;
  var setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(el,value);
  var input;try{input=new InputEvent('input',{bubbles:true,inputType:'insertReplacementText',data:value});}catch(e){input=new Event('input',{bubbles:true});}
  el.dispatchEvent(input);el.dispatchEvent(new Event('change',{bubbles:true}));
@@ -99,10 +190,14 @@ function settleRegistration(el){
 var withdrawalPIN=options.pin,pinWritten=new WeakSet(),pinAttempts=new WeakMap(),pinBusy=false,pinGeneration=0,activePINRun=null,pinManualControl=false;
 var pinWidgets='.ui-password-input,.van-password-input';
 var pinKeys='.ui-number-keyboard,.van-number-keyboard';
+var scanVisibility=null;
 function visible(el){
- if(!el||!el.getClientRects().length)return false;
- var computed=getComputedStyle(el);
- return computed.visibility!=='hidden'&&computed.display!=='none';
+ if(!el)return false;
+ if(scanVisibility&&scanVisibility.has(el))return scanVisibility.get(el);
+ var result=false;
+ if(el.getClientRects().length){var computed=getComputedStyle(el);result=computed.visibility!=='hidden'&&computed.display!=='none';}
+ if(scanVisibility)scanVisibility.set(el,result);
+ return result;
 }
 function withdrawalContext(el){
  if(el.closest(security))return false;
@@ -259,8 +354,70 @@ function customPIN(){
   }
   return null;
  }
+ function setupTogether(){
+  if(location.hostname!=='888pg.cc'||!/^\/home\/security\/?$/.test(location.pathname)||new URLSearchParams(location.search).get('active')!=='5')return null;
+  var root=target.closest('[role="dialog"],.ui-dialog,.ui-popup,.van-dialog,.van-popup')||target.closest('form')||d;
+  var widgets=root.querySelectorAll(pinWidgets),fields=[],bindings=[];
+  for(var i=0;i<widgets.length;i++){
+   var field=widgets[i];
+   if(visible(field)&&withdrawalContext(field)&&pinStage(field)==='setup'&&!field.querySelector('input'))fields.push(field);
+  }
+  if(fields.length!==2||fields.indexOf(target)===-1)return null;
+  // Production Vue keeps the rendered VNode tree on its mount container.
+  // DOM __vueParentComponent links are absent in this site's production build.
+  var app=d.getElementById('app'),pending=[app&&app._vnode],seen=new Set(),instances=[],found=0;
+  while(pending.length&&found<fields.length){
+   var vnode=pending.pop();
+   if(!vnode||typeof vnode!=='object'||seen.has(vnode))continue;
+   seen.add(vnode);
+   if(Array.isArray(vnode)){for(var a=0;a<vnode.length;a++)pending.push(vnode[a]);continue;}
+   var component=vnode.component;
+   if(component){
+    var tree=component.subTree,type=component.type||{},index=tree?fields.indexOf(tree.el):-1;
+    if(index!==-1&&!instances[index]&&/password.?input/i.test(type.name||type.__name||'')){instances[index]=component;found++;}
+    if(tree)pending.push(tree);
+   }
+   if(Array.isArray(vnode.children))for(var b=0;b<vnode.children.length;b++)pending.push(vnode.children[b]);
+   if(vnode.suspense&&vnode.suspense.activeBranch)pending.push(vnode.suspense.activeBranch);
+  }
+  if(found!==fields.length)return null;
+  // Resolve both native, field-specific setters before updating either model.
+  for(var j=0;j<fields.length;j++){
+   var field=fields[j];
+   if(filledCells(field)!==0||pinWritten.has(field)||(pinAttempts.get(field)||0)>=2)return null;
+   var instance=instances[j],api=instance.exposed,binding=null;
+   if(!api||typeof api.focus!=='function')api=instance.proxy;
+   if(!api||typeof api.focus!=='function')return null;
+   var children=instance.subTree.children;
+   if(!Array.isArray(children))return null;
+   for(var k=0;k<children.length;k++){
+    var child=children[k],kind=child&&child.type,props=child&&child.props;
+    if(kind&&/number.?keyboard/i.test(kind.name||kind.__name||'')&&props&&typeof props['onUpdate:modelValue']==='function'){
+     binding={instance:instance,api:api,focus:api.focus,write:props['onUpdate:modelValue']};break;
+    }
+   }
+   if(!binding||bindings.some(function(previous){return previous.instance===binding.instance;}))return null;
+   bindings.push(binding);
+  }
+  // Both complete values use the original setters in this same synchronous run.
+  // Native form updates/completion are preserved; there is no inter-field wait.
+  for(var n=0;n<bindings.length;n++){
+   if(!current())return fields;
+   if(fields[n]!==target)pinAttempts.set(fields[n],(pinAttempts.get(fields[n])||0)+1);
+   bindings[n].focus.call(bindings[n].api);
+   if(!current())return fields;
+   bindings[n].write(withdrawalPIN);
+  }
+  return fields;
+ }
  async function fastSetup(){
   if(!current())return;
+  var together=setupTogether();
+  if(together){
+   await Promise.resolve();
+   if(current())for(var i=0;i<together.length;i++)if(filledCells(together[i])===6)pinWritten.add(together[i]);
+   return;
+  }
   // Activate each field BEFORE filling it. The confirmation field lazily
   // selects its model on focus, just as when the user taps the second field.
   var nativeFocus=focusSetupPIN(target);
@@ -290,13 +447,17 @@ function customPIN(){
   if(current()&&count===6)pinWritten.add(target);
  }
  async function nativeKeys(){
-  // Keep normal keypad handlers, without any fixed typing delay.
+  // Preserve per-digit native key handling; use the page-specific interval.
   if(!current())return;
   focusPIN(target);
   await Promise.resolve();
   if(!current())return;
   if(!keyboard())(target.querySelector('ul')||target).click();
   var board=await waitFor(keyboard,1000);if(!board||!current()||filledCells(target)!==0)return;
+  var verificationArea=target.closest('[role="dialog"],.ui-dialog,.ui-popup,.van-dialog,.van-popup')||target.closest('form');
+  var verificationDelay=run.phase==='withdrawal'&&location.hostname==='888pg.cc'&&
+   /^\/home\/withdraw\/?$/.test(location.pathname)&&/verificar\s+senha\s+de\s+saque/i.test((verificationArea||d.body).textContent||'');
+  var verificationDigitDelay=new URLSearchParams(location.search).get('active')==='20'?0.1:5;
   var count=0;
   while(count<6&&current()){
    board=keyboard();if(!board||filledCells(target)!==count)return;
@@ -306,6 +467,7 @@ function customPIN(){
    var acknowledged=await waitFor(function(){return filledCells(target)>previous;},500);
    if(!acknowledged)return;
    var updated=filledCells(target);if(updated!==previous+1)return;count=updated;
+   if(verificationDelay&&count<6)await new Promise(function(resolve){setTimeout(resolve,verificationDigitDelay);});
   }
   await Promise.resolve();
   if(current()&&count===6&&filledCells(target)===6)pinWritten.add(target);
@@ -339,6 +501,10 @@ function settlePINInput(el){
  });
 }
 function autofill(){
+ var previous=scanVisibility;scanVisibility=new WeakMap();
+ try{autofillPass();}finally{scanVisibility=previous;}
+}
+function autofillPass(){
  var reg=route();
  // No form scan or layout reads when no active feature can fill this route.
  if(!(options.usernameEnabled&&reg)&&!(options.passwordEnabled&&options.password)&&!(options.pinEnabled&&withdrawalPIN))return;
@@ -370,6 +536,7 @@ function autofill(){
   var group=segments.slice(j,j+6);
   if(group.every(function(e){return !e.value;})){group.forEach(function(e,k){pinWritten.add(e);write(e,withdrawalPIN[k]);settlePINInput(e);});}
  }
+ scanVisibility=null;
  customPIN();
  var target=named||first;
  if(options.usernameEnabled&&reg&&target&&written.get(target)!==visit){
@@ -385,7 +552,7 @@ function autofill(){
 var ruleSelector=rules.map(function(rule){return rule.selector;}).join(',');
 var queued=false,busy=false,filterDirty=true,formDirty=true;
 function run(){
- if(busy)return;busy=true;
+ if(busy||window.__mintGeeTestPriority===true)return;busy=true;
  var f=filterDirty,a=formDirty;filterDirty=false;formDirty=false;
  try{if(f)filter();if(a)autofill();}finally{busy=false;}
 }
@@ -398,6 +565,7 @@ function inspectNode(node){
  if(!formDirty&&(node.matches('input,'+pinWidgets+','+pinKeys)||node.querySelector('input,'+pinWidgets+','+pinKeys)))formDirty=true;
 }
 new MutationObserver(function(ms){
+ if(window.__mintGeeTestPriority===true){filterDirty=true;formDirty=true;return;}
  // Inspection only turns dirty flags on; once both are set, scans are queued.
  if(filterDirty&&formDirty){queue();return;}
  var addedRoots=new Set();
@@ -450,6 +618,7 @@ d.addEventListener('click',function(e){if(e.target.closest&&e.target.closest(pin
  Promise.resolve().then(function(){formDirty=true;queue();});
 }},true);
 function prepareRegistration(e){
+ if(window.__mintGeeTestPriority===true)return;
  if(!options.usernameEnabled||!register()||!e.target.closest)return;
  var button=e.target.closest('button,[role="button"],input[type="submit"],.ui-button,.van-button');
  if(!button||!/^\s*(?:registro|registrar|registre-se|criar conta|register|sign up)\s*$/i.test(button.textContent||button.value||''))return;
@@ -463,6 +632,9 @@ window.addEventListener('mint-config-change',function(){
   username='';visit++;written=new WeakMap();
  }
  formDirty=true;queue();
+});
+window.addEventListener('mint-geetest-priority',function(event){
+ if(!event.detail||event.detail.active!==true){filterDirty=true;formDirty=true;queue();}
 });
 window.addEventListener('hashchange',navigation);window.addEventListener('popstate',navigation);window.addEventListener('load',navigation);
 d.addEventListener('DOMContentLoaded',function(){navigation();});
@@ -485,6 +657,7 @@ var options=gameOptions();
 var cc=null,loadingCC=false,proxy=null,panel=null,label=null,total=null,saveFailed=false,stopped=false;
 var start=Date.now(),timer=null,store=window.MintWagerCounter;
 var pending=new Map(),seen=new Set(),lastRead=0;
+function visualPaused(){return document.hidden||window.__mintGeeTestPriority===true;}
 // Passive history adapter for JDB Mines 9014. Called by the existing game adapter.
 // Never selects cards, sends a game request, changes autoplay, or ranks positions.
 function createMinesHistory(getEngine){
@@ -516,7 +689,7 @@ function createMinesHistory(getEngine){
   },0);
  }
  function caption(){
-  if(!button)return;
+  if(!button||visualPaused())return;
   var available=Math.min(rows.length,options.historyRounds);
   var text=(visible?'Ocultar':'Histórico')+' · '+available+'/'+options.historyRounds+(storageFailed?' *':'');
   if(button.textContent!==text)button.textContent=text;
@@ -526,7 +699,7 @@ function createMinesHistory(getEngine){
    (storageFailed?' · Histórico somente nesta sessão':'');
  }
  function redraw(){
-  if(!visible)return;
+  if(!visible||visualPaused())return;
   for(var i=0;i<labels.length;i++){
    var value=rows.length?String(counts[i]):'—';
    if(labels[i].string!==value)labels[i].string=value;
@@ -664,13 +837,14 @@ function watchProxy(next){
 }
 function alive(node){return node&&node.isValid!==false;}
 function refreshLabel(){
- if(!label||!alive(label.node))return;
+ if(visualPaused()||!label||!alive(label.node))return;
  var value=total===null?'—':'R$ '+amount(total);
  var next='Apostado: '+value+(saveFailed?' *':'');
  if(label.string!==next)label.string=next;
  positionLabel();
 }
 function positionLabel(){
+ if(visualPaused())return;
  try{
   if(!panel||!panel.balance||!label)return;
   var base=panel.balance.node,bt=base.getComponent(cc.UITransform),p=base.position;
@@ -713,26 +887,35 @@ function loadEngine(){
  System.import('cc').then(function(module){cc=module;loadingCC=false;tick();},function(){loadingCC=false;});
 }
 function tick(){
- if(stopped)return;
  if(timer){clearTimeout(timer);timer=null;}
+ if(stopped||!options.historyEnabled&&!options.wagerEnabled)return;
+ var visual=!visualPaused();
  try{
   if(!store)store=window.MintWagerCounter;
-  if(total===null||Date.now()-lastRead>15000)readTotal();
-  loadEngine();
+  if(visual){if(total===null||Date.now()-lastRead>15000)readTotal();loadEngine();}
+  // Initial hook discovery is cheap and remains active even while hidden, so
+  // recording does not depend on drawing the labels or loading Cocos helpers.
   if(window.puremvc&&puremvc.Facade){
    var facade=puremvc.Facade.getInstance();
    watchProxy(facade.retrieveProxy('MinesServerProxy'));
-   var mediator=facade.retrieveMediator('AppMediator');if(mediator){mount(mediator.infoPanel);history.mount(mediator);}
+   if(visual){var mediator=facade.retrieveMediator('AppMediator');if(mediator){mount(mediator.infoPanel);history.mount(mediator);}}
   }
   pending.forEach(function(value,key){persist(key,value);});
  }catch(e){}
- // Constant-size lookups only. Stop startup polling if this version is unsupported.
+ // Existing request hooks keep recording without a background UI timer.
+ if(!visual&&proxy&&pending.size===0)return;
  if((proxy&&(!options.wagerEnabled||label))||Date.now()-start<300000)timer=setTimeout(tick,proxy&&(!options.wagerEnabled||label)?2500:300);
 }
-window.addEventListener('pagehide',function(){stopped=true;if(timer)clearTimeout(timer);});
-window.addEventListener('pageshow',function(){stopped=false;start=Date.now();tick();});
+function resumeVisuals(){
+ if(stopped||visualPaused())return;
+ history.configure();refreshLabel();tick();
+}
+window.addEventListener('pagehide',function(){stopped=true;if(timer){clearTimeout(timer);timer=null;}});
+window.addEventListener('pageshow',function(){stopped=false;start=Date.now();resumeVisuals();});
+document.addEventListener('visibilitychange',function(){if(document.hidden)tick();else resumeVisuals();});
+window.addEventListener('mint-geetest-priority',function(event){if(event.detail&&event.detail.active===true)tick();else resumeVisuals();});
 function configureGame(){
- options=gameOptions();history.configure();
+ options=gameOptions();history.configure();start=Date.now();
  if(label&&alive(label.node))label.node.active=options.wagerEnabled;
  tick();
 }
@@ -756,8 +939,25 @@ tick();
  const bridge = window.MintGeeTestAndroid;
  if (!bridge || typeof bridge.begin !== 'function') return;
  let busy = false, stopped = false, suppressed = false, hiddenSince = 0, epoch = 0;
+ let opening=false,priorityCanceled=false,lastNavigation=location.href;
+ const childPriorities=new Map();
+ function updatePriority(){
+  for(const [source,frame] of childPriorities)if(!frame.isConnected||frame.contentWindow!==source)childPriorities.delete(source);
+  const active=!stopped&&!document.hidden&&!priorityCanceled&&(busy||opening||childPriorities.size>0);
+  if(window.__mintGeeTestPriority===active)return;
+  window.__mintGeeTestPriority=active;
+  window.dispatchEvent(new CustomEvent('mint-geetest-priority',{detail:{active}}));
+  if(window!==window.parent)parent.postMessage({mintGeeTest:22,kind:'priority',id:'priority',active},'*');
+ }
+ function checkNavigation(){
+  if(lastNavigation===location.href)return false;
+  lastNavigation=location.href;epoch++;suppressed=false;hiddenSince=0;priorityCanceled=true;childPriorities.clear();
+  for(const id of pending)bridge.cancel(id);
+  clearRelays();stopAppearance();updatePriority();
+  return true;
+ }
  const pending = new Set();
- function alive() { if (stopped || document.hidden) throw Error('paused'); }
+ function alive() { checkNavigation();if(priorityCanceled)throw Error('navigation');if(stopped||document.hidden)throw Error('paused'); }
  async function sleep(ms) { await new Promise(r => setTimeout(r, ms)); alive(); }
  function visible(el) {
   if (!el || !el.isConnected) return false;
@@ -819,6 +1019,13 @@ tick();
  }
  window.addEventListener('message',async event=>{
   const m=event.data;if(!m||m.mintGeeTest!==22||typeof m.id!=='string'||m.id.length>100)return;
+  if(m.kind==='priority'){
+   if(typeof m.active!=='boolean')return;
+   const frame=Array.from(document.querySelectorAll('iframe,frame')).find(node=>node.contentWindow===event.source);
+   if(!frame||!frame.isConnected)return;
+   if(m.active)childPriorities.set(event.source,frame);else childPriorities.delete(event.source);
+   updatePriority();return;
+  }
   if(m.kind==='ack') {
    if(event.source!==parent)return;
    const waiter=relays.get(m.id);if(!waiter)return;relays.delete(m.id);clearTimeout(waiter.timer);m.ok?waiter.resolve():waiter.reject(Error('frame-gesture'));return;
@@ -923,6 +1130,7 @@ tick();
  }
  async function inspect() {
   if(busy||stopped||document.hidden)return;
+  checkNavigation();priorityCanceled=false;
   try {
    if(!document.querySelector('[class*=geetest_]')||!opened()) {
     if(!hiddenSince)hiddenSince=Date.now();
@@ -931,7 +1139,7 @@ tick();
    }
    hiddenSince=0;if(suppressed)return;
    // Start on the first ready DOM state; no fixed opening delay.
-   busy=true;
+   busy=true;opening=false;updatePriority();
    let result;
    if(ninePresent()&&ready('[class*=geetest_item_img]'))result=await solveNine();
    else if(clickPresent()&&ready('[class*=geetest_bg]'))result=await solveClick();
@@ -939,33 +1147,120 @@ tick();
    else return;
    suppressed=true;
    console.info('[Mint GeeTest]',result?'painel fechado':'tentativas encerradas');
-  }catch(error){if(!document.hidden&&!stopped){suppressed=true;console.info('[Mint GeeTest] integração indisponível:',error.message);}}
-  finally{busy=false;}
+  }catch(error){if(!document.hidden&&!stopped&&!priorityCanceled){suppressed=true;console.info('[Mint GeeTest] integração indisponível:',error.message);}}
+  finally{busy=false;updatePriority();if(priorityCanceled&&!stopped&&!document.hidden)schedule();}
  }
  let scheduled=false,appearanceFrame=0,appearanceDeadline=0;
+ function stopAppearance(){
+  if(appearanceFrame){cancelAnimationFrame(appearanceFrame);appearanceFrame=0;}
+  opening=false;updatePriority();
+ }
  function followAppearance(){
-  if(appearanceFrame||busy||stopped||suppressed||document.hidden)return;
+  if(appearanceFrame)return;
+  if(busy||stopped||suppressed||document.hidden){opening=false;updatePriority();return;}
   if(!appearanceDeadline)appearanceDeadline=performance.now()+5000;
-  if(performance.now()>=appearanceDeadline)return;
+  if(performance.now()>=appearanceDeadline){opening=false;updatePriority();return;}
   const pending=Array.from(document.querySelectorAll('[class*=geetest_panel],[class*=geetest_box],[class*=geetest_window],[class*=geetest_slice_bg],[class*=geetest_item_img]')).some(el=>{
    const r=el.getBoundingClientRect(),s=getComputedStyle(el);return r.width>2&&r.height>2&&s.display!=='none';
   });
-  if(!pending)return;
+  if(!pending){opening=false;updatePriority();return;}
+  opening=true;updatePriority();
   appearanceFrame=requestAnimationFrame(()=>{appearanceFrame=0;inspect();followAppearance();});
  }
  function schedule(){
-  if(scheduled||busy||stopped)return;
+  checkNavigation();
+  if(scheduled||busy||stopped||document.hidden)return;
   scheduled=true;Promise.resolve().then(()=>{scheduled=false;inspect();followAppearance();});
  }
- const observer=new MutationObserver(()=>{appearanceDeadline=0;schedule();});
- function watch(){if(document.documentElement){observer.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style','src']});schedule();}}
+ // Keep discovery immediate on every route. Outside registration, only mounted
+ // challenge subtrees and their visibility ancestors need style/src observation.
+ const challengeSelector='[class*=geetest_]';
+ let watchedRoots=[],watchedAncestors=[],registrationWatch=null,heartbeat=0;
+ function registration(){return /(?:^|[\/#])register(?:[\/?#]|$)/i.test(location.pathname+location.hash);}
+ function insideChallenge(node){return !!(node&&node.nodeType===1&&(node.matches(challengeSelector)||node.closest(challengeSelector)));}
+ function related(node){
+  if(insideChallenge(node))return true;
+  return !!(node&&node.nodeType===1&&watchedRoots.some(root=>node.contains(root)));
+ }
+ function hasChallenge(node){return !!(node&&node.nodeType===1&&(node.matches(challengeSelector)||node.querySelector(challengeSelector)));}
+ function sameNodes(a,b){return a.length===b.length&&a.every((node,index)=>node===b[index]);}
+ const detailObserver=new MutationObserver(records=>{
+  if(stopped||document.hidden)return;
+  if(records.some(record=>related(record.target))){appearanceDeadline=0;schedule();}
+ });
+ function syncWatch(force=false){
+  const nextRegistration=registration();
+  if(!force&&nextRegistration===registrationWatch)return;
+  const roots=Array.from(document.querySelectorAll(challengeSelector)).filter(node=>!node.parentElement||!node.parentElement.closest(challengeSelector));
+  const ancestors=[],seen=new Set();
+  for(const root of roots)for(let node=root.parentElement;node;node=node.parentElement){
+   if(!seen.has(node)){seen.add(node);ancestors.push(node);}
+  }
+  if(nextRegistration===registrationWatch&&sameNodes(roots,watchedRoots)&&sameNodes(ancestors,watchedAncestors))return;
+  detailObserver.disconnect();registrationWatch=nextRegistration;watchedRoots=roots;watchedAncestors=ancestors;
+  if(nextRegistration){
+   detailObserver.observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['style','src']});
+  }else{
+   for(const root of roots)detailObserver.observe(root,{subtree:true,attributes:true,attributeFilter:['style','src']});
+   for(const ancestor of ancestors)detailObserver.observe(ancestor,{attributes:true,attributeFilter:['style']});
+  }
+ }
+ const discoveryObserver=new MutationObserver(records=>{
+  if(stopped||document.hidden)return;
+  let changed=false,rescope=registration()!==registrationWatch;
+  for(const record of records){
+   const target=record.target;
+   if(record.type==='attributes'){
+    if(related(target))changed=true;
+    if(target.nodeType===1){
+     const own=target.matches(challengeSelector),top=own&&(!target.parentElement||!target.parentElement.closest(challengeSelector));
+     if(top&&!watchedRoots.includes(target)||!own&&watchedRoots.includes(target)){rescope=true;changed=true;}
+    }
+   }else{
+    if(insideChallenge(target))changed=true;
+    if(watchedRoots.length&&target.nodeType===1&&target.tagName==='STYLE')changed=true;
+    for(const node of [...record.addedNodes,...record.removedNodes]){
+     if(hasChallenge(node)){rescope=true;changed=true;}
+     if(watchedRoots.length&&node.nodeType===1&&(node.tagName==='STYLE'||node.tagName==='LINK'))changed=true;
+    }
+   }
+  }
+  if(rescope)syncWatch(true);
+  if(childPriorities.size)updatePriority();
+  if(changed||rescope){appearanceDeadline=0;schedule();}
+ });
+ function startHeartbeat(){if(!heartbeat&&!stopped&&!document.hidden)heartbeat=setInterval(()=>{syncWatch();schedule();},1500);}
+ function stopHeartbeat(){if(heartbeat){clearInterval(heartbeat);heartbeat=0;}}
+ function watch(){
+  if(!document.documentElement)return;
+  discoveryObserver.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+  registrationWatch=null;syncWatch(true);startHeartbeat();schedule();
+ }
  if(document.documentElement)watch();else document.addEventListener('DOMContentLoaded',watch,{once:true});
- // CSS-only transitions need not create a DOM mutation. Follow their frames
- // while a challenge is opening, then leave only a low-frequency fallback.
- const heartbeat=setInterval(schedule,1500);
- ['transitionrun','transitionstart','transitionend','animationstart','animationend','load'].forEach(type=>document.addEventListener(type,()=>{appearanceDeadline=0;schedule();},true));
- document.addEventListener('visibilitychange',()=>{if(document.hidden){epoch++;for(const id of pending)bridge.cancel(id);clearRelays();}else schedule();});
- window.addEventListener('pagehide',()=>{stopped=true;epoch++;observer.disconnect();if(appearanceFrame){cancelAnimationFrame(appearanceFrame);appearanceFrame=0;}for(const id of pending)bridge.cancel(id);clearRelays();});
+ // CSS transitions and resource loads still wake a mounted challenge immediately.
+ ['transitionrun','transitionstart','transitionend','animationstart','animationend','load'].forEach(type=>document.addEventListener(type,event=>{
+  const node=event.target;
+  if(related(node)||hasChallenge(node)||watchedRoots.length&&node&&node.tagName==='LINK'){
+   syncWatch();appearanceDeadline=0;schedule();
+  }
+ },true));
+ function navigationChanged(){
+  if(!checkNavigation())return;
+  syncWatch(true);appearanceDeadline=0;schedule();
+ }
+ ['pushState','replaceState'].forEach(name=>{
+  const original=history[name];
+  history[name]=function(){const result=original.apply(this,arguments);navigationChanged();return result;};
+ });
+ ['popstate','hashchange'].forEach(type=>window.addEventListener(type,navigationChanged));
+ document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){epoch++;priorityCanceled=true;stopHeartbeat();stopAppearance();for(const id of pending)bridge.cancel(id);clearRelays();updatePriority();}
+  else{syncWatch(true);startHeartbeat();schedule();}
+ });
+ window.addEventListener('pagehide',()=>{
+  stopped=true;epoch++;priorityCanceled=true;childPriorities.clear();discoveryObserver.disconnect();detailObserver.disconnect();stopHeartbeat();stopAppearance();
+  for(const id of pending)bridge.cancel(id);clearRelays();updatePriority();
+ });
  window.addEventListener('pageshow',()=>{if(stopped){stopped=false;suppressed=false;watch();}});
  function ninePresent(){
 

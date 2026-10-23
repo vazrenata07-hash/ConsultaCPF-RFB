@@ -9,7 +9,7 @@
       "http",
       "https"
     ],
-    "scope": "subresources only under 888pg.cc or its subdomains; never top-level navigation"
+    "scope": "WebView subresources under 888pg.cc or subdomains; service-worker API24 requests match only the nine exact captured CDN artwork paths without a WebView page parameter; main-frame requests always bypass."
   },
   "rules": [
     {
@@ -599,5 +599,6 @@
     "No scripts, CSS bundles, APIs, fonts, entire hosts, path prefixes, query patterns or GeeTest/security resources are blocked.",
     "No claim of zero popup-related network traffic: only these nine observed exclusive artwork paths are eligible. Cosmetic closure rules must still handle component containers.",
     "Exclusivity is established against this capture, not unknown future site layouts."
-  ]
+  ],
+  "runtime_system": "Existing MODmint MintAdResources bridge retained; seeds are compiled in AdResources.java. Additional image URLs may be learned after their first load by the original bridge."
 }

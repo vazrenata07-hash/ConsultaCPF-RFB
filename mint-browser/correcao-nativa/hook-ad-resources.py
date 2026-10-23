@@ -1,4 +1,4 @@
-"""Inject exact resource filtering into both native-adblock and normal client paths.
+"""Connect the existing AdResources system before delegates in both WebView clients.
 No legacy String interception: that callback cannot reliably identify main frames.
 """
 from pathlib import Path
@@ -9,10 +9,10 @@ f=root/'smali_classes2/com/miui/org/chromium/chrome/browser/webview/f.smali'
 s=e.read_text()
 match=re.search(r'\.method public shouldInterceptRequest\(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;\)Landroid/webkit/WebResourceResponse;\n[\s\S]*?\.end method',s)
 assert match
-method=match.group();assert 'CapturedResourceBlocker;' not in method
+method=match.group();assert 'AdResources;' not in method
 anchor='    .line 1\n'
 assert anchor in method
-hook='''    invoke-static {p1, p2}, Lcom/mint/rebuilt/CapturedResourceBlocker;->intercept(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
+hook='''    invoke-static {p1, p2}, Lcom/mint/rebuilt/AdResources;->intercept(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
     move-result-object v0
     if-eqz v0, :mint_resource_allowed
     return-object v0
@@ -29,7 +29,7 @@ s+='''
 # Always-active request filtering when the native adblock switch is off.
 .method public shouldInterceptRequest(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
     .locals 1
-    invoke-static {p1, p2}, Lcom/mint/rebuilt/CapturedResourceBlocker;->intercept(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
+    invoke-static {p1, p2}, Lcom/mint/rebuilt/AdResources;->intercept(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
     move-result-object v0
     if-eqz v0, :mint_resource_allowed
     return-object v0
@@ -48,8 +48,8 @@ for path in [e,f]:
  s=path.read_text()
  match=re.search(r'\.method public onPageStarted\(Landroid/webkit/WebView;Ljava/lang/String;Landroid/graphics/Bitmap;\)V\n[\s\S]*?\.end method',s)
  assert match,path
- method=match.group();assert 'CapturedResourceBlocker;' not in method
+ method=match.group();assert 'AdResources;' not in method
  anchor='    .line 1\n';assert anchor in method
- method=method.replace(anchor,'    invoke-static {p1, p2}, Lcom/mint/rebuilt/CapturedResourceBlocker;->pageStarted(Landroid/webkit/WebView;Ljava/lang/String;)V\n\n'+anchor,1)
+ method=method.replace(anchor,'    invoke-static {p1, p2}, Lcom/mint/rebuilt/AdResources;->pageStarted(Landroid/webkit/WebView;Ljava/lang/String;)V\n\n'+anchor,1)
  path.write_text(s[:match.start()]+method+s[match.end():])
 print('Patched only request and page-start methods in native e and normal f clients.')

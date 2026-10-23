@@ -1,74 +1,63 @@
 {
-  "apk": "Mint-Browser-v26.9-Filtros-Capturados.apk",
-  "sha256": "89d821b2f2ec59ee8392a7947a06f2450ab952170b810f939777c84d20fd26ec",
-  "base_apk": "Mint-Browser-v26.8-PIN-Confirmacao.apk",
+  "apk": "Mint-Browser-v26.10-Base-MODmint-Bloqueio.apk",
+  "sha256": "210994808b6427d5dbb923586c8faa4375ba8e7a97f09d1feb1d981fdbdea861",
+  "base_apk": "MODmint.apk",
+  "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
+  "base_sha256": "5b97834977f14b779635b02baa131c6ac23c42d2e50005b79020173b07b2fa87",
+  "base_certificate_sha256": "3f9e5471fbc31de4b8302b554064d9110d7138a7fc7ddcc2934f47ac65870e13",
+  "base_signature_verified": [
+    "v1",
+    "v2",
+    "v3"
+  ],
+  "signing_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
+  "new_signing_key_authorized_by_user": true,
+  "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
     "assets/mint-rebuilt.js",
-    "assets/captured-resource-rules.json",
     "classes.dex",
     "classes2.dex",
     "classes3.dex"
   ],
-  "pin": {
-    "compatible_legacy_method_restored": true,
-    "internal_vue_model_requirement_removed": true,
-    "setup_activates_each_field_before_filling": true,
-    "setup_untouched_fields_priority_and_bounded_retries": true,
-    "fixed_typing_delays_removed": true,
-    "automatic_form_submissions": false
+  "preserved_by_construction": {
+    "all_js_from_function_register_onward": true,
+    "preserved_js_suffix_sha256": "c7cc36d0dddf6c299c0ff47d44897bfed9e80c27485a0dd7d82a84f020e569a9",
+    "pin_setup_together": true,
+    "pin_typing_delays": true,
+    "proxy": true,
+    "settings": true,
+    "mines": true,
+    "geetest_classes4_dex_bytes": true,
+    "manifest_resources_libraries_and_other_assets": true
   },
-  "cloudflare_dns_removed": true,
-  "proxy": {
-    "protocols": [
-      "http",
-      "https",
-      "socks5"
-    ],
-    "username_password_supported": true,
-    "default_enabled": false,
-    "configuration": "native gear settings dialog",
-    "activation": "address-bar Proxy button",
-    "long_press": "open proxy settings",
-    "destination_dns": "delegated to configured upstream proxy",
-    "upstream_https_certificate_validation": true,
-    "webpage_tls_interception": false,
-    "direct_fallback_on_proxy_failure": false,
-    "credentials_injected_into_page_scripts": false
+  "filters": {
+    "replaces_old_capture_catalog": true,
+    "all_explicit_captured_closures_included": true,
+    "physical_close_gestures": 15,
+    "component_families": 9,
+    "exact_seeded_artwork_paths": 9,
+    "existing_MintAdResources_system_retained": true,
+    "native_WebView_interception_both_clients": true,
+    "always_active_independent_of_native_adblock_switch": true,
+    "service_worker_api24_seeded_paths_only": true,
+    "query_parameters_ignored": true,
+    "CDN_referer_no_longer_overrides_known_888_top_page": true,
+    "early_CSS_precise_selectors": true,
+    "dynamic_learning_from_original_base_retained": true,
+    "old_learned_rules_persisted_on_disk": false,
+    "limitations": "Only recorded URLs are preseeded. Previously unknown artwork can be learned by the original bridge after its first load. No dedicated JS/CSS/API URLs for every promotion are present in the DOM capture; no claim of eliminating all promotional bytes."
   },
-  "toolbar_address_bar_shrink_percent": 0,
-  "root_final_sections": [
-    "Privacidade e segurança",
-    "Avançado"
-  ],
-  "configuration_schema": 2,
-  "internal_clear_preserves_custom_settings": true,
-  "game_history_counter_and_geetest_source_preserved": true,
-  "manifest_resources_matrix_and_native_geetest_dex_retained": true,
   "build": {
-    "apk_repacked": true,
-    "native_dex_recompiled": true,
-    "native_dex_unchanged": false,
     "javascript_parsed_without_execution": true,
+    "native_changed_classes_compiled": true,
+    "apk_repacked_from_user_base": true,
+    "zipaligned": true,
     "signature_verified": [
       "v1",
       "v2",
       "v3"
-    ],
-    "zipaligned": true
+    ]
   },
-  "signing_certificate_sha256": "1e08a903aef9c3a721510b64ec764d01d3d094eb954161b62544ea8f187b5953",
-  "tests_skipped_reason": "User explicitly reserved all tests; no functional tests, fixtures, website or withdrawal executed.",
-  "captured_filters": {
-    "replaces_previous_custom_filter_catalog": true,
-    "all_explicit_captured_closures_included": true,
-    "physical_close_gestures": 15,
-    "unique_component_families": 9,
-    "exact_image_network_rules": 9,
-    "always_active": true,
-    "network_scope": "888pg.cc pages, exact image host and path, subresources only",
-    "capture_limitation": "DOM summaries omit original URLs for inline/data images and some CSS backgrounds; download blocking covers identified URLs only."
-  },
-  "pin_unchanged_from_v268": true,
-  "tests_executed_for_v269": false,
-  "proxy_unchanged_from_v268": true
+  "functional_tests_executed": false,
+  "tests_skipped_reason": "User reserved all functional tests. Only compilation, source/ZIP inspection and requested signature verification were performed."
 }
