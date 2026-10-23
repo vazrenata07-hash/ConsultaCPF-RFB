@@ -1,9 +1,13 @@
 {
-  "apk": "Mint-Browser-v26.8-PIN-Confirmacao.apk",
-  "sha256": "ebb44ede616207306786fa78a5af788b306447241681e005ffc5191b9635074e",
-  "base_apk": "Mint-Browser-v26.7-Proxy-PIN.apk",
+  "apk": "Mint-Browser-v26.9-Filtros-Capturados.apk",
+  "sha256": "89d821b2f2ec59ee8392a7947a06f2450ab952170b810f939777c84d20fd26ec",
+  "base_apk": "Mint-Browser-v26.8-PIN-Confirmacao.apk",
   "changed_components": [
-    "assets/mint-rebuilt.js"
+    "assets/mint-rebuilt.js",
+    "assets/captured-resource-rules.json",
+    "classes.dex",
+    "classes2.dex",
+    "classes3.dex"
   ],
   "pin": {
     "compatible_legacy_method_restored": true,
@@ -42,8 +46,8 @@
   "manifest_resources_matrix_and_native_geetest_dex_retained": true,
   "build": {
     "apk_repacked": true,
-    "native_dex_recompiled": false,
-    "native_dex_unchanged": true,
+    "native_dex_recompiled": true,
+    "native_dex_unchanged": false,
     "javascript_parsed_without_execution": true,
     "signature_verified": [
       "v1",
@@ -54,6 +58,17 @@
   },
   "signing_certificate_sha256": "1e08a903aef9c3a721510b64ec764d01d3d094eb954161b62544ea8f187b5953",
   "tests_skipped_reason": "User explicitly reserved all tests; no functional tests, fixtures, website or withdrawal executed.",
-  "tests_executed_for_v268": false,
-  "native_dex_and_proxy_retained_from_v267": true
+  "captured_filters": {
+    "replaces_previous_custom_filter_catalog": true,
+    "all_explicit_captured_closures_included": true,
+    "physical_close_gestures": 15,
+    "unique_component_families": 9,
+    "exact_image_network_rules": 9,
+    "always_active": true,
+    "network_scope": "888pg.cc pages, exact image host and path, subresources only",
+    "capture_limitation": "DOM summaries omit original URLs for inline/data images and some CSS backgrounds; download blocking covers identified URLs only."
+  },
+  "pin_unchanged_from_v268": true,
+  "tests_executed_for_v269": false,
+  "proxy_unchanged_from_v268": true
 }

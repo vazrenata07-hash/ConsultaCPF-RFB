@@ -1,0 +1,67 @@
+--- v26.8/assets/mint-rebuilt.js
++++ v26.9/assets/mint-rebuilt.js
+@@ -17,29 +17,29 @@
+ }
+ var options=userOptions();
+ var d=document,tag='data-mint17-ad',style=d.createElement('style');
+-var security='[class*="captcha" i],[id*="captcha" i],[class*="geetest" i],[class*="yidun" i],[class*="turnstile" i],[class*="hcaptcha" i],[class*="_moreInterception_1s3a2_"]';
++var security='[class*="captcha" i],[id*="captcha" i],[class*="geetest" i],[class*="yidun" i],[class*="turnstile" i],[class*="hcaptcha" i]';
+ var username='',wasRegister=false,visit=0,written=new WeakMap(),passwordWritten=new WeakSet();
+-// These are component signatures observed in the user's 16 October capture.
+-// No generic dialog, close-button, gift, envelope or geometry classification.
++// Cosmetic signatures from the 23 October capture replace the prior catalog.
++// Only captured native close/cancel controls are used; open/claim controls are untouched.
+ var rules=[
+- {name:'registration-promotion',selector:'.ui-dialog[class*="_registerRechargeDialog_11sp7_"]',close:'[class*="_closeIcon_11sp7_"]'},
+- {name:'app-download',selector:'.ui-dialog[class*="_download_1dot2_"]'},
+- {name:'advertisement-carousel',selector:'.ui-dialog[class*="_modal_dtape_"]',child:'[class*="_main_y93eo_"]'},
+- {name:'prize-wheel-promotion',selector:'.ui-dialog[class*="_slashDialogBox_1uifh_"]'},
+- {name:'prize-choice-promotion',selector:'.ui-dialog[class*="_dialogBox_16fxx_"]',child:'[class*="_main_1mmwx_"]'},
+- {name:'task-promotion',selector:'.ui-dialog[class*="_dialogBox_1t5m3_"]'},
+- {name:'find-us-promotion',selector:'.ui-dialog[class*="_find-us_17o64_"]'},
+- {name:'push-promotion',selector:'.notic-user-tip-warp',close:'.web-push-tip-cancel'}
++ {"name":"registration-deposit-promotion","selector":".ui-dialog._registerRechargeDialog_r9snw_89","child":"._registerRecharge_r9snw_89","close":"._closeIcon_r9snw_102"},
++ {"name":"app-install-promotion","selector":".ui-dialog._download_1yp2y_89","child":"._content_1yp2y_101","close":".ui-dialog-close-box__icon"},
++ {"name":"promotional-carousel","selector":".ui-dialog._modal_203gm_89","child":"._main_1ju3l_89","close":"img._closeBtn_1ju3l_243"},
++ {"name":"slash-wheel-promotion","selector":".ui-dialog._dialogBox_mwqhm_89._slashDialogBox_mwqhm_99.slash-once-dialog-box","close":".ui-dialog-close-box__icon"},
++ {"name":"task-invitation-promotion","selector":".ui-dialog._dialogBox_1r6g9_89","child":"._dialog-container_1r6g9_150","close":".ui-dialog-close-box__icon"},
++ {"name":"push-permission-promotion","selector":".notic-user-tip-warp","child":".button-warp .web-push-tip-cancel","close":".web-push-tip-cancel"},
++ {"name":"find-us-install-promotion","selector":".ui-dialog._find-us_ly0vd_89","child":"._content-box_ly0vd_129","close":".ui-dialog-close-box__icon"},
++ {"name":"captured-verification-close","selector":".ui-dialog._moreInterception_t9upy_89","child":".ui-dialog-close-box__icon","close":".ui-dialog-close-box__icon","explicitCapturedClose":true},
++ {"name":"dismissible-floating-promotion","selector":".float-bar-main ._fastBtn_reqh0_97","child":"img._closeIcon_reqh0_139","close":"img._closeIcon_reqh0_139"}
+ ];
+-style.textContent='.float-bar-main .fast-entry-item{display:none!important}['+tag+'],['+tag+'] *{visibility:hidden!important;pointer-events:none!important}';
++style.textContent='['+tag+'],['+tag+'] *{visibility:hidden!important;pointer-events:none!important}';
+ function protectedDialog(el){
+  return !!el.querySelector(security)||el.matches(security)||
+  /\babrir\b|b[oô]nus de (?:login|aposta)/i.test(el.textContent||'')||
+  !!el.querySelector('input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),textarea');
+ }
+ var attempts=new WeakMap(),marked=new Set();
+-function dismiss(root,node,rule){
+- var close=node.querySelector(rule.close||'.ui-dialog-close-box__icon');
++function dismiss(root,node,rule,close){
+  if(!close||typeof close.click!=='function')return;
+  var state=attempts.get(root);
+  if(!state||state.control!==close){state={control:close,count:0,last:0};attempts.set(root,state);}
+@@ -61,14 +61,17 @@
+   for(var j=0;j<nodes.length;j++){
+    var node=nodes[j];if(rule.child&&!node.querySelector(rule.child))continue;
+    var root=node.closest('.ui-overlay')||node;
+-   if(protectedDialog(root))continue;
+-   current.set(root,{node:node,rule:rule});
++   // Hidden cached dialogs leave the active set so reopening resets close attempts.
++   // This exact captured dialog was explicitly dismissed by its native X; never answer its contents.
++   if(root.style.display==='none'||!root.getClientRects().length||(!rule.explicitCapturedClose&&protectedDialog(root)))continue;
++   current.set(root,{node:node,rule:rule,close:node.querySelector(rule.close)});
+   }
+  }
+  marked.forEach(function(root){if(!current.has(root)){root.removeAttribute(tag);attempts.delete(root);marked.delete(root);}});
+  current.forEach(function(item,root){if(root.getAttribute(tag)!==item.rule.name)root.setAttribute(tag,item.rule.name);marked.add(root);});
+  // Keep the whitelist of controls separate from all user click handling.
+- current.forEach(function(item,root){dismiss(root,item.node,item.rule);});
++ var controls=new Set();
++ current.forEach(function(item,root){if(!item.close||controls.has(item.close))return;controls.add(item.close);dismiss(root,item.node,item.rule,item.close);});
+ }
+ function register(){return /(?:^|[\/#])register(?:[\/?#]|$)/i.test(location.pathname+location.hash)}
+ function accountFlow(){return /(?:^|[\/#])(?:register|login|signup|signin|verify|captcha)(?:[\/?#]|$)/i.test(location.pathname+location.hash)}

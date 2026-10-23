@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1975778841919414274.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-left-swiper"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/2074396334160871425.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-left-scroll"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg6209349987905338.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-scroll"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg16149321187557365.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-swiper"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1960623849435095042.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-swiper"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg11755836762171453.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-swiper"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1896064761045774337.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed promotion-carousel-first"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1925138707392065538.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed promotion-carousel-second"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1893861292589678593.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed app-download-promotion"
+    }
+  ]
+}

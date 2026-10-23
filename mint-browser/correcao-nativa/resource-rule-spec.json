@@ -1,0 +1,603 @@
+{
+  "version": 1,
+  "captureSource": "user-provided DOM observer capture (raw capture is private)",
+  "match": {
+    "host": "exact lower-case hostname",
+    "path": "exact encoded path, case sensitive",
+    "query": "ignored because capture cleanPath removed it",
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "scope": "subresources only under 888pg.cc or its subdomains; never top-level navigation"
+  },
+  "rules": [
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1975778841919414274.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-left-swiper",
+      "sourcePopup": "floating-left-swiper",
+      "closeInteractionIds": [
+        27,
+        28
+      ],
+      "evidence": [
+        {
+          "event": "popup_seen",
+          "seq": 277,
+          "containerId": 97,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 278,
+          "containerId": 98,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 279,
+          "containerId": 99,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_hidden",
+          "seq": 315,
+          "containerId": 99,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/2074396334160871425.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-left-scroll",
+      "sourcePopup": "floating-left-scroll",
+      "closeInteractionIds": [
+        29,
+        30
+      ],
+      "evidence": [
+        {
+          "event": "popup_seen",
+          "seq": 274,
+          "containerId": 94,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 275,
+          "containerId": 95,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 276,
+          "containerId": 96,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_hidden",
+          "seq": 338,
+          "containerId": 96,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97._leftFloat_reqh0_158 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg6209349987905338.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-scroll",
+      "sourcePopup": "floating-right-scroll",
+      "closeInteractionIds": [
+        31,
+        32
+      ],
+      "evidence": [
+        {
+          "event": "popup_seen",
+          "seq": 286,
+          "containerId": 106,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 287,
+          "containerId": 107,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 288,
+          "containerId": 108,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_hidden",
+          "seq": 347,
+          "containerId": 108,
+          "selector": "div._main_jlvsk_89.float-bar-scroll-content > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg16149321187557365.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-swiper",
+      "sourcePopup": "floating-right-swiper",
+      "closeInteractionIds": [
+        41,
+        42
+      ],
+      "evidence": [
+        {
+          "event": "popup_seen",
+          "seq": 289,
+          "containerId": 109,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 290,
+          "containerId": 110,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 291,
+          "containerId": 111,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        },
+        {
+          "event": "popup_hidden",
+          "seq": 497,
+          "containerId": 111,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(1) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1960623849435095042.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-swiper",
+      "sourcePopup": "floating-right-swiper",
+      "closeInteractionIds": [
+        41,
+        42
+      ],
+      "evidence": [
+        {
+          "event": "popup_hidden",
+          "seq": 500,
+          "containerId": 114,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(2) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg11755836762171453.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed floating-right-swiper",
+      "sourcePopup": "floating-right-swiper",
+      "closeInteractionIds": [
+        41,
+        42
+      ],
+      "evidence": [
+        {
+          "event": "popup_hidden",
+          "seq": 506,
+          "containerId": 120,
+          "selector": "div.ui-swipe-item.swiper-slide.swiper-slide-active._swiperSlide_14h8a_93:nth-of-type(3) > div._entry-item_reqh0_89 > div._fastBtn_reqh0_97 > div.lobby-image.lobby-image--use-bg._fastBackground_reqh0_110:nth-of-type(1) > img.lobby-image._fastImg_reqh0_115"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1896064761045774337.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed promotion-carousel-first",
+      "sourcePopup": "promotion-carousel-first",
+      "closeInteractionIds": [
+        7,
+        8
+      ],
+      "evidence": [
+        {
+          "event": "popup_seen",
+          "seq": 38,
+          "containerId": 20,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89:nth-of-type(1) > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 39,
+          "containerId": 21,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89:nth-of-type(1) > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 40,
+          "containerId": 22,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89:nth-of-type(1) > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 41,
+          "containerId": 23,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89:nth-of-type(1) > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 42,
+          "containerId": 24,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89:nth-of-type(1) > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_hidden",
+          "seq": 99,
+          "containerId": 24,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89:nth-of-type(1) > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1925138707392065538.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed promotion-carousel-second",
+      "sourcePopup": "promotion-carousel-second",
+      "closeInteractionIds": [
+        23,
+        24
+      ],
+      "evidence": [
+        {
+          "event": "popup_hidden",
+          "seq": 100,
+          "containerId": 25,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89:nth-of-type(2) > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 234,
+          "containerId": 75,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89 > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 235,
+          "containerId": 76,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89 > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 236,
+          "containerId": 77,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89 > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 237,
+          "containerId": 78,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89 > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 240,
+          "containerId": 81,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89 > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        },
+        {
+          "event": "popup_hidden",
+          "seq": 265,
+          "containerId": 81,
+          "selector": "section._list-slide-layout_eo0sz_90._scroll-box-transform_eo0sz_115._swiperTab_1ju3l_106 > div._list-slide-layout-inner_eo0sz_93._scroll-box-transform-inner_eo0sz_123 > div.ui-placeholder.ui-placeholder--container._tabContent_1urxr_89 > div._clickArea_1urxr_97 > img.lobby-image.lobby-image--skeleton._popupStyle3_1urxr_211"
+        }
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1893861292589678593.avif",
+      "reason": "Exclusive captured promotional artwork; manually closed app-download-promotion",
+      "sourcePopup": "app-download-promotion",
+      "closeInteractionIds": [
+        3,
+        4
+      ],
+      "evidence": [
+        {
+          "event": "popup_seen",
+          "seq": 19,
+          "containerId": 14,
+          "selector": "div.ui-dialog__main:nth-of-type(1) > div.ui-dialog__content > div._main_jlvsk_89.lobby-scroll.lobby-scroll--y.lobby-scroll--is-desktop.ps > div._info_4actm_89.ui-install-common-title__info:nth-of-type(1) > img.lobby-image"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 20,
+          "containerId": 15,
+          "selector": "div.ui-dialog__main:nth-of-type(1) > div.ui-dialog__content > div._main_jlvsk_89.lobby-scroll.lobby-scroll--y.lobby-scroll--is-desktop.ps > div._info_4actm_89.ui-install-common-title__info:nth-of-type(1) > img.lobby-image"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 21,
+          "containerId": 16,
+          "selector": "div.ui-dialog__main:nth-of-type(1) > div.ui-dialog__content > div._main_jlvsk_89.lobby-scroll.lobby-scroll--y.lobby-scroll--is-desktop.ps > div._info_4actm_89.ui-install-common-title__info:nth-of-type(1) > img.lobby-image"
+        },
+        {
+          "event": "popup_seen",
+          "seq": 22,
+          "containerId": 17,
+          "selector": "div.ui-dialog__main:nth-of-type(1) > div.ui-dialog__content > div._main_jlvsk_89.lobby-scroll.lobby-scroll--y.lobby-scroll--is-desktop.ps > div._info_4actm_89.ui-install-common-title__info:nth-of-type(1) > img.lobby-image"
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344739160437251.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344753832352460.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344863659858102.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg16113957184286495.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg3106148597547491.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1974058562277892098.avif",
+      "reason": "Captured in the ordinary home-page layout; no specific manual popup-closure evidence."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1974063119498240001.avif",
+      "reason": "Captured in the ordinary home-page layout; no specific manual popup-closure evidence."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1974067640095789057.avif",
+      "reason": "Captured in the ordinary home-page layout; no specific manual popup-closure evidence."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1974321116587507714.avif",
+      "reason": "Captured in the ordinary home-page layout; no specific manual popup-closure evidence."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/1974321263604477953.avif",
+      "reason": "Captured in the ordinary home-page layout; no specific manual popup-closure evidence."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/common/upload/2106711230326349826.avif",
+      "reason": "Captured in the ordinary home-page layout; no specific manual popup-closure evidence."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/active/chop_active_1.avif",
+      "reason": "Reward selection/wheel artwork overlaps protected functional prize-selection flows; no dedicated resource separation proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/active/chop_active_4.avif",
+      "reason": "Reward selection/wheel artwork overlaps protected functional prize-selection flows; no dedicated resource separation proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/active/style2/iconColor/style_2_vip_color4.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/active/style2/iconStyle/style_2_vip_style0.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/brandLogo/android_appstore/style1.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-35/common/_sprite/icon_dt_1xx_wd.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-35/web/home/icon_dt_pmd.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/_sprite/icon_dtfl_by_1.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/_sprite/icon_dtfl_dz_1.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/_sprite/icon_dtfl_qkl_1.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/_sprite/icon_dtfl_qp_1.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/_sprite/icon_dtfl_rm_1.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/_sprite/icon_dtfl_zr_1.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/web/home/apng_icon_yh.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/comm_icon_zdwm_bcwz.avif",
+      "reason": "Find-us window common UI icon; may be shared with functional contact/domain components."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/comm_icon_zdwm_title.avif",
+      "reason": "Find-us window common UI icon; may be shared with functional contact/domain components."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/img_emoji_dhm.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/img_emoji_tada.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/deposit/img_czjl_je.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/deposit/img_czjl_xs.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kjrk_icon_guanbi.avif",
+      "reason": "Shared close icon: blocking its download can remove close affordances from other windows."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/lihe/style1/xkyd_shou.avif",
+      "reason": "Reward selection/wheel artwork overlaps protected functional prize-selection flows; no dedicated resource separation proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/zpzy01/onlinegreen/xkyd_zp_03_1.avif",
+      "reason": "Reward selection/wheel artwork overlaps protected functional prize-selection flows; no dedicated resource separation proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/zpzy01/onlinegreen/xkyd_zp_03_2.avif",
+      "reason": "Reward selection/wheel artwork overlaps protected functional prize-selection flows; no dedicated resource separation proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/zpzy01/xkyd_icon_dl.avif",
+      "reason": "Reward selection/wheel artwork overlaps protected functional prize-selection flows; no dedicated resource separation proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/home/img_xzapp_jl.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_cz.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_yh.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/message/icon_message_gb.avif",
+      "reason": "Shared close icon: blocking its download can remove close affordances from other windows."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/profile/gif_profile_style1.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/profile/vip_bgdw.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/task/img_rw_mrrw.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/icon_rtf_gou.avif",
+      "reason": "Generic login/deposit/task/reward/install/common component asset; exclusivity to a dismissed promotion not proved."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1789956964002115585.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1797139425396682753.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1835523203652214785.avif",
+      "reason": "Captured in the ordinary home-page layout; no specific manual popup-closure evidence."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1893869799802908674.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1902000609936670722.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1918556665184161793.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1973280600280109058.avif",
+      "reason": "Belongs to the voluntarily opened Events page or its navigation rather than a dismissed popup."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/BRL.avif",
+      "reason": "Functional navigation, category, profile, VIP, currency or main logo asset."
+    }
+  ],
+  "limitations": [
+    "Only 61 distinct external image src paths were captured. No HAR, response bodies, resourceTiming, stylesheet background URLs or complete network log is present.",
+    "Many image src values are redacted placeholders [data:]; their original URLs cannot be recovered. Inline data/blob/SVG/Lottie resources are not network-blockable by these rules.",
+    "No scripts, CSS bundles, APIs, fonts, entire hosts, path prefixes, query patterns or GeeTest/security resources are blocked.",
+    "No claim of zero popup-related network traffic: only these nine observed exclusive artwork paths are eligible. Cosmetic closure rules must still handle component containers.",
+    "Exclusivity is established against this capture, not unknown future site layouts."
+  ]
+}

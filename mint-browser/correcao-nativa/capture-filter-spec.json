@@ -1,0 +1,224 @@
+{
+  "rules": [
+    {
+      "name": "registration-deposit-promotion",
+      "selector": ".ui-dialog._registerRechargeDialog_r9snw_89",
+      "child": "._registerRecharge_r9snw_89",
+      "close": "._closeIcon_r9snw_102",
+      "signatures": [
+        "_registerRechargeDialog_r9snw_89",
+        "_registerRecharge_r9snw_89",
+        "_closeIcon_r9snw_102"
+      ],
+      "interactionIDs": [
+        1,
+        2
+      ],
+      "reason": "One pointerdown/click pair on the explicit close control; the matching registration/deposit promotion subsequently becomes hidden. No form inputs were present in the captured promotion."
+    },
+    {
+      "name": "app-install-promotion",
+      "selector": ".ui-dialog._download_1yp2y_89",
+      "child": "._content_1yp2y_101",
+      "close": ".ui-dialog-close-box__icon",
+      "signatures": [
+        "_download_1yp2y_89",
+        "_scrollable_1yp2y_95",
+        "ui-install-common-title__info",
+        "ui-install-button__item"
+      ],
+      "interactionIDs": [
+        3,
+        4
+      ],
+      "reason": "One pointerdown/click pair on this dialog's own close icon, followed by hidden state of the matching app-install dialog. Scope the common close selector to this exact container."
+    },
+    {
+      "name": "promotional-carousel",
+      "selector": ".ui-dialog._modal_203gm_89",
+      "child": "._main_1ju3l_89",
+      "close": "img._closeBtn_1ju3l_243",
+      "signatures": [
+        "_modal_203gm_89",
+        "_main_1ju3l_89",
+        "_layout3_1ju3l_131",
+        "_closeBtn_1ju3l_243"
+      ],
+      "interactionIDs": [
+        7,
+        8,
+        23,
+        24
+      ],
+      "reason": "Two actual close gestures, each recorded as pointerdown/click, close initial and reopened single-tab variants of the same promotional carousel. Both matching dialogs later become hidden. Body interactions 5/6 are not closing evidence."
+    },
+    {
+      "name": "slash-wheel-promotion",
+      "selector": ".ui-dialog._dialogBox_mwqhm_89._slashDialogBox_mwqhm_99.slash-once-dialog-box",
+      "close": ".ui-dialog-close-box__icon",
+      "signatures": [
+        "_dialogBox_mwqhm_89",
+        "_slashDialogBox_mwqhm_99",
+        "slash-once-dialog-box"
+      ],
+      "interactionIDs": [
+        13,
+        14,
+        39,
+        40
+      ],
+      "reason": "Two close gestures on original and reopened versions of the same exact slash/wheel dialog; matching containers later become hidden. This rule does not include separately rendered prize-selection or verification dialogs."
+    },
+    {
+      "name": "task-invitation-promotion",
+      "selector": ".ui-dialog._dialogBox_1r6g9_89",
+      "child": "._dialog-container_1r6g9_150",
+      "close": ".ui-dialog-close-box__icon",
+      "signatures": [
+        "_dialogBox_1r6g9_89",
+        "_dialog-container_1r6g9_150",
+        "_tabs_1r6g9_167"
+      ],
+      "interactionIDs": [
+        15,
+        16
+      ],
+      "reason": "One pointerdown/click pair on the local close icon; the invitation/task promotion subsequently becomes hidden. Never activate its forward or series buttons."
+    },
+    {
+      "name": "push-permission-promotion",
+      "selector": ".notic-user-tip-warp",
+      "child": ".button-warp .web-push-tip-cancel",
+      "close": ".web-push-tip-cancel",
+      "signatures": [
+        "notic-user-tip-warp",
+        "button-warp",
+        "web-push-tip-cancel"
+      ],
+      "interactionIDs": [
+        17,
+        18
+      ],
+      "reason": "One pointerdown/click pair explicitly targets the notification prompt's cancellation control. This element was outside the recorder's tracked popup list, so its after-snapshot visibility is not available; cancellation semantics and its exact captured ancestors identify it."
+    },
+    {
+      "name": "find-us-install-promotion",
+      "selector": ".ui-dialog._find-us_ly0vd_89",
+      "child": "._content-box_ly0vd_129",
+      "close": ".ui-dialog-close-box__icon",
+      "signatures": [
+        "_find-us_ly0vd_89",
+        "_content-box_ly0vd_129",
+        "_download_12hu4_89"
+      ],
+      "interactionIDs": [
+        25,
+        26
+      ],
+      "reason": "One pointerdown/click pair on this exact find-us/download promotion's local close icon; its matching popup later becomes hidden."
+    },
+    {
+      "name": "dismissible-floating-promotion",
+      "selector": ".float-bar-main ._fastBtn_reqh0_97",
+      "child": "img._closeIcon_reqh0_139",
+      "close": "img._closeIcon_reqh0_139",
+      "signatures": [
+        "float-bar-main",
+        "_entry-item_reqh0_89",
+        "_fastBtn_reqh0_97",
+        "_closeIcon_reqh0_139"
+      ],
+      "interactionIDs": [
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        41,
+        42
+      ],
+      "reason": "Four close gestures, each recorded as pointerdown/click, cover left/right scroll and swiper floating variants. Their matching entries/modules become hidden. Require the captured close image and target only that entry; do not blanket-hide all fast-entry-item modules or floating containers."
+    },
+    {
+      "name": "captured-verification-close",
+      "selector": ".ui-dialog._moreInterception_t9upy_89",
+      "child": ".ui-dialog-close-box__icon",
+      "close": ".ui-dialog-close-box__icon",
+      "explicitCapturedClose": true,
+      "interactionIDs": [
+        11,
+        12,
+        37,
+        38
+      ],
+      "reason": "Explicit native X closures included at the user's request; only dismiss the captured dialog, never answer or submit its contents."
+    }
+  ],
+  "protected": [
+    {
+      "name": "interactive-prize-selection",
+      "selector": ".ui-dialog._dialogBox_930qf_89",
+      "child": "._main_19k37_89 .draw-box",
+      "signatures": [
+        "_dialogBox_930qf_89",
+        "_main_19k37_89",
+        "draw-box",
+        "draw-item",
+        "draw-item-img"
+      ],
+      "interactionIDs": [
+        9,
+        10,
+        35,
+        36
+      ],
+      "reason": "Recorded actions select a prize/draw item and open a verification dialog; they do not close this popup. Preserve the interactive reward flow and exclude its own assets from cosmetic-only blocking."
+    }
+  ],
+  "excludedInteractions": [
+    {
+      "name": "carousel-body-interaction",
+      "selector": "._main_1ju3l_89 ._list-slide-layout-inner_eo0sz_93",
+      "interactionIDs": [
+        5,
+        6
+      ],
+      "reason": "Interaction occurs inside carousel content rather than its close image; not a separate closure or rule."
+    },
+    {
+      "name": "main-navigation",
+      "selector": ".ui-tabbar ._item_1h8en_110",
+      "interactionIDs": [
+        19,
+        20,
+        21,
+        22,
+        45,
+        46
+      ],
+      "reason": "Main tab navigation changes which page/floating modules are visible. Disappearing promotional nodes after navigation are not close controls."
+    },
+    {
+      "name": "floating-promotion-open",
+      "selector": ".float-bar-main ._fastBtn_reqh0_97 ._fastImg_reqh0_115",
+      "interactionIDs": [
+        33,
+        34
+      ],
+      "reason": "Click targets the entry image, not its separate close image, and opens promotional content. Do not automate this click. Only explicitly dismissible entries qualify for the floating close rule."
+    },
+    {
+      "name": "event-tab-open",
+      "selector": ".ui-tabbar ._event_1h8en_292 ._specialImg_1h8en_211",
+      "interactionIDs": [
+        43,
+        44
+      ],
+      "reason": "Event-tab navigation/open action, not dismissal. Preserve the tab and its images."
+    }
+  ],
+  "scope": "All explicit native close/cancel controls recorded in the capture, including the verification dialog.",
+  "physical_close_gestures": 15,
+  "unique_close_families": 9
+}

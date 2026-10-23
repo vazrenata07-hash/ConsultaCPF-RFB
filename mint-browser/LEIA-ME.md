@@ -1,6 +1,16 @@
-# Mint Browser V26.8 — preenchimento e confirmação do PIN
+# Mint Browser V26.9 — filtros da captura
 
-Arquivo atual: `Mint-Browser-v26.8-PIN-Confirmacao.apk`. O nome de download antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também foi atualizado.
+Arquivo atual: `Mint-Browser-v26.9-Filtros-Capturados.apk`. O nome de download antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` também foi atualizado.
+
+## Bloqueios atualizados
+
+Os filtros cosméticos anteriores foram substituídos pelos fechamentos explícitos registrados na captura: 15 gestos, agrupados em 9 famílias de componentes. Reaberturas e o par pointerdown/click foram deduplicados. Inclui também a janela de verificação fechada pelo usuário, usando seu botão X específico; o script não responde nem envia a verificação.
+
+O bloqueio nativo intercepta, antes do download, 9 URLs de imagens promocionais identificadas na captura. Ele permanece ativo independentemente da chave original de bloqueio de anúncios. As regras usam host e caminho exatos, nas páginas 888pg.cc, sem bloquear o CDN inteiro ou imagens compartilhadas da navegação.
+
+A captura contém resumos do DOM, sem HAR, e omite URLs originais de imagens inline/data e de alguns fundos CSS. Todos os componentes fechados entram nas regras de fechamento; o bloqueio de download cobre os recursos identificados no JSON. Não é possível afirmar que todos os recursos embutidos desses componentes foram identificados.
+
+O preenchimento de PIN da V26.8, o proxy, as configurações, o Mines e o GeeTest foram preservados. O arquivo bruto da captura não foi publicado; os catálogos sanitizados e os fontes estão em `correcao-nativa`.
 
 ## Senha de saque
 
@@ -32,4 +42,4 @@ As configurações e senhas aplicadas são preservadas ao atualizar e ao usar o 
 
 ## Montagem
 
-JavaScript analisado pelo compilador sem execução; DEX nativo mantido da V26.7; APK montado e assinado com v1/v2/v3 e alinhamento. **Nenhum teste de uso, fixture, conexão de proxy, navegador, formulário real ou saque foi executado**, conforme instrução expressa do usuário. Relatórios antigos em `correcao-nativa/tests` pertencem exclusivamente às versões anteriores e não validam a V26.8. Fontes atuais e patches estão em `correcao-nativa`; os dados de montagem estão em `verification.json`.
+JavaScript analisado sem execução; nova classe de interceptação compilada e conectada aos dois caminhos de WebView existentes; APK montado, alinhado e assinado com v1/v2/v3. O DEX nativo do GeeTest, manifesto, recursos, bibliotecas e demais assets foram mantidos da V26.8. **Nenhum teste de uso, fixture, conexão de proxy, navegador, formulário real ou saque foi executado**, conforme instrução do usuário. Relatórios em `correcao-nativa/tests` pertencem às versões anteriores e não validam a V26.9. Dados de montagem em `verification.json`.
