@@ -108,7 +108,7 @@ public final class DebuggerSettings {
             smallButton(a,actions,"Limpar registro",new View.OnClickListener(){public void onClick(View view){try{core("clear",new Class<?>[]{Context.class},a);refresh();}catch(Exception failure){error(a);}}});
             LinearLayout secondary=row(a,column);
             smallButton(a,secondary,"Bloqueios",new View.OnClickListener(){public void onClick(View view){new Rules(a).show();}});
-            smallButton(a,secondary,"Exportar",new View.OnClickListener(){public void onClick(View view){export(a);}});
+            smallButton(a,secondary,"Salvar log",new View.OnClickListener(){public void onClick(View view){export(a);}});
             note(a,column,"Toque em Atualizar para ver novos eventos. Toque num evento para detalhes e opções de bloqueio. Limpar registro não remove os bloqueios.");
             summary=text(a,"",13);column.addView(summary);events=new LinearLayout(a);events.setOrientation(LinearLayout.VERTICAL);column.addView(events);
             AlertDialog dialog=new AlertDialog.Builder(a).setTitle("Depurador de requisições").setView(scroll).setPositiveButton("Fechar",null).create();dialog.show();size(a,dialog);refresh();
@@ -194,17 +194,9 @@ public final class DebuggerSettings {
                 java.io.FileOutputStream output=new java.io.FileOutputStream(file);
                 try{output.write(value.getBytes("UTF-8"));}finally{output.close();}
             }
-            phase="preparar o compartilhamento";
-            Class<?> provider=Class.forName("androidx.core.content.FileProvider");
-            Method method;
-            try{method=provider.getMethod("getUriForFile",Context.class,String.class,java.io.File.class);}
-            catch(NoSuchMethodException obfuscated){method=provider.getMethod("e",Context.class,String.class,java.io.File.class);}
-            Uri uri=(Uri)method.invoke(null,a,"com.miui.browser.mini.fileprovider",file);
-            Intent send=new Intent(Intent.ACTION_SEND);send.setType("application/json");
-            send.putExtra(Intent.EXTRA_SUBJECT,"Registro do depurador Mint");send.putExtra(Intent.EXTRA_STREAM,uri);
-            send.setClipData(android.content.ClipData.newRawUri("Registro Mint",uri));send.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            phase="abrir o compartilhamento";
-            a.startActivity(Intent.createChooser(send,"Exportar registro JSON"));
+            phase="abrir Salvar como";
+            LogSaveFragment.save(a,file);
+
         }catch(Exception failure){Throwable cause=failure;while(cause.getCause()!=null&&cause.getCause()!=cause)cause=cause.getCause();Toast.makeText(a,"Falha ao "+phase+": "+cause.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
     }
 
