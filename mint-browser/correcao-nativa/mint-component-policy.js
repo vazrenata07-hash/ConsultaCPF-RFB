@@ -70,6 +70,15 @@ function arm(instance){
  };
  states.set(instance,state);instance.render=state.wrapper;
 }
+function refreshExisting(instance){
+ var state=instance&&states.get(instance),snapshot=instance&&instance.vnode;
+ if(!state||!instance.isMounted||instance.isUnmounted||typeof instance.update!=='function')return;
+ Promise.resolve().then(function(){
+  if(instance.isUnmounted||instance.vnode!==snapshot||instance.render!==state.wrapper||!matches(instance))return;
+  veto(instance,state);
+  instance.update();
+ });
+}
 function visit(root){
  if(!root)return;
  var stack=[root],seen=new WeakSet(),count=0;
@@ -78,7 +87,7 @@ function visit(root){
   var vnode=stack.pop();if(!vnode||typeof vnode!=='object'||seen.has(vnode))continue;
   seen.add(vnode);count++;
   var instance=vnode.component;
-  if(instance){arm(instance);add(instance.subTree);}
+  if(instance){arm(instance);refreshExisting(instance);add(instance.subTree);}
   if(Array.isArray(vnode.children))for(var i=0;i<vnode.children.length&&i<500;i++)add(vnode.children[i]);
   add(vnode.ssContent);add(vnode.ssFallback);
   if(vnode.suspense){add(vnode.suspense.activeBranch);add(vnode.suspense.pendingBranch);}

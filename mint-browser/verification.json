@@ -1,6 +1,6 @@
 {
   "apk": "Mint-Browser-v26.14-Bloqueio-Antes-Montagem.apk",
-  "sha256": "11e980df9718656820ba2569d7aaef4c3016e9b50e574a5997fe41e335f27b8a",
+  "sha256": "0214d48894237e52ea3005d0b2264fd793118ebfaf52064e81c4eedee957ec92",
   "base_apk": "Mint-Browser-v26.13-Final-Sem-Depurador.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
   "base_sha256": "ccf76b6dd1916594953d34fac7fb26ff6de60293cac5b54a41687dac8ef48ab7",
@@ -136,6 +136,7 @@
     "network_policy_from_v2613_retained": true,
     "no_debugger": true,
     "original_PIN_Mines_GeeTest_suffix_retained_by_byte_slicing": true,
-    "limitations": "Requires reachable Vue app/context and matching class tokens. App discovery occurs after the root mount; cannot guarantee cancellation of a target already rendered before hook attachment. Runtime behavior remains for user verification."
+    "limitations": "Requires reachable Vue app/context and matching class tokens. App discovery occurs after the root mount; cannot guarantee cancellation of a target already rendered before hook attachment. Runtime behavior remains for user verification.",
+    "existing_mounted_targets_receive_guarded_cancel_and_update": true
   }
 }
