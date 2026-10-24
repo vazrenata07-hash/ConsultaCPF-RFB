@@ -1,9 +1,9 @@
-# Mint Browser V26.14.1 — exceção para o bônus manual
+# Mint Browser V26.14.2 — GeeTest somente no registro
 
-Arquivo atual: `Mint-Browser-v26.14.1-Bonus-Manual.apk`. O alias antigo aponta para o mesmo APK.
+Arquivo atual: `Mint-Browser-v26.14.2-Gee-So-Registro.apk`. O alias antigo aponta para o mesmo APK.
 
-Foi adicionada uma exceção para `div._container_n102k_117._style2_n102k_144`. A caixa não entra no fechamento/hide dos filtros quando está presente. Um gesto confiável em Abrir nessa caixa autoriza a abertura seguinte de um dos dois componentes controlados e libera as chamadas promocionais correspondentes pela política de intenção manual. O diálogo autorizado mantém seu ciclo normal de fechamento; uma reabertura automática posterior volta a ser bloqueada.
+O resolvedor automático fica autorizado somente em `https://888pg.cc/home/register` (incluindo query e barra final). Em `/home/login` e nas demais rotas, não inicia resoluções ou gestos. A navegação revoga a autorização e cancela tarefas pendentes. Frames de desafio recebem a autorização do contexto superior e sua revogação, mantendo o funcionamento do registro em iframe.
 
-O seletor informado não estava nas capturas anteriores, portanto a associação causal não foi validada pelo log. Esta é uma exceção dirigida ao elemento e ao acionamento manual informado, sem liberar globalmente os popups. Permanecem as limitações de reconhecimento do Vue e de gestos/controles da versão anterior.
+A verificação oferecida pelo próprio site permanece disponível para interação manual no login. Nenhum algoritmo de resolução ou atraso do registro foi alterado; apenas o escopo de ativação. O script do PIN, Mines, filtros, exceção do bônus manual e todos os DEX foram mantidos.
 
-Somente três assets JavaScript foram alterados. DEX, PIN, Mines, GeeTest, proxy, manifesto e recursos foram mantidos. O depurador continua removido; a assinatura é a mesma da V26.10. Sem testes de uso; JavaScript analisado sem execução e APK assinado.
+Sem depurador, com a mesma assinatura da V26.10. JavaScript analisado sem execução; APK montado e assinado. Sem testes de uso, conforme solicitado.

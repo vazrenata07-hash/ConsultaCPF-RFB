@@ -1,9 +1,9 @@
 {
-  "apk": "Mint-Browser-v26.14.1-Bonus-Manual.apk",
-  "sha256": "763c84ffd48add0cb4008e2e78dfa687b5a8216052e1b858dc40cb5f92d3fa33",
-  "base_apk": "Mint-Browser-v26.14-Bloqueio-Antes-Montagem.apk",
+  "apk": "Mint-Browser-v26.14.2-Gee-So-Registro.apk",
+  "sha256": "3b24d178da14852476a63a30e539a8baa4db31592e6249489dc2874d98e5ff9f",
+  "base_apk": "Mint-Browser-v26.14.1-Bonus-Manual.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "214d48894237e52ea3005d0b2264fd793118ebfaf52064e81c4eedee957ec92",
+  "base_sha256": "763c84ffd48add0cb4008e2e78dfa687b5a8216052e1b858dc40cb5f92d3fa33",
   "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
   "base_signature_verified": [
     "v1",
@@ -14,9 +14,7 @@
   "new_signing_key_authorized_by_user": true,
   "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
-    "assets/mint-component-policy.js",
-    "assets/mint-rebuilt.js",
-    "assets/mint-automatic-requests.js"
+    "assets/mint-rebuilt.js"
   ],
   "preserved_by_construction": {
     "all_js_from_function_register_onward": true,
@@ -148,5 +146,16 @@
     "native_dex_unchanged": true,
     "not_observed_in_original_captures": true,
     "runtime_validation_pending_user": true
+  },
+  "geetest_scope": {
+    "enabled_top_origin": "888pg.cc and subdomains",
+    "enabled_path": "/home/register (optional trailing slash; query does not change path)",
+    "login_path": "/home/login",
+    "login_automation_disabled": true,
+    "other_top_routes_disabled": true,
+    "registration_permission_relayed_to_child_frames": true,
+    "navigation_cancels_pending_work": true,
+    "native_dex_and_solving_algorithms_unchanged": true,
+    "no_fixed_registration_start_delay_added": true
   }
 }

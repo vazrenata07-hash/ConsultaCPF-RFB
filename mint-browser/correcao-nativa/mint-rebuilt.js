@@ -960,9 +960,38 @@ tick();
  let busy = false, stopped = false, suppressed = false, hiddenSince = 0, epoch = 0;
  let opening=false,priorityCanceled=false,lastNavigation=location.href;
  const childPriorities=new Map();
+ let parentRegistration=false,lastRegistrationScope=null;
+ const frameScopes=new WeakMap();
+ function registerURL(value){
+  try{const u=new URL(value);return /^(?:https?:)$/.test(u.protocol)&&/(^|\.)888pg\.cc$/i.test(u.hostname)&&/^\/home\/register\/?$/.test(u.pathname);}catch(e){return false;}
+ }
+ function registrationAllowed(){
+  try{return registerURL(window.top.location.href);}catch(e){return parentRegistration;}
+ }
+ function publishRegistrationScope(){
+  const allowed=registrationAllowed();
+  for(const frame of document.querySelectorAll('iframe,frame')){
+   if(!frame.contentWindow||frameScopes.get(frame)===allowed)continue;
+   frameScopes.set(frame,allowed);
+   frame.contentWindow.postMessage({mintGeeTest:22,kind:'registration-scope',id:'registration-scope',allowed},'*');
+  }
+ }
+ function syncRegistrationScope(){
+  const allowed=registrationAllowed();
+  if(lastRegistrationScope!==allowed){
+   lastRegistrationScope=allowed;
+   if(!allowed){
+    epoch++;priorityCanceled=true;childPriorities.clear();
+    for(const id of pending)bridge.cancel(id);
+    clearRelays();stopAppearance();stopHeartbeat();
+   }else{suppressed=false;hiddenSince=0;startHeartbeat();}
+   updatePriority();
+  }
+  publishRegistrationScope();return allowed;
+ }
  function updatePriority(){
   for(const [source,frame] of childPriorities)if(!frame.isConnected||frame.contentWindow!==source)childPriorities.delete(source);
-  const active=!stopped&&!document.hidden&&!priorityCanceled&&(busy||opening||childPriorities.size>0);
+  const active=registrationAllowed()&&!stopped&&!document.hidden&&!priorityCanceled&&(busy||opening||childPriorities.size>0);
   if(window.__mintGeeTestPriority===active)return;
   window.__mintGeeTestPriority=active;
   window.dispatchEvent(new CustomEvent('mint-geetest-priority',{detail:{active}}));
@@ -976,7 +1005,7 @@ tick();
   return true;
  }
  const pending = new Set();
- function alive() { checkNavigation();if(priorityCanceled)throw Error('navigation');if(stopped||document.hidden)throw Error('paused'); }
+ function alive() { checkNavigation();if(!registrationAllowed())throw Error('registration-only');if(priorityCanceled)throw Error('navigation');if(stopped||document.hidden)throw Error('paused'); }
  async function sleep(ms) { await new Promise(r => setTimeout(r, ms)); alive(); }
  function visible(el) {
   if (!el || !el.isConnected) return false;
@@ -1038,7 +1067,18 @@ tick();
  }
  window.addEventListener('message',async event=>{
   const m=event.data;if(!m||m.mintGeeTest!==22||typeof m.id!=='string'||m.id.length>100)return;
+  if(m.kind==='registration-scope'){
+   if(window===window.top||event.source!==window.parent||typeof m.allowed!=='boolean')return;
+   parentRegistration=m.allowed;syncRegistrationScope();if(parentRegistration)schedule();return;
+  }
+  if(m.kind==='registration-scope-request'){
+   const frame=Array.from(document.querySelectorAll('iframe,frame')).find(node=>node.contentWindow===event.source);
+   if(!frame)return;
+   const allowed=registrationAllowed();frameScopes.set(frame,allowed);
+   event.source.postMessage({mintGeeTest:22,kind:'registration-scope',id:'registration-scope',allowed},'*');return;
+  }
   if(m.kind==='priority'){
+   if(!registrationAllowed()){syncRegistrationScope();return;}
    if(typeof m.active!=='boolean')return;
    const frame=Array.from(document.querySelectorAll('iframe,frame')).find(node=>node.contentWindow===event.source);
    if(!frame||!frame.isConnected)return;
@@ -1148,7 +1188,7 @@ tick();
   }return false;
  }
  async function inspect() {
-  if(busy||stopped||document.hidden)return;
+  if(!syncRegistrationScope()||busy||stopped||document.hidden)return;
   checkNavigation();priorityCanceled=false;
   try {
    if(!document.querySelector('[class*=geetest_]')||!opened()) {
@@ -1175,6 +1215,7 @@ tick();
   opening=false;updatePriority();
  }
  function followAppearance(){
+  if(!registrationAllowed()){stopAppearance();return;}
   if(appearanceFrame)return;
   if(busy||stopped||suppressed||document.hidden){opening=false;updatePriority();return;}
   if(!appearanceDeadline)appearanceDeadline=performance.now()+5000;
@@ -1188,6 +1229,7 @@ tick();
  }
  function schedule(){
   checkNavigation();
+  if(!syncRegistrationScope())return;
   if(scheduled||busy||stopped||document.hidden)return;
   scheduled=true;Promise.resolve().then(()=>{scheduled=false;inspect();followAppearance();});
  }
@@ -1195,7 +1237,7 @@ tick();
  // challenge subtrees and their visibility ancestors need style/src observation.
  const challengeSelector='[class*=geetest_]';
  let watchedRoots=[],watchedAncestors=[],registrationWatch=null,heartbeat=0;
- function registration(){return /(?:^|[\/#])register(?:[\/?#]|$)/i.test(location.pathname+location.hash);}
+ function registration(){return registrationAllowed();}
  function insideChallenge(node){return !!(node&&node.nodeType===1&&(node.matches(challengeSelector)||node.closest(challengeSelector)));}
  function related(node){
   if(insideChallenge(node))return true;
@@ -1248,7 +1290,7 @@ tick();
   if(childPriorities.size)updatePriority();
   if(changed||rescope){appearanceDeadline=0;schedule();}
  });
- function startHeartbeat(){if(!heartbeat&&!stopped&&!document.hidden)heartbeat=setInterval(()=>{syncWatch();schedule();},1500);}
+ function startHeartbeat(){if(!heartbeat&&!stopped&&!document.hidden&&registrationAllowed())heartbeat=setInterval(()=>{syncWatch();schedule();},1500);}
  function stopHeartbeat(){if(heartbeat){clearInterval(heartbeat);heartbeat=0;}}
  function watch(){
   if(!document.documentElement)return;
@@ -1256,6 +1298,7 @@ tick();
   registrationWatch=null;syncWatch(true);startHeartbeat();schedule();
  }
  if(document.documentElement)watch();else document.addEventListener('DOMContentLoaded',watch,{once:true});
+ if(window!==window.top)parent.postMessage({mintGeeTest:22,kind:'registration-scope-request',id:'registration-scope'},'*');
  // CSS transitions and resource loads still wake a mounted challenge immediately.
  ['transitionrun','transitionstart','transitionend','animationstart','animationend','load'].forEach(type=>document.addEventListener(type,event=>{
   const node=event.target;
