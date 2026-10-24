@@ -18,6 +18,8 @@ public final class LogSaveFragment extends Fragment {
     private static final String TAG = "mint_save_log_document";
     private static final int CREATE_LOG = 26112;
     private boolean pickerLaunched;
+    private volatile String pendingResult;
+    private final android.os.Handler main=new android.os.Handler(android.os.Looper.getMainLooper());
     public LogSaveFragment() {}
 
     public static void save(Activity activity, File source) {
@@ -81,10 +83,20 @@ public final class LogSaveFragment extends Fragment {
                 }
                 result="Log salvo na pasta escolhida. Anexe o JSON nesta conversa.";
             }catch(Exception failure){result="Falha ao gravar o log: "+failure.getClass().getSimpleName()+". O original continua guardado no Mint.";}
-            final String message=result;
-            Activity current=getActivity();
-            if(current!=null)current.runOnUiThread(new Runnable(){public void run(){notifyResult(message);remove();}});
+            pendingResult=result;
+            main.post(new Runnable(){public void run(){deliverResult();}});
         }},"MintSaveLog").start();
+    }
+    @Override public void onResume() {
+        super.onResume();
+        deliverResult();
+    }
+    private void deliverResult() {
+        String message=pendingResult;
+        if(message==null||!isAdded()||getActivity()==null)return;
+        pendingResult=null;
+        notifyResult(message);
+        remove();
     }
     private void notifyResult(String value) {
         Activity activity=getActivity();

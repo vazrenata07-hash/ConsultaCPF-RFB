@@ -1,6 +1,6 @@
 {
   "apk": "Mint-Browser-v26.11.2-Salvar-Log.apk",
-  "sha256": "416cdc2ffbee80532683e296e97ba0d21b375309591c8245de29515f9e59a8d9",
+  "sha256": "0428c249c3d2fb29eea3cd11d15b9d1a983db737f97a4531d5a9cb9c6f0b0ad5",
   "base_apk": "Mint-Browser-v26.11.1-Exportacao-Corrigida.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
   "base_sha256": "c07eeb6d97715552665b2c03802e59f3101f0ed817ee1ff39a07de342eaa02d8",
@@ -114,6 +114,7 @@
     "confirms_after_successful_stream_close": true,
     "cancel_preserves_original_log": true,
     "no_share_intent": true,
-    "manifest_resources_and_original_scripts_unchanged": true
+    "manifest_resources_and_original_scripts_unchanged": true,
+    "completion_delivered_after_activity_reattachment": true
   }
 }
