@@ -1,9 +1,9 @@
 {
-  "apk": "Mint-Browser-v26.13-Final-Sem-Depurador.apk",
-  "sha256": "ccf76b6dd1916594953d34fac7fb26ff6de60293cac5b54a41687dac8ef48ab7",
-  "base_apk": "Mint-Browser-v26.10-Base-MODmint-Bloqueio.apk",
+  "apk": "Mint-Browser-v26.14-Bloqueio-Antes-Montagem.apk",
+  "sha256": "11e980df9718656820ba2569d7aaef4c3016e9b50e574a5997fe41e335f27b8a",
+  "base_apk": "Mint-Browser-v26.13-Final-Sem-Depurador.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "210994808b6427d5dbb923586c8faa4375ba8e7a97f09d1feb1d981fdbdea861",
+  "base_sha256": "ccf76b6dd1916594953d34fac7fb26ff6de60293cac5b54a41687dac8ef48ab7",
   "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
   "base_signature_verified": [
     "v1",
@@ -15,7 +15,8 @@
   "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
     "classes3.dex",
-    "assets/mint-automatic-requests.js"
+    "assets/mint-rebuilt.js",
+    "assets/mint-component-policy.js"
   ],
   "preserved_by_construction": {
     "all_js_from_function_register_onward": true,
@@ -120,5 +121,21 @@
     "event_capture_in_apk": false,
     "signature_matches_v2610": true,
     "functional_tests_executed": false
+  },
+  "component_open_policy": {
+    "targets": [
+      "task-invitation _dialogBox_1r6g9_89",
+      "prize-draw _dialogBox_930qf_89"
+    ],
+    "mechanism": "Vue beforeMount/beforeUpdate arms targeted instance render and returns null before dialog children are patched; registered model/cancel cleanup is queued with vnode/version guards.",
+    "legacy_DOM_close_disabled_for_these_targets": true,
+    "no_DOM_clicks_in_component_policy": true,
+    "no_DOM_removal_in_component_policy": true,
+    "CSS_nested_has_fixed": true,
+    "CSS_applies_only_to_exact_target_overlay_signatures": true,
+    "network_policy_from_v2613_retained": true,
+    "no_debugger": true,
+    "original_PIN_Mines_GeeTest_suffix_retained_by_byte_slicing": true,
+    "limitations": "Requires reachable Vue app/context and matching class tokens. App discovery occurs after the root mount; cannot guarantee cancellation of a target already rendered before hook attachment. Runtime behavior remains for user verification."
   }
 }

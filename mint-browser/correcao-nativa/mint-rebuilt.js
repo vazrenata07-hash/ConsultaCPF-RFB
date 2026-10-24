@@ -49,7 +49,8 @@ var rules=[
   "name": "task-invitation-promotion",
   "selector": ".ui-dialog._dialogBox_1r6g9_89",
   "child": "._dialog-container_1r6g9_150",
-  "close": ".ui-dialog-close-box__icon"
+  "close": ".ui-dialog-close-box__icon",
+  "renderVeto": true
  },
  {
   "name": "push-permission-promotion",
@@ -75,6 +76,13 @@ var rules=[
   "child": ".ui-dialog-close-box__icon",
   "close": ".ui-dialog-close-box__icon",
   "explicitCapturedClose": true
+ },
+ {
+  "name": "prize-draw-promotion",
+  "selector": ".ui-dialog._dialogBox_930qf_89",
+  "child": "._main_19k37_89",
+  "close": ".ui-dialog-close-box__icon",
+  "renderVeto": true
  }
 ];
 // Install precise signatures at document start; marking/closing still advances the site's popup queue.
@@ -82,10 +90,15 @@ var earlyCSS='';
 var hasSelector=window.CSS&&typeof CSS.supports==='function'&&CSS.supports('selector(:has(*))');
 for(var cssIndex=0;cssIndex<rules.length;cssIndex++){
  var cssRule=rules[cssIndex];
- if(cssRule.child&&!hasSelector)continue;
- var cssSelector=cssRule.selector+(cssRule.child?':has('+cssRule.child+')':'');
+ if(cssRule.child&&!hasSelector&&!cssRule.renderVeto)continue;
+ var guardedChild=cssRule.child&&!cssRule.renderVeto;
+ var cssSelector=cssRule.selector+(guardedChild?':has('+cssRule.child+')':'');
  earlyCSS+=cssSelector+','+cssSelector+' *{visibility:hidden!important;pointer-events:none!important}';
- if(hasSelector)earlyCSS+='.ui-overlay:has('+cssSelector+'){visibility:hidden!important;pointer-events:none!important}';
+ if(hasSelector){
+  // :has() cannot nest. Keep the component and child in a single relational selector.
+  var overlay='.ui-overlay:has('+cssRule.selector+(guardedChild?' '+cssRule.child:'')+')';
+  earlyCSS+=overlay+'{visibility:hidden!important;opacity:0!important;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;pointer-events:none!important}';
+ }
 }
 style.textContent=earlyCSS+'['+tag+'],['+tag+'] *{visibility:hidden!important;pointer-events:none!important}';
 function installAdStyle(){if(d.documentElement&&!style.isConnected)d.documentElement.appendChild(style);}
@@ -150,7 +163,7 @@ function filter(){
    var root=node.closest('.ui-overlay')||node;
    if(root.style.display==='none'||!root.getClientRects().length)continue;
    if(!protectedRoots.has(root))protectedRoots.set(root,protectedDialog(root));
-   if(!rule.explicitCapturedClose&&protectedRoots.get(root))continue;
+   if(!rule.renderVeto&&!rule.explicitCapturedClose&&protectedRoots.get(root))continue;
    current.set(root,{node:node,rule:rule,close:node.querySelector(rule.close)});
   }
  }
@@ -159,6 +172,7 @@ function filter(){
  var controls=new Set();
  current.forEach(function(item,root){
   rememberAdResources(root);
+  if(item.rule.renderVeto)return;
   if(!item.close||controls.has(item.close))return;
   controls.add(item.close);dismiss(root,item.node,item.rule,item.close);
  });
