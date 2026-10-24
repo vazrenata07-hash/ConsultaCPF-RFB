@@ -1,10 +1,10 @@
 {
-  "apk": "Mint-Browser-v26.10-Base-MODmint-Bloqueio.apk",
-  "sha256": "210994808b6427d5dbb923586c8faa4375ba8e7a97f09d1feb1d981fdbdea861",
-  "base_apk": "MODmint.apk",
+  "apk": "Mint-Browser-v26.11-Depurador-Requisicoes.apk",
+  "sha256": "b51856b8affe2be08f14881bc06cedaf132a981ba580a8c69ffc7e422dac4fd6",
+  "base_apk": "Mint-Browser-v26.10-Base-MODmint-Bloqueio.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "5b97834977f14b779635b02baa131c6ac23c42d2e50005b79020173b07b2fa87",
-  "base_certificate_sha256": "3f9e5471fbc31de4b8302b554064d9110d7138a7fc7ddcc2934f47ac65870e13",
+  "base_sha256": "210994808b6427d5dbb923586c8faa4375ba8e7a97f09d1feb1d981fdbdea861",
+  "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
   "base_signature_verified": [
     "v1",
     "v2",
@@ -14,10 +14,8 @@
   "new_signing_key_authorized_by_user": true,
   "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
-    "assets/mint-rebuilt.js",
-    "classes.dex",
-    "classes2.dex",
-    "classes3.dex"
+    "classes3.dex",
+    "assets/mint-debugger.js"
   ],
   "preserved_by_construction": {
     "all_js_from_function_register_onward": true,
@@ -28,7 +26,9 @@
     "settings": true,
     "mines": true,
     "geetest_classes4_dex_bytes": true,
-    "manifest_resources_libraries_and_other_assets": true
+    "manifest_resources_libraries_and_other_assets": true,
+    "entire_assets_mint_rebuilt_js_from_v2610": true,
+    "classes1_classes2_classes4_from_v2610": true
   },
   "filters": {
     "replaces_old_capture_catalog": true,
@@ -59,5 +59,39 @@
     ]
   },
   "functional_tests_executed": false,
-  "tests_skipped_reason": "User reserved all functional tests. Only compilation, source/ZIP inspection and requested signature verification were performed."
+  "tests_skipped_reason": "User explicitly requested no tests. Only compilation, packaging and signing were performed for this change.",
+  "direct_update_over_v2610_supported": true,
+  "request_debugger": {
+    "entry": "Configurações → Depurador de requisições",
+    "capture_default": false,
+    "event_buffer_maximum": 500,
+    "visible_events_after_kind_filter": 80,
+    "request_rules": "Exact host, encoded path and HTTP method; queries are ignored explicitly in the UI",
+    "rules_survive_internal_clear": true,
+    "preference_file": "mint_custom_config",
+    "preference_keys": [
+      "debugger_rules",
+      "debugger_capture"
+    ],
+    "native_interception": "Both WebView clients before existing adblock delegate; service-worker requests only with 888 Referer",
+    "client_hooks": [
+      "fetch",
+      "XMLHttpRequest",
+      "sendBeacon",
+      "WebSocket",
+      "EventSource",
+      "window.open"
+    ],
+    "timers": "Callback signature and scheduling call site; chosen callbacks skipped before execution",
+    "popup_capture": "Structural creation recorded even hidden/detached; nearby request candidates only",
+    "export": "JSON file shared only through a user-invoked Android chooser using existing FileProvider",
+    "no_payload_cookie_form_capture": true,
+    "limitations": [
+      "This is a client debugger, not control of the remote server.",
+      "No native response body/status or POST-body capture.",
+      "Previously scheduled timers require reload to instrument; string callbacks are not blockable.",
+      "Unknown or unsupported browser request paths may escape capture; no promise of all processes.",
+      "Nearby requests are correlation candidates, not proof of popup origin."
+    ]
+  }
 }

@@ -54,6 +54,8 @@ public final class AdResources {
             ServiceWorkerController.getInstance().setServiceWorkerClient(new ServiceWorkerClient() {
                 @Override public WebResourceResponse shouldInterceptRequest(WebResourceRequest request) {
                     try {
+                        WebResourceResponse debugResponse = RequestDebugger.interceptWorker(request);
+                        if (debugResponse != null) return debugResponse;
                         if (request == null || request.isForMainFrame()) return null;
                         String method = request.getMethod();
                         if (!"GET".equalsIgnoreCase(method) && !"HEAD".equalsIgnoreCase(method)) return null;
@@ -106,11 +108,14 @@ public final class AdResources {
     }
     /** Called on the UI thread using the URL from the native page callback. */
     public static void pageStarted(WebView view, String page) {
+        RequestDebugger.pageStarted(view, page);
         if (view != null) synchronized (topPages) { topPages.put(view, Boolean.valueOf(origin888(page))); }
     }
     /** Request callbacks run off the UI thread: never read WebView.getUrl here. */
     public static WebResourceResponse intercept(WebView view, WebResourceRequest request) {
         try {
+            WebResourceResponse debugResponse = RequestDebugger.intercept(view, request);
+            if (debugResponse != null) return debugResponse;
             if (view == null || request == null || request.isForMainFrame()) return null;
             String method = request.getMethod();
             if (!"GET".equalsIgnoreCase(method) && !"HEAD".equalsIgnoreCase(method)) return null;
