@@ -1,11 +1,15 @@
-# Mint Browser V26.12 — revisão do bloqueio com base no log
+# Mint Browser V26.13 — final sem depurador
 
-Arquivo atual: `Mint-Browser-v26.12-Adblock-Log.apk`. O nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` aponta para o mesmo APK.
+Arquivo atual: `Mint-Browser-v26.13-Final-Sem-Depurador.apk`. O nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` aponta para o mesmo APK.
 
-Foram analisados 500 eventos e 191 recursos distintos, cruzados com as janelas explicitamente fechadas na captura original. Esta versão acrescenta três caminhos exatos ao bloqueio nativo de download: a variante GIF de uma arte do carrossel e dois ícones específicos da promoção de cadastro. Os nove caminhos anteriores foram mantidos, totalizando 12. As regras independem da chave original de adblock.
+**Todo o depurador incorporado foi removido:** classes, ponte, captura de eventos, asset e atalho nas configurações. A versão final parte da V26.10 limpa, com o PIN da base MODmint e a mesma chave de assinatura da V26.10. Configurações, senhas aplicadas, proxy, Mines e GeeTest foram preservados. Não são apagados arquivos de log já salvos pelo usuário.
 
-[Análise completa e classificação dos recursos](analise-log-2026-10-24/ANALISE.md). Quatro APIs de popup e o módulo FindUs foram documentados como candidatos; não foram ativados sem comprovação de exclusividade e tratamento de falha. Bibliotecas compartilhadas, PIN, saques, conta, depósitos e seletores foram preservados. O bloqueio desses arquivos não equivale a desativar toda a lógica das janelas.
+O bloqueio nativo mantém 12 caminhos exatos de arquivos promocionais. Também são bloqueadas antes do envio as chamadas automáticas aos quatro endpoints de popup documentados em [politica-rede-final.json](politica-rede-final.json): `newcomer_benefit_pop`, `coupon/popList`, `popRegressActive` e `cut_a_deal_announcement`, somente no host `cdnapiif.ppa888pg.vip`.
 
-O script principal, GeeTest, proxy, configurações, captura e **Salvar log** permanecem da V26.11.2. Mesma assinatura, permitindo atualização sem desinstalar. [Como guardar o log em uma pasta](DEPURADOR.md).
+Ações de promoção reconhecidas por gesto confiável podem autorizar uma chamada por endpoint/método em uma janela curta. Essa identificação é uma heurística limitada aos controles conhecidos, não uma classificação universal de todo pedido manual. As demais APIs seguem seus caminhos normais. Não há leitura de arquivo por requisição, varredura de eventos do depurador, nem cancelamento indiscriminado de temporizadores ou de módulos compartilhados.
 
-**Sem testes de uso.** Compilação e assinatura concluídas. Capturas brutas não publicadas. Fontes em `correcao-nativa`; dados em `verification.json`.
+A análise original está em [analise-log-2026-10-24](analise-log-2026-10-24/ANALISE.md). Nela, as quatro APIs eram candidatas sem ativação. A instrução posterior do usuário ampliou o escopo para impedir automações promocionais, com as exceções manuais documentadas. Isso não transforma as relações temporais do log em prova de causa nem garante remoção de toda publicidade ou ausência de impacto em qualquer fluxo futuro do site.
+
+**Compilado e assinado, sem testes de uso.** Mesma assinatura da V26.10: `68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a`. Apenas o DEX3 foi substituído e o pequeno asset de controle de requisições foi adicionado à base limpa. Script principal, DEX1/2/4, manifesto, recursos, bibliotecas e demais assets foram preservados.
+
+Fontes atuais: `correcao-nativa/AdResources.java`, `AutomaticRequestPolicy.java`, `AutomaticScripts.java` e `mint-automatic-requests.js`. Nenhuma captura bruta do usuário foi publicada.

@@ -1,9 +1,9 @@
 {
-  "apk": "Mint-Browser-v26.12-Adblock-Log.apk",
-  "sha256": "43fe76ee9de71ce814983e88df93bbd4974f2c22aca6b89164ce681c19c711df",
-  "base_apk": "Mint-Browser-v26.11.2-Salvar-Log.apk",
+  "apk": "Mint-Browser-v26.13-Final-Sem-Depurador.apk",
+  "sha256": "ccf76b6dd1916594953d34fac7fb26ff6de60293cac5b54a41687dac8ef48ab7",
+  "base_apk": "Mint-Browser-v26.10-Base-MODmint-Bloqueio.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "428c249c3d2fb29eea3cd11d15b9d1a983db737f97a4531d5a9cb9c6f0b0ad5",
+  "base_sha256": "210994808b6427d5dbb923586c8faa4375ba8e7a97f09d1feb1d981fdbdea861",
   "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
   "base_signature_verified": [
     "v1",
@@ -14,7 +14,8 @@
   "new_signing_key_authorized_by_user": true,
   "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
-    "classes3.dex"
+    "classes3.dex",
+    "assets/mint-automatic-requests.js"
   ],
   "preserved_by_construction": {
     "all_js_from_function_register_onward": true,
@@ -60,63 +61,8 @@
   "functional_tests_executed": false,
   "tests_skipped_reason": "User explicitly requested no tests. Only compilation, packaging and signing were performed for this change.",
   "direct_update_over_v2610_supported": true,
-  "request_debugger": {
-    "entry": "Configurações → Depurador de requisições",
-    "capture_default": false,
-    "event_buffer_maximum": 500,
-    "visible_events_after_kind_filter": 80,
-    "request_rules": "Exact host, encoded path and HTTP method; queries are ignored explicitly in the UI",
-    "rules_survive_internal_clear": true,
-    "preference_file": "mint_custom_config",
-    "preference_keys": [
-      "debugger_rules",
-      "debugger_capture"
-    ],
-    "native_interception": "Both WebView clients before existing adblock delegate; service-worker requests only with 888 Referer",
-    "client_hooks": [
-      "fetch",
-      "XMLHttpRequest",
-      "sendBeacon",
-      "WebSocket",
-      "EventSource",
-      "window.open"
-    ],
-    "timers": "Callback signature and scheduling call site; chosen callbacks skipped before execution",
-    "popup_capture": "Structural creation recorded even hidden/detached; nearby request candidates only",
-    "export": "JSON file shared only through a user-invoked Android chooser using existing FileProvider",
-    "no_payload_cookie_form_capture": true,
-    "limitations": [
-      "This is a client debugger, not control of the remote server.",
-      "No native response body/status or POST-body capture.",
-      "Previously scheduled timers require reload to instrument; string callbacks are not blockable.",
-      "Unknown or unsupported browser request paths may escape capture; no promise of all processes.",
-      "Nearby requests are correlation candidates, not proof of popup origin."
-    ]
-  },
   "direct_update_over_v2611_supported": true,
-  "export_fix": {
-    "previous_bug": "Application package com.mi.globalbrowser.mini was incorrectly used to derive FileProvider authority.",
-    "declared_and_used_authority": "com.miui.browser.mini.fileprovider",
-    "share_uses_existing_json_file": true,
-    "when_current_buffer_empty_uses_latest_saved_log": true,
-    "stage_and_exception_type_shown_on_failure": true,
-    "capture_and_browser_automation_unchanged": true
-  },
   "direct_update_over_v26111_supported": true,
-  "save_log": {
-    "button": "Salvar log",
-    "intent": "android.intent.action.CREATE_DOCUMENT",
-    "mime": "application/json",
-    "suggested_filename": "mint-log.json",
-    "result_received_by": "Native retained headless LogSaveFragment",
-    "writes_to_user_selected_document_uri": true,
-    "copy_on_worker_thread": true,
-    "confirms_after_successful_stream_close": true,
-    "cancel_preserves_original_log": true,
-    "no_share_intent": true,
-    "manifest_resources_and_original_scripts_unchanged": true,
-    "completion_delivered_after_activity_reattachment": true
-  },
   "log_review_2026_10_24": {
     "events": 500,
     "request_records": 477,
@@ -126,12 +72,53 @@
     "timers": 13,
     "additional_network_paths": 3,
     "total_seeded_paths": 12,
-    "api_candidates_activated": 0,
+    "api_candidates_activated": 4,
     "script_blocks_activated": 0,
     "timer_blocks_activated": 0,
     "report": "analise-log-2026-10-24/ANALISE.md",
     "original_scripts_unchanged": true,
     "raw_captures_published": false,
+    "functional_tests_executed": false
+  },
+  "signature_matches_v2610": true,
+  "debugger_code_removed": true,
+  "debugger_shortcuts_removed": true,
+  "capture_assets_absent": true,
+  "final_request_policy": {
+    "scope": "888pg.cc pages; four exact host/path candidates from user log, activated under the broader automatic-nuisance instruction.",
+    "request_rules": [
+      {
+        "host": "cdnapiif.ppa888pg.vip",
+        "path": "/hall/api/active/tasks/newcomer_benefit_pop",
+        "automatic": "blocked before send; native fallback403",
+        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+      },
+      {
+        "host": "cdnapiif.ppa888pg.vip",
+        "path": "/hall/api/active/coupon/popList",
+        "automatic": "blocked before send; native fallback403",
+        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+      },
+      {
+        "host": "cdnapiif.ppa888pg.vip",
+        "path": "/hall/api/active/popRegressActive",
+        "automatic": "blocked before send; native fallback403",
+        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+      },
+      {
+        "host": "cdnapiif.ppa888pg.vip",
+        "path": "/hall/api/active/cutADeal/cut_a_deal_announcement",
+        "automatic": "blocked before send; native fallback403",
+        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+      }
+    ],
+    "manual_intent_recognition": "Trusted pointer/click on recognized promotion controls/captions; 5-second JS intent and 8-second native permit for one logical request plus CORS/layer acknowledgements. This is heuristic and does not infer every asynchronous flow.",
+    "no_universal_manual_automatic_classifier": true,
+    "unchanged": "Other endpoints, request bodies, headers, account/PIN/withdrawal/game logic and original scripts.",
+    "no_timer_or_shared_module_cancellation": true,
+    "debugger_in_apk": false,
+    "event_capture_in_apk": false,
+    "signature_matches_v2610": true,
     "functional_tests_executed": false
   }
 }

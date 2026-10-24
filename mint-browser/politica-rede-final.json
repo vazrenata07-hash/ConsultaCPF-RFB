@@ -1,0 +1,37 @@
+{
+  "scope": "888pg.cc pages; four exact host/path candidates from user log, activated under the broader automatic-nuisance instruction.",
+  "request_rules": [
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/tasks/newcomer_benefit_pop",
+      "automatic": "blocked before send; native fallback403",
+      "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/coupon/popList",
+      "automatic": "blocked before send; native fallback403",
+      "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/popRegressActive",
+      "automatic": "blocked before send; native fallback403",
+      "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/cutADeal/cut_a_deal_announcement",
+      "automatic": "blocked before send; native fallback403",
+      "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
+    }
+  ],
+  "manual_intent_recognition": "Trusted pointer/click on recognized promotion controls/captions; 5-second JS intent and 8-second native permit for one logical request plus CORS/layer acknowledgements. This is heuristic and does not infer every asynchronous flow.",
+  "no_universal_manual_automatic_classifier": true,
+  "unchanged": "Other endpoints, request bodies, headers, account/PIN/withdrawal/game logic and original scripts.",
+  "no_timer_or_shared_module_cancellation": true,
+  "debugger_in_apk": false,
+  "event_capture_in_apk": false,
+  "signature_matches_v2610": true,
+  "functional_tests_executed": false
+}
