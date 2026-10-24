@@ -174,24 +174,38 @@ public final class DebuggerSettings {
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener(){public void onClick(View view){String h=host.getText().toString().trim().toLowerCase(Locale.US),p=path.getText().toString().trim(),m=method.getText().toString().trim().toUpperCase(Locale.US);if(h.length()==0||h.contains("/")||h.contains(":")||h.contains("*")||h.contains(" ")){host.setError("Informe somente o host exato.");return;}if(!p.startsWith("/")||p.contains("?")||p.contains("#")){path.setError("Informe um caminho iniciado em /, sem parâmetros.");return;}if(!m.equals("*")&&!m.matches("[A-Z]+")){method.setError("Use * ou um método, como GET ou POST.");return;}try{JSONObject rule=new JSONObject();rule.put("kind","request");rule.put("enabled",true);rule.put("host",h);rule.put("path",p);rule.put("method",m);setRule(a,rule);dialog.dismiss();changed.run();}catch(Exception failure){error(a);}}});
     }
     private static void export(Activity a){
+        String phase="salvar o arquivo";
         try{
-            String value=snapshot(a).toString(2);
+            JSONObject current=snapshot(a);
+            String value=current.toString(2);
             java.io.File directory=a.getExternalFilesDir("mint-debugger");
             if(directory==null)throw new IllegalStateException("Armazenamento indisponível");
             directory.mkdirs();
-            java.io.File file=new java.io.File(directory,"mint-depurador-"+System.currentTimeMillis()+".json");
-            java.io.FileOutputStream output=new java.io.FileOutputStream(file);
-            try{output.write(value.getBytes("UTF-8"));}finally{output.close();}
+            java.io.File file=null;
+            JSONArray currentEvents=current.optJSONArray("events");
+            if(currentEvents==null||currentEvents.length()==0){
+                java.io.File[] saved=directory.listFiles();
+                if(saved!=null)for(java.io.File candidate:saved){
+                    if(candidate.isFile()&&candidate.getName().matches("mint-depurador-[0-9]+\\.json")&&candidate.length()>0&&(file==null||candidate.lastModified()>file.lastModified()))file=candidate;
+                }
+            }
+            if(file==null){
+                file=new java.io.File(directory,"mint-depurador-"+System.currentTimeMillis()+".json");
+                java.io.FileOutputStream output=new java.io.FileOutputStream(file);
+                try{output.write(value.getBytes("UTF-8"));}finally{output.close();}
+            }
+            phase="preparar o compartilhamento";
             Class<?> provider=Class.forName("androidx.core.content.FileProvider");
             Method method;
             try{method=provider.getMethod("getUriForFile",Context.class,String.class,java.io.File.class);}
             catch(NoSuchMethodException obfuscated){method=provider.getMethod("e",Context.class,String.class,java.io.File.class);}
-            Uri uri=(Uri)method.invoke(null,a,a.getPackageName()+".fileprovider",file);
+            Uri uri=(Uri)method.invoke(null,a,"com.miui.browser.mini.fileprovider",file);
             Intent send=new Intent(Intent.ACTION_SEND);send.setType("application/json");
             send.putExtra(Intent.EXTRA_SUBJECT,"Registro do depurador Mint");send.putExtra(Intent.EXTRA_STREAM,uri);
             send.setClipData(android.content.ClipData.newRawUri("Registro Mint",uri));send.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            phase="abrir o compartilhamento";
             a.startActivity(Intent.createChooser(send,"Exportar registro JSON"));
-        }catch(Exception failure){error(a);}
+        }catch(Exception failure){Throwable cause=failure;while(cause.getCause()!=null&&cause.getCause()!=cause)cause=cause.getCause();Toast.makeText(a,"Falha ao "+phase+": "+cause.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
     }
 
     private static LinearLayout column(Activity a){LinearLayout column=new LinearLayout(a);column.setOrientation(LinearLayout.VERTICAL);int pad=dp(a,14);column.setPadding(pad,dp(a,8),pad,dp(a,18));return column;}

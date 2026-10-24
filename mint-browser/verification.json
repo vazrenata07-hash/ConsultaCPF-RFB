@@ -1,9 +1,9 @@
 {
-  "apk": "Mint-Browser-v26.11-Depurador-Requisicoes.apk",
-  "sha256": "b51856b8affe2be08f14881bc06cedaf132a981ba580a8c69ffc7e422dac4fd6",
-  "base_apk": "Mint-Browser-v26.10-Base-MODmint-Bloqueio.apk",
+  "apk": "Mint-Browser-v26.11.1-Exportacao-Corrigida.apk",
+  "sha256": "c07eeb6d97715552665b2c03802e59f3101f0ed817ee1ff39a07de342eaa02d8",
+  "base_apk": "Mint-Browser-v26.11-Depurador-Requisicoes.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "210994808b6427d5dbb923586c8faa4375ba8e7a97f09d1feb1d981fdbdea861",
+  "base_sha256": "b51856b8affe2be08f14881bc06cedaf132a981ba580a8c69ffc7e422dac4fd6",
   "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
   "base_signature_verified": [
     "v1",
@@ -14,8 +14,7 @@
   "new_signing_key_authorized_by_user": true,
   "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
-    "classes3.dex",
-    "assets/mint-debugger.js"
+    "classes3.dex"
   ],
   "preserved_by_construction": {
     "all_js_from_function_register_onward": true,
@@ -93,5 +92,14 @@
       "Unknown or unsupported browser request paths may escape capture; no promise of all processes.",
       "Nearby requests are correlation candidates, not proof of popup origin."
     ]
+  },
+  "direct_update_over_v2611_supported": true,
+  "export_fix": {
+    "previous_bug": "Application package com.mi.globalbrowser.mini was incorrectly used to derive FileProvider authority.",
+    "declared_and_used_authority": "com.miui.browser.mini.fileprovider",
+    "share_uses_existing_json_file": true,
+    "when_current_buffer_empty_uses_latest_saved_log": true,
+    "stage_and_exception_type_shown_on_failure": true,
+    "capture_and_browser_automation_unchanged": true
   }
 }
