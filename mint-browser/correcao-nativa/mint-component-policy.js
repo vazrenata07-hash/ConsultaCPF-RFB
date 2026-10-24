@@ -6,6 +6,32 @@ if(host!=='888pg.cc'&&host.slice(-9)!=='.888pg.cc')return;
 window.__mintComponentPolicy2614=true;
 var targets=new Set(['_dialogBox_1r6g9_89','_dialogBox_930qf_89']);
 var apps=new WeakSet(),states=new WeakMap();
+var bonusSelector='div._container_n102k_117._style2_n102k_144';
+var manualBonus=null,bonusGeneration=0,allowedBonus=new WeakMap(),activeBonus=new Set();
+function bonusCSS(){
+ var root=document.documentElement;if(!root)return;
+ if(manualBonus||activeBonus.size)root.setAttribute('data-mint-bonus-active','1');else root.removeAttribute('data-mint-bonus-active');
+}
+function permitBonus(event){
+ if(!event.isTrusted)return;
+ var target=event.target&&event.target.nodeType===1?event.target:event.target&&event.target.parentElement;
+ if(!target||!target.closest||!target.closest(bonusSelector))return;
+ var close=target.closest('[class*="close" i],[class*="cancel" i],[aria-label="Fechar" i]');if(close)return;
+ // Only the exact functional bonus box grants this exception.
+ var control=target.closest('button,a,[role="button"],.ui-button,.van-button')||target;
+ if(!/\babrir\b|\bopen\b/i.test(control.textContent||target.textContent||''))return;
+ if(manualBonus&&Date.now()<manualBonus.expires)return;
+ var generation=++bonusGeneration;manualBonus={expires:Date.now()+5000,generation:generation};bonusCSS();
+ setTimeout(function(){if(manualBonus&&manualBonus.generation===generation){manualBonus=null;bonusCSS();}},5000);
+}
+window.addEventListener('pointerdown',permitBonus,true);
+window.addEventListener('click',permitBonus,true);
+window.__mintKeepsBonusDialog=function(node){
+ if(!node||!node.closest)return false;
+ if(node.matches(bonusSelector)||node.querySelector(bonusSelector))return true;
+ for(var el=node;el;el=el.parentElement){var instance=el.__vueParentComponent;for(var depth=0;instance&&depth<30;depth++,instance=instance.parent)if(allowedBonus.has(instance))return true;}
+ return false;
+};
 function hasClass(value,depth){
  if(depth>8||!value)return false;
  if(typeof value==='string')return value.split(/\s+/).some(function(token){return targets.has(token);});
@@ -15,7 +41,19 @@ function hasClass(value,depth){
 }
 function matches(instance){
  var vnode=instance&&instance.vnode;
- return !!(vnode&&(hasClass(vnode.props&&vnode.props.class,0)||hasClass(instance.attrs&&instance.attrs.class,0)));
+ var target=!!(vnode&&(hasClass(vnode.props&&vnode.props.class,0)||hasClass(instance.attrs&&instance.attrs.class,0)));
+ if(!target)return false;
+ if(instance.isUnmounted){activeBonus.delete(instance);bonusCSS();return false;}
+ if(allowedBonus.has(instance)){
+  var permittedState=allowedBonus.get(instance);
+  if(closed(instance)){permittedState.closed=true;activeBonus.delete(instance);bonusCSS();return false;}
+  if(!permittedState.closed)return false;
+  allowedBonus.delete(instance);
+ }
+ if(manualBonus&&Date.now()<=manualBonus.expires&&!closed(instance)){
+  allowedBonus.set(instance,{closed:false});activeBonus.add(instance);manualBonus=null;bonusCSS();return false;
+ }
+ return true;
 }
 function hasHandler(props,key){
  var value=props&&props[key];
@@ -97,7 +135,7 @@ function hookApp(app,vnode){
  if(!app||typeof app!=='object'||typeof app.mixin!=='function')return;
  if(!apps.has(app)){
   apps.add(app);
-  app.mixin({beforeMount:function(){arm(this&&this.$);},beforeUpdate:function(){arm(this&&this.$);}});
+  app.mixin({beforeMount:function(){arm(this&&this.$);},beforeUpdate:function(){arm(this&&this.$);},unmounted:function(){var instance=this&&this.$;if(instance){activeBonus.delete(instance);bonusCSS();}}});
   // Previously resolved component options otherwise omit newly registered global hooks.
   if(app._context)app._context.optionsCache=new WeakMap();
   visit(vnode||app._container&&app._container._vnode||app._instance&&app._instance.vnode);

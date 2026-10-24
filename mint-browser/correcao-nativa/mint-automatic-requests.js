@@ -29,6 +29,7 @@ function selectedControl(event){
  var target=targetElement(event);if(!target||!target.closest)return null;
  var control=target.closest(floatingSelector)||target.closest(controlSelector);
  if(!control)return null;
+ if(target.closest('div._container_n102k_117._style2_n102k_144')&&/\babrir\b|\bopen\b/i.test(control.textContent||target.textContent||''))return control;
  // Inspect only the touched control and its own ancestry, never page/body text.
  var node=target;
  for(var depth=0;node&&depth<8;depth++,node=node.parentElement){

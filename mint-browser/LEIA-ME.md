@@ -1,15 +1,9 @@
-# Mint Browser V26.14 — impedir a montagem das janelas identificadas
+# Mint Browser V26.14.1 — exceção para o bônus manual
 
-Arquivo atual: `Mint-Browser-v26.14-Bloqueio-Antes-Montagem.apk`. O nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` aponta para o mesmo APK.
+Arquivo atual: `Mint-Browser-v26.14.1-Bonus-Manual.apk`. O alias antigo aponta para o mesmo APK.
 
-A correção atua antes da renderização das instâncias Vue cujas classes identificam as janelas de convite/tarefas (`_dialogBox_1r6g9_89`) e sorteio/prêmios (`_dialogBox_930qf_89`). O render dessas instâncias é vetado antes da criação dos filhos da janela e de sua camada de fundo. A tentativa de abertura recebe cancelamento lógico pelos handlers registrados do componente, com verificação de instância e vnode; não há clique no X nem remoção de DOM nesse bloqueio. O fechamento tardio antigo foi desativado para esses dois alvos.
+Foi adicionada uma exceção para `div._container_n102k_117._style2_n102k_144`. A caixa não entra no fechamento/hide dos filtros quando está presente. Um gesto confiável em Abrir nessa caixa autoriza a abertura seguinte de um dos dois componentes controlados e libera as chamadas promocionais correspondentes pela política de intenção manual. O diálogo autorizado mantém seu ciclo normal de fechamento; uma reabertura automática posterior volta a ser bloqueada.
 
-Também foi corrigido um erro no CSS preventivo: `:has()` aninhado gerava uma regra inválida para a camada de fundo. Agora o seletor usa somente um `:has()`, com alvos específicos. Os vídeos mostraram o efeito do fundo e o texto do sorteio; a captura original confirma a relação entre os diálogos e o overlay. A hipótese inicial de overlay irmão não foi usada como evidência.
+O seletor informado não estava nas capturas anteriores, portanto a associação causal não foi validada pelo log. Esta é uma exceção dirigida ao elemento e ao acionamento manual informado, sem liberar globalmente os popups. Permanecem as limitações de reconhecimento do Vue e de gestos/controles da versão anterior.
 
-Os bloqueios de rede da V26.13 permanecem: 12 arquivos promocionais e quatro endpoints automáticos com exceções manuais reconhecidas. Uma janela criada por código já carregado não exige novo download para cada abertura, portanto o veto de componente complementa o bloqueio de rede.
-
-**Limite:** o veto depende do app/contexto Vue acessível e dos tokens de classe identificados. A associação do app ocorre depois da montagem da raiz; não há garantia de interceptar um componente que já tenha sido renderizado antes dessa associação. Nenhum teste de uso foi feito, conforme solicitado; o resultado no aparelho fica para verificação do usuário.
-
-O script principal foi alterado somente no bloco de filtros anterior a `function register()`. O restante do PIN, Mines e GeeTest foi copiado por bytes da V26.13. DEX1/2/4, manifesto, recursos e bibliotecas foram preservados. O depurador continua ausente. A assinatura é a mesma da V26.10 e versões finais seguintes.
-
-Fontes: `correcao-nativa/mint-component-policy.js`, `mint-rebuilt.js` e `AutomaticScripts.java`. Compilado e assinado, sem testes de uso.
+Somente três assets JavaScript foram alterados. DEX, PIN, Mines, GeeTest, proxy, manifesto e recursos foram mantidos. O depurador continua removido; a assinatura é a mesma da V26.10. Sem testes de uso; JavaScript analisado sem execução e APK assinado.

@@ -1,9 +1,9 @@
 {
-  "apk": "Mint-Browser-v26.14-Bloqueio-Antes-Montagem.apk",
-  "sha256": "0214d48894237e52ea3005d0b2264fd793118ebfaf52064e81c4eedee957ec92",
-  "base_apk": "Mint-Browser-v26.13-Final-Sem-Depurador.apk",
+  "apk": "Mint-Browser-v26.14.1-Bonus-Manual.apk",
+  "sha256": "763c84ffd48add0cb4008e2e78dfa687b5a8216052e1b858dc40cb5f92d3fa33",
+  "base_apk": "Mint-Browser-v26.14-Bloqueio-Antes-Montagem.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "ccf76b6dd1916594953d34fac7fb26ff6de60293cac5b54a41687dac8ef48ab7",
+  "base_sha256": "214d48894237e52ea3005d0b2264fd793118ebfaf52064e81c4eedee957ec92",
   "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
   "base_signature_verified": [
     "v1",
@@ -14,9 +14,9 @@
   "new_signing_key_authorized_by_user": true,
   "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
-    "classes3.dex",
+    "assets/mint-component-policy.js",
     "assets/mint-rebuilt.js",
-    "assets/mint-component-policy.js"
+    "assets/mint-automatic-requests.js"
   ],
   "preserved_by_construction": {
     "all_js_from_function_register_onward": true,
@@ -138,5 +138,15 @@
     "original_PIN_Mines_GeeTest_suffix_retained_by_byte_slicing": true,
     "limitations": "Requires reachable Vue app/context and matching class tokens. App discovery occurs after the root mount; cannot guarantee cancellation of a target already rendered before hook attachment. Runtime behavior remains for user verification.",
     "existing_mounted_targets_receive_guarded_cancel_and_update": true
+  },
+  "manual_bonus_exception": {
+    "selector": "div._container_n102k_117._style2_n102k_144",
+    "trusted_open_action_permitted": true,
+    "target_component_exception_scoped_to_one_manual_open": true,
+    "respects_normal_close_lifecycle": true,
+    "subsequent_automatic_reopens_remain_vetoed": true,
+    "native_dex_unchanged": true,
+    "not_observed_in_original_captures": true,
+    "runtime_validation_pending_user": true
   }
 }

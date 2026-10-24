@@ -90,13 +90,17 @@ var earlyCSS='';
 var hasSelector=window.CSS&&typeof CSS.supports==='function'&&CSS.supports('selector(:has(*))');
 for(var cssIndex=0;cssIndex<rules.length;cssIndex++){
  var cssRule=rules[cssIndex];
+ var keepBonus='div._container_n102k_117._style2_n102k_144';
  if(cssRule.child&&!hasSelector&&!cssRule.renderVeto)continue;
  var guardedChild=cssRule.child&&!cssRule.renderVeto;
- var cssSelector=cssRule.selector+(guardedChild?':has('+cssRule.child+')':'');
+ var excludeBonus=hasSelector?':not(:has('+keepBonus+'))':'';
+ var cssSelector=cssRule.selector+(guardedChild?':has('+cssRule.child+')':'')+excludeBonus;
+ if(cssRule.renderVeto)cssSelector='html:not([data-mint-bonus-active]) '+cssSelector;
  earlyCSS+=cssSelector+','+cssSelector+' *{visibility:hidden!important;pointer-events:none!important}';
  if(hasSelector){
   // :has() cannot nest. Keep the component and child in a single relational selector.
-  var overlay='.ui-overlay:has('+cssRule.selector+(guardedChild?' '+cssRule.child:'')+')';
+  var overlay='.ui-overlay:has('+cssRule.selector+(guardedChild?' '+cssRule.child:'')+'):not(:has('+keepBonus+'))';
+  if(cssRule.renderVeto)overlay='html:not([data-mint-bonus-active]) '+overlay;
   earlyCSS+=overlay+'{visibility:hidden!important;opacity:0!important;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;pointer-events:none!important}';
  }
 }
@@ -161,6 +165,7 @@ function filter(){
   for(var j=0;j<nodes.length;j++){
    var node=nodes[j];if(!node.matches(rule.selector)||rule.child&&!node.querySelector(rule.child))continue;
    var root=node.closest('.ui-overlay')||node;
+   if(root.querySelector('div._container_n102k_117._style2_n102k_144')||typeof window.__mintKeepsBonusDialog==='function'&&window.__mintKeepsBonusDialog(root))continue;
    if(root.style.display==='none'||!root.getClientRects().length)continue;
    if(!protectedRoots.has(root))protectedRoots.set(root,protectedDialog(root));
    if(!rule.renderVeto&&!rule.explicitCapturedClose&&protectedRoots.get(root))continue;
