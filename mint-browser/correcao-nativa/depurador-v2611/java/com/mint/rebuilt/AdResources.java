@@ -33,7 +33,10 @@ public final class AdResources {
             "/active/ActiveImg11755836762171453.avif",
             "/siteadmin/upload/img/1896064761045774337.avif",
             "/siteadmin/upload/img/1925138707392065538.avif",
-            "/siteadmin/upload/img/1893861292589678593.avif"
+            "/siteadmin/upload/img/1893861292589678593.avif",
+            "/siteadmin/upload/img/1925138707392065538.gif",
+            "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_yh.avif",
+            "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_cz.avif"
         };
         for (String path : paths) {
             String normalized = "cdntoos.cf888pg.com\n" + path;
@@ -61,8 +64,8 @@ public final class AdResources {
                         if (!"GET".equalsIgnoreCase(method) && !"HEAD".equalsIgnoreCase(method)) return null;
                         Uri uri = request.getUrl();
                         String normalized = key(uri == null ? null : uri.toString());
-                        // A service worker has no WebView parameter. Only the nine
-                        // exclusive capture paths are eligible here; never learned URLs.
+                        // A service worker has no WebView parameter. Only the twelve
+                        // specific capture paths are eligible here; never learned URLs.
                         return normalized != null && captured.contains(normalized) ? response() : null;
                     } catch (Exception unavailable) { return null; }
                 }

@@ -1,0 +1,750 @@
+{
+  "scope": "Read-only analysis of uploaded mint-log.json; no site requests, tests, APK or repository changes.",
+  "source": "mint-log.json and original user popup capture (private files, not published)",
+  "retainedEvents": 500,
+  "eventIDRange": [
+    "662",
+    "1161"
+  ],
+  "limitations": [
+    "Initial capture events before662 were overwritten by the500-event cap.",
+    "All43 retained API events containing a stack have the same shared Axios/Fy/request transport stack; it ends before the component caller.",
+    "nearbyRequests/recentRequests explicitly have correlationOnly=true and are not proof of popup causation.",
+    "The page field stays /home/register across account/withdrawal/deposit/agent actions, so it cannot classify feature exclusivity by itself.",
+    "blocked=false reports debugger-rule evaluation before the separate existing AdResources filter and cannot demonstrate that seeded ad blocking failed.",
+    "Performance method * is unknown, not evidence that every HTTP verb was used."
+  ],
+  "apiEndpointCount": 44,
+  "apiEventsWithStack": 43,
+  "uniqueAPIStacks": 1,
+  "sharedStackEvidence": {
+    "script": "https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js",
+    "locations": [
+      "6:18169",
+      "6:16175",
+      "8:869",
+      "12:1600",
+      "8:2665",
+      "4:91248"
+    ],
+    "finding": "Only generic shared HTTP transport appears; no exclusive original-filter family can be identified from this stack."
+  },
+  "highConfidenceExclusiveAPICandidates": [],
+  "reviewCandidates": [
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/cutADeal/cut_a_deal_announcement",
+      "observedMethods": [
+        "*"
+      ],
+      "eventIDs": [
+        "668"
+      ],
+      "method": "*",
+      "url": "https://cdnapiif.ppa888pg.vip/hall/api/active/cutADeal/cut_a_deal_announcement",
+      "confidence": "candidate_only_not_proven_exclusive",
+      "enableAutomatically": false,
+      "reason": "Anúncio da promoção slash/cut-a-deal. Só evento performance está retido; método real e stack ausentes. Não substituir por bloqueio global de cutADeal/list.",
+      "stackEvidence": "Absent"
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/tasks/newcomer_benefit_pop",
+      "observedMethods": [
+        "*",
+        "POST"
+      ],
+      "eventIDs": [
+        "866",
+        "867",
+        "875"
+      ],
+      "method": "POST",
+      "url": "https://cdnapiif.ppa888pg.vip/hall/api/active/tasks/newcomer_benefit_pop",
+      "confidence": "candidate_only_not_proven_exclusive",
+      "enableAutomatically": false,
+      "reason": "Popup de benefício novo usuário. O nome explicita pop, mas não há stack do componente nem resposta para ligá-lo à promoção de convite/tarefas fechada.",
+      "stackEvidence": "Generic shared HTTP transport only; no component caller retained"
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/coupon/popList",
+      "observedMethods": [
+        "*",
+        "POST"
+      ],
+      "eventIDs": [
+        "953",
+        "954",
+        "959"
+      ],
+      "method": "POST",
+      "url": "https://cdnapiif.ppa888pg.vip/hall/api/active/coupon/popList",
+      "confidence": "candidate_only_not_proven_exclusive",
+      "enableAutomatically": false,
+      "reason": "Consulta específica de popup de cupons. Provável ponto preventivo; relação com as nove famílias fechadas não demonstrada. Não confundir com coupon/list de uso no depósito.",
+      "stackEvidence": "Generic shared HTTP transport only; no component caller retained"
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/popRegressActive",
+      "observedMethods": [
+        "*",
+        "POST"
+      ],
+      "eventIDs": [
+        "1102",
+        "1103",
+        "1106"
+      ],
+      "method": "POST",
+      "url": "https://cdnapiif.ppa888pg.vip/hall/api/active/popRegressActive",
+      "confidence": "candidate_only_not_proven_exclusive",
+      "enableAutomatically": false,
+      "reason": "Endpoint de popup de campanha/regresso. Uso exclusivamente promocional é provável pelo nome; falta vínculo exato à captura antiga.",
+      "stackEvidence": "Generic shared HTTP transport only; no component caller retained"
+    }
+  ],
+  "preserveEndpoints": [
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/finance/pay/payTypeSetting/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "676",
+        "677",
+        "689"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/settings/modifyinfo",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "683",
+        "684",
+        "704",
+        "719"
+      ],
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/club/manager/isApplyOpen/default.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "737",
+        "738",
+        "798"
+      ],
+      "reason": "Preservar: sem demonstração de exclusividade a uma das nove famílias fechadas."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/claim/unreadMsgCnt",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "739",
+        "740",
+        "753",
+        "799"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/advertise/currency/BRL/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "741",
+        "742",
+        "800"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/userAgentMode",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "743",
+        "744",
+        "754",
+        "801"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/vip",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "746",
+        "747",
+        "757",
+        "802"
+      ],
+      "reason": "Preservar dados VIP da conta; não é evidência de um modal promocional exclusivo."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/vipDetails",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "748",
+        "749",
+        "759",
+        "832"
+      ],
+      "reason": "Preservar dados VIP da conta; não é evidência de um modal promocional exclusivo."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/vipInfoV2",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "750",
+        "752",
+        "758",
+        "807"
+      ],
+      "reason": "Preservar dados VIP da conta; não é evidência de um modal promocional exclusivo."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/rechargeFund/currentPeriodReward/get",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "755",
+        "756",
+        "760",
+        "803"
+      ],
+      "reason": "Preservar benefício/estado de recarga; resposta pode ser usada em seção funcional além de popup."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/thirdUser/bindList",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "761",
+        "762",
+        "764",
+        "804"
+      ],
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/status",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "815",
+        "816",
+        "831",
+        "834"
+      ],
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/verifyWithdrawPass",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "837",
+        "838",
+        "839",
+        "841"
+      ],
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/modifyWithdrawPass",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "840",
+        "842",
+        "843",
+        "845"
+      ],
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/withdrawInfoV2",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "846",
+        "847",
+        "859",
+        "876"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/getWithdrawFeeSetting",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "848",
+        "849",
+        "860",
+        "872"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/finance/certify/withdrawSettingV3/currency/BRL/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "850",
+        "851",
+        "863"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/gameCenter/gold",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "852",
+        "853",
+        "861",
+        "873"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/claim/userInfo",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "855",
+        "856",
+        "868",
+        "879"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/lobby/finance/getSiteGuaranteeRule/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "857",
+        "858",
+        "865"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/withdraw/getAllActive",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "880",
+        "881",
+        "883",
+        "884"
+      ],
+      "reason": "Preservar contexto de retirada; pode integrar apresentação de valores/regras do saque, sem exclusividade promocional comprovada."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/verifyWithdrawalPasswordV2",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "896",
+        "897",
+        "898",
+        "901"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/bindalipayV3",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "908",
+        "909",
+        "910",
+        "911"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/message/list/all",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "930",
+        "931",
+        "933"
+      ],
+      "reason": "Preservar mensagens/status de reivindicações; proximidade com popup não demonstra que só servem à propaganda."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/cutADeal/list",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "932",
+        "934",
+        "935",
+        "941"
+      ],
+      "reason": "Preservar por enquanto: lista compartilhada com a navegação/depósito (modal funcional de recarga evento940); bloquear pode remover opções úteis."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/pay/payListV4",
+      "observedMethods": [
+        "POST"
+      ],
+      "eventIDs": [
+        "937",
+        "938"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/coupon/list",
+      "observedMethods": [
+        "*",
+        "POST"
+      ],
+      "eventIDs": [
+        "939",
+        "994",
+        "1017"
+      ],
+      "reason": "Preservar por enquanto: lista compartilhada com a navegação/depósito (modal funcional de recarga evento940); bloquear pode remover opções úteis."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/pay/orderListV3",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "955",
+        "956",
+        "960",
+        "962"
+      ],
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/sensitiveData/currency/BRL/language/pt/platformType/5.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "1038",
+        "1039",
+        "1067"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/agentBasic",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "1040",
+        "1041",
+        "1044",
+        "1068"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/index/settleTime",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "1042",
+        "1043",
+        "1045",
+        "1070"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/index/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "1046",
+        "1047",
+        "1071"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/share/currency/BRL/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "1048",
+        "1049",
+        "1072"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/getPromoteStrangerSetting/default.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "1050",
+        "1051",
+        "1073"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/commissionMarquee",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "1052",
+        "1054",
+        "1061",
+        "1074"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/report/agentPromotion",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "1055",
+        "1056",
+        "1062",
+        "1075"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/index/indexInfoV2",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "1057",
+        "1058",
+        "1063",
+        "1076"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/index/agentCommission",
+      "observedMethods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "eventIDs": [
+        "1059",
+        "1060",
+        "1064",
+        "1077"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/publicConfig/currency/BRL/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "1066",
+        "1069",
+        "1085"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/tutorial/agentId/0/currency/BRL/language/pt.json",
+      "observedMethods": [
+        "*",
+        "GET"
+      ],
+      "eventIDs": [
+        "1112",
+        "1113",
+        "1115"
+      ],
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    }
+  ],
+  "observedOriginalFamilies": [
+    {
+      "eventID": "675",
+      "family": "task-invitation-promotion",
+      "selector": "._dialogBox_1r6g9_89",
+      "APIcausality": "not established"
+    },
+    {
+      "eventID": "975",
+      "family": "find-us-install-promotion",
+      "selector": "._find-us_ly0vd_89",
+      "APIcausality": "not established"
+    }
+  ],
+  "newPopupNotAutomaticallyInOriginalFilter": {
+    "eventID": "692",
+    "selector": "._dialogBox_930qf_89",
+    "reason": "Selector not among the nine original closed families; no manual close signal in this log."
+  },
+  "criticalPreserveEventIDs": [
+    "837",
+    "840",
+    "844",
+    "895",
+    "896",
+    "900",
+    "908",
+    "940"
+  ],
+  "recommendation": "Use exact original-family artwork/resource evidence for immediate network additions. The four API candidates can be offered separately with their uncertainty; do not automatically block broad finance/member/agent/startup endpoints or shared bundles."
+}

@@ -1,13 +1,11 @@
-# Mint Browser V26.11.2 — Salvar log
+# Mint Browser V26.12 — revisão do bloqueio com base no log
 
-Arquivo atual: `Mint-Browser-v26.11.2-Salvar-Log.apk`. O nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` aponta para o mesmo APK.
+Arquivo atual: `Mint-Browser-v26.12-Adblock-Log.apk`. O nome antigo `Mint-Browser-v26-Matrix-Configuracoes.apk` aponta para o mesmo APK.
 
-O depurador agora tem **Salvar log**. Esse botão abre o **Salvar como** do Android para escolher uma pasta e gravar `mint-log.json`. Aguarde a confirmação de gravação e anexe esse arquivo na conversa. O fluxo anterior de compartilhamento/Quick Share foi removido desse botão.
+Foram analisados 500 eventos e 191 recursos distintos, cruzados com as janelas explicitamente fechadas na captura original. Esta versão acrescenta três caminhos exatos ao bloqueio nativo de download: a variante GIF de uma arte do carrossel e dois ícones específicos da promoção de cadastro. Os nove caminhos anteriores foram mantidos, totalizando 12. As regras independem da chave original de adblock.
 
-[Como capturar, salvar e enviar](DEPURADOR.md). Os controles de bloqueio continuam disponíveis, mas não são necessários para gerar o log.
+[Análise completa e classificação dos recursos](analise-log-2026-10-24/ANALISE.md). Quatro APIs de popup e o módulo FindUs foram documentados como candidatos; não foram ativados sem comprovação de exclusividade e tratamento de falha. Bibliotecas compartilhadas, PIN, saques, conta, depósitos e seletores foram preservados. O bloqueio desses arquivos não equivale a desativar toda a lógica das janelas.
 
-A cópia é feita fora da thread da interface. Cancelar a escolha de pasta mantém o original. O receptor do resultado é um Fragment nativo sem interface, com estado restaurável; não foram alterados manifesto ou recursos. Apenas `classes3.dex` foi substituído. Os scripts do PIN, Mines, GeeTest e da captura permanecem intactos. DEX 1, 2 e 4 e demais arquivos foram copiados da V26.11.1.
+O script principal, GeeTest, proxy, configurações, captura e **Salvar log** permanecem da V26.11.2. Mesma assinatura, permitindo atualização sem desinstalar. [Como guardar o log em uma pasta](DEPURADOR.md).
 
-A assinatura é a mesma das V26.11 e V26.11.1, permitindo atualização sem desinstalar. Os logs já gravados permanecem na pasta do aplicativo. Se o registro em memória estiver vazio, Salvar log utiliza o último JSON salvo pelo depurador.
-
-**Compilado e assinado, sem testes de uso**, conforme solicitado. Fontes em `correcao-nativa/depurador-v2611`; metadados em `verification.json`.
+**Sem testes de uso.** Compilação e assinatura concluídas. Capturas brutas não publicadas. Fontes em `correcao-nativa`; dados em `verification.json`.

@@ -1,0 +1,1824 @@
+{
+  "analysisDate": "2026-10-24",
+  "source": "mint-log.json and original user popup capture (private files, not published)",
+  "readOnly": true,
+  "networkAccess": false,
+  "testsRun": false,
+  "scope": "Script/CSS dependency/referrer graph and all 13 timer schedules; no APK or repository edits.",
+  "captureLimits": [
+    "Retained ring is events 662..1161 only; early root-module downloads/imports can be absent.",
+    "service-worker page values naming JS assets are referrer metadata, not page navigation evidence.",
+    "Performance records method * and popup nearby URLs are correlation only; they do not prove an initiator or complete request lifecycle.",
+    "Callback source, responses, module bodies and dynamic-import failure handling were not captured.",
+    "Only task-invitation popup 675 and FindUs popup 975 exactly match old closed cosmetic families in this retained window. The ninth verification-close user override postdates the eight-rule spec and is not observed here."
+  ],
+  "summary": {
+    "events": 500,
+    "requestEvents": 477,
+    "timers": 13,
+    "popupEvents": 10,
+    "scriptCSSURLsRequested": 43,
+    "referrerEdges": 39,
+    "safeScriptOrCSSBlocksProven": 0,
+    "safeTimerBlocksProven": 0,
+    "exactPopupModuleReviewCandidates": [
+      "https://888pg.cc/assets/theme-0/FindUsIndex._2t0_lNs.js",
+      "https://888pg.cc/assets/theme-0/FindUsIndex.BAaj7vtL.css"
+    ]
+  },
+  "recommendedEnabledBlocks": [],
+  "moduleReview": [
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-task-series.0QbxJDxk.js",
+      "eventIDs": [
+        "662"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "referrers": [],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/TipHandIndex.CtrEgPlb.js",
+      "eventIDs": [
+        "664",
+        "685"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/SlashOnceReceiveFirstIndex.BQlZYHuk.js"
+      ],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/slashOnce.Dbtz72YP.js",
+      "eventIDs": [
+        "665",
+        "686"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/SlashOnceReceiveFirstIndex.BQlZYHuk.js"
+      ],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useIntervalAlternation.8SVlrdny.js",
+      "eventIDs": [
+        "666",
+        "687"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/SlashOnceReceiveFirstIndex.BQlZYHuk.js"
+      ],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/MarqueueIndex.CzmSgyR3.js",
+      "eventIDs": [
+        "669"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "referrers": [],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/WiningAnnouncementIndex.DAQL7KvF.js",
+      "eventIDs": [
+        "670"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "referrers": [],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/TurnTableIndex.B8sFxrLs.js",
+      "eventIDs": [
+        "671"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "referrers": [],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useSlashReceive.DcNOcSPm.js",
+      "eventIDs": [
+        "672",
+        "695"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/MarqueueIndex.CzmSgyR3.js"
+      ],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/ProgressIndex.FJ6NygwP.js",
+      "eventIDs": [
+        "673",
+        "696"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/MarqueueIndex.CzmSgyR3.js"
+      ],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-home-winner.gDjDkxcp.css",
+      "eventIDs": [
+        "674",
+        "688"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/chunk-closure-lottie.Dp-SVf0a.js",
+      "eventIDs": [
+        "693",
+        "705"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/optimized-chunk-guest-interaction.DuzqKzxc.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Requested by optimized-chunk-guest-interaction.DuzqKzxc.js (693), indicating shared animation dependency; do not block the shared loader for an individual popup."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-home-winner.9mHtQMy-.js",
+      "eventIDs": [
+        "694",
+        "710"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js"
+      ],
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components.",
+        "Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+      ],
+      "enableBlockConditions": [
+        "Inspect exact module source and all importers before any request block.",
+        "Require component/class ownership and safe registry rejection handling; name, delay or nearby request IDs alone are insufficient."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/WithdrawalPasswordIndex.j9-Ut_eX.css",
+      "eventIDs": [
+        "891",
+        "892"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/home/withdraw?active=[redacted]"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "CSS referrer explicitly /home/withdraw at event 891; dialog-registry loads JS at 893; popup 895 is _withdrawalPassword_1yxfx_89. This is the withdrawal PIN dialog, not an old closed promotion."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/WithdrawalPasswordIndex.BqLR4UWx.js",
+      "eventIDs": [
+        "893",
+        "894"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/optimized-chunk-dialog-registry.DuqbtZMs.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "CSS referrer explicitly /home/withdraw at event 891; dialog-registry loads JS at 893; popup 895 is _withdrawalPassword_1yxfx_89. This is the withdrawal PIN dialog, not an old closed promotion."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/FindUsIndex.BAaj7vtL.css",
+      "eventIDs": [
+        "966",
+        "967"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "review-exact-popup-module",
+      "confidence": "medium",
+      "family": "find-us-install-promotion",
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Native/service-worker module load IDs 968/970 precedes popup 975 with exact old captured class _find-us_ly0vd_89.",
+        "JS referrer is optimized-chunk-dialog-registry.DuqbtZMs.js, which also loads the required WithdrawalPasswordIndex module at 893.",
+        "A failed dynamic import can reject a dialog queue; this log provides no evidence that rejection is caught. CSS-only blocking does not prevent popup execution and can leave an unstyled overlay."
+      ],
+      "enableBlockConditions": [
+        "Before enabling a request block, inspect local/captured source to prove this leaf has no necessary exports/side effects and that registry import rejection is handled or replace the leaf with a compatible inert module.",
+        "Scope to exact host/path and GET; never block dialog-registry or all FindUs/shared dialog assets by wildcard.",
+        "Do not describe this as verified safe from timing adjacency alone."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/FindUsIndex._2t0_lNs.js",
+      "eventIDs": [
+        "968",
+        "970"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/optimized-chunk-dialog-registry.DuqbtZMs.js"
+      ],
+      "classification": "review-exact-popup-module",
+      "confidence": "high",
+      "family": "find-us-install-promotion",
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Native/service-worker module load IDs 968/970 precedes popup 975 with exact old captured class _find-us_ly0vd_89.",
+        "JS referrer is optimized-chunk-dialog-registry.DuqbtZMs.js, which also loads the required WithdrawalPasswordIndex module at 893.",
+        "A failed dynamic import can reject a dialog queue; this log provides no evidence that rejection is caught. CSS-only blocking does not prevent popup execution and can leave an unstyled overlay."
+      ],
+      "enableBlockConditions": [
+        "Before enabling a request block, inspect local/captured source to prove this leaf has no necessary exports/side effects and that registry import rejection is handled or replace the leaf with a compatible inert module.",
+        "Scope to exact host/path and GET; never block dialog-registry or all FindUs/shared dialog assets by wildcard.",
+        "Do not describe this as verified safe from timing adjacency alone."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/RadioGroup.DH7pYFyL.css",
+      "eventIDs": [
+        "986",
+        "995"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/Username.DuOfZ3AB.css",
+      "eventIDs": [
+        "987",
+        "996"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useListManager.BB0KQvig.css",
+      "eventIDs": [
+        "988",
+        "997"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/PickUpRecord.CxkHYwgP.css",
+      "eventIDs": [
+        "989",
+        "998"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useMultipleSelect.BaJX92dv.css",
+      "eventIDs": [
+        "990",
+        "999"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/ClubMemberDetailModal.xoknAXDS.css",
+      "eventIDs": [
+        "991",
+        "1000"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/style.hQ_-3VeX.css",
+      "eventIDs": [
+        "992",
+        "1001"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/PromoteIndex.C-ydxBSe.css",
+      "eventIDs": [
+        "993",
+        "1002"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "eventIDs": [
+        "1003",
+        "1004"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/radio-group.BdgSiMre.js",
+      "eventIDs": [
+        "1005",
+        "1018"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useHeader.CgiYb11t.js",
+      "eventIDs": [
+        "1006",
+        "1019"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useDomToImage.DVw2uBa5.js",
+      "eventIDs": [
+        "1007",
+        "1020"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/Username.Dw6p7tll.js",
+      "eventIDs": [
+        "1008",
+        "1022"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/PickUpRecord.B3y5kU78.js",
+      "eventIDs": [
+        "1009",
+        "1023"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useListManager.DFgZyf2P.js",
+      "eventIDs": [
+        "1010",
+        "1028"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useMultipleSelect.CQ9hjs4D.js",
+      "eventIDs": [
+        "1011",
+        "1024"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/clubAgentConfig.BKTkG1EE.js",
+      "eventIDs": [
+        "1012",
+        "1025"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/club-agent-rate.C80w5Bpo.js",
+      "eventIDs": [
+        "1013",
+        "1026"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/useOptions.BRUG6ofY.js",
+      "eventIDs": [
+        "1014",
+        "1027"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/ClubMemberDetailModal.Dqzbl6pP.js",
+      "eventIDs": [
+        "1015",
+        "1029"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/style.module.DaUzWprH.js",
+      "eventIDs": [
+        "1016",
+        "1030"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/RadioGroup.BW8i9ES7.js",
+      "eventIDs": [
+        "1021",
+        "1032"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/radio-group.BdgSiMre.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/report.9MU7RbJV.js",
+      "eventIDs": [
+        "1031",
+        "1035"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/useOptions.BRUG6ofY.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/NumberInputIndex.kZD-L9xP.js",
+      "eventIDs": [
+        "1033",
+        "1036"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/style.module.DaUzWprH.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/transferHistory.DmoWyOKp.js",
+      "eventIDs": [
+        "1034",
+        "1037"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/style.module.DaUzWprH.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/TutorialIndex.DLlCYDR_.css",
+      "eventIDs": [
+        "1108",
+        "1109"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/TutorialIndex.DRaWBZp-.js",
+      "eventIDs": [
+        "1110",
+        "1111"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "referrers": [
+        "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js"
+      ],
+      "classification": "preserve",
+      "confidence": "high",
+      "family": null,
+      "evidence": [
+        "Observed request/performance metadata; module source and import error handling are absent from this capture.",
+        "Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup.",
+        "Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+      ],
+      "enableBlockConditions": []
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/SlashOnceReceiveFirstIndex.BQlZYHuk.js",
+      "eventIDs": [
+        "664",
+        "665",
+        "666"
+      ],
+      "requestObserved": false,
+      "classification": "review-source-parent",
+      "confidence": "medium",
+      "evidence": [
+        "Referenced as an importer/referrer in the retained window; the module own request may have occurred before event 662.",
+        "Do not infer missing import edges or safe failure behavior from this truncated ring."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js",
+      "eventIDs": [
+        "1003"
+      ],
+      "requestObserved": false,
+      "classification": "preserve-shared-parent",
+      "confidence": "high",
+      "evidence": [
+        "Referenced as an importer/referrer in the retained window; the module own request may have occurred before event 662.",
+        "Do not infer missing import edges or safe failure behavior from this truncated ring."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-dialog-registry.DuqbtZMs.js",
+      "eventIDs": [
+        "893",
+        "968"
+      ],
+      "requestObserved": false,
+      "classification": "preserve-shared-parent",
+      "confidence": "high",
+      "evidence": [
+        "Referenced as an importer/referrer in the retained window; the module own request may have occurred before event 662.",
+        "Do not infer missing import edges or safe failure behavior from this truncated ring."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-guest-interaction.DuzqKzxc.js",
+      "eventIDs": [
+        "693"
+      ],
+      "requestObserved": false,
+      "classification": "preserve-shared-parent",
+      "confidence": "high",
+      "evidence": [
+        "Referenced as an importer/referrer in the retained window; the module own request may have occurred before event 662.",
+        "Do not infer missing import edges or safe failure behavior from this truncated ring."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js",
+      "eventIDs": [
+        "694"
+      ],
+      "requestObserved": false,
+      "classification": "preserve-shared-parent",
+      "confidence": "high",
+      "evidence": [
+        "Referenced as an importer/referrer in the retained window; the module own request may have occurred before event 662.",
+        "Do not infer missing import edges or safe failure behavior from this truncated ring."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-1.Dq0UipC8.js",
+      "eventIDs": [
+        "796"
+      ],
+      "requestObserved": false,
+      "classification": "preserve-shared-runtime",
+      "confidence": "high",
+      "evidence": [
+        "Present in timer scheduling stacks but own download absent from retained 500-event window.",
+        "Shared home/member/startup/runtime chunk; no exclusive old-popup ownership."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js",
+      "eventIDs": [
+        "721"
+      ],
+      "requestObserved": false,
+      "classification": "preserve-shared-runtime",
+      "confidence": "high",
+      "evidence": [
+        "Present in timer scheduling stacks but own download absent from retained 500-event window.",
+        "Shared home/member/startup/runtime chunk; no exclusive old-popup ownership."
+      ]
+    },
+    {
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js",
+      "eventIDs": [
+        "854",
+        "936",
+        "963",
+        "964",
+        "965"
+      ],
+      "requestObserved": false,
+      "classification": "preserve-shared-runtime",
+      "confidence": "high",
+      "evidence": [
+        "Present in timer scheduling stacks but own download absent from retained 500-event window.",
+        "Shared home/member/startup/runtime chunk; no exclusive old-popup ownership."
+      ]
+    }
+  ],
+  "timerReview": [
+    {
+      "signature": "timer-7171f6b0",
+      "eventIDs": [
+        "691"
+      ],
+      "api": "setInterval",
+      "delay": 1000,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/useIntervalAlternation.8SVlrdny.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/useIntervalAlternation.8SVlrdny.js:1:428",
+      "stack": "    at https://888pg.cc/assets/theme-0/useIntervalAlternation.8SVlrdny.js:1:428\n    at https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:63383\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at t.__weh.t.__weh (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:24867)\n    at Ln (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:16992)\n    at Rn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:17152)",
+      "classification": "review-promotion-related",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "useIntervalAlternation is imported from SlashOnceReceiveFirstIndex at 666, observed at 687, then schedules this 1000ms interval. Popup 692 is reward-choice _dialogBox_930qf_89, not exclusive evidence of the manually closed slash dialog. Neither callback body nor component ownership is logged.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-82607319",
+      "eventIDs": [
+        "721"
+      ],
+      "api": "setTimeout",
+      "delay": 500,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js:31:41270",
+      "stack": "    at e.vo (https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js:31:41270)\n    at https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js:31:47941\n    at Array.forEach (<anonymous>)\n    at https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js:31:47927\n    at Array.forEach (<anonymous>)\n    at e.emit (https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js:31:47747)\n    at s (https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js:31:2290)\n    at https://888pg.cc/assets/theme-0/optimized-chunk-home-content-shared.D7VfsCxX.js:31:2593",
+      "classification": "preserve-shared-ui",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "home-content-shared e.vo/emit stack and Array.forEach are consistent with shared widget/slider/event work. No exact old-popup class or isolated callback is identified.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-4b679236",
+      "eventIDs": [
+        "745"
+      ],
+      "api": "setTimeout",
+      "delay": 500,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js:2:16616",
+      "stack": "    at https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js:2:16616\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at b (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:50122)\n    at In (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:16808)\n    at oe (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:44494)\n    at Pt.s [as fn] (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:43553)\n    at Pt.run (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:11962)\n    at A.e.update (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:44351)",
+      "classification": "preserve-shared-home",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "Home root scheduling during member/VIP/promote API activity; no unique promotional component ownership.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-0050545d",
+      "eventIDs": [
+        "751"
+      ],
+      "api": "setTimeout",
+      "delay": 0,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js:23:222099",
+      "stack": "    at Proxy.updateRouterViewTransitionModeOnce (https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js:23:222099)\n    at async n (https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js:59:95831)",
+      "classification": "preserve-navigation",
+      "confidence": "high",
+      "enableBlock": false,
+      "evidence": [
+        "Named updateRouterViewTransitionModeOnce in startup followed by async route helper. Blocking risks route transitions, not an isolated ad.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-f6457944",
+      "eventIDs": [
+        "796"
+      ],
+      "api": "setTimeout",
+      "delay": 2000,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-1.Dq0UipC8.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-1.Dq0UipC8.js:2:214120",
+      "stack": "    at https://888pg.cc/assets/theme-0/optimized-chunk-1.Dq0UipC8.js:2:214120\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at b (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:50122)\n    at In (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:16808)\n    at oe (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:44494)\n    at Pt.s [as fn] (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:43553)\n    at Pt.run (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:11962)\n    at A.e.update (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:44351)",
+      "classification": "preserve-toast-or-shared",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "optimized-chunk-1 callback is followed by warning toast 797. The capture does not distinguish dismissal, display or unrelated state work; suppressing a timeout could leave a toast mounted.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-c865d7e2",
+      "eventIDs": [
+        "854"
+      ],
+      "api": "setTimeout",
+      "delay": 0,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:191472",
+      "stack": "    at he (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:191472)\n    at me (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:191306)\n    at Object.k [as initialize] (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:186545)\n    at i (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:182077)\n    at Jse.G.immediate (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:182256)\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at b (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:50122)\n    at Oi (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:50379)",
+      "classification": "preserve-account-finance-initialization",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "member-interaction initialize/immediate stack occurs amid withdrawSettingV3 and claim/userInfo; not an exclusive popup task.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-1bea60e2",
+      "eventIDs": [
+        "890"
+      ],
+      "api": "setTimeout",
+      "delay": 593,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js:2:9796",
+      "stack": "    at https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js:2:9796\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at b (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:50122)\n    at In (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:16808)\n    at oe (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:44494)\n    at Pt.s [as fn] (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:43553)\n    at Pt.run (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:11962)\n    at A.e.update (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:44351)",
+      "classification": "preserve-shared-home",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "Home scheduler 593ms occurs immediately before WithdrawalPasswordIndex imports 891/893 and real PIN popup 895. Temporal proximity does not prove callback origin; it must not be broadly blocked.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-3d3a68e2",
+      "eventIDs": [
+        "936"
+      ],
+      "api": "setTimeout",
+      "delay": 150,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:477556",
+      "stack": "    at b (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:477556)\n    at https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:477642\n    at https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:63383\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at t.__weh.t.__weh (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:24867)\n    at Ln (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:16992)\n    at Rn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:17152)",
+      "classification": "preserve-finance-ui",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "member-interaction scheduler 150ms near recharge/payListV4 and popup 940 (_main-recharge_1n4np_89), outside the original nine cosmetic close families.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-8a48d2b5",
+      "eventIDs": [
+        "963"
+      ],
+      "api": "setTimeout",
+      "delay": 1000,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:33:51523",
+      "stack": "    at h_ (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:33:51523)\n    at Object.onClose (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:482098)\n    at https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js:22:186990\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at b (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:50122)\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15626)\n    at Rn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:17112)",
+      "classification": "preserve-close-cleanup",
+      "confidence": "high",
+      "enableBlock": false,
+      "evidence": [
+        "Explicit onClose stack through member-interaction and startup after recharge/pay/orderListV3, before FindUs import. Could finalize the preceding finance dialog or popup queue; blocking may prevent cleanup/advancement.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-64b81ded",
+      "eventIDs": [
+        "964"
+      ],
+      "api": "setTimeout",
+      "delay": 1000,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:47:47973",
+      "stack": "    at oy (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:47:47973)\n    at Object.onClose (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:482103)\n    at https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js:22:186990\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at b (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:50122)\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15626)\n    at Rn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:17112)",
+      "classification": "preserve-close-cleanup",
+      "confidence": "high",
+      "enableBlock": false,
+      "evidence": [
+        "Same onClose origin as 963/965; oy callback is not uniquely owned by FindUs or another old ad. Blocking can stall queue/finance state cleanup.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-1c7faf81",
+      "eventIDs": [
+        "965"
+      ],
+      "api": "setTimeout",
+      "delay": 1000,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:47:47759",
+      "stack": "    at i.formModel.r (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:47:47759)\n    at new Promise (<anonymous>)\n    at https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:47:47744\n    at ay (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:47:47776)\n    at oy (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:47:48066)\n    at Object.onClose (https://888pg.cc/assets/theme-0/optimized-chunk-member-interaction.CbIUsfRl.js:74:482103)\n    at https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js:22:186990\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)",
+      "classification": "preserve-form-model",
+      "confidence": "high",
+      "enableBlock": false,
+      "evidence": [
+        "Stack explicitly i.formModel.r -> Promise -> ay -> oy -> onClose. This is form model/close work, not evidence of an advertising-only timer.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-b0a50d53",
+      "eventIDs": [
+        "1053"
+      ],
+      "api": "setInterval",
+      "delay": 1000,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/useListManager.DFgZyf2P.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/useListManager.DFgZyf2P.js:1:1216",
+      "stack": "    at h (https://888pg.cc/assets/theme-0/useListManager.DFgZyf2P.js:1:1216)\n    at https://888pg.cc/assets/theme-0/useListManager.DFgZyf2P.js:1:1387\n    at https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:63383\n    at En (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15618)\n    at Dn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:15686)\n    at t.__weh.t.__weh (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:24867)\n    at Ln (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:16992)\n    at Rn (https://888pg.cc/assets/theme-0/chunk-closure-foundation.BWHNDJcI.js:1:17152)",
+      "classification": "preserve-functional-list",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "useListManager timer is a dependency of PromoteIndex via 1010; surrounded by agentPromotion/indexInfo/commission requests. No unique old popup association.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    },
+    {
+      "signature": "timer-62a9cd01",
+      "eventIDs": [
+        "1065"
+      ],
+      "api": "setTimeout",
+      "delay": 1500,
+      "page": "https://888pg.cc/home/register",
+      "url": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "sourceLocation": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js:6:180620",
+      "stack": "    at https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js:6:180620\n    at new Promise (<anonymous>)\n    at g (https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js:6:180602)",
+      "classification": "preserve-promote-page",
+      "confidence": "medium",
+      "enableBlock": false,
+      "evidence": [
+        "PromoteIndex Promise/g 1500ms schedules during the full agent/promote page. No popup appears nearby in the retained log and no callback source is captured.",
+        "Signature maps to callback-source hash plus scheduling site; callback source/execution and causation are not exported. Equal delay is never a sufficient rule."
+      ]
+    }
+  ],
+  "referrerGraph": [
+    {
+      "eventIDs": [
+        "664"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/SlashOnceReceiveFirstIndex.BQlZYHuk.js",
+      "to": "https://888pg.cc/assets/theme-0/TipHandIndex.CtrEgPlb.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "665"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/SlashOnceReceiveFirstIndex.BQlZYHuk.js",
+      "to": "https://888pg.cc/assets/theme-0/slashOnce.Dbtz72YP.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "666"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/SlashOnceReceiveFirstIndex.BQlZYHuk.js",
+      "to": "https://888pg.cc/assets/theme-0/useIntervalAlternation.8SVlrdny.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "672"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/MarqueueIndex.CzmSgyR3.js",
+      "to": "https://888pg.cc/assets/theme-0/useSlashReceive.DcNOcSPm.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "673"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/MarqueueIndex.CzmSgyR3.js",
+      "to": "https://888pg.cc/assets/theme-0/ProgressIndex.FJ6NygwP.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "674"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/optimized-chunk-home-winner.gDjDkxcp.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "693"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/optimized-chunk-guest-interaction.DuzqKzxc.js",
+      "to": "https://888pg.cc/assets/theme-0/chunk-closure-lottie.Dp-SVf0a.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "694"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/optimized-chunk-home.C2WGVVwp.js",
+      "to": "https://888pg.cc/assets/theme-0/optimized-chunk-home-winner.9mHtQMy-.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "891"
+      ],
+      "from": "https://888pg.cc/home/withdraw?active=[redacted]",
+      "to": "https://888pg.cc/assets/theme-0/WithdrawalPasswordIndex.j9-Ut_eX.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "893"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/optimized-chunk-dialog-registry.DuqbtZMs.js",
+      "to": "https://888pg.cc/assets/theme-0/WithdrawalPasswordIndex.BqLR4UWx.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "966"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/FindUsIndex.BAaj7vtL.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "968"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/optimized-chunk-dialog-registry.DuqbtZMs.js",
+      "to": "https://888pg.cc/assets/theme-0/FindUsIndex._2t0_lNs.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "986"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/RadioGroup.DH7pYFyL.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "987"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/Username.DuOfZ3AB.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "988"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/useListManager.BB0KQvig.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "989"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/PickUpRecord.CxkHYwgP.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "990"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/useMultipleSelect.BaJX92dv.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "991"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/ClubMemberDetailModal.xoknAXDS.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "992"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/style.hQ_-3VeX.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "993"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/PromoteIndex.C-ydxBSe.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1003"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/chunk-closure-startup.Cfz8PC-i.js",
+      "to": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1005"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/radio-group.BdgSiMre.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1006"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/useHeader.CgiYb11t.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1007"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/useDomToImage.DVw2uBa5.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1008"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/Username.Dw6p7tll.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1009"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/PickUpRecord.B3y5kU78.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1010"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/useListManager.DFgZyf2P.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1011"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/useMultipleSelect.CQ9hjs4D.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1012"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/clubAgentConfig.BKTkG1EE.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1013"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/club-agent-rate.C80w5Bpo.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1014"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/useOptions.BRUG6ofY.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1015"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/ClubMemberDetailModal.Dqzbl6pP.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1016"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/style.module.DaUzWprH.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1021"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/radio-group.BdgSiMre.js",
+      "to": "https://888pg.cc/assets/theme-0/RadioGroup.BW8i9ES7.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1031"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/useOptions.BRUG6ofY.js",
+      "to": "https://888pg.cc/assets/theme-0/report.9MU7RbJV.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1033"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/style.module.DaUzWprH.js",
+      "to": "https://888pg.cc/assets/theme-0/NumberInputIndex.kZD-L9xP.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1034"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/style.module.DaUzWprH.js",
+      "to": "https://888pg.cc/assets/theme-0/transferHistory.DmoWyOKp.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1108"
+      ],
+      "from": "https://888pg.cc/",
+      "to": "https://888pg.cc/assets/theme-0/TutorialIndex.DLlCYDR_.css",
+      "relation": "document-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    },
+    {
+      "eventIDs": [
+        "1110"
+      ],
+      "from": "https://888pg.cc/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "to": "https://888pg.cc/assets/theme-0/TutorialIndex.DRaWBZp-.js",
+      "relation": "script-referrer-load",
+      "confidence": "medium",
+      "evidence": "service-worker request.page is referrer metadata; this is a dependency/referrer edge, not proof of an ES import statement or navigation."
+    }
+  ],
+  "targetFamilyEvidence": [
+    {
+      "family": "task-invitation-promotion",
+      "popupEventIDs": [
+        "675"
+      ],
+      "selector": "._dialogBox_1r6g9_89",
+      "candidateURLs": [
+        "https://888pg.cc/assets/theme-0/optimized-chunk-task-series.0QbxJDxk.js"
+      ],
+      "confidence": "low",
+      "evidence": "Module 662 and neighboring slash/turntable/marquee resources precede popup 675; no exact class ownership or leaf isolation can be proven."
+    },
+    {
+      "family": "find-us-install-promotion",
+      "popupEventIDs": [
+        "975"
+      ],
+      "selector": "._find-us_ly0vd_89",
+      "candidateURLs": [
+        "https://888pg.cc/assets/theme-0/FindUsIndex._2t0_lNs.js",
+        "https://888pg.cc/assets/theme-0/FindUsIndex.BAaj7vtL.css"
+      ],
+      "confidence": "high",
+      "evidence": "Exact old class plus named module/CSS loads at 966/968/970; safe import rejection still unproven."
+    }
+  ]
+}

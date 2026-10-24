@@ -1,0 +1,3728 @@
+{
+  "analysis_date": "2026-10-24",
+  "scope": "Cross-reference user network log with original explicitly closed popup capture. Raw user captures are not published.",
+  "event_count": 500,
+  "request_records": 477,
+  "unique_host_paths": 191,
+  "api_endpoints": 44,
+  "popups": 10,
+  "timers": 13,
+  "enabled_additional_network_blocks": [
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1925138707392065538.gif",
+      "evidence": "Same exact upload identifier and host as original carousel artwork 1925138707392065538.avif, proven in old DOM at seq234/235.",
+      "new_event_ids": [
+        "972",
+        "979"
+      ],
+      "original_event_ids": []
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_yh.avif",
+      "evidence": "Direct DOM src belongs to original manually closed registration/deposit promotion; only observed within that same component and wrapper snapshots. Dedicated registration-success filename; no reuse outside that component observed, but unknown future reuse cannot be excluded.",
+      "new_event_ids": [],
+      "original_event_ids": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_cz.avif",
+      "evidence": "Direct DOM src belongs to original manually closed registration/deposit promotion; not the generic deposit/currency icon. Dedicated registration-success filename, observed only in that component.",
+      "new_event_ids": [],
+      "original_event_ids": [
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  ],
+  "review_only_api_rules": [
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/cutADeal/cut_a_deal_announcement",
+      "method": "*",
+      "eventIDs": [
+        "668"
+      ],
+      "reason": "Anúncio da promoção slash/cut-a-deal. Só evento performance está retido; método real e stack ausentes. Não substituir por bloqueio global de cutADeal/list.",
+      "enabled": false
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/tasks/newcomer_benefit_pop",
+      "method": "POST",
+      "eventIDs": [
+        "866",
+        "867",
+        "875"
+      ],
+      "reason": "Popup de benefício novo usuário. O nome explicita pop, mas não há stack do componente nem resposta para ligá-lo à promoção de convite/tarefas fechada.",
+      "enabled": false
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/coupon/popList",
+      "method": "POST",
+      "eventIDs": [
+        "953",
+        "954",
+        "959"
+      ],
+      "reason": "Consulta específica de popup de cupons. Provável ponto preventivo; relação com as nove famílias fechadas não demonstrada. Não confundir com coupon/list de uso no depósito.",
+      "enabled": false
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/popRegressActive",
+      "method": "POST",
+      "eventIDs": [
+        "1102",
+        "1103",
+        "1106"
+      ],
+      "reason": "Endpoint de popup de campanha/regresso. Uso exclusivamente promocional é provável pelo nome; falta vínculo exato à captura antiga.",
+      "enabled": false
+    }
+  ],
+  "resource_decisions": [
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/optimized-chunk-task-series.0QbxJDxk.js",
+      "event_ids": [
+        "662"
+      ],
+      "methods": [
+        "*"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/13/2/custom_BRL.avif",
+      "event_ids": [
+        "663"
+      ],
+      "methods": [
+        "*"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/TipHandIndex.CtrEgPlb.js",
+      "event_ids": [
+        "664",
+        "685"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/slashOnce.Dbtz72YP.js",
+      "event_ids": [
+        "665",
+        "686"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useIntervalAlternation.8SVlrdny.js",
+      "event_ids": [
+        "666",
+        "687"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/_sprite/icon_dtfl_ty_1.avif",
+      "event_ids": [
+        "667",
+        "678"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/cutADeal/cut_a_deal_announcement",
+      "event_ids": [
+        "668"
+      ],
+      "methods": [
+        "*"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "decision": "review-api-not-enabled",
+      "reason": "Anúncio da promoção slash/cut-a-deal. Só evento performance está retido; método real e stack ausentes. Não substituir por bloqueio global de cutADeal/list."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/MarqueueIndex.CzmSgyR3.js",
+      "event_ids": [
+        "669"
+      ],
+      "methods": [
+        "*"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/WiningAnnouncementIndex.DAQL7KvF.js",
+      "event_ids": [
+        "670"
+      ],
+      "methods": [
+        "*"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/TurnTableIndex.B8sFxrLs.js",
+      "event_ids": [
+        "671"
+      ],
+      "methods": [
+        "*"
+      ],
+      "apis": [
+        "performance"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useSlashReceive.DcNOcSPm.js",
+      "event_ids": [
+        "672",
+        "695"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/ProgressIndex.FJ6NygwP.js",
+      "event_ids": [
+        "673",
+        "696"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/optimized-chunk-home-winner.gDjDkxcp.css",
+      "event_ids": [
+        "674",
+        "688"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/finance/pay/payTypeSetting/language/pt.json",
+      "event_ids": [
+        "676",
+        "677",
+        "689"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/301/4/custom_BRL.avif",
+      "event_ids": [
+        "679",
+        "690"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/task/img_rwtc_bjgx.avif",
+      "event_ids": [
+        "680",
+        "697"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/task/img_rwtc_rwdbzs2.avif",
+      "event_ids": [
+        "681",
+        "698"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/task/img_rw_mrrw.avif",
+      "event_ids": [
+        "682",
+        "699"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/settings/modifyinfo",
+      "event_ids": [
+        "683",
+        "684",
+        "704",
+        "719"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/chunk-closure-lottie.Dp-SVf0a.js",
+      "event_ids": [
+        "693",
+        "705"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Requested by optimized-chunk-guest-interaction.DuzqKzxc.js (693), indicating shared animation dependency; do not block the shared loader for an individual popup."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/optimized-chunk-home-winner.9mHtQMy-.js",
+      "event_ids": [
+        "694",
+        "710"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Promotion-related filename/referrer cluster is visible, but no captured source maps these exports to exactly one of the nine closed components. Popup 675 is the old task-invitation family; popup 692 is the separately selected reward dialog _dialogBox_930qf_89. The concurrent imports do not establish exclusive ownership."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/lihe/style1/xkyd_bt_zs.svg",
+      "event_ids": [
+        "700",
+        "701",
+        "712"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/13/1/custom_BRL.avif",
+      "event_ids": [
+        "702",
+        "706"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/lihe/style1/xkyd_shou.avif",
+      "event_ids": [
+        "703",
+        "707"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/animated/style1/onlinegreen/xkyd_lihe.json",
+      "event_ids": [
+        "708",
+        "709",
+        "722"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/13/5/custom_BRL.avif",
+      "event_ids": [
+        "711",
+        "720"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/g/CL/200/3/2000094/default.avif",
+      "event_ids": [
+        "713",
+        "723"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/common/home/img_zjjl_tada.avif",
+      "event_ids": [
+        "714",
+        "724"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/g/CL/312/11/312003/default.avif",
+      "event_ids": [
+        "715",
+        "725"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/g/CL/200/3/2000025/default.avif",
+      "event_ids": [
+        "716",
+        "726"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/g/CL/200/3/2000100/default.avif",
+      "event_ids": [
+        "717",
+        "727"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1968616064946700290.avif",
+      "event_ids": [
+        "718",
+        "728"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/312/11/custom_BRL.avif",
+      "event_ids": [
+        "729",
+        "733"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/13/11/custom_BRL.avif",
+      "event_ids": [
+        "730",
+        "734"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/317/4/custom_BRL.avif",
+      "event_ids": [
+        "731",
+        "735"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/game_pictures/p/6332/L1/316/2/custom_BRL.avif",
+      "event_ids": [
+        "732",
+        "736"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/club/manager/isApplyOpen/default.json",
+      "event_ids": [
+        "737",
+        "738",
+        "798"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar: sem demonstração de exclusividade a uma das nove famílias fechadas."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/claim/unreadMsgCnt",
+      "event_ids": [
+        "739",
+        "740",
+        "753",
+        "799"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/advertise/currency/BRL/language/pt.json",
+      "event_ids": [
+        "741",
+        "742",
+        "800"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/userAgentMode",
+      "event_ids": [
+        "743",
+        "744",
+        "754",
+        "801"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/vip",
+      "event_ids": [
+        "746",
+        "747",
+        "757",
+        "802"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar dados VIP da conta; não é evidência de um modal promocional exclusivo."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/vipDetails",
+      "event_ids": [
+        "748",
+        "749",
+        "759",
+        "832"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar dados VIP da conta; não é evidência de um modal promocional exclusivo."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/vipInfoV2",
+      "event_ids": [
+        "750",
+        "752",
+        "758",
+        "807"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar dados VIP da conta; não é evidência de um modal promocional exclusivo."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/rechargeFund/currentPeriodReward/get",
+      "event_ids": [
+        "755",
+        "756",
+        "760",
+        "803"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar benefício/estado de recarga; resposta pode ser usada em seção funcional além de popup."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/thirdUser/bindList",
+      "event_ids": [
+        "761",
+        "762",
+        "764",
+        "804"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/siteadmin/upload/img/1893861210904309762.png",
+      "event_ids": [
+        "763",
+        "805"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/cocos/lg/favicon.ico",
+      "event_ids": [
+        "765",
+        "808"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_top_kf.svg",
+      "event_ids": [
+        "766",
+        "768",
+        "819"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_top_xx.svg",
+      "event_ids": [
+        "767",
+        "770",
+        "820"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/icon_grzl.svg",
+      "event_ids": [
+        "769",
+        "772",
+        "821"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_mid_tx.svg",
+      "event_ids": [
+        "771",
+        "773",
+        "822"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/profile/style_1_icon_mid_zkq.svg",
+      "event_ids": [
+        "774",
+        "776",
+        "823"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_zhmx.svg",
+      "event_ids": [
+        "775",
+        "778",
+        "824"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_txgl.svg",
+      "event_ids": [
+        "777",
+        "779",
+        "825"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/profile/style_1_icon_list_fxzq.svg",
+      "event_ids": [
+        "780",
+        "782",
+        "826"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_pyq.svg",
+      "event_ids": [
+        "781",
+        "783",
+        "827"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_grzl.svg",
+      "event_ids": [
+        "784",
+        "786",
+        "828"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_aqzx.svg",
+      "event_ids": [
+        "785",
+        "788",
+        "829"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_mid_gjj.svg",
+      "event_ids": [
+        "787",
+        "789",
+        "830"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1864773446543712257.avif",
+      "event_ids": [
+        "790",
+        "809"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/profile/gif_profile_style1.avif",
+      "event_ids": [
+        "791",
+        "810"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/profile/vip_bgdw.avif",
+      "event_ids": [
+        "792",
+        "811"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/active/style2/iconColor/style_2_vip_color4.avif",
+      "event_ids": [
+        "793",
+        "812"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/active/style2/iconStyle/style_2_vip_style0.avif",
+      "event_ids": [
+        "794",
+        "813"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/profile/style_1_topbg_yd.avif",
+      "event_ids": [
+        "795",
+        "814"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/status",
+      "event_ids": [
+        "815",
+        "816",
+        "831",
+        "834"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_zdwm.svg",
+      "event_ids": [
+        "817",
+        "818",
+        "835"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/comm_icon_tip1.avif",
+      "event_ids": [
+        "833",
+        "836"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/verifyWithdrawPass",
+      "event_ids": [
+        "837",
+        "838",
+        "839",
+        "841"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/member/user/security/modifyWithdrawPass",
+      "event_ids": [
+        "840",
+        "842",
+        "843",
+        "845"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar conta, segurança e definição/verificação do PIN; estes eventos incluem ações reais do usuário."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/withdrawInfoV2",
+      "event_ids": [
+        "846",
+        "847",
+        "859",
+        "876"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/getWithdrawFeeSetting",
+      "event_ids": [
+        "848",
+        "849",
+        "860",
+        "872"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/finance/certify/withdrawSettingV3/currency/BRL/language/pt.json",
+      "event_ids": [
+        "850",
+        "851",
+        "863"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/gameCenter/gold",
+      "event_ids": [
+        "852",
+        "853",
+        "861",
+        "873"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/claim/userInfo",
+      "event_ids": [
+        "855",
+        "856",
+        "868",
+        "879"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/lobby/finance/getSiteGuaranteeRule/language/pt.json",
+      "event_ids": [
+        "857",
+        "858",
+        "865"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/support/icon_sys_menu_service.svg",
+      "event_ids": [
+        "862",
+        "864",
+        "869"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/tasks/newcomer_benefit_pop",
+      "event_ids": [
+        "866",
+        "867",
+        "875"
+      ],
+      "methods": [
+        "*",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "review-api-not-enabled",
+      "reason": "Popup de benefício novo usuário. O nome explicita pop, mas não há stack do componente nem resposta para ligá-lo à promoção de convite/tarefas fechada."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-common/web/common/comm_icon_sx.svg",
+      "event_ids": [
+        "870",
+        "871",
+        "874"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/withdraw/img_tx_tjzh.svg",
+      "event_ids": [
+        "877",
+        "878",
+        "882"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/withdraw/getAllActive",
+      "event_ids": [
+        "880",
+        "881",
+        "883",
+        "884"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar contexto de retirada; pode integrar apresentação de valores/regras do saque, sem exclusividade promocional comprovada."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/comm_icon_retry.svg",
+      "event_ids": [
+        "885",
+        "886",
+        "889"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/pay-icon/icon_normal_pix.png",
+      "event_ids": [
+        "887",
+        "888"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/WithdrawalPasswordIndex.j9-Ut_eX.css",
+      "event_ids": [
+        "891",
+        "892"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. CSS referrer explicitly /home/withdraw at event 891; dialog-registry loads JS at 893; popup 895 is _withdrawalPassword_1yxfx_89. This is the withdrawal PIN dialog, not an old closed promotion."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/WithdrawalPasswordIndex.BqLR4UWx.js",
+      "event_ids": [
+        "893",
+        "894"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. CSS referrer explicitly /home/withdraw at event 891; dialog-registry loads JS at 893; popup 895 is _withdrawalPassword_1yxfx_89. This is the withdrawal PIN dialog, not an old closed promotion."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/verifyWithdrawalPasswordV2",
+      "event_ids": [
+        "896",
+        "897",
+        "898",
+        "901"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/input_icon_zsxm1.svg",
+      "event_ids": [
+        "902",
+        "903",
+        "906"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/input_icon_sczj.svg",
+      "event_ids": [
+        "904",
+        "905",
+        "907"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/certify/bindalipayV3",
+      "event_ids": [
+        "908",
+        "909",
+        "910",
+        "911"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_xzyy.svg",
+      "event_ids": [
+        "912",
+        "913",
+        "914"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_cjwt.svg",
+      "event_ids": [
+        "915",
+        "916",
+        "925"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_yjfk.svg",
+      "event_ids": [
+        "917",
+        "919",
+        "926"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_dlsb.svg",
+      "event_ids": [
+        "918",
+        "920",
+        "927"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_yjms.svg",
+      "event_ids": [
+        "921",
+        "922",
+        "928"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/profile/style_1_icon_list_aqtc.svg",
+      "event_ids": [
+        "923",
+        "924",
+        "929"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/message/list/all",
+      "event_ids": [
+        "930",
+        "931",
+        "933"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar mensagens/status de reivindicações; proximidade com popup não demonstra que só servem à propaganda."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/cutADeal/list",
+      "event_ids": [
+        "932",
+        "934",
+        "935",
+        "941"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar por enquanto: lista compartilhada com a navegação/depósito (modal funcional de recarga evento940); bloquear pode remover opções úteis."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/pay/payListV4",
+      "event_ids": [
+        "937",
+        "938"
+      ],
+      "methods": [
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/coupon/list",
+      "event_ids": [
+        "939",
+        "994",
+        "1017"
+      ],
+      "methods": [
+        "*",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar por enquanto: lista compartilhada com a navegação/depósito (modal funcional de recarga evento940); bloquear pode remover opções úteis."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/deposit/img_cz_czyh_bg01.svg",
+      "event_ids": [
+        "942",
+        "943"
+      ],
+      "methods": [
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/comm_icon_gou.svg",
+      "event_ids": [
+        "944",
+        "945",
+        "950"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/comm_icon_sort.svg",
+      "event_ids": [
+        "946",
+        "947"
+      ],
+      "methods": [
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/comm_icon_tc_gant.svg",
+      "event_ids": [
+        "948",
+        "949"
+      ],
+      "methods": [
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/app/deposit/icon_cz_gobottom_1.avif",
+      "event_ids": [
+        "951",
+        "952"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/coupon/popList",
+      "event_ids": [
+        "953",
+        "954",
+        "959"
+      ],
+      "methods": [
+        "*",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "review-api-not-enabled",
+      "reason": "Consulta específica de popup de cupons. Provável ponto preventivo; relação com as nove famílias fechadas não demonstrada. Não confundir com coupon/list de uso no depósito."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/finance/pay/orderListV3",
+      "event_ids": [
+        "955",
+        "956",
+        "960",
+        "962"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar depósitos, saque, taxas, saldo, pagamentos e informações financeiras."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/getServerTime",
+      "event_ids": [
+        "957",
+        "958",
+        "961"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/FindUsIndex.BAaj7vtL.css",
+      "event_ids": [
+        "966",
+        "967"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Native/service-worker module load IDs 968/970 precedes popup 975 with exact old captured class _find-us_ly0vd_89. JS referrer is optimized-chunk-dialog-registry.DuqbtZMs.js, which also loads the required WithdrawalPasswordIndex module at 893. A failed dynamic import can reject a dialog queue; this log provides no evidence that rejection is caught. CSS-only blocking does not prevent popup execution and can leave an unstyled overlay."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/FindUsIndex._2t0_lNs.js",
+      "event_ids": [
+        "968",
+        "970"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "review-module-not-enabled",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Native/service-worker module load IDs 968/970 precedes popup 975 with exact old captured class _find-us_ly0vd_89. JS referrer is optimized-chunk-dialog-registry.DuqbtZMs.js, which also loads the required WithdrawalPasswordIndex module at 893. A failed dynamic import can reject a dialog queue; this log provides no evidence that rejection is caught. CSS-only blocking does not prevent popup execution and can leave an unstyled overlay."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1925138707392065538.avif",
+      "event_ids": [
+        "969",
+        "971"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "existing-network-block",
+      "reason": "Arte promocional identificada no filtro original; a tentativa registrada não comprova transferência efetiva."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1925138707392065538.gif",
+      "event_ids": [
+        "972",
+        "979"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "add-network-block",
+      "reason": "Variante GIF do mesmo identificador de arte promocional já bloqueada no filtro original."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/comm_icon_zdwm_xzapp.svg",
+      "event_ids": [
+        "973",
+        "974",
+        "984"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/icon_rtf_gou.avif",
+      "event_ids": [
+        "976",
+        "980"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/comm_icon_zdwm_title.avif",
+      "event_ids": [
+        "977",
+        "981"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/comm_icon_zdwm_bcwz.avif",
+      "event_ids": [
+        "978",
+        "982"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/brandLogo/android_appstore/style1.avif",
+      "event_ids": [
+        "983",
+        "985"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/RadioGroup.DH7pYFyL.css",
+      "event_ids": [
+        "986",
+        "995"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/Username.DuOfZ3AB.css",
+      "event_ids": [
+        "987",
+        "996"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useListManager.BB0KQvig.css",
+      "event_ids": [
+        "988",
+        "997"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/PickUpRecord.CxkHYwgP.css",
+      "event_ids": [
+        "989",
+        "998"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useMultipleSelect.BaJX92dv.css",
+      "event_ids": [
+        "990",
+        "999"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/ClubMemberDetailModal.xoknAXDS.css",
+      "event_ids": [
+        "991",
+        "1000"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/style.hQ_-3VeX.css",
+      "event_ids": [
+        "992",
+        "1001"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/PromoteIndex.C-ydxBSe.css",
+      "event_ids": [
+        "993",
+        "1002"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/PromoteIndex.idgiFpOP.js",
+      "event_ids": [
+        "1003",
+        "1004"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/radio-group.BdgSiMre.js",
+      "event_ids": [
+        "1005",
+        "1018"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useHeader.CgiYb11t.js",
+      "event_ids": [
+        "1006",
+        "1019"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useDomToImage.DVw2uBa5.js",
+      "event_ids": [
+        "1007",
+        "1020"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/Username.Dw6p7tll.js",
+      "event_ids": [
+        "1008",
+        "1022"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/PickUpRecord.B3y5kU78.js",
+      "event_ids": [
+        "1009",
+        "1023"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useListManager.DFgZyf2P.js",
+      "event_ids": [
+        "1010",
+        "1028"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useMultipleSelect.CQ9hjs4D.js",
+      "event_ids": [
+        "1011",
+        "1024"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/clubAgentConfig.BKTkG1EE.js",
+      "event_ids": [
+        "1012",
+        "1025"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/club-agent-rate.C80w5Bpo.js",
+      "event_ids": [
+        "1013",
+        "1026"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/useOptions.BRUG6ofY.js",
+      "event_ids": [
+        "1014",
+        "1027"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/ClubMemberDetailModal.Dqzbl6pP.js",
+      "event_ids": [
+        "1015",
+        "1029"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/style.module.DaUzWprH.js",
+      "event_ids": [
+        "1016",
+        "1030"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/RadioGroup.BW8i9ES7.js",
+      "event_ids": [
+        "1021",
+        "1032"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/report.9MU7RbJV.js",
+      "event_ids": [
+        "1031",
+        "1035"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/NumberInputIndex.kZD-L9xP.js",
+      "event_ids": [
+        "1033",
+        "1036"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/transferHistory.DmoWyOKp.js",
+      "event_ids": [
+        "1034",
+        "1037"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/sensitiveData/currency/BRL/language/pt/platformType/5.json",
+      "event_ids": [
+        "1038",
+        "1039",
+        "1067"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/agentBasic",
+      "event_ids": [
+        "1040",
+        "1041",
+        "1044",
+        "1068"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/index/settleTime",
+      "event_ids": [
+        "1042",
+        "1043",
+        "1045",
+        "1070"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/index/language/pt.json",
+      "event_ids": [
+        "1046",
+        "1047",
+        "1071"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/share/currency/BRL/language/pt.json",
+      "event_ids": [
+        "1048",
+        "1049",
+        "1072"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/getPromoteStrangerSetting/default.json",
+      "event_ids": [
+        "1050",
+        "1051",
+        "1073"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/commissionMarquee",
+      "event_ids": [
+        "1052",
+        "1054",
+        "1061",
+        "1074"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/report/agentPromotion",
+      "event_ids": [
+        "1055",
+        "1056",
+        "1062",
+        "1075"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/index/indexInfoV2",
+      "event_ids": [
+        "1057",
+        "1058",
+        "1063",
+        "1076"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/agent/promote/index/agentCommission",
+      "event_ids": [
+        "1059",
+        "1060",
+        "1064",
+        "1077"
+      ],
+      "methods": [
+        "*",
+        "OPTIONS",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/publicConfig/currency/BRL/language/pt.json",
+      "event_ids": [
+        "1066",
+        "1069",
+        "1085"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/promotion/icon_tg_share.svg",
+      "event_ids": [
+        "1078",
+        "1079",
+        "1095"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/promotion/img_tpdl.avif",
+      "event_ids": [
+        "1080",
+        "1086"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "company-fj.s3.ap-east-1.amazonaws.com",
+      "path": "/siteadmin/agent/img/img_facebook.png",
+      "event_ids": [
+        "1081",
+        "1104"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "company-fj.s3.ap-east-1.amazonaws.com",
+      "path": "/siteadmin/agent/img/img_wa.png",
+      "event_ids": [
+        "1082",
+        "1107"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "company-fj.s3.ap-east-1.amazonaws.com",
+      "path": "/siteadmin/agent/img/img_tg.png",
+      "event_ids": [
+        "1083",
+        "1105"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/promotion/img_tg_flbl.avif",
+      "event_ids": [
+        "1084",
+        "1087"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/promotion/tg_icon_laba.svg",
+      "event_ids": [
+        "1088",
+        "1089",
+        "1101"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/promotion/img_zsdl2.avif",
+      "event_ids": [
+        "1090",
+        "1096"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/promotion/img_cjzj.avif",
+      "event_ids": [
+        "1091",
+        "1097"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/promotion/img_cjzd2.avif",
+      "event_ids": [
+        "1092",
+        "1098"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/promotion/img_cjzd.avif",
+      "event_ids": [
+        "1093",
+        "1099"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/promotion/img_zsdl.avif",
+      "event_ids": [
+        "1094",
+        "1100"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdnapiif.ppa888pg.vip",
+      "path": "/hall/api/active/popRegressActive",
+      "event_ids": [
+        "1102",
+        "1103",
+        "1106"
+      ],
+      "methods": [
+        "*",
+        "POST"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "review-api-not-enabled",
+      "reason": "Endpoint de popup de campanha/regresso. Uso exclusivamente promocional é provável pelo nome; falta vínculo exato à captura antiga."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/TutorialIndex.DLlCYDR_.css",
+      "event_ids": [
+        "1108",
+        "1109"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "888pg.cc",
+      "path": "/assets/theme-0/TutorialIndex.DRaWBZp-.js",
+      "event_ids": [
+        "1110",
+        "1111"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "performance",
+        "service-worker"
+      ],
+      "decision": "preserve",
+      "reason": "Observed request/performance metadata; module source and import error handling are absent from this capture. Observed PromoteIndex dependency subtree includes username/radio/input controls, pick-up/transfer history, club agent settings and reports; it is a functional promotion/agent page rather than an isolated old popup. Startup imports PromoteIndex at event 1003; source names are not sufficient grounds to block account/form/history dependencies."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/hall/api/agent/promote/config/tutorial/agentId/0/currency/BRL/language/pt.json",
+      "event_ids": [
+        "1112",
+        "1113",
+        "1115"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance",
+        "xhr"
+      ],
+      "decision": "preserve",
+      "reason": "Preservar página funcional de agente/convites, comissões, configurações, relatórios ou tutorial. A palavra advertise/promote não prova popup descartável."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/agent/img/1838611102469607426.avif",
+      "event_ids": [
+        "1114",
+        "1116"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-35/web/common/btn_zc1_1.avif",
+      "event_ids": [
+        "1117",
+        "1124"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/2-1-35/web/common/btn_zc1_2.avif",
+      "event_ids": [
+        "1118",
+        "1125"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg3106148597547491.avif",
+      "event_ids": [
+        "1119",
+        "1126"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344739160437251.avif",
+      "event_ids": [
+        "1120",
+        "1127"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344753832352460.avif",
+      "event_ids": [
+        "1121",
+        "1128"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg16113957184286495.avif",
+      "event_ids": [
+        "1122",
+        "1129"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344863659858102.avif",
+      "event_ids": [
+        "1123",
+        "1130"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/icon_dtfl_zh_0.svg",
+      "event_ids": [
+        "1131",
+        "1132",
+        "1145"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "fetch",
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/img_emoji_dhm.avif",
+      "event_ids": [
+        "1133",
+        "1139"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1902000609936670722.avif",
+      "event_ids": [
+        "1134",
+        "1141"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1918556665184161793.avif",
+      "event_ids": [
+        "1135",
+        "1140"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1789956964002115585.avif",
+      "event_ids": [
+        "1136",
+        "1142"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1797139425396682753.avif",
+      "event_ids": [
+        "1137",
+        "1143"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1973280600280109058.avif",
+      "event_ids": [
+        "1138",
+        "1144"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg7080072229169215.avif",
+      "event_ids": [
+        "1146",
+        "1147"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg20421330914628473.avif",
+      "event_ids": [
+        "1148",
+        "1149"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10101662370537317.avif",
+      "event_ids": [
+        "1150",
+        "1151"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344719495401705.avif",
+      "event_ids": [
+        "1152",
+        "1153"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344844897962623.avif",
+      "event_ids": [
+        "1154",
+        "1155"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg10344854286530350.avif",
+      "event_ids": [
+        "1156",
+        "1157"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg14695555040185124.avif",
+      "event_ids": [
+        "1158",
+        "1159"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/active/ActiveImg1904019676095979.avif",
+      "event_ids": [
+        "1160",
+        "1161"
+      ],
+      "methods": [
+        "*",
+        "GET"
+      ],
+      "apis": [
+        "native",
+        "performance"
+      ],
+      "decision": "preserve",
+      "reason": "Imagem ou recurso sem vínculo direto às janelas fechadas; o registro não demonstra uso exclusivo em publicidade. Não bloquear por CDN, pasta ou proximidade temporal."
+    }
+  ],
+  "limitations": [
+    "Initial capture events before662 were overwritten by the500-event cap.",
+    "All43 retained API events containing a stack have the same shared Axios/Fy/request transport stack; it ends before the component caller.",
+    "nearbyRequests/recentRequests explicitly have correlationOnly=true and are not proof of popup causation.",
+    "The page field stays /home/register across account/withdrawal/deposit/agent actions, so it cannot classify feature exclusivity by itself.",
+    "blocked=false reports debugger-rule evaluation before the separate existing AdResources filter and cannot demonstrate that seeded ad blocking failed.",
+    "Performance method * is unknown, not evidence that every HTTP verb was used.",
+    "Retained ring is events 662..1161 only; early root-module downloads/imports can be absent.",
+    "service-worker page values naming JS assets are referrer metadata, not page navigation evidence.",
+    "Performance records method * and popup nearby URLs are correlation only; they do not prove an initiator or complete request lifecycle.",
+    "Callback source, responses, module bodies and dynamic-import failure handling were not captured.",
+    "Only task-invitation popup 675 and FindUs popup 975 exactly match old closed cosmetic families in this retained window. The ninth verification-close user override postdates the eight-rule spec and is not observed here."
+  ],
+  "functional_tests_executed": false
+}

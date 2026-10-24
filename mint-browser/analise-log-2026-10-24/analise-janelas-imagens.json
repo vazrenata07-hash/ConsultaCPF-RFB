@@ -1,0 +1,344 @@
+{
+  "summary": {
+    "newEventCount": 500,
+    "requestEvents": 477,
+    "popupEvents": 10,
+    "oldClosedFamiliesPresent": 2,
+    "preserveOrUnprovenPopupEvents": 8,
+    "directPopupAssetEvidence": "Nine popups have empty assets/images arrays; find-us reports one shared tick/check image only.",
+    "logCaptureMode": true,
+    "logRuleCount": 0,
+    "blockingObservation": "All logged records are in capture mode with an empty rule list. blocked:false does not independently establish failure of production APK resource rules.",
+    "requestOwnershipRule": "No resource is assigned to a popup solely because it appears in recentRequests/nearbyRequests. The logger marks these entries correlationOnly=true."
+  },
+  "popupClassifications": [
+    {
+      "eventId": "675",
+      "name": "task-invitation-promotion",
+      "decision": "eligible-cosmetic-existing-family",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-dialog._dialogBox_1r6g9_89._theme-0_1r6g9_444.theme-0",
+      "stableSelector": "._dialogBox_1r6g9_89",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Existing manually closed task/invitation container, original interactions 15/16. Its own assets/images arrays are empty; recent/nearby requests do not prove resource ownership."
+    },
+    {
+      "eventId": "692",
+      "name": "interactive-prize-selection",
+      "decision": "preserve-old-explicit-exclusion",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-dialog._dialogBox_930qf_89.animate-zoom-enter-from.animate-zoom-enter-active",
+      "stableSelector": "._dialogBox_930qf_89",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Original interactions 9/10 and 35/36 selected a prize and opened verification, rather than closing. Keep this flow and its resources."
+    },
+    {
+      "eventId": "797",
+      "name": "warning-toast",
+      "decision": "preserve-functional-feedback",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-toast__toast.ui-toast__toast--container.ui-toast__toast--warn.animate-zoom-enter-from",
+      "stableSelector": ".ui-toast__toast--warn",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Generic warning feedback, no original manual-close evidence. Do not hide all ui-popup nodes."
+    },
+    {
+      "eventId": "806",
+      "name": "currency-picker",
+      "decision": "preserve-functional-selector",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-popover.ui-popover--light._currencyPopover_reet5_292.drop-down-enter-from",
+      "stableSelector": "._currencyPopover_reet5_292",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Currency selection dropdown, not a cosmetic advertisement."
+    },
+    {
+      "eventId": "844",
+      "name": "success-toast",
+      "decision": "preserve-functional-feedback",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-toast__toast.ui-toast__toast--container.ui-toast__toast--success.animate-zoom-enter-from",
+      "stableSelector": ".ui-toast__toast--success",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Generic success confirmation, potentially important after account/security changes. A temporally nearby request is not ownership evidence."
+    },
+    {
+      "eventId": "895",
+      "name": "withdrawal-password-dialog",
+      "decision": "preserve-functional-form",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-dialog._withdrawalPassword_1yxfx_89.animate-zoom-enter-from.animate-zoom-enter-active",
+      "stableSelector": "._withdrawalPassword_1yxfx_89",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Withdrawal-password entry component; leave form, scripts, CSS and security resources operational."
+    },
+    {
+      "eventId": "899",
+      "name": "generic-popover",
+      "decision": "preserve-unknown-functional",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-popover.ui-popover--light.drop-down-enter-from.drop-down-enter-active",
+      "stableSelector": ".ui-popover",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "No module-specific class or contents captured. Cannot safely classify as removable from timing or ui-popup/ui-popover alone."
+    },
+    {
+      "eventId": "900",
+      "name": "account-modal",
+      "decision": "preserve-functional-form",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-dialog._accountModal_c7is6_93.animate-zoom-enter-from.animate-zoom-enter-active",
+      "stableSelector": "._accountModal_c7is6_93",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Account-related modal, no original cosmetic manual-close match or DOM content proving an advertisement."
+    },
+    {
+      "eventId": "940",
+      "name": "recharge-bottom-sheet",
+      "decision": "preserve-functional-payment",
+      "selector": "div.ui-popup.ui-popup--bottom.safe-area-top.safe-area-bottom._half-screen-dialog_7qc6b_89._main-recharge_1n4np_89.animate-slide-up-enter-from.animate-slide-up-enter-active",
+      "stableSelector": "._main-recharge_1n4np_89",
+      "directAssets": [],
+      "correlationOnly": true,
+      "reason": "Recharge/payment sheet rather than promotional registration-deposit upsell. Do not confuse the recharge form with the separately closed registerRechargeDialog family."
+    },
+    {
+      "eventId": "975",
+      "name": "find-us-install-promotion",
+      "decision": "eligible-cosmetic-existing-family",
+      "selector": "div.ui-popup.ui-popup--center.safe-area-top.safe-area-bottom.ui-dialog._find-us_ly0vd_89.animate-zoom-enter-from.animate-zoom-enter-active",
+      "stableSelector": "._find-us_ly0vd_89",
+      "directAssets": [
+        {
+          "host": "cdntoos.cf888pg.com",
+          "path": "/siteadmin/skin/lobby_asset/common/web/common/icon_rtf_gou.avif"
+        }
+      ],
+      "correlationOnly": true,
+      "reason": "Exact existing family manually closed in original interactions 25/26. Only directly reported image is generic icon_rtf_gou.avif; adjacent requests are explicitly correlation-only."
+    }
+  ],
+  "originalNineAssetMatches": [
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/common/upload/1975778841919414274.avif",
+      "family": "floating-left-swiper",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/common/upload/2074396334160871425.avif",
+      "family": "floating-left-scroll",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/active/ActiveImg6209349987905338.avif",
+      "family": "floating-right-scroll",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/active/ActiveImg16149321187557365.avif",
+      "family": "floating-right-swiper",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/common/upload/1960623849435095042.avif",
+      "family": "floating-right-swiper",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/active/ActiveImg11755836762171453.avif",
+      "family": "floating-right-swiper",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/siteadmin/upload/img/1896064761045774337.avif",
+      "family": "promotion-carousel-first",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/siteadmin/upload/img/1925138707392065538.avif",
+      "family": "promotion-carousel-second",
+      "exactPathMatches": [
+        {
+          "eventId": "969",
+          "host": "cdntoos.cf888pg.com",
+          "path": "/siteadmin/upload/img/1925138707392065538.avif",
+          "sameHost": true,
+          "hasQuery": false,
+          "blocked": false
+        },
+        {
+          "eventId": "971",
+          "host": "cdntoos.cf888pg.com",
+          "path": "/siteadmin/upload/img/1925138707392065538.avif",
+          "sameHost": true,
+          "hasQuery": false,
+          "blocked": false
+        }
+      ],
+      "sameUploadStemVariants": [
+        {
+          "eventId": "972",
+          "host": "cdntoos.cf888pg.com",
+          "path": "/siteadmin/upload/img/1925138707392065538.gif",
+          "blocked": false
+        },
+        {
+          "eventId": "979",
+          "host": "cdntoos.cf888pg.com",
+          "path": "/siteadmin/upload/img/1925138707392065538.gif",
+          "blocked": false
+        }
+      ]
+    },
+    {
+      "originalHost": "cdntoos.cf888pg.com",
+      "originalPath": "/siteadmin/upload/img/1893861292589678593.avif",
+      "family": "app-download-promotion",
+      "exactPathMatches": [],
+      "sameUploadStemVariants": []
+    }
+  ],
+  "narrowVariantCandidate": {
+    "host": "cdntoos.cf888pg.com",
+    "path": "/siteadmin/upload/img/1925138707392065538.gif",
+    "newEventIds": [
+      "972",
+      "979"
+    ],
+    "originalEvidence": "Same exact upload identifier and host as original carousel artwork 1925138707392065538.avif, proven in old DOM at seq234/235.",
+    "decision": "candidate-exact-variant-block",
+    "reason": "A different rendition extension of an already identified promotional artwork; do not generalize to all GIFs, upload paths, CDN hosts, or adjacent resources. New log itself does not directly attach this image to a popup."
+  },
+  "additionalOriginalAssetCandidates": [
+    {
+      "name": "registration-success-benefit-icon",
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_yh.avif",
+      "originalEvidenceSeq": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "selector": ".ui-dialog._registerRechargeDialog_r9snw_89 img.deposit",
+      "decision": "candidate-exact-block-capture-specific",
+      "seenInNewLog": false,
+      "reason": "Direct DOM src belongs to original manually closed registration/deposit promotion; only observed within that same component and wrapper snapshots. Dedicated registration-success filename; no reuse outside that component observed, but unknown future reuse cannot be excluded."
+    },
+    {
+      "name": "registration-success-deposit-icon",
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_cz.avif",
+      "originalEvidenceSeq": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "selector": ".ui-dialog._registerRechargeDialog_r9snw_89 .registerRechargeBtn img.deposit",
+      "decision": "candidate-exact-block-capture-specific",
+      "seenInNewLog": false,
+      "reason": "Direct DOM src belongs to original manually closed registration/deposit promotion; not the generic deposit/currency icon. Dedicated registration-success filename, observed only in that component."
+    },
+    {
+      "name": "closed-wheel-border-primary",
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/zpzy01/onlinegreen/xkyd_zp_03_1.avif",
+      "originalEvidenceSeq": [
+        94,
+        376
+      ],
+      "selector": ".ui-dialog._slashDialogBox_mwqhm_99 ._turntableBorder_7ds23_111 img._border_ngx5s_102",
+      "decision": "candidate-review-shared-wheel-risk",
+      "seenInNewLog": false,
+      "reason": "Original DOM places this border image inside the manually closed slash-wheel component, including reopened instance. Not seen inside separate protected prize selection in this capture. Wheel renderer reuse outside the capture is unknown; previous specification intentionally excluded it, so do not silently treat exclusivity as proven."
+    },
+    {
+      "name": "closed-wheel-border-secondary",
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/zpzy01/onlinegreen/xkyd_zp_03_2.avif",
+      "originalEvidenceSeq": [
+        94,
+        376
+      ],
+      "selector": ".ui-dialog._slashDialogBox_mwqhm_99 ._turntableBorder_7ds23_111 img._border_ngx5s_102",
+      "decision": "candidate-review-shared-wheel-risk",
+      "seenInNewLog": false,
+      "reason": "Same direct closed-wheel DOM ownership and remaining shared-renderer uncertainty as primary border; not inferred from timing."
+    }
+  ],
+  "explicitPreserveAssets": [
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/web/common/icon_rtf_gou.avif",
+      "reason": "Only image directly attached to new find-us popup; generic rich-text tick may be reused by useful components."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/home/img_xzapp_jl.avif",
+      "reason": "Observed inside original closed registration promotion, but generic gift-badge artwork; no demonstrated component-exclusive use."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/task/img_rw_mrrw.avif",
+      "reason": "Original DOM places it in task promotion, but generic daily-task icon. New log request occurrence does not prove exclusive modal ownership."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kjrk_icon_guanbi.avif",
+      "reason": "Shared close affordance, must not disappear from other components."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/message/icon_message_gb.avif",
+      "reason": "Shared close affordance, must not disappear from other components."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/event/kyd/lihe/style1/xkyd_shou.avif",
+      "reason": "Direct old DOM ownership is protected interactive prize selection, not a manually dismissed cosmetic popup."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/comm_icon_zdwm_title.avif",
+      "reason": "Find-us title chrome potentially reused by useful contact/domain UI; no strict exclusivity demonstrated."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/common/comm_icon_zdwm_bcwz.avif",
+      "reason": "Find-us common UI icon; avoid globally removing useful copy/save/contact affordances."
+    }
+  ],
+  "unprovenNewAssetExamples": [
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/task/img_rwtc_bjgx.avif",
+      "eventIds": [
+        "680",
+        "697"
+      ],
+      "reason": "Filename suggests task-modal decoration, but absent from original DOM capture and not attached in new popup.assets/images. Adjacent timing alone cannot authorize exact ownership."
+    },
+    {
+      "path": "/siteadmin/skin/lobby_asset/common/common/task/img_rwtc_rwdbzs2.avif",
+      "eventIds": [
+        "681",
+        "698"
+      ],
+      "reason": "Same evidence limitation: new request only, no direct popup association."
+    }
+  ],
+  "limits": [
+    "No site requests, browsing, functional tests, APK changes or repository writes were performed.",
+    "New log is a 500-event retained snapshot rather than a complete session; lack of a URL in it does not prove that resource never loaded.",
+    "Response bodies and image hashes are unavailable; matching upload stems establish filename/rendition correspondence, not byte identity.",
+    "No host/query substitutions for the original nine paths were observed; only an AVIF-to-GIF extension variant appeared.",
+    "No account information, request bodies, authorization headers or query parameter values are included in this report."
+  ]
+}

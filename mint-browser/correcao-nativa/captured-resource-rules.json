@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "rules": [
     {
       "host": "cdntoos.cf888pg.com",
@@ -45,6 +45,21 @@
       "host": "cdntoos.cf888pg.com",
       "path": "/siteadmin/upload/img/1893861292589678593.avif",
       "reason": "Exclusive captured promotional artwork; manually closed app-download-promotion"
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/upload/img/1925138707392065538.gif",
+      "reason": "Same exact upload identifier and host as original carousel artwork 1925138707392065538.avif, proven in old DOM at seq234/235."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_yh.avif",
+      "reason": "Direct DOM src belongs to original manually closed registration/deposit promotion; only observed within that same component and wrapper snapshots. Dedicated registration-success filename; no reuse outside that component observed, but unknown future reuse cannot be excluded."
+    },
+    {
+      "host": "cdntoos.cf888pg.com",
+      "path": "/siteadmin/skin/lobby_asset/common/common/login/icon_zccgtc_cz.avif",
+      "reason": "Direct DOM src belongs to original manually closed registration/deposit promotion; not the generic deposit/currency icon. Dedicated registration-success filename, observed only in that component."
     }
   ]
 }
