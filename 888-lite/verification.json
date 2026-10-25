@@ -1,13 +1,13 @@
 {
-  "apk": "888-Lite-v7.2-Atualizar-Notificacao.apk",
-  "sha256": "521a83a2e1f1394804356adbd186fdf4cd0d386bafda8e09517709b7637384af",
-  "size_bytes": 6482339,
+  "apk": "888-Lite-v7.3-Codigo-Persistente.apk",
+  "sha256": "5d37afed7e0d963ca1ed2a14a464414c40e1add4864ec8b12598d1a57353887a",
+  "size_bytes": 6474220,
   "base_apk": "53b354_lite_perfil_rota_v6.apk",
   "base_sha256": "4143178a508fbf39c12348a9f197014d330cb018e548187c4f7fc6504d6ebd6a",
   "mint_reference": "26.14.3",
   "mint_reference_sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
   "package": "com.FortuneTiger.A888PG.Dragon",
-  "versionCode": 21,
+  "versionCode": 22,
   "backend_versionName_preserved": "6.9.76",
   "signing_certificate_sha256": "44d50a057ba71f5eda9dca50e796e83a6b10e449059ef04728f245d7aa2be862",
   "new_exclusive_key_authorized": true,
@@ -47,7 +47,7 @@
     "pin_setup_pair_and_withdrawal_timing": "Original 26.14.3 code, with hostname guards mapped to original trusted app origins."
   },
   "features": {
-    "gate": "Matrix layout, optional invite code, blank opens normally, original host retained, nonblank routes to /home/register?id=code",
+    "gate": "Matrix prompt until the first confirmed choice; choice and optional code persist through normal restarts. Existing Limpar resets the choice. Original scheme, host and port retained; registration uses /home/register?id=code.",
     "settings": "Single row beside existing cleanup row in /home/mine only; existing route-local observer reused; no polling interval",
     "configuration_persistence": "Private .mint_mod_state/config.json outside original reset target directories; Restore defaults resets mods; uninstall/Android system clear still removes it.",
     "credentials": "Empty by default; explicit Apply; proxy credentials never enter page config.",
@@ -91,7 +91,7 @@
     "same_v7_signing_key": true,
     "functional_tests_executed": false
   },
-  "parent_release": "888-Lite-v7.1-Filtros-Configuracoes.apk",
+  "parent_release": "888-Lite-v7.2-Atualizar-Notificacao.apk",
   "refresh_v72": {
     "notification_action": "Atualizar, beside proxy toggle",
     "receiver": "Private, non-exported explicit RefreshPageReceiver",
@@ -107,5 +107,48 @@
     "classes_dex_byte_identical_to_v71": true,
     "same_v7_and_v71_signature": true,
     "runtime_tests_executed": false
+  },
+  "registration_v73": {
+    "previous_issue": "Code was added only to the first native loadUrl; SPA navigation could enter /home/register without id. Startup choice was not persisted across launches.",
+    "URL_pattern": "<original protocol/host/port>/home/register?id=<entered code>",
+    "initial_native_navigation": true,
+    "every_native_registration_route": true,
+    "native_URL_override_for_registration": true,
+    "trusted_registration_anchor_navigation": true,
+    "SPA_history_query_preserved": true,
+    "Vue_router_beforeEach_preserves_actual_query_state": true,
+    "Vue_discovery_reuses_existing_component_policy_hooks": true,
+    "fallback_full_document_load_when_router_unavailable": "On entry without a correctly bootstrapped code; avoids repeated reloads while already bootstrapped.",
+    "other_query_parameters_preserved_after_id": true,
+    "blank_code_does_not_enable_invite_guard": true,
+    "only_HTTP_HTTPS_counts_as_navigation": true,
+    "javascript_calls_do_not_consume_initial_redirect_or_replace_page_cache": true,
+    "no_registration_body_or_server_response_rewriting": true,
+    "server_attribution_verified": false,
+    "runtime_tests_executed": false,
+    "unchanged_assets_from_v72": [
+      "assets/mint-rebuilt.js",
+      "assets/profile_menu.js",
+      "assets/mint-port-bootstrap.js",
+      "assets/RegFromServer",
+      "assets/mint-matrix.html",
+      "assets/lite_identity.js",
+      "assets/adjust_event.js",
+      "assets/i18nKey.json",
+      "assets/adjust.js",
+      "assets/adjust_config.js",
+      "assets/lite_origins.txt",
+      "assets/adjust_third_party_sharing.js",
+      "assets/mint-automatic-requests.js",
+      "assets/AuthFromServer"
+    ]
+  },
+  "launch_v73": {
+    "choice_file": "no_backup/mint_launch_choice_v1.json",
+    "confirmed_blank_or_code_survives_normal_relaunch": true,
+    "normal_relaunch_does_not_force_home_or_login_back_to_registration": true,
+    "registration_routes_keep_saved_code": true,
+    "existing_Limpar_erases_choice_and_restores_initial_dialog": true,
+    "mod_options_remain_in_separate_persistent_storage": true
   }
 }

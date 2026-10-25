@@ -12,17 +12,18 @@ import org.json.*;
 public final class PortRuntime {
  private static final WeakHashMap<WebView,WeakReference<Activity>> views=new WeakHashMap<WebView,WeakReference<Activity>>();
  private static final Set<WebView> gameAttached=Collections.newSetFromMap(new WeakHashMap<WebView,Boolean>());
- private static String extra;
+ private static String extra,inviteScript;
  private static WeakReference<WebView> currentView=new WeakReference<WebView>(null);
  private static final WeakHashMap<WebView,Set<String>> registeredOrigins=new WeakHashMap<WebView,Set<String>>();
- static boolean opened;static String code="";static boolean routeUsed;
- public static boolean ensureGate(Activity a){if(opened)return false;Intent i=new Intent(a,GateActivity.class);i.putExtra("originalIntent",a.getIntent());a.startActivity(i);a.finish();return true;}
- public static synchronized String scripts(Context c,String original){PortScope.init(c);try{if(extra==null){StringBuilder b=new StringBuilder();for(String name:new String[]{"mint-port-bootstrap.js","mint-component-policy.js","mint-automatic-requests.js","mint-rebuilt.js"}){b.append('\n').append(read(c,name));}extra=b.toString();}return original+extra;}catch(Exception e){return original;}}
+ static boolean opened;static volatile String code="";static boolean routeUsed;
+ public static boolean ensureGate(Activity a){if(opened||LaunchState.restore(a))return false;Intent i=new Intent(a,GateActivity.class);i.putExtra("originalIntent",a.getIntent());a.startActivity(i);a.finish();return true;}
+ public static synchronized String scripts(Context c,String original){PortScope.init(c);try{if(extra==null){inviteScript=read(c,"mint-invite-route.js");StringBuilder b=new StringBuilder();for(String name:new String[]{"mint-port-bootstrap.js","mint-component-policy.js","mint-automatic-requests.js","mint-rebuilt.js"}){b.append('\n').append(read(c,name));}extra=b.toString();}return inviteScript+"\n"+original+extra;}catch(Exception e){return original;}}
  public static String read(Context c,String name)throws IOException{InputStream in=c.getAssets().open(name);try{ByteArrayOutputStream b=new ByteArrayOutputStream();byte[] x=new byte[4096];int n;while((n=in.read(x))!=-1){if(b.size()+n>300000)throw new IOException("Asset exceeds limit");b.write(x,0,n);}return b.toString("UTF-8");}finally{in.close();}}
  public static void attach(Activity a,WebView v){PortScope.init(a);synchronized(views){if(views.containsKey(v))return;views.put(v,new WeakReference<Activity>(a));currentView=new WeakReference<WebView>(v);}synchronized(registeredOrigins){registeredOrigins.put(v,PortScope.all());}v.addJavascriptInterface(new Bridge(a,v),"MintPort");v.addJavascriptInterface(new AdResources(),"MintAdResources");v.addJavascriptInterface(new WagerStore(a),"MintWagerCounter");AutomaticRequestPolicy.attach(v);BrowserProxy.restore(a);ProxyService.ensure(a);registerGame(v);}
  private static void registerGame(WebView view){try{synchronized(gameAttached){if(gameAttached.contains(view))return;}Class<?> ft=Class.forName("org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface");InvocationHandler h=(InvocationHandler)Class.forName("b5.a").getMethod("h").invoke(null);Object factory=Proxy.newProxyInstance(ft.getClassLoader(),new Class[]{ft},h);InvocationHandler wh=(InvocationHandler)ft.getMethod("createWebView",WebView.class).invoke(factory,view);Class<?> wt=Class.forName("org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface");Object provider=Proxy.newProxyInstance(wt.getClassLoader(),new Class[]{wt},wh);wt.getMethod("addDocumentStartJavaScript",String.class,String[].class).invoke(provider,"(function(){if(!/^\\/h5\\/games\\/9\\/9014\\//.test(location.pathname))return;"+scripts(view.getContext(),"")+"\n})();",new String[]{"*"});synchronized(gameAttached){gameAttached.add(view);}}catch(Exception ignored){}}
+ private static boolean networkURL(String url){try{Uri u=Uri.parse(url);return u.getHost()!=null&&("https".equalsIgnoreCase(u.getScheme())||"http".equalsIgnoreCase(u.getScheme()));}catch(Exception e){return false;}}
  public static void prepared(WebView view,String url){
-  if(view==null)return;
+  if(view==null||!networkURL(url))return;
   synchronized(views){if(views.containsKey(view))currentView=new WeakReference<WebView>(view);}
   AdResources.pageStarted(view,url);
   if(!PortScope.trusted(url))return;
@@ -41,7 +42,14 @@ public final class PortRuntime {
  }
  public static boolean handleNavigation(WebView view,String url){
   Uri u;try{u=Uri.parse(url);}catch(Exception e){return false;}
-  if(!"mint-port".equals(u.getScheme())||!"settings".equals(u.getHost()))return false;
+  if(!"mint-port".equals(u.getScheme())||!"settings".equals(u.getHost())){
+   if(view!=null&&!code.isEmpty()&&u.getPath()!=null&&u.getPath().matches("/home/register/?")){
+    boolean attached;synchronized(views){attached=views.containsKey(view);}
+    String corrected=registrationURL(url);
+    if(attached&&!url.equals(corrected)){view.loadUrl(corrected);return true;}
+   }
+   return false;
+  }
   if(view!=null&&PortScope.trusted(view.getUrl())){
    Activity a=BrowserProxy.activity(view.getContext());
    if(a!=null&&!a.isFinishing())try{a.startActivity(new Intent(a,SettingsActivity.class));}catch(Exception e){android.widget.Toast.makeText(a,"Não foi possível abrir Configurações.",android.widget.Toast.LENGTH_LONG).show();}
@@ -49,7 +57,32 @@ public final class PortRuntime {
   return true;
  }
  public static void injectGame(WebView v){try{if(PortScope.game(v.getUrl()))v.evaluateJavascript(scripts(v.getContext(),""),null);}catch(Exception ignored){}}
- public static String route(WebView v,String url){try{if(!routeUsed&&!code.isEmpty()&&PortScope.trusted(url)){Uri u=Uri.parse(url);String p=u.getPath();if(p==null||p.isEmpty()||p.equals("/")||p.matches("/home(?:/(?:login|register))?/?")){Uri.Builder b=u.buildUpon().path("/home/register");b.clearQuery();for(String key:u.getQueryParameterNames())if(!key.equals("id"))for(String val:u.getQueryParameters(key))b.appendQueryParameter(key,val);b.appendQueryParameter("id",code);routeUsed=true;url=b.build().toString();}}}catch(Exception ignored){}AdResources.pageStarted(v,url);return url;}
+ /** Persist the chosen invitation on registration routes, preserving scheme/host/port. */
+ public static String registrationURL(String url){
+  if(code.isEmpty())return url;
+  try{
+   Uri u=Uri.parse(url);String scheme=u.getScheme();
+   if(u.getHost()==null||!("https".equalsIgnoreCase(scheme)||"http".equalsIgnoreCase(scheme)))return url;
+   String query=u.getEncodedQuery();
+   if("/home/register".equals(u.getPath())&&u.getQueryParameters("id").size()==1&&code.equals(u.getQueryParameter("id"))&&query!=null&&(query.equals("id="+code)||query.startsWith("id="+code+"&")))return url;
+   Uri.Builder builder=u.buildUpon().path("/home/register").clearQuery().appendQueryParameter("id",code);
+   for(String key:u.getQueryParameterNames())if(!key.equals("id"))for(String value:u.getQueryParameters(key))builder.appendQueryParameter(key,value);
+   return builder.build().toString();
+  }catch(Exception e){return url;}
+ }
+ public static String route(WebView v,String url){
+  if(!networkURL(url))return url;
+  try{
+   boolean attached;synchronized(views){attached=views.containsKey(v);}
+   if(attached&&!code.isEmpty()){
+    String p=Uri.parse(url).getPath();
+    boolean registration=p!=null&&p.matches("/home/register/?");
+    boolean firstEntry=!routeUsed&&(p==null||p.isEmpty()||p.equals("/")||p.matches("/home(?:/(?:login|register))?/?"));
+    if(registration||firstEntry){url=registrationURL(url);routeUsed=true;}
+   }
+  }catch(Exception ignored){}
+  AdResources.pageStarted(v,url);return url;
+ }
  /** The notification refreshes the current live page on the WebView UI thread. */
  public static void reloadCurrent(final Context context) {
   final Context app=context.getApplicationContext();
@@ -78,6 +111,7 @@ public final class PortRuntime {
  public static final class Bridge {
   private final WeakReference<Activity> activity;private final WeakReference<WebView> view;
   Bridge(Activity a,WebView v){activity=new WeakReference<Activity>(a);view=new WeakReference<WebView>(v);}
+  @JavascriptInterface public String inviteCode(String url){return PortScope.trusted(url)?code:"";}
   @JavascriptInterface public String scope(){return new JSONArray(PortScope.all()).toString();}
   @JavascriptInterface public boolean trusted(String url){return PortScope.trusted(url);}
   @JavascriptInterface public boolean originAllowed(String url){return PortScope.trusted(url)||PortScope.game(url);}

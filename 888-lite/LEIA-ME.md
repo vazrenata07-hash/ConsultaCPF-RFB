@@ -1,6 +1,6 @@
-# 888 Lite v7.2 — Atualizar na notificação
+# 888 Lite v7.3 — código de convite e janela inicial
 
-Base: `53b354_lite_perfil_rota_v6.apk`. APK atual: `888-Lite-v7.2-Atualizar-Notificacao.apk`.
+Base: `53b354_lite_perfil_rota_v6.apk`. APK atual: `888-Lite-v7.3-Codigo-Persistente.apk`.
 
 - Janela Matrix antes da tela principal: código opcional; vazio abre normalmente. O código mantém o domínio escolhido pelo app e direciona a `/home/register?id=...`.
 - Um botão **Configurações** ao lado de **Limpar dados**, inserido somente no Perfil `/home/mine`. O mecanismo de rota da v6 é reaproveitado, sem busca por intervalo.
@@ -31,3 +31,13 @@ A notificação agora tem dois botões: o controle do proxy e **Atualizar**. Atu
 O botão usa a conexão atual; não troca o IP por conta própria. A mudança de IP depende do provedor da rede/proxy e das conexões mantidas. A recarga não limpa dados, senhas, opções ou IDs locais. Os scripts e filtros são os mesmos da v7.1. Mesma assinatura; pode instalar por cima da v7 ou v7.1.
 
 O novo receiver não exportado está em `notification-manifest.patch`. Sem testes de uso/aparelho, conforme solicitado.
+
+## Correção da v7.3
+
+Antes, o parâmetro `id` era inserido apenas no primeiro `loadUrl` nativo. A navegação interna por Registrar podia ignorar esse trecho e abrir o formulário sem o código. A nova versão mantém `<protocolo/domínio/porta originais>/home/register?id=CODIGO`, com o `id` primeiro e os demais parâmetros preservados. A regra cobre carregamentos nativos, links de cadastro e navegação SPA. O guard do Vue Router corrige o objeto de query antes da navegação, para que a correção não seja apenas na URL exibida. Sem router acessível, há navegação real ao entrar no cadastro sem código inicializado. O código do formulário, os dados de cadastro e as respostas do servidor não são reescritos.
+
+Chamadas `javascript:` internas deixam de consumir a primeira navegação e de substituir o cache da página usado pelos filtros. Os endereços originais permanecem; o guard reutiliza a descoberta Vue existente, sem intervalo de busca ou novo observador permanente.
+
+A janela inicial aparece até confirmar a primeira escolha, inclusive se o campo estiver vazio. Essa escolha e o código ficam em `no_backup/mint_launch_choice_v1.json`, sobrevivendo às aberturas normais. A rotina original Limpar apaga esse arquivo e restaura a janela para informar outro código, enquanto as opções dos mods continuam no armazenamento persistente separado. Na primeira abertura após esta atualização é necessário confirmar uma escolha, pois versões anteriores não a guardavam.
+
+Mesma assinatura das v7 anteriores. Compilação e assinatura concluídas, sem testes de cadastro/aparelho. A perda do parâmetro no cliente foi tratada; a atribuição efetiva do convite pelo servidor permanece para validação do usuário.

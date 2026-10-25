@@ -140,6 +140,7 @@ function visit(root){
 }
 function hookApp(app,vnode){
  if(!app||typeof app!=='object'||typeof app.mixin!=='function')return;
+ try{if(typeof window.__mintInviteAttachRouter==='function')window.__mintInviteAttachRouter(app);}catch(ignored){}
  if(!apps.has(app)){
   apps.add(app);
   app.mixin({beforeMount:function(){arm(this&&this.$);},beforeUpdate:function(){arm(this&&this.$);},unmounted:function(){var instance=this&&this.$;if(instance){activeBonus.delete(instance);bonusCSS();}}});
