@@ -76,7 +76,7 @@ function requestURL(value){
    else return null;
   }
   var url=new URL(value,document.baseURI);
-  return window.__mintPortApiHost(url.hostname)&&paths.has(url.pathname)?url:null;
+  return /^https?:$/.test(url.protocol)&&paths.has(url.pathname)?url:null;
  }catch(e){return null;}
 }
 function permitted(url,method){

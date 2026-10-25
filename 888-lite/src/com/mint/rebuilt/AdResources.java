@@ -86,7 +86,9 @@ public final class AdResources {
             if (!(suffix.endsWith(".png") || suffix.endsWith(".jpg") || suffix.endsWith(".jpeg") || suffix.endsWith(".gif") || suffix.endsWith(".webp") || suffix.endsWith(".avif") || suffix.endsWith(".svg"))) return null;
             // The capture omits queries; generated cache/version parameters must not
             // evade exact captured artwork paths. Path case remains unchanged.
-            return (PortScope.artworkHost(host)?"cdntoos.cf888pg.com":host.toLowerCase(Locale.US)) + "\n" + path;
+            String seeded = "cdntoos.cf888pg.com\n" + path;
+            if (captured.contains(seeded)) return seeded;
+            return host.toLowerCase(Locale.US) + "\n" + path;
         } catch (Exception invalid) { return null; }
     }
     @JavascriptInterface public void remember(String value) {

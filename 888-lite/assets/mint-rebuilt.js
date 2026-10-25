@@ -665,7 +665,7 @@ run();
 // Adapter derived from the captured JDB Mines 9014 protocol and Cocos modules.
 // Runs inside the game frame, independently of the main page's ad/autofill code.
 if(!/^\/h5\/games\/9\/9014\//.test(location.pathname)||window.__mintMinesCounter20)return;
-if(!/(^|\.)brteachcor\.com$/i.test(location.hostname))return;
+// The game adapter is scoped by its exact /h5/games/9/9014/ route.
 window.__mintMinesCounter20=true;
 function gameOptions(){
  var value=window.__mintGameConfig||{},rounds=Number(value.historyRounds);

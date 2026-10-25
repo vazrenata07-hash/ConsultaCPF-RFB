@@ -14,7 +14,7 @@
      .line 2
 --- base/smali/com/speed/client/SpWebView.smali
 +++ modified/smali/com/speed/client/SpWebView.smali
-@@ -18,6 +18,15 @@
+@@ -18,6 +18,17 @@
      .locals 1
  
 +    invoke-static {p0, p1}, Lcom/mint/rebuilt/PortRuntime;->route(Landroid/webkit/WebView;Ljava/lang/String;)Ljava/lang/String;
@@ -22,6 +22,8 @@
 +
      invoke-static {p0, p1}, Lorg/cocos2dx/javascript/identity/LiteHooks;->prepare(Landroid/webkit/WebView;Ljava/lang/String;)V
  
++    invoke-static {p0, p1}, Lcom/mint/rebuilt/PortRuntime;->prepared(Landroid/webkit/WebView;Ljava/lang/String;)V
++
 +    const/4 v0, 0x0
 +    invoke-static {p0, p1, v0}, Lcom/mint/rebuilt/BrowserProxy;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
 +    move-result v0
@@ -30,7 +32,7 @@
 +    :mint_load_now
      const/4 v0, 0x0
  
-@@ -32,7 +41,16 @@
+@@ -32,7 +43,18 @@
  
  .method public loadUrl(Ljava/lang/String;Ljava/util/Map;)V
 -    .locals 0
@@ -41,6 +43,8 @@
  
      invoke-static {p0, p1}, Lorg/cocos2dx/javascript/identity/LiteHooks;->prepare(Landroid/webkit/WebView;Ljava/lang/String;)V
 +
++    invoke-static {p0, p1}, Lcom/mint/rebuilt/PortRuntime;->prepared(Landroid/webkit/WebView;Ljava/lang/String;)V
++
 +    invoke-static {p0, p1, p2}, Lcom/mint/rebuilt/BrowserProxy;->deferUrl(Landroid/webkit/WebView;Ljava/lang/String;Ljava/util/Map;)Z
 +    move-result v0
 +    if-eqz v0, :mint_load_headers_now
@@ -48,6 +52,32 @@
 +    :mint_load_headers_now
  
      invoke-static {p2}, Lorg/cocos2dx/javascript/identity/LiteHooks;->navigationHeaders(Ljava/util/Map;)Ljava/util/Map;
+--- base/smali/s3/k.smali
++++ modified/smali/s3/k.smali
+@@ -307,4 +307,6 @@
+ .method public final onPageStarted(Landroid/webkit/WebView;Ljava/lang/String;Landroid/graphics/Bitmap;)V
+     .locals 1
++
++    invoke-static {p1, p2}, Lcom/mint/rebuilt/PortRuntime;->prepared(Landroid/webkit/WebView;Ljava/lang/String;)V
+ 
+     invoke-static {p1}, Lorg/cocos2dx/javascript/identity/LiteHooks;->inject(Landroid/webkit/WebView;)V
+@@ -704,4 +706,16 @@
+     .locals 9
+ 
++    invoke-interface {p2}, Landroid/webkit/WebResourceRequest;->getUrl()Landroid/net/Uri;
++    move-result-object v0
++    invoke-virtual {v0}, Landroid/net/Uri;->toString()Ljava/lang/String;
++    move-result-object v0
++    invoke-static {p1, v0}, Lcom/mint/rebuilt/PortRuntime;->handleNavigation(Landroid/webkit/WebView;Ljava/lang/String;)Z
++    move-result v0
++    if-eqz v0, :mint_port_normal_navigation
++    const/4 v0, 0x1
++    return v0
++    :mint_port_normal_navigation
++
++
+     .line 1
+     iget v0, p0, Ls3/k;->a:I
 --- base/smali_classes2/org/cocos2dx/javascript/identity/LiteHooks.smali
 +++ modified/smali_classes2/org/cocos2dx/javascript/identity/LiteHooks.smali
 @@ -164,4 +164,6 @@
@@ -91,3 +121,28 @@
 +
      sput-object v1, Lorg/cocos2dx/javascript/identity/LiteHooks;->script:Ljava/lang/String;
  
+@@ -2027,2 +2041,24 @@
+     return-object p0
+ .end method
++
++# Shared read-only domain authority for the ported modules.
++.method public static mintTrusted(Ljava/lang/String;)Z
++    .locals 1
++    invoke-static {p0}, Lorg/cocos2dx/javascript/identity/LiteHooks;->origin(Ljava/lang/String;)Ljava/lang/String;
++    move-result-object p0
++    sget-object v0, Lorg/cocos2dx/javascript/identity/LiteHooks;->origins:Ljava/util/Set;
++    invoke-interface {v0, p0}, Ljava/util/Set;->contains(Ljava/lang/Object;)Z
++    move-result v0
++    return v0
++.end method
++
++.method public static mintOrigins()[Ljava/lang/String;
++    .locals 2
++    sget-object v0, Lorg/cocos2dx/javascript/identity/LiteHooks;->origins:Ljava/util/Set;
++    const/4 v1, 0x0
++    new-array v1, v1, [Ljava/lang/String;
++    invoke-interface {v0, v1}, Ljava/util/Set;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
++    move-result-object v0
++    check-cast v0, [Ljava/lang/String;
++    return-object v0
++.end method

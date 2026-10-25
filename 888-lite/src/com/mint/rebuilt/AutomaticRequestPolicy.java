@@ -44,7 +44,7 @@ public final class AutomaticRequestPolicy {
         if (value == null || value.length() > 8192) return null;
         try {
             Uri uri = Uri.parse(value); String scheme = uri.getScheme();
-            if ((!"https".equalsIgnoreCase(scheme) && !"http".equalsIgnoreCase(scheme)) || !PortScope.apiHost(uri.getHost())) return null;
+            if ((!"https".equalsIgnoreCase(scheme) && !"http".equalsIgnoreCase(scheme)) || uri.getHost() == null) return null;
             String path = uri.getEncodedPath();
             for (String expected : PATHS) if (expected.equals(path)) return HOST + "\n" + path;
         } catch (Exception invalid) { }

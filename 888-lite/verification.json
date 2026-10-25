@@ -1,13 +1,13 @@
 {
-  "apk": "888-Lite-v7-Mint-26.14.3.apk",
-  "sha256": "fdec8e8ecc01bc5890ef865862a51f225db3ce6fab845e3addc0581fb1afe80e",
-  "size_bytes": 6478243,
+  "apk": "888-Lite-v7.1-Filtros-Configuracoes.apk",
+  "sha256": "b657c2f99ca9fa58e74202bd7f7616a813038ae1ff98453f49dbceab607a35b4",
+  "size_bytes": 6482339,
   "base_apk": "53b354_lite_perfil_rota_v6.apk",
   "base_sha256": "4143178a508fbf39c12348a9f197014d330cb018e548187c4f7fc6504d6ebd6a",
   "mint_reference": "26.14.3",
   "mint_reference_sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
   "package": "com.FortuneTiger.A888PG.Dragon",
-  "versionCode": 19,
+  "versionCode": 20,
   "backend_versionName_preserved": "6.9.76",
   "signing_certificate_sha256": "44d50a057ba71f5eda9dca50e796e83a6b10e449059ef04728f245d7aa2be862",
   "new_exclusive_key_authorized": true,
@@ -51,8 +51,8 @@
     "settings": "Single row beside existing cleanup row in /home/mine only; existing route-local observer reused; no polling interval",
     "configuration_persistence": "Private .mint_mod_state/config.json outside original reset target directories; Restore defaults resets mods; uninstall/Android system clear still removes it.",
     "credentials": "Empty by default; explicit Apply; proxy credentials never enter page config.",
-    "mines": "Existing JDB Mines 9014 history counts and selectable 1..100 rounds, plus wager counter; no gameplay automation.",
-    "network_policy": "12 captured paths and 4 exact promotional API paths, adapted only to equivalent cdntoos/cdnapiif hosts listed by original app. Native WebView and ServiceWorker interception.",
+    "mines": "JDB Mines adapter gated by /h5/games/9/9014/ on the original selected game address, with configurable history and wager count.",
+    "network_policy": "12 captured exact image paths and 4 exact promotional API paths, independent of host. Filtering remains inside the original app page scope; intercepted requests are blocked before download.",
     "before_render_policy": "Same two Vue target render vetoes from 26.14.3; same known limitations on app discovery timing.",
     "manual_chest_exceptions": [
       "div._container_n102k_117._style2_n102k_144",
@@ -73,5 +73,22 @@
     "Proxy routing does not cover unrelated native SDK requests or other applications.",
     "Android can suppress/dismiss the notification or stop the service; permanent availability cannot override OS restrictions.",
     "Game overlay depends on existing JDB 9014 path and brteachcor game layout."
-  ]
+  ],
+  "fix_v71": {
+    "cause": "Port scope used only seeded origins while LiteHooks dynamically accepts selected/redirected origins; mods could reject a page accepted by the original profile integration.",
+    "shared_native_origin_authority": true,
+    "public_read_only_accessors_added_to_LiteHooks": true,
+    "top_page_cache_updated_after_original_prepare_and_onPageStarted": true,
+    "new_selected_origins_get_document_start_registration_once": true,
+    "unchanged_config_does_not_reapply_on_duplicate_injection": true,
+    "settings_bridge_returns_acknowledgement": true,
+    "native_settings_scheme_fallback": true,
+    "url_rewrite_to_Mint_domains": false,
+    "original_site_addresses_unchanged": true,
+    "known_seeded_image_rules_match_exact_paths_independent_of_CDN_hostname": true,
+    "four_API_rules_match_exact_paths_independent_of_API_hostname": true,
+    "Mines_adapter_scoped_by_game_path_not_hostname": true,
+    "same_v7_signing_key": true,
+    "functional_tests_executed": false
+  }
 }

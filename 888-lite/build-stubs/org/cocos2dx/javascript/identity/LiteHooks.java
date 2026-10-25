@@ -1,0 +1,1 @@
+package org.cocos2dx.javascript.identity; public final class LiteHooks { public static boolean mintTrusted(String url){throw new UnsupportedOperationException();} public static String[] mintOrigins(){throw new UnsupportedOperationException();} }

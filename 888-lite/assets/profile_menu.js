@@ -112,7 +112,7 @@
     var arrow = document.createElement('span'); arrow.textContent = '›';
     arrow.style.cssText = 'font-size:28px;line-height:1;opacity:.6;color:inherit;';
     row.appendChild(icon); row.appendChild(label); row.appendChild(arrow);
-    var action = settings ? function(event){event.preventDefault();event.stopImmediatePropagation();window.MintPort.openSettings(location.origin);} : openConfirmation;
+    var action = settings ? function(event){event.preventDefault();event.stopImmediatePropagation();try{if(window.MintPort&&window.MintPort.openSettings(location.origin)===true)return;}catch(_){}location.href='mint-port://settings';} : openConfirmation;
     row.addEventListener('click', action, true);
     row.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') action(event); }, true);
     return row;
