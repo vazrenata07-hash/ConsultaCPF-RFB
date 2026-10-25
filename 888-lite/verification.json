@@ -1,0 +1,77 @@
+{
+  "apk": "888-Lite-v7-Mint-26.14.3.apk",
+  "sha256": "fdec8e8ecc01bc5890ef865862a51f225db3ce6fab845e3addc0581fb1afe80e",
+  "size_bytes": 6478243,
+  "base_apk": "53b354_lite_perfil_rota_v6.apk",
+  "base_sha256": "4143178a508fbf39c12348a9f197014d330cb018e548187c4f7fc6504d6ebd6a",
+  "mint_reference": "26.14.3",
+  "mint_reference_sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
+  "package": "com.FortuneTiger.A888PG.Dragon",
+  "versionCode": 19,
+  "backend_versionName_preserved": "6.9.76",
+  "signing_certificate_sha256": "44d50a057ba71f5eda9dca50e796e83a6b10e449059ef04728f245d7aa2be862",
+  "new_exclusive_key_authorized": true,
+  "signature_verified": [
+    "v1",
+    "v2",
+    "v3"
+  ],
+  "direct_update_over_v6_not_supported_with_new_key": true,
+  "functional_tests_executed": false,
+  "build_checks": [
+    "Java/DEX compilation",
+    "Smali assembly and APK resource build",
+    "JavaScript parsing without execution",
+    "ZIP alignment and signature verification"
+  ],
+  "preserved": {
+    "origins_asset_byte_identical": true,
+    "identity_script_byte_identical": true,
+    "unchanged_identity_reset_classes": [
+      "IdentityControl.smali",
+      "ResetConfirmationActivity$$ExternalSyntheticLambda1.smali",
+      "ResetConfirmationActivity$$ExternalSyntheticLambda0.smali",
+      "ResetActivity$$ExternalSyntheticLambda3.smali",
+      "ResetActivity.smali",
+      "ResetActivity$$ExternalSyntheticLambda1.smali",
+      "ResetConfirmationActivity$$ExternalSyntheticLambda2.smali",
+      "ResetConfirmationActivity.smali",
+      "ResetActivity$$ExternalSyntheticLambda4.smali",
+      "ResetActivity$$ExternalSyntheticLambda0.smali",
+      "LiteHooks$Bridge.smali",
+      "ResetActivity$$ExternalSyntheticLambda2.smali",
+      "LiteHooks$Bridge$$ExternalSyntheticLambda0.smali"
+    ],
+    "profile_clear_action_and_route_lifecycle": true,
+    "original_domains_and_headers": true,
+    "pin_setup_pair_and_withdrawal_timing": "Original 26.14.3 code, with hostname guards mapped to original trusted app origins."
+  },
+  "features": {
+    "gate": "Matrix layout, optional invite code, blank opens normally, original host retained, nonblank routes to /home/register?id=code",
+    "settings": "Single row beside existing cleanup row in /home/mine only; existing route-local observer reused; no polling interval",
+    "configuration_persistence": "Private .mint_mod_state/config.json outside original reset target directories; Restore defaults resets mods; uninstall/Android system clear still removes it.",
+    "credentials": "Empty by default; explicit Apply; proxy credentials never enter page config.",
+    "mines": "Existing JDB Mines 9014 history counts and selectable 1..100 rounds, plus wager counter; no gameplay automation.",
+    "network_policy": "12 captured paths and 4 exact promotional API paths, adapted only to equivalent cdntoos/cdnapiif hosts listed by original app. Native WebView and ServiceWorker interception.",
+    "before_render_policy": "Same two Vue target render vetoes from 26.14.3; same known limitations on app discovery timing.",
+    "manual_chest_exceptions": [
+      "div._container_n102k_117._style2_n102k_144",
+      "div._inner_14o7p_95"
+    ],
+    "no_v26144_general_click_permission": true,
+    "captcha_solver_removed": true,
+    "captcha_solver_native_bridge_absent": true,
+    "site_manual_captcha_preserved": true,
+    "proxy": "HTTP/HTTPS/SOCKS5 with credentials; app WebViews and the existing HTML compatibility fetch use local proxy adapter. Native unrelated SDK/API clients are outside this routing.",
+    "proxy_control": "One ongoing foreground-service notification with a stable toggle action ON/OFF; Android notification permission required.",
+    "no_debugger": true
+  },
+  "limitations": [
+    "No runtime or device tests performed; user performs them.",
+    "Pre-render guard requires matching Vue structure and cannot retroactively prevent a dialog mounted before discovery.",
+    "Manually opened chest eligibility and rewards remain subject to server conditions.",
+    "Proxy routing does not cover unrelated native SDK requests or other applications.",
+    "Android can suppress/dismiss the notification or stop the service; permanent availability cannot override OS restrictions.",
+    "Game overlay depends on existing JDB 9014 path and brteachcor game layout."
+  ]
+}
