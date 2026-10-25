@@ -7,6 +7,8 @@ window.__mintComponentPolicy2614=true;
 var targets=new Set(['_dialogBox_1r6g9_89','_dialogBox_930qf_89']);
 var apps=new WeakSet(),states=new WeakMap();
 var bonusSelector='div._container_n102k_117._style2_n102k_144';
+var chestSelector='div._inner_14o7p_95';
+var lastBonusPointer=null;
 var manualBonus=null,bonusGeneration=0,allowedBonus=new WeakMap(),activeBonus=new Set();
 function bonusCSS(){
  var root=document.documentElement;if(!root)return;
@@ -15,11 +17,16 @@ function bonusCSS(){
 function permitBonus(event){
  if(!event.isTrusted)return;
  var target=event.target&&event.target.nodeType===1?event.target:event.target&&event.target.parentElement;
- if(!target||!target.closest||!target.closest(bonusSelector))return;
+ if(!target||!target.closest)return;
+ var chest=target.closest(chestSelector),box=target.closest(bonusSelector);
+ if(!chest&&!box)return;
  var close=target.closest('[class*="close" i],[class*="cancel" i],[aria-label="Fechar" i]');if(close)return;
- // Only the exact functional bonus box grants this exception.
+ // Chest tiles are clickable divs/images and do not necessarily contain an Open label.
  var control=target.closest('button,a,[role="button"],.ui-button,.van-button')||target;
- if(!/\babrir\b|\bopen\b/i.test(control.textContent||target.textContent||''))return;
+ if(!chest&&!/\babrir\b|\bopen\b/i.test(control.textContent||target.textContent||''))return;
+ var now=Date.now(),origin=chest||box;
+ if(event.type==='pointerdown')lastBonusPointer={origin:origin,time:now,x:event.clientX,y:event.clientY};
+ else if(event.detail!==0&&lastBonusPointer&&now-lastBonusPointer.time<5000&&lastBonusPointer.origin===origin&&Math.abs(event.clientX-lastBonusPointer.x)<24&&Math.abs(event.clientY-lastBonusPointer.y)<24)return;
  if(manualBonus&&Date.now()<manualBonus.expires)return;
  var generation=++bonusGeneration;manualBonus={expires:Date.now()+5000,generation:generation};bonusCSS();
  setTimeout(function(){if(manualBonus&&manualBonus.generation===generation){manualBonus=null;bonusCSS();}},5000);

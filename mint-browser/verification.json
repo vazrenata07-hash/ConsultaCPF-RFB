@@ -1,9 +1,9 @@
 {
-  "apk": "Mint-Browser-v26.14.2-Gee-So-Registro.apk",
-  "sha256": "3b24d178da14852476a63a30e539a8baa4db31592e6249489dc2874d98e5ff9f",
-  "base_apk": "Mint-Browser-v26.14.1-Bonus-Manual.apk",
+  "apk": "Mint-Browser-v26.14.3-Baus-Manual.apk",
+  "sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
+  "base_apk": "Mint-Browser-v26.14.2-Gee-So-Registro.apk",
   "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "763c84ffd48add0cb4008e2e78dfa687b5a8216052e1b858dc40cb5f92d3fa33",
+  "base_sha256": "3b24d178da14852476a63a30e539a8baa4db31592e6249489dc2874d98e5ff9f",
   "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
   "base_signature_verified": [
     "v1",
@@ -14,11 +14,11 @@
   "new_signing_key_authorized_by_user": true,
   "direct_update_over_original_modmint_signature_supported": false,
   "changed_components": [
-    "assets/mint-rebuilt.js"
+    "assets/mint-automatic-requests.js",
+    "assets/mint-component-policy.js"
   ],
   "preserved_by_construction": {
     "all_js_from_function_register_onward": true,
-    "preserved_js_suffix_sha256": "c7cc36d0dddf6c299c0ff47d44897bfed9e80c27485a0dd7d82a84f020e569a9",
     "pin_setup_together": true,
     "pin_typing_delays": true,
     "proxy": true,
@@ -26,8 +26,10 @@
     "mines": true,
     "geetest_classes4_dex_bytes": true,
     "manifest_resources_libraries_and_other_assets": true,
-    "entire_assets_mint_rebuilt_js_from_v2610": true,
-    "classes1_classes2_classes4_from_v2610": true
+    "entire_assets_mint_rebuilt_js_from_v2610": false,
+    "classes1_classes2_classes4_from_v2610": true,
+    "entire_assets_mint_rebuilt_js_from_v26142": true,
+    "all_native_dex_from_v26142": true
   },
   "filters": {
     "replaces_old_capture_catalog": true,
@@ -48,7 +50,7 @@
   },
   "build": {
     "javascript_parsed_without_execution": true,
-    "native_changed_classes_compiled": true,
+    "native_changed_classes_compiled": false,
     "apk_repacked_from_user_base": true,
     "zipaligned": true,
     "signature_verified": [
@@ -157,5 +159,14 @@
     "navigation_cancels_pending_work": true,
     "native_dex_and_solving_algorithms_unchanged": true,
     "no_fixed_registration_start_delay_added": true
+  },
+  "manual_chest_exception": {
+    "selector": "div._inner_14o7p_95",
+    "trusted_pointer_or_click_without_button_or_label": true,
+    "network_manual_permit_for_existing_four_endpoints": true,
+    "component_manual_open_permit": true,
+    "pointerdown_click_deduplicated": true,
+    "no_claim_that_all_chests_are_unlocked": true,
+    "runtime_validation_pending_user": true
   }
 }

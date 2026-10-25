@@ -27,6 +27,9 @@ function classText(node){return typeof node.className==='string'?node.className:
 function attributes(node){return [node.getAttribute('aria-label'),node.getAttribute('title'),node.getAttribute('alt')].join(' ');}
 function selectedControl(event){
  var target=targetElement(event);if(!target||!target.closest)return null;
+ // This exact chest section uses div/image click handlers, without button roles or labels.
+ var chest=target.closest('div._inner_14o7p_95');
+ if(chest&&!target.closest('[class*="close" i],[class*="cancel" i],[aria-label="Fechar" i]'))return chest;
  var control=target.closest(floatingSelector)||target.closest(controlSelector);
  if(!control)return null;
  if(target.closest('div._container_n102k_117._style2_n102k_144')&&/\babrir\b|\bopen\b/i.test(control.textContent||target.textContent||''))return control;
