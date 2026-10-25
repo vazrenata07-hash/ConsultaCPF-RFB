@@ -1,13 +1,13 @@
 {
-  "apk": "888-Lite-v7.1-Filtros-Configuracoes.apk",
-  "sha256": "b657c2f99ca9fa58e74202bd7f7616a813038ae1ff98453f49dbceab607a35b4",
+  "apk": "888-Lite-v7.2-Atualizar-Notificacao.apk",
+  "sha256": "521a83a2e1f1394804356adbd186fdf4cd0d386bafda8e09517709b7637384af",
   "size_bytes": 6482339,
   "base_apk": "53b354_lite_perfil_rota_v6.apk",
   "base_sha256": "4143178a508fbf39c12348a9f197014d330cb018e548187c4f7fc6504d6ebd6a",
   "mint_reference": "26.14.3",
   "mint_reference_sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
   "package": "com.FortuneTiger.A888PG.Dragon",
-  "versionCode": 20,
+  "versionCode": 21,
   "backend_versionName_preserved": "6.9.76",
   "signing_certificate_sha256": "44d50a057ba71f5eda9dca50e796e83a6b10e449059ef04728f245d7aa2be862",
   "new_exclusive_key_authorized": true,
@@ -63,7 +63,7 @@
     "captcha_solver_native_bridge_absent": true,
     "site_manual_captcha_preserved": true,
     "proxy": "HTTP/HTTPS/SOCKS5 with credentials; app WebViews and the existing HTML compatibility fetch use local proxy adapter. Native unrelated SDK/API clients are outside this routing.",
-    "proxy_control": "One ongoing foreground-service notification with a stable toggle action ON/OFF; Android notification permission required.",
+    "proxy_control": "One ongoing notification with proxy toggle ON/OFF and a separate Atualizar action for the current page.",
     "no_debugger": true
   },
   "limitations": [
@@ -90,5 +90,22 @@
     "Mines_adapter_scoped_by_game_path_not_hostname": true,
     "same_v7_signing_key": true,
     "functional_tests_executed": false
+  },
+  "parent_release": "888-Lite-v7.1-Filtros-Configuracoes.apk",
+  "refresh_v72": {
+    "notification_action": "Atualizar, beside proxy toggle",
+    "receiver": "Private, non-exported explicit RefreshPageReceiver",
+    "thread": "WebView main/UI thread",
+    "target": "Current live app WebView",
+    "operation": "WebView.reload(), deferred through existing proxy-transition callback if pending",
+    "proxy_toggle_preserved": true,
+    "clears_data": false,
+    "rotates_ip": false,
+    "ip_behavior": "New page requests use the current network/proxy; reload does not itself acquire a new IP. Existing connections or server behavior may retain earlier observations.",
+    "when_no_live_page": "Shows message asking to open the app; does not recreate a page from background.",
+    "content_assets_byte_identical_to_v71": true,
+    "classes_dex_byte_identical_to_v71": true,
+    "same_v7_and_v71_signature": true,
+    "runtime_tests_executed": false
   }
 }

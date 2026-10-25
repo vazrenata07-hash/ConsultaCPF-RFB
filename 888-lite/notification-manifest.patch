@@ -1,0 +1,8 @@
+--- v7.1/AndroidManifest.xml
++++ v7.2/AndroidManifest.xml
+@@ -229,4 +229,5 @@
+         </service>
+         <receiver android:name="com.mint.rebuilt.ProxyService$ToggleProxyReceiver" android:exported="false"/>
++        <receiver android:name="com.mint.rebuilt.ProxyService$RefreshPageReceiver" android:exported="false"/>
+     </application>
+ </manifest>

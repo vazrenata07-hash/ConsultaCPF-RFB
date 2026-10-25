@@ -1,6 +1,6 @@
-# 888 Lite v7.1 — ativação dos filtros e Configurações
+# 888 Lite v7.2 — Atualizar na notificação
 
-Base: `53b354_lite_perfil_rota_v6.apk`. APK atual: `888-Lite-v7.1-Filtros-Configuracoes.apk`.
+Base: `53b354_lite_perfil_rota_v6.apk`. APK atual: `888-Lite-v7.2-Atualizar-Notificacao.apk`.
 
 - Janela Matrix antes da tela principal: código opcional; vazio abre normalmente. O código mantém o domínio escolhido pelo app e direciona a `/home/register?id=...`.
 - Um botão **Configurações** ao lado de **Limpar dados**, inserido somente no Perfil `/home/mine`. O mecanismo de rota da v6 é reaproveitado, sem busca por intervalo.
@@ -23,3 +23,11 @@ A v7 mantinha uma lista inicial separada de domínios. A base registra domínios
 As rotas `/home/register`, `/home/mine`, `/home/security`, `/home/withdraw` e `/h5/games/9/9014/` mantêm seus endereços originais. Os filtros de rede usam caminhos exatos, sem impor o domínio da Mint. O botão Configurações recebe confirmação da ponte e possui alternativa por navegação nativa. Nenhum intervalo de busca foi adicionado. A configuração inalterada não é reaplicada a cada injeção repetida.
 
 Os métodos em `build-stubs/` são apenas assinaturas para compilação; o APK usa os acessores implementados em smali na base. Não incluir o stub como classe executável na compilação.
+
+## Atualização da v7.2
+
+A notificação agora tem dois botões: o controle do proxy e **Atualizar**. Atualizar recarrega a página aberta na WebView, na thread da interface. Se houver troca de estado do proxy em andamento, a recarga aguarda o callback existente; nenhum intervalo ou espera fixa foi adicionado. Sem página viva, aparece a orientação para abrir o app.
+
+O botão usa a conexão atual; não troca o IP por conta própria. A mudança de IP depende do provedor da rede/proxy e das conexões mantidas. A recarga não limpa dados, senhas, opções ou IDs locais. Os scripts e filtros são os mesmos da v7.1. Mesma assinatura; pode instalar por cima da v7 ou v7.1.
+
+O novo receiver não exportado está em `notification-manifest.patch`. Sem testes de uso/aparelho, conforme solicitado.
