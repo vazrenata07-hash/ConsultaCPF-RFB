@@ -120,6 +120,7 @@ public final class AutomaticRequestPolicy {
             if (target == null) return null;
             synchronized (LOCK) {
                 if (!page888(PAGES.get(view))) return null;
+                if (AdResources.manualActionActive(view)) return null;
                 Boolean prior = DECISIONS.get(request);
                 if (prior != null) return prior.booleanValue() ? null : blockedResponse();
                 HashMap<String,Permit> permits = VIEW_PERMITS.get(view);
@@ -133,6 +134,7 @@ public final class AutomaticRequestPolicy {
     public static WebResourceResponse interceptWorker(WebResourceRequest request) {
         try {
             if (request == null || request.isForMainFrame() || !page888(header(request, "Referer"))) return null;
+            if (AdResources.manualWorkerAction(request)) return null;
             Uri uri = request.getUrl(); String target = candidate(uri == null ? null : uri.toString());
             if (target == null) return null;
             synchronized (LOCK) {
@@ -153,6 +155,7 @@ public final class AutomaticRequestPolicy {
     public static final class Bridge {
         private final WeakReference<WebView> owner;
         Bridge(WebView view) { owner = new WeakReference<WebView>(view); }
+        @JavascriptInterface public void rewardImages() { AdResources.allowRewardImages(owner.get()); }
         @JavascriptInterface public boolean permit(String url, String method) { return issue(owner.get(), url, method); }
     }
 }

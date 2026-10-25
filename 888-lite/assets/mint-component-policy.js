@@ -7,31 +7,28 @@ window.__mintComponentPolicy2614=true;
 var targets=new Set(['_dialogBox_1r6g9_89','_dialogBox_930qf_89']);
 var apps=new WeakSet(),states=new WeakMap();
 var bonusSelector='div._container_n102k_117._style2_n102k_144';
-var chestSelector='div._inner_14o7p_95';
-var lastBonusPointer=null;
 var manualBonus=null,bonusGeneration=0,allowedBonus=new WeakMap(),activeBonus=new Set();
 function bonusCSS(){
  var root=document.documentElement;if(!root)return;
- if(manualBonus||activeBonus.size)root.setAttribute('data-mint-bonus-active','1');else root.removeAttribute('data-mint-bonus-active');
+ if(manualBonus||Date.now()<(window.__mintRewardUntil||0))root.setAttribute('data-mint-bonus-active','1');else root.removeAttribute('data-mint-bonus-active');
+}
+var rewardGeneration=0;
+function permitReward(){
+ var generation=++rewardGeneration;window.__mintRewardUntil=Date.now()+5000;
+ if(document.documentElement)document.documentElement.setAttribute('data-mint-reward-pending','1');
+ try{if(window.MintAutomaticRequests&&typeof window.MintAutomaticRequests.rewardImages==='function')window.MintAutomaticRequests.rewardImages();}catch(ignored){}
+ window.dispatchEvent(new Event('mint-reward-intent'));
+ setTimeout(function(){if(rewardGeneration===generation){window.__mintRewardUntil=0;if(document.documentElement)document.documentElement.removeAttribute('data-mint-reward-pending');window.dispatchEvent(new Event('mint-reward-intent'));}},5000);
 }
 function permitBonus(event){
  if(!event.isTrusted)return;
  var target=event.target&&event.target.nodeType===1?event.target:event.target&&event.target.parentElement;
- if(!target||!target.closest)return;
- var chest=target.closest(chestSelector),box=target.closest(bonusSelector);
- if(!chest&&!box)return;
- var close=target.closest('[class*="close" i],[class*="cancel" i],[aria-label="Fechar" i]');if(close)return;
- // Chest tiles are clickable divs/images and do not necessarily contain an Open label.
- var control=target.closest('button,a,[role="button"],.ui-button,.van-button')||target;
- if(!chest&&!/\babrir\b|\bopen\b/i.test(control.textContent||target.textContent||''))return;
- var now=Date.now(),origin=chest||box;
- if(event.type==='pointerdown')lastBonusPointer={origin:origin,time:now,x:event.clientX,y:event.clientY};
- else if(event.detail!==0&&lastBonusPointer&&now-lastBonusPointer.time<5000&&lastBonusPointer.origin===origin&&Math.abs(event.clientX-lastBonusPointer.x)<24&&Math.abs(event.clientY-lastBonusPointer.y)<24)return;
- if(manualBonus&&Date.now()<manualBonus.expires)return;
+ if(!target)return;
+ permitReward();
  var generation=++bonusGeneration;manualBonus={expires:Date.now()+5000,generation:generation};bonusCSS();
- setTimeout(function(){if(manualBonus&&manualBonus.generation===generation){manualBonus=null;bonusCSS();}},5000);
+ setTimeout(function(){if(bonusGeneration===generation){manualBonus=null;bonusCSS();}},5000);
 }
-window.addEventListener('pointerdown',permitBonus,true);
+// A click is deliberate; touching/scrolling alone and script-generated clicks do not permit anything.
 window.addEventListener('click',permitBonus,true);
 window.__mintKeepsBonusDialog=function(node){
  if(!node||!node.closest)return false;

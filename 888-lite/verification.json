@@ -1,13 +1,13 @@
 {
-  "apk": "888-Lite-v7.3-Codigo-Persistente.apk",
-  "sha256": "5d37afed7e0d963ca1ed2a14a464414c40e1add4864ec8b12598d1a57353887a",
-  "size_bytes": 6474220,
+  "apk": "888-Lite-v7.4-Acoes-Manuais.apk",
+  "sha256": "bb13706cb9ca2a5f3f8f2e39bf8875536b2624768448e3bf803693545a378f6e",
+  "size_bytes": 6482412,
   "base_apk": "53b354_lite_perfil_rota_v6.apk",
   "base_sha256": "4143178a508fbf39c12348a9f197014d330cb018e548187c4f7fc6504d6ebd6a",
   "mint_reference": "26.14.3",
   "mint_reference_sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
   "package": "com.FortuneTiger.A888PG.Dragon",
-  "versionCode": 22,
+  "versionCode": 23,
   "backend_versionName_preserved": "6.9.76",
   "signing_certificate_sha256": "44d50a057ba71f5eda9dca50e796e83a6b10e449059ef04728f245d7aa2be862",
   "new_exclusive_key_authorized": true,
@@ -58,13 +58,14 @@
       "div._container_n102k_117._style2_n102k_144",
       "div._inner_14o7p_95"
     ],
-    "no_v26144_general_click_permission": true,
+    "no_v26144_general_click_permission": false,
     "captcha_solver_removed": true,
     "captcha_solver_native_bridge_absent": true,
     "site_manual_captcha_preserved": true,
     "proxy": "HTTP/HTTPS/SOCKS5 with credentials; app WebViews and the existing HTML compatibility fetch use local proxy adapter. Native unrelated SDK/API clients are outside this routing.",
     "proxy_control": "One ongoing notification with proxy toggle ON/OFF and a separate Atualizar action for the current page.",
-    "no_debugger": true
+    "no_debugger": true,
+    "manual_action_permission": "All trusted clicks grant a temporary 5-second exemption to custom request/artwork filters and manual popup openings; unsolicited work outside the exemption stays filtered."
   },
   "limitations": [
     "No runtime or device tests performed; user performs them.",
@@ -91,7 +92,7 @@
     "same_v7_signing_key": true,
     "functional_tests_executed": false
   },
-  "parent_release": "888-Lite-v7.2-Atualizar-Notificacao.apk",
+  "parent_release": "888-Lite-v7.3-Codigo-Persistente.apk",
   "refresh_v72": {
     "notification_action": "Atualizar, beside proxy toggle",
     "receiver": "Private, non-exported explicit RefreshPageReceiver",
@@ -150,5 +151,25 @@
     "registration_routes_keep_saved_code": true,
     "existing_Limpar_erases_choice_and_restores_initial_dialog": true,
     "mod_options_remain_in_separate_persistent_storage": true
+  },
+  "manual_actions_v74": {
+    "user_instruction": "Any deliberate action should be permitted; unsolicited automatic elements should remain filtered.",
+    "trigger": "Any trusted click in the app page; no label/class whitelist. Touching/scrolling alone and script-generated clicks do not grant a permit.",
+    "permission_ms": 5000,
+    "network": "Existing four promotional API paths and filtered artwork have a temporary native/JS permit. No bodies, headers, account claims or response success values are forged.",
+    "dialogs": "Existing cosmetic rule families allow newly observed manual roots through their normal close lifecycle. Already marked blocked roots remain blocked. The two component render vetoes accept manual opens.",
+    "same_state_is_not_classified_perfectly": true,
+    "limitations": [
+      "Time-window heuristic cannot prove request causality. Coincident automatic work can also pass.",
+      "Responses or dialogs arriving after the window may require a new gesture.",
+      "Reused dialog nodes without an observable hidden/unmounted state may retain the prior manual exception.",
+      "ServiceWorker/legacy image callbacks use a brief shared permitted window because they lack a WebView owner."
+    ],
+    "video_review": "User-provided video9.mp4 shows Mission / Novo Usuario / Baixe e faca login(Deposito), with Receber. No request trace or server response is in the video.",
+    "source_issue": "Previous whitelist did not recognize a plain Receber control. It was replaced by all deliberate trusted clicks as the user requested.",
+    "cleanup_identity_classes_byte_preserved": 13,
+    "referral_and_first_launch_choice_logic_preserved": true,
+    "runtime_tests_executed": false,
+    "bonus_claim_success_verified": false
   }
 }

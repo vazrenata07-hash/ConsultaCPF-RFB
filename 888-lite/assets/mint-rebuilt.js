@@ -87,6 +87,7 @@ var rules=[
 ];
 // Install precise signatures at document start; marking/closing still advances the site's popup queue.
 var earlyCSS='';
+var rewardRules=new Set(rules.map(function(rule){return rule.name;}));
 var hasSelector=window.CSS&&typeof CSS.supports==='function'&&CSS.supports('selector(:has(*))');
 for(var cssIndex=0;cssIndex<rules.length;cssIndex++){
  var cssRule=rules[cssIndex];
@@ -95,12 +96,15 @@ for(var cssIndex=0;cssIndex<rules.length;cssIndex++){
  var guardedChild=cssRule.child&&!cssRule.renderVeto;
  var excludeBonus=hasSelector?':not(:has('+keepBonus+'))':'';
  var cssSelector=cssRule.selector+(guardedChild?':has('+cssRule.child+')':'')+excludeBonus;
- if(cssRule.renderVeto)cssSelector='html:not([data-mint-bonus-active]) '+cssSelector;
+ var rootGuard=(cssRule.renderVeto?':not([data-mint-bonus-active])':'')+(rewardRules.has(cssRule.name)?':not([data-mint-reward-pending])':'');
+ if(rootGuard)cssSelector='html'+rootGuard+' '+cssSelector;
+ if(rewardRules.has(cssRule.name))cssSelector+=':not([data-mint-reward-open]):not([data-mint-reward-open] *)';
  earlyCSS+=cssSelector+','+cssSelector+' *{visibility:hidden!important;pointer-events:none!important}';
  if(hasSelector){
   // :has() cannot nest. Keep the component and child in a single relational selector.
   var overlay='.ui-overlay:has('+cssRule.selector+(guardedChild?' '+cssRule.child:'')+'):not(:has('+keepBonus+'))';
-  if(cssRule.renderVeto)overlay='html:not([data-mint-bonus-active]) '+overlay;
+  if(rootGuard)overlay='html'+rootGuard+' '+overlay;
+  if(rewardRules.has(cssRule.name))overlay+=':not([data-mint-reward-open])';
   earlyCSS+=overlay+'{visibility:hidden!important;opacity:0!important;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;pointer-events:none!important}';
  }
 }
@@ -144,7 +148,7 @@ function rememberAdResources(root){
   else if(!watchedAdImages.has(image)){watchedAdImages.add(image);image.addEventListener('load',record,{once:true,passive:true});}
  }
 }
-var attempts=new WeakMap(),marked=new Set();
+var attempts=new WeakMap(),marked=new Set(),rewardRoots=new Set();
 function dismiss(root,node,rule,close){
  if(!close||typeof close.click!=='function')return;
  var state=attempts.get(root);
@@ -159,12 +163,15 @@ function dismiss(root,node,rule,close){
 function filter(){
  if(!d.documentElement)return;
  installAdStyle();
+ rewardRoots.forEach(function(root){if(!root.isConnected||root.style.display==='none'||!root.getClientRects().length){root.removeAttribute('data-mint-reward-open');rewardRoots.delete(root);}});
  var current=new Map(),nodes=d.querySelectorAll(ruleSelector),protectedRoots=new WeakMap();
  for(var i=0;i<rules.length;i++){
   var rule=rules[i];
   for(var j=0;j<nodes.length;j++){
    var node=nodes[j];if(!node.matches(rule.selector)||rule.child&&!node.querySelector(rule.child))continue;
    var root=node.closest('.ui-overlay')||node;
+   if(rewardRoots.has(root))continue;
+   if(rewardRules.has(rule.name)&&Date.now()<(window.__mintRewardUntil||0)&&!root.hasAttribute(tag)&&root.style.display!=='none'&&root.getClientRects().length){root.setAttribute('data-mint-reward-open','1');root.removeAttribute(tag);rewardRoots.add(root);continue;}
    if(root.querySelector('div._container_n102k_117._style2_n102k_144')||typeof window.__mintKeepsBonusDialog==='function'&&window.__mintKeepsBonusDialog(root))continue;
    if(root.style.display==='none'||!root.getClientRects().length)continue;
    if(!protectedRoots.has(root))protectedRoots.set(root,protectedDialog(root));
@@ -577,6 +584,7 @@ function run(){
 }
 function queue(){if(!queued){queued=true;Promise.resolve().then(function(){queued=false;run();});}}
 function schedule(){filterDirty=true;queue();}
+window.addEventListener('mint-reward-intent',schedule);
 function inspectNode(node){
  if(!node||node.nodeType!==1)return;
  if(node.namespaceURI==='http://www.w3.org/2000/svg')return;

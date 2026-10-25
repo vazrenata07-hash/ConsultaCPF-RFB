@@ -22,6 +22,18 @@ public final class AdResources {
     private static final ConcurrentHashMap<String,Boolean> learned = new ConcurrentHashMap<String,Boolean>();
     private static final Set<String> captured = new HashSet<String>();
     private static volatile boolean workerInstalled;
+    private static volatile long workerRewardUntil;
+    private static final WeakHashMap<WebView,Long> rewardUntil = new WeakHashMap<WebView,Long>();
+    public static void allowRewardImages(WebView view) {
+        if(view==null)return;
+        synchronized(topPages){if(!Boolean.TRUE.equals(topPages.get(view)))return;}
+        long until=android.os.SystemClock.elapsedRealtime()+5000;
+        synchronized(rewardUntil){rewardUntil.put(view,Long.valueOf(until));}
+        workerRewardUntil=until;
+    }
+    public static boolean manualActionActive(WebView view) {
+        synchronized(rewardUntil){Long until=rewardUntil.get(view);return until!=null&&until.longValue()>android.os.SystemClock.elapsedRealtime();}
+    }
     private static final WeakHashMap<WebView,Boolean> topPages = new WeakHashMap<WebView,Boolean>();
     static {
         String[] paths = {
@@ -43,6 +55,12 @@ public final class AdResources {
             captured.add(normalized);
             learned.put(normalized, Boolean.TRUE);
         }
+    }
+    public static boolean manualWorkerAction(WebResourceRequest request) {
+        if(request==null||workerRewardUntil<=android.os.SystemClock.elapsedRealtime())return false;
+        Map<String,String> headers=request.getRequestHeaders();
+        if(headers!=null)for(Map.Entry<String,String> entry:headers.entrySet())if("referer".equalsIgnoreCase(entry.getKey())&&origin888(entry.getValue()))return true;
+        return false;
     }
     public AdResources() {
         if (Build.VERSION.SDK_INT >= 24 && !workerInstalled) {
@@ -66,7 +84,12 @@ public final class AdResources {
                         String normalized = key(uri == null ? null : uri.toString());
                         // A service worker has no WebView parameter. Only the twelve
                         // specific capture paths are eligible here; never learned URLs.
-                        return normalized != null && captured.contains(normalized) ? response() : null;
+                        boolean manual=false;
+                        if(workerRewardUntil>android.os.SystemClock.elapsedRealtime()){
+                            Map<String,String> headers=request.getRequestHeaders();
+                            if(headers!=null)for(Map.Entry<String,String> header:headers.entrySet())if("referer".equalsIgnoreCase(header.getKey())&&origin888(header.getValue())){manual=true;break;}
+                        }
+                        return normalized != null && captured.contains(normalized) && !manual ? response() : null;
                     } catch (Exception unavailable) { return null; }
                 }
             });
@@ -101,7 +124,7 @@ public final class AdResources {
     /** Compatible with the original native adblock callback. */
     public static boolean blocked(String resource, String page) {
         String normalized = key(resource);
-        return normalized != null && origin888(page) && learned.containsKey(normalized);
+        return normalized != null && origin888(page) && learned.containsKey(normalized) && !(workerRewardUntil>android.os.SystemClock.elapsedRealtime());
     }
     /** Called on the UI thread using the URL from the native page callback. */
     public static void pageStarted(WebView view, String page) {
@@ -119,6 +142,7 @@ public final class AdResources {
             Uri uri = request.getUrl();
             String normalized = key(uri == null ? null : uri.toString());
             if (normalized == null || !learned.containsKey(normalized)) return null;
+            if (manualActionActive(view)) return null;
             Boolean top;
             synchronized (topPages) { top = topPages.get(view); }
             if (Boolean.FALSE.equals(top)) return null;
