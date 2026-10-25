@@ -95,12 +95,12 @@ for(var cssIndex=0;cssIndex<rules.length;cssIndex++){
  var guardedChild=cssRule.child&&!cssRule.renderVeto;
  var excludeBonus=hasSelector?':not(:has('+keepBonus+'))':'';
  var cssSelector=cssRule.selector+(guardedChild?':has('+cssRule.child+')':'')+excludeBonus;
- if(cssRule.renderVeto)cssSelector='html:not([data-mint-bonus-active]) '+cssSelector;
+ cssSelector='html:not([data-mint-bonus-active]) '+cssSelector+':not([data-mint-manual-open]):not([data-mint-manual-open] *)';
  earlyCSS+=cssSelector+','+cssSelector+' *{visibility:hidden!important;pointer-events:none!important}';
  if(hasSelector){
   // :has() cannot nest. Keep the component and child in a single relational selector.
   var overlay='.ui-overlay:has('+cssRule.selector+(guardedChild?' '+cssRule.child:'')+'):not(:has('+keepBonus+'))';
-  if(cssRule.renderVeto)overlay='html:not([data-mint-bonus-active]) '+overlay;
+  overlay='html:not([data-mint-bonus-active]) '+overlay+':not([data-mint-manual-open])';
   earlyCSS+=overlay+'{visibility:hidden!important;opacity:0!important;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;pointer-events:none!important}';
  }
 }
@@ -144,7 +144,7 @@ function rememberAdResources(root){
   else if(!watchedAdImages.has(image)){watchedAdImages.add(image);image.addEventListener('load',record,{once:true,passive:true});}
  }
 }
-var attempts=new WeakMap(),marked=new Set();
+var attempts=new WeakMap(),marked=new Set(),manualRoots=new Set();
 function dismiss(root,node,rule,close){
  if(!close||typeof close.click!=='function')return;
  var state=attempts.get(root);
@@ -159,12 +159,16 @@ function dismiss(root,node,rule,close){
 function filter(){
  if(!d.documentElement)return;
  installAdStyle();
+ manualRoots.forEach(function(root){if(!root.isConnected||root.style.display==='none'||!root.getClientRects().length){root.removeAttribute('data-mint-manual-open');manualRoots.delete(root);}});
  var current=new Map(),nodes=d.querySelectorAll(ruleSelector),protectedRoots=new WeakMap();
  for(var i=0;i<rules.length;i++){
   var rule=rules[i];
   for(var j=0;j<nodes.length;j++){
    var node=nodes[j];if(!node.matches(rule.selector)||rule.child&&!node.querySelector(rule.child))continue;
    var root=node.closest('.ui-overlay')||node;
+   if(root.style.display==='none'||!root.getClientRects().length)continue;
+   if(Date.now()<(window.__mintManualIntentUntil||0)){root.setAttribute('data-mint-manual-open','1');root.removeAttribute(tag);manualRoots.add(root);continue;}
+   if(manualRoots.has(root))continue;
    if(root.querySelector('div._container_n102k_117._style2_n102k_144')||typeof window.__mintKeepsBonusDialog==='function'&&window.__mintKeepsBonusDialog(root))continue;
    if(root.style.display==='none'||!root.getClientRects().length)continue;
    if(!protectedRoots.has(root))protectedRoots.set(root,protectedDialog(root));

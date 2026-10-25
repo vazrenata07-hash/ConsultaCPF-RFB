@@ -60,6 +60,7 @@ public final class AdResources {
                         WebResourceResponse policyResponse = AutomaticRequestPolicy.interceptWorker(request);
                         if (policyResponse != null) return policyResponse;
                         if (request == null || request.isForMainFrame()) return null;
+                        if (AutomaticRequestPolicy.manualWorker(request)) return null;
                         String method = request.getMethod();
                         if (!"GET".equalsIgnoreCase(method) && !"HEAD".equalsIgnoreCase(method)) return null;
                         Uri uri = request.getUrl();
@@ -107,7 +108,7 @@ public final class AdResources {
     /** Compatible with the original native adblock callback. */
     public static boolean blocked(String resource, String page) {
         String normalized = key(resource);
-        return normalized != null && origin888(page) && learned.containsKey(normalized);
+        return normalized != null && origin888(page) && !AutomaticRequestPolicy.manualPage(page) && learned.containsKey(normalized);
     }
     /** Called on the UI thread using the URL from the native page callback. */
     public static void pageStarted(WebView view, String page) {
@@ -120,6 +121,7 @@ public final class AdResources {
             WebResourceResponse policyResponse = AutomaticRequestPolicy.intercept(view, request);
             if (policyResponse != null) return policyResponse;
             if (view == null || request == null || request.isForMainFrame()) return null;
+            if (AutomaticRequestPolicy.manualWindow(view)) return null;
             String method = request.getMethod();
             if (!"GET".equalsIgnoreCase(method) && !"HEAD".equalsIgnoreCase(method)) return null;
             Uri uri = request.getUrl();

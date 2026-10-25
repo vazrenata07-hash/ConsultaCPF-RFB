@@ -31,6 +31,8 @@ public final class AutomaticRequestPolicy {
     private static final WeakHashMap<WebView,Boolean> ATTACHED = new WeakHashMap<WebView,Boolean>();
     private static final WeakHashMap<WebView,HashMap<String,Permit>> VIEW_PERMITS = new WeakHashMap<WebView,HashMap<String,Permit>>();
     private static final HashMap<String,Permit> WORKER_PERMITS = new HashMap<String,Permit>();
+    private static final WeakHashMap<WebView,Long> MANUAL_WINDOWS = new WeakHashMap<WebView,Long>();
+    private static volatile long workerManualUntil;
     private static final WeakHashMap<WebResourceRequest,Boolean> DECISIONS = new WeakHashMap<WebResourceRequest,Boolean>();
     private static final class Permit {
         final long expires;
@@ -83,9 +85,29 @@ public final class AutomaticRequestPolicy {
         synchronized (LOCK) {
             String previous = PAGES.get(view);
             PAGES.put(view, url == null ? "" : url);
-            if (previous == null || !previous.equals(url)) VIEW_PERMITS.remove(view);
+            if (previous == null || !previous.equals(url)) { VIEW_PERMITS.remove(view); MANUAL_WINDOWS.remove(view); }
             purge(WORKER_PERMITS, SystemClock.elapsedRealtime());
         }
+    }
+    private static boolean beginManual(WebView view) {
+        synchronized (LOCK) {
+            if (view == null || !page888(PAGES.get(view))) return false;
+            long until = SystemClock.elapsedRealtime() + 5000;
+            MANUAL_WINDOWS.put(view, Long.valueOf(until)); workerManualUntil = until;
+            return true;
+        }
+    }
+    public static boolean manualWindow(WebView view) {
+        synchronized (LOCK) {
+            Long until = MANUAL_WINDOWS.get(view);
+            return until != null && until.longValue() > SystemClock.elapsedRealtime() && page888(PAGES.get(view));
+        }
+    }
+    public static boolean manualPage(String page) {
+        return page888(page) && workerManualUntil > SystemClock.elapsedRealtime();
+    }
+    public static boolean manualWorker(WebResourceRequest request) {
+        return request != null && manualPage(header(request, "Referer"));
     }
     private static boolean issue(WebView view, String url, String method) {
         String target = candidate(url), actual = verb(method);
@@ -128,6 +150,7 @@ public final class AutomaticRequestPolicy {
             if (target == null) return null;
             synchronized (LOCK) {
                 if (!page888(PAGES.get(view))) return null;
+                if (manualWindow(view)) return null;
                 Boolean prior = DECISIONS.get(request);
                 if (prior != null) return prior.booleanValue() ? null : blockedResponse();
                 HashMap<String,Permit> permits = VIEW_PERMITS.get(view);
@@ -141,6 +164,7 @@ public final class AutomaticRequestPolicy {
     public static WebResourceResponse interceptWorker(WebResourceRequest request) {
         try {
             if (request == null || request.isForMainFrame() || !page888(header(request, "Referer"))) return null;
+            if (manualWorker(request)) return null;
             Uri uri = request.getUrl(); String target = candidate(uri == null ? null : uri.toString());
             if (target == null) return null;
             synchronized (LOCK) {
@@ -161,6 +185,7 @@ public final class AutomaticRequestPolicy {
     public static final class Bridge {
         private final WeakReference<WebView> owner;
         Bridge(WebView view) { owner = new WeakReference<WebView>(view); }
+        @JavascriptInterface public boolean beginManual() { return AutomaticRequestPolicy.beginManual(owner.get()); }
         @JavascriptInterface public boolean permit(String url, String method) { return issue(owner.get(), url, method); }
     }
 }

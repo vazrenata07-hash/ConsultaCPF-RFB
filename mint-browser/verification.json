@@ -1,57 +1,20 @@
 {
-  "apk": "Mint-Browser-v26.14.3-Baus-Manual.apk",
-  "sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
-  "base_apk": "Mint-Browser-v26.14.2-Gee-So-Registro.apk",
-  "base_url": "https://github.com/vazrenata07-hash/modifinal/releases/download/1.0.1/MODmint.apk",
-  "base_sha256": "3b24d178da14852476a63a30e539a8baa4db31592e6249489dc2874d98e5ff9f",
-  "base_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
-  "base_signature_verified": [
-    "v1",
-    "v2",
-    "v3"
-  ],
-  "signing_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
-  "new_signing_key_authorized_by_user": true,
-  "direct_update_over_original_modmint_signature_supported": false,
+  "apk": "Mint-Browser-v26.14.4-Requisicoes-Manuais.apk",
+  "sha256": "b6ca2b32ff6f65b9e64585f0f8e62daaf4fc0bb17b3f1bc062bb4ed35ced4744",
+  "base_apk": "Mint-Browser-v26.14.3-Baus-Manual.apk",
+  "base_sha256": "3b322148d3ae2e4a7667210211d2740676e5cb28c6f8ea957952143c91352f2c",
   "changed_components": [
+    "classes3.dex",
+    "assets/mint-rebuilt.js",
     "assets/mint-automatic-requests.js",
     "assets/mint-component-policy.js"
   ],
-  "preserved_by_construction": {
-    "all_js_from_function_register_onward": true,
-    "pin_setup_together": true,
-    "pin_typing_delays": true,
-    "proxy": true,
-    "settings": true,
-    "mines": true,
-    "geetest_classes4_dex_bytes": true,
-    "manifest_resources_libraries_and_other_assets": true,
-    "entire_assets_mint_rebuilt_js_from_v2610": false,
-    "classes1_classes2_classes4_from_v2610": true,
-    "entire_assets_mint_rebuilt_js_from_v26142": true,
-    "all_native_dex_from_v26142": true
-  },
-  "filters": {
-    "replaces_old_capture_catalog": true,
-    "all_explicit_captured_closures_included": true,
-    "physical_close_gestures": 15,
-    "component_families": 9,
-    "exact_seeded_artwork_paths": 9,
-    "existing_MintAdResources_system_retained": true,
-    "native_WebView_interception_both_clients": true,
-    "always_active_independent_of_native_adblock_switch": true,
-    "service_worker_api24_seeded_paths_only": true,
-    "query_parameters_ignored": true,
-    "CDN_referer_no_longer_overrides_known_888_top_page": true,
-    "early_CSS_precise_selectors": true,
-    "dynamic_learning_from_original_base_retained": true,
-    "old_learned_rules_persisted_on_disk": false,
-    "limitations": "Only recorded URLs are preseeded. Previously unknown artwork can be learned by the original bridge after its first load. No dedicated JS/CSS/API URLs for every promotion are present in the DOM capture; no claim of eliminating all promotional bytes."
-  },
+  "signing_certificate_sha256": "68c9841645621ead0edda3825aba76f9d292cecb1426cf6b255a73423d57aa7a",
+  "signature_matches_v2610": true,
   "build": {
     "javascript_parsed_without_execution": true,
-    "native_changed_classes_compiled": false,
-    "apk_repacked_from_user_base": true,
+    "native_changed_classes_compiled": true,
+    "smali_classes3_assembled": true,
     "zipaligned": true,
     "signature_verified": [
       "v1",
@@ -60,113 +23,30 @@
     ]
   },
   "functional_tests_executed": false,
-  "tests_skipped_reason": "User explicitly requested no tests. Only compilation, packaging and signing were performed for this change.",
-  "direct_update_over_v2610_supported": true,
-  "direct_update_over_v2611_supported": true,
-  "direct_update_over_v26111_supported": true,
-  "log_review_2026_10_24": {
-    "events": 500,
-    "request_records": 477,
-    "unique_host_paths": 191,
-    "api_endpoints": 44,
-    "popups": 10,
-    "timers": 13,
-    "additional_network_paths": 3,
-    "total_seeded_paths": 12,
-    "api_candidates_activated": 4,
-    "script_blocks_activated": 0,
-    "timer_blocks_activated": 0,
-    "report": "analise-log-2026-10-24/ANALISE.md",
-    "original_scripts_unchanged": true,
-    "raw_captures_published": false,
-    "functional_tests_executed": false
+  "tests_skipped_reason": "User reserves usage tests; compilation, packaging and signing only.",
+  "manual_request_policy": {
+    "origin": "888pg.cc and subdomains",
+    "trigger": "Any trusted click captured before normal page click handlers; no label/class/button requirement. Touch/scroll alone and script-generated click do not activate.",
+    "window_ms": 5000,
+    "network": "The existing four exact promotional API paths and captured/learned artwork may pass during the manual window. Existing unrelated requests remain unchanged.",
+    "native": "Per-WebView manual window; ServiceWorker and legacy callback use short shared page-origin window where view identity is unavailable.",
+    "visual": "Existing cosmetic rules exempt roots first observed during the window until hidden/disconnected. The two Vue render vetoes allow a manually opened instance through its normal close lifecycle.",
+    "limitations": [
+      "Time correlation is heuristic. Automatic requests and dialogs coincident with a user click can pass.",
+      "ServiceWorker and legacy artwork exceptions may affect other 888 tabs for the same brief interval.",
+      "Clicks inside unrelated cross-origin frames, new document navigation and requests sent before click capture are not universally attributed.",
+      "Reused dialog DOM that closes and reopens without an observable hidden/unmounted state can retain its visual exception.",
+      "Site-side conditions and reward eligibility are unchanged; no guarantee all chest actions succeed."
+    ]
   },
-  "signature_matches_v2610": true,
+  "preserved_by_construction": {
+    "js_from_function_register_onward_identical_to_v26143": true,
+    "pin_and_delays": true,
+    "mines": true,
+    "geetest_register_only": true,
+    "classes1_classes2_classes4_bytes": true,
+    "settings_proxy_other_resources_libraries": true
+  },
   "debugger_code_removed": true,
-  "debugger_shortcuts_removed": true,
-  "capture_assets_absent": true,
-  "final_request_policy": {
-    "scope": "888pg.cc pages; four exact host/path candidates from user log, activated under the broader automatic-nuisance instruction.",
-    "request_rules": [
-      {
-        "host": "cdnapiif.ppa888pg.vip",
-        "path": "/hall/api/active/tasks/newcomer_benefit_pop",
-        "automatic": "blocked before send; native fallback403",
-        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
-      },
-      {
-        "host": "cdnapiif.ppa888pg.vip",
-        "path": "/hall/api/active/coupon/popList",
-        "automatic": "blocked before send; native fallback403",
-        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
-      },
-      {
-        "host": "cdnapiif.ppa888pg.vip",
-        "path": "/hall/api/active/popRegressActive",
-        "automatic": "blocked before send; native fallback403",
-        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
-      },
-      {
-        "host": "cdnapiif.ppa888pg.vip",
-        "path": "/hall/api/active/cutADeal/cut_a_deal_announcement",
-        "automatic": "blocked before send; native fallback403",
-        "manual": "short single-use permit when a trusted promotion-opening gesture is recognized"
-      }
-    ],
-    "manual_intent_recognition": "Trusted pointer/click on recognized promotion controls/captions; 5-second JS intent and 8-second native permit for one logical request plus CORS/layer acknowledgements. This is heuristic and does not infer every asynchronous flow.",
-    "no_universal_manual_automatic_classifier": true,
-    "unchanged": "Other endpoints, request bodies, headers, account/PIN/withdrawal/game logic and original scripts.",
-    "no_timer_or_shared_module_cancellation": true,
-    "debugger_in_apk": false,
-    "event_capture_in_apk": false,
-    "signature_matches_v2610": true,
-    "functional_tests_executed": false
-  },
-  "component_open_policy": {
-    "targets": [
-      "task-invitation _dialogBox_1r6g9_89",
-      "prize-draw _dialogBox_930qf_89"
-    ],
-    "mechanism": "Vue beforeMount/beforeUpdate arms targeted instance render and returns null before dialog children are patched; registered model/cancel cleanup is queued with vnode/version guards.",
-    "legacy_DOM_close_disabled_for_these_targets": true,
-    "no_DOM_clicks_in_component_policy": true,
-    "no_DOM_removal_in_component_policy": true,
-    "CSS_nested_has_fixed": true,
-    "CSS_applies_only_to_exact_target_overlay_signatures": true,
-    "network_policy_from_v2613_retained": true,
-    "no_debugger": true,
-    "original_PIN_Mines_GeeTest_suffix_retained_by_byte_slicing": true,
-    "limitations": "Requires reachable Vue app/context and matching class tokens. App discovery occurs after the root mount; cannot guarantee cancellation of a target already rendered before hook attachment. Runtime behavior remains for user verification.",
-    "existing_mounted_targets_receive_guarded_cancel_and_update": true
-  },
-  "manual_bonus_exception": {
-    "selector": "div._container_n102k_117._style2_n102k_144",
-    "trusted_open_action_permitted": true,
-    "target_component_exception_scoped_to_one_manual_open": true,
-    "respects_normal_close_lifecycle": true,
-    "subsequent_automatic_reopens_remain_vetoed": true,
-    "native_dex_unchanged": true,
-    "not_observed_in_original_captures": true,
-    "runtime_validation_pending_user": true
-  },
-  "geetest_scope": {
-    "enabled_top_origin": "888pg.cc and subdomains",
-    "enabled_path": "/home/register (optional trailing slash; query does not change path)",
-    "login_path": "/home/login",
-    "login_automation_disabled": true,
-    "other_top_routes_disabled": true,
-    "registration_permission_relayed_to_child_frames": true,
-    "navigation_cancels_pending_work": true,
-    "native_dex_and_solving_algorithms_unchanged": true,
-    "no_fixed_registration_start_delay_added": true
-  },
-  "manual_chest_exception": {
-    "selector": "div._inner_14o7p_95",
-    "trusted_pointer_or_click_without_button_or_label": true,
-    "network_manual_permit_for_existing_four_endpoints": true,
-    "component_manual_open_permit": true,
-    "pointerdown_click_deduplicated": true,
-    "no_claim_that_all_chests_are_unlocked": true,
-    "runtime_validation_pending_user": true
-  }
+  "debugger_shortcuts_removed": true
 }

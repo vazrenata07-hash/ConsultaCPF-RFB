@@ -1,11 +1,9 @@
-# Mint Browser V26.14.3 — Abertura manual dos baús
+# Mint Browser V26.14.4 — Liberação manual por clique
 
-Arquivo atual: `Mint-Browser-v26.14.3-Baus-Manual.apk`. O alias antigo aponta para o mesmo APK.
+Arquivo atual: `Mint-Browser-v26.14.4-Requisicoes-Manuais.apk`. O alias antigo aponta para o mesmo APK.
 
-O clique real na seção `div._inner_14o7p_95` passa a autorizar a abertura manual dos dois componentes controlados e as requisições dos quatro endpoints promocionais já filtrados. Essa seção usa divs/imagens sem rótulo “Abrir” ou papel de botão, que a regra anterior não reconhecia. Pointerdown e click da mesma interação não renovam a permissão em duplicidade.
+Qualquer clique real na página 888 inicia uma permissão de 5 segundos, sem exigir botão, texto ou classe específica. Toque para rolar e cliques gerados por scripts não ativam a permissão. Durante esse intervalo, nossos filtros permitem os quatro endpoints promocionais e as imagens capturadas/aprendidas. As janelas abertas durante a permissão seguem seu fechamento normal; fora dela o bloqueio permanece ativo.
 
-As permissões continuam temporárias. A exceção anterior da caixa `div._container_n102k_117._style2_n102k_144` permanece. As condições de desbloqueio e recompensas do próprio site não são alteradas. A associação dos baús aos endpoints e componentes precisa de validação no aparelho pelo usuário; não houve captura nova ou acesso ao site.
+A atribuição é por proximidade no tempo: uma requisição ou janela automática coincidente também pode passar. ServiceWorker e o callback legado de imagens usam uma janela breve compartilhada entre páginas 888, pois não informam o WebView. Não há garantia de atribuição universal em frames, nova navegação ou DOM reutilizado sem estado de fechamento observável. As regras de elegibilidade dos baús no servidor não são alteradas.
 
-PIN, Mines, proxy, configurações e o script principal inteiro da V26.14.2 permanecem inalterados. GeeTest continua limitado ao registro. Todos os DEX foram mantidos. Sem depurador, com a mesma assinatura da V26.10.
-
-JavaScript analisado sem execução; APK reempacotado e assinado. Sem testes de uso, conforme solicitado.
+PIN e seus tempos, Mines, proxy, configurações e GeeTest limitado ao registro permanecem inalterados. Sem depurador. Mesma assinatura da V26.10. Compilação e assinatura concluídas; sem testes de uso, conforme solicitado.
